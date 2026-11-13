@@ -1,11 +1,13 @@
-# Devungeon — Pixel Dungeon Visual Direction (v1)
+# Devungeon — Pixel Dungeon Pack Visual Direction (v1)
 
-Status: **approved direction / specification; not yet implemented**  
+Status: **approved FIRST world-pack direction**; its source implementation is under review in HERO PR #9, not a universal restriction  
 Date: 2026-11-13
+
+See [ADR-0002](ADR-0002-PROJECT-ADAPTIVE-WORLDS.md) for world selection, creator override and future independent game packs. The rules below apply **only when the pixel-dungeon pack is selected**.
 
 ## Creative target
 
-**Pixel-art dungeon action game first; software-project visualization second.** The emotional reference is the readable, lively, top-down pixel dungeon combat of *Soul Knight (元气骑士)*. This is a reference to general visual characteristics and play rhythm, **not** permission to copy its assets, exact characters, UI, rooms, soundtrack, effects, or branding.
+**Within the first pixel-dungeon pack:** prioritize an original, enjoyable pixel-art action game; keep verifiable project visualization and safe Agent workspace integration. The emotional reference is the readable, lively, top-down pixel dungeon combat of *Soul Knight (元气骑士)*. This is a reference to general visual characteristics and play rhythm, **not** permission to copy its assets, exact characters, UI, rooms, soundtrack, effects, or branding.
 
 The player should feel they are exploring and fighting in a lively pixel dungeon while Agent teammates are working nearby. The scene should also support inspection, dialogue, supervision, and project states without losing game feel.
 
@@ -65,4 +67,4 @@ The player should feel they are exploring and fighting in a lively pixel dungeon
 
 ## Decision
 
-Pixel-art top-down dungeon is **the project-level art direction**, not an optional afterthought or interchangeable 3D cartoon sample. A user may add future themes but the built-in signature theme is this **original 2.5D pixel dungeon**.
+Original top-down pixel dungeon is the **first implemented world pack**, with its own non-negotiable visual coherence and gameplay quality. **It is not the universal look for every imported project.** Future city, station or museum worlds may use different 3D/2D aesthetics and gameplay while sharing reliable project truth and Agent protocols. Read ADR-0002-PROJECT-ADAPTIVE-WORLDS.md.

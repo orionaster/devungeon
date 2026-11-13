@@ -2,7 +2,7 @@
 
 **Your agents are working. You're playing. Your world is growing.**
 
-Devungeon is a planned **open-source, explorable 2.5D pixel-art dungeon game + AI-agent workspace** that turns real software projects into living game worlds. Its rooms have genuine 3D space and collision, while the signature look is an **original top-down pixel dungeon** with crisp sprites, fast combat and expressive Agent characters.
+Devungeon is an **open-source, project-adaptive playable game world + AI-agent workspace**. The engine aims to interpret a software product's structure and design language, suggest different world forms and game mechanics, and let the creator choose. **Our first working reference is an original 2.5D top-down pixel dungeon**, but other projects need not become dungeons.
 
 > **This branch: S4 workspace integrated with the committed HERO game, awaiting supervisor review.** Explore, fight, select a companion and use the in-world DEMO chat/task/approval workspace. A separate 3D observation entry consumes real read-only SCOUT events with source evidence. Real AI chat/command execution is not connected yet; this is not the complete V1. See [S4 evidence and open items](packages/workspace-ui/VALIDATION.md).
 
@@ -20,10 +20,11 @@ Open http://127.0.0.1:5173. WASD moves, J attacks, Space dodges, Q/R rotate90°,
 NPC click/E opens the WIZARD workspace. Simulated messages, dispatch, evidence and approvals share the same character IDs and event projection. Closing the sheet resumes the same game run; game death/restart never approves or cancels work. [Independent workbench and SCOUT 3D observation instructions](packages/workspace-ui/README.md).
 
 `npm test` runs engine checks; `npm run build` creates the production app, and `npm run preview -- --port 5174` serves it locally. See [actual validation and limitations](docs/HERO_VALIDATION.md), [scene/workbench contract](docs/HERO_INTEGRATION.md), and [locked dependency/license review](docs/HERO_DEPENDENCIES.md). Browser screenshots and measured results are in [output/playwright](output/playwright/). Gameplay victory never changes project acceptance.
+> **Integration status:** first-wave PRs #6–#9 remain subject to supervisor review. This feature branch is runnable; there is not yet a fully integrated multi-world application. The optional world-choice schema and synthetic proposals do not implement another game mode.
 
 ## The idea
 
-- **Explore your project**: An AI World Designer interprets real modules, features, dependencies and verification evidence and creates a project-specific dungeon.
+- **Explore your project**: an AI World Designer suggests a suitable game world based on product/design signals and real project structures; you can override it. Available world packs compile that truth into an explorable world.
 - **Watch agents work**: Supervisors and workers appear as dungeon characters; observed tool calls, development tasks and validation events become in-world actions.
 - **Play while they build**: Move, dodge, fight monsters and explore. Game victory is separate from real project acceptance.
 - **Manage work inside the game**: Select or approach an Agent, chat, inspect status and evidence, and request operations permitted by the underlying real Agent system.
@@ -33,11 +34,12 @@ Our goal is **fun, creative exploration, open-source collaboration, and a compel
 
 ## Documents
 
-- [Full Chinese PRD v1.0](docs/PRD.md) — complete agreed product vision and V1 acceptance goals.
+- [Full Chinese PRD v1.3](docs/PRD.md) — complete product vision, Chinese-first UX and project-adaptive world types.
+- [ADR-0002: Project-adaptive worlds](docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md) — multi-world decision, genuine gameplay differences and first-wave compatibility.
 - [Architecture](docs/ARCHITECTURE.md) — boundaries and candidate technical stack.
 - [Acceptance](docs/ACCEPTANCE.md) — reproducible end-to-end cases, security and honesty checks.
 - [Roadmap](docs/ROADMAP.md) — incremental execution toward the complete V1 vision.
-- [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — mandatory original 2.5D pixel art, camera and gameplay readability.
+- [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — original first world pack, NOT a mandatory look for all future projects.
 - [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — original candidate evaluation; installed choices are pinned in the root lockfile and feature dependency records.
 - [Asset Provenance Ledger](docs/ASSET_PROVENANCE.md) — verified CC0 candidates, import rules, redistribution and notices.
 - [Contribution guide](CONTRIBUTING.md), [Agent rules](AGENTS.md).
@@ -80,7 +82,7 @@ Issues and PRs are welcome once the repository is live. Especially useful: origi
 
 ## Agent development Skills
 
-The repository includes **six project-specific, instructions-only Agent Skills** under [`.agents/skills/`](.agents/skills/) for pixel visuals, browser gameplay validation, project-world compilation, truthful Agent event adapters, safe dependency reuse and in-world workbench commands.
+The repository includes **seven project-specific, instructions-only Agent Skills** under [`.agents/skills/`](.agents/skills/) for pixel visuals, browser gameplay validation, project-world compilation, truthful Agent event adapters, safe dependency reuse and in-world workbench commands.
 
 - Codex discovers repository-local Skills from `.agents/skills/`.
 - Claude Code uses [`.claude/skills/devungeon-workflow/SKILL.md`](.claude/skills/devungeon-workflow/SKILL.md), which routes to those canonical workflows; [`CLAUDE.md`](CLAUDE.md) gives project-wide guidance.
@@ -89,4 +91,11 @@ The repository includes **six project-specific, instructions-only Agent Skills**
 
 ## Visual references and copyright
 
-The original 2.5D art direction borrows **genre qualities** from lively top-down pixel dungeon games (including _Soul Knight_), not their copyrighted sprites, music, branding, exact rooms or UI. Prefer a consistent CC0 starter pack such as [Kenney Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) and record any actual imported files in the asset provenance ledger.
+The original 2.5D art direction borrows **genre qualities** from lively top-down pixel dungeon games (including *Soul Knight*), not their copyrighted sprites, music, branding, exact rooms or UI. Prefer a consistent CC0 starter pack such as [Kenney Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) and record any actual imported files in the asset provenance ledger.
+
+
+## Experience selection (planned; not yet a running game switch)
+
+World packs may implement different **spatial metaphors and game loops**, not only alternative colors: pixel dungeon (combat), city (build/explore), space station (repair/explore), museum (collect/explore). Their shared foundation is real project IDs, dependencies, evidence, Agent observation and safe Agent commands; the user can choose a different world than the AI proposes. UI Chinese/English selection does **not** select a world.
+
+The versioned **optional** draft manifest and its two *synthetic* proposal fixtures live in [schema/world-experience.schema.json](schema/world-experience.schema.json), [pixel dungeon](examples/world-experience-pixel-dungeon.json), and [city proposal](examples/world-experience-city-proposal.json). City is **proposal-only**. A second world is not complete until a separate playable interaction loop passes real browser tests. See ADR-0002.

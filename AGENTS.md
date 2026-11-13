@@ -11,6 +11,10 @@
 9. Keep public docs honest about which features are demo, experimental, or verified end-to-end.
 10. Don't add paid services, upload repository data, open public deployments or change licenses without owner approval.
 
-11. The approved **visual direction is original top-down 2.5D pixel-art dungeon**, with genuine 3D room space. Read docs/VISUAL_DIRECTION.md before scene, camera, sprite or combat work. Refer to *Soul Knight* only for genre feel; never copy its assets/UI/music/rooms.
+11. **Pixel dungeon is the FIRST validated world-pack direction, not mandatory for every project.** Read docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md for project-specific world selection and docs/VISUAL_DIRECTION.md for pixel-pack art. Keep the original top-down pixel dungeon cohesive; never copy Soul Knight assets/UI/music/rooms.
 12. Read docs/TOOLS_AND_SKILLS.md and docs/ASSET_PROVENANCE.md before adding dependencies or art. Prefer verified source licenses and stable compatible versions; do not install third-party Skills, MCP servers or hooks by default.
 13. Repository task Skills live in .agents/skills/*/SKILL.md; Claude Code has a router in .claude/skills/devungeon-workflow/SKILL.md and CLAUDE.md. Choose the relevant Skill and follow its real-browser proof requirements.
+
+14. Chinese-first product UX is an official V1 requirement: default zh-CN and permit full en-US switching without reloading, changing gameplay, project truth, world IDs/seeds or approval state. Read docs/I18N.md and Issue #10. WIZARD owns the shared locale contract; HERO localizes game, BUILDER preserves language-neutral graph, SCOUT preserves original external evidence. Never ship unreviewed private-data translation APIs.
+
+15. Devungeon is **project-adaptive multi-world**. Preserve source project/Agent facts; isolate world-pack choice, genre-specific gameplay and game-only saves. AI may suggest worlds based on approved product/design signals with reasons, but user override wins. UI locale (zh-CN/en-US) never determines map/game type. No unreviewed plugin or AI-generated code execution. See ADR-0002 and draft schema/world-experience.schema.json; keep existing S1–S4 branches compatible, do not rewrite current working dungeon.

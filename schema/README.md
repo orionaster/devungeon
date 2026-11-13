@@ -6,3 +6,6 @@
 `game-state.schema.json`: player-only game progression, deliberately disallowing task acceptance and authorization.
 
 These are **draft schemas** to guide first implementation, not a claim of a finished integration or stable public API. Cross-entity referential integrity, event deduplication, state transitions, authority and source reconciliation require application-level validation.
+
+
+world-experience.schema.json: optional **experimental** (v0.1) design/world/renderer/gameplay selection sidecar. It does not replace v1 ProjectSnapshot or WorldBlueprint and does not grant real acceptance/Agent permissions. The synthetic examples under examples/world-experience-*.json model an experimental first dungeon and an **unimplemented city proposal**. Their validation proves shape and source linkage, not a working game. See docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md.

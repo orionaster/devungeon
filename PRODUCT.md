@@ -10,7 +10,7 @@ Creative coders, project owners and Agent teams who want to explore a project wo
 
 ## Product Purpose
 
-An original pixel dungeon with a useful in-world workspace. A player selects a teammate, inspects attributable work, sends a supported scoped request, and returns to exploring. DEMO is always visible until a real connector proves the full execution loop. Gameplay cannot grant permissions or establish project acceptance.
+A project-adaptive game-world platform with a useful shared Agent workspace. The first playable world is an original pixel dungeon; other world packs are future work, not a reason to replace this slice. A player selects a teammate, inspects attributable work, sends a supported scoped request, and returns to exploring. DEMO is always visible until a real connector proves the full execution loop. Gameplay cannot grant permissions or establish project acceptance. Source: ADR-0002 and PRD v1.3.
 
 ## Brand Personality
 
@@ -22,7 +22,8 @@ A conventional full-screen project dashboard, copied game artwork, decorative fa
 
 ## Design Principles
 
-- Keep the dungeon present while inspecting work.
+- Keep the current game world present while inspecting work.
+- Keep UI locale independent of world selection, project facts and Agent state.
 - Use stable character identities and traceable sources.
 - Offer only capabilities the adapter actually supports.
 - Make leaving a conversation easy without stopping background work.
