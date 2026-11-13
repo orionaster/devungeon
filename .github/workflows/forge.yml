@@ -1,17 +1,19 @@
 name: FORGE unified product
 on:
-  push:
-    branches: ['integration/wave2']
   pull_request:
     paths: ['apps/**', 'packages/**', 'scripts/forge*', 'package*.json', 'tsconfig.json', 'vitest.config.ts', '.github/workflows/forge.yml']
 permissions:
   contents: read
+concurrency:
+  group: forge-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 jobs:
   integrated:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -33,8 +35,15 @@ jobs:
           name: forge-${{ runner.os }}
           path: |
             output/playwright/forge/*-results.json
+            output/playwright/forge-host-lifecycle/**/report.json
+          retention-days: 7
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v7.0.2
+        if: failure()
+        with:
+          name: forge-${{ runner.os }}-browser-failure
+          path: |
             output/playwright/forge/*-trace.zip
             output/playwright/forge/*-failure.png
-            output/playwright/forge-host-lifecycle/**/report.json
           retention-days: 7
           if-no-files-found: ignore

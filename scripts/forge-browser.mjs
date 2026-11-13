@@ -26,6 +26,8 @@ const output = resolve(process.env.FORGE_OUTPUT ?? join(root, "output/playwright
 const bridgePort = Number(process.env.FORGE_SCOUT_PORT ?? 4318);
 const cpuThrottle = Number(process.env.FORGE_CPU_THROTTLE ?? 1);
 const softwareGL = process.env.FORGE_SOFTWARE_GL === "1";
+const traceScreenshots = process.env.FORGE_TRACE_SCREENSHOTS === "1" ||
+  (process.env.FORGE_TRACE_SCREENSHOTS !== "0" && !process.env.CI);
 if (!Number.isFinite(cpuThrottle) || cpuThrottle < 1 || cpuThrottle > 20)
   throw new Error("FORGE_CPU_THROTTLE must be between 1 and 20 (test-only slowdown)");
 await mkdir(output, { recursive: true });
@@ -37,6 +39,7 @@ const report = {
     ...(cpuThrottle > 1 ? [`CPU slowdown ${cpuThrottle}x is a harness stress check, not device performance acceptance.`] : [])],
   cpu_throttle: cpuThrottle,
   software_gl: softwareGL,
+  trace_screenshots: traceScreenshots,
   checks: [], cases: [], console: [], navigation: [],
 };
 function check(name, pass, detail) {
@@ -75,7 +78,7 @@ async function hold(page, key, ms) {
   try { await page.waitForTimeout(ms); }
   finally { await page.keyboard.up(key); }
 }
-async function movementPulse(page, key, ms, previousTime) {
+async function movementPulse(page, key, ms, previousTime, allowDeath = false) {
   // Queue release by a Node timer, independently of keydown's browser round
   // trip. Waiting for its acknowledgement before starting the timer holds the
   // key too long on software-rendered CI and repeatedly overshoots the target.
@@ -84,13 +87,20 @@ async function movementPulse(page, key, ms, previousTime) {
   finally { await Promise.all([down, page.keyboard.up(key)]); }
   // Observe an actual neutral simulation frame after keyup. We neither mutate
   // GameState nor infer the position from a wall-clock delay or input duration.
-  await page.waitForFunction((time) => {
+  await page.waitForFunction(({ time, allowDeath }) => {
     const state = window.__DEVUNGEON__?.snapshot();
-    return state && state.time > time && !state.player.moving && state.dodgeTime <= 0;
-  }, previousTime, { timeout: 10000, polling: "raf" });
+    return state && ((allowDeath && state.phase === "lost") ||
+      (state.time > time && !state.player.moving && state.dodgeTime <= 0));
+  }, { time: previousTime, allowDeath }, { timeout: 10000, polling: "raf" });
   return game(page);
 }
 async function focusGame(page) { await page.locator(".game-surface").focus(); }
+async function restoredGameFocus(page) {
+  // Dialog disappearance and Radix/host focus restoration occur in distinct
+  // lifecycle frames. Observe the real destination instead of racing a Boolean.
+  await page.waitForFunction(() => document.activeElement === document.querySelector(".game-surface"), undefined,
+    { timeout: 10000, polling: "raf" });
+}
 async function selectProject(page, selected) {
   await page.getByTestId("forge-project-select").selectOption(selected);
   const chosen = await poll(() => forge(page), (s) => s?.selected === selected && !!s.world);
@@ -126,23 +136,27 @@ function mapRoute(world, from, to) {
   }
   throw new Error(`No walkable keyboard route from ${JSON.stringify(from)} to ${JSON.stringify(to)}`);
 }
-async function walkTo(page, target, tolerance = .16, onObservation) {
-  const diagnostic = { target, started_at: new Date().toISOString(), pulses: [] };
+async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath = false } = {}) {
+  const diagnostic = { target, allow_death: allowDeath, started_at: new Date().toISOString(), pulses: [] };
   report.navigation.push(diagnostic);
   let gain = .7;
   for (let i = 0; i < 170; i++) {
     const state = await game(page);
+    if (allowDeath && state.phase === "lost") {
+      diagnostic.outcome = "actual-death-before-target";
+      return false;
+    }
     assert.notEqual(state.phase, "lost", "Player died during route");
     await onObservation?.(state);
     const dx = target.x - state.player.x, dz = target.z - state.player.z;
-    if (Math.hypot(dx, dz) < tolerance) return;
+    if (Math.hypot(dx, dz) < tolerance) { diagnostic.outcome = "arrived"; return true; }
     const heading = (await camera(page)).heading * Math.PI / 2;
     const sx = dx * Math.cos(heading) - dz * Math.sin(heading);
     const sz = dx * Math.sin(heading) + dz * Math.cos(heading);
     const horizontal = Math.abs(sx) >= Math.abs(sz), amount = horizontal ? sx : sz;
     const key = horizontal ? amount > 0 ? "KeyD" : "KeyA" : amount > 0 ? "KeyS" : "KeyW";
     const duration = Math.min(160, Math.max(4, Math.abs(amount) * 1000 / 4.3 * gain));
-    const next = await movementPulse(page, key, duration, state.time);
+    const next = await movementPulse(page, key, duration, state.time, allowDeath);
     const moved = Math.hypot(next.player.x - state.player.x, next.player.z - state.player.z);
     const beforeDistance = Math.hypot(dx, dz), afterDistance = Math.hypot(target.x - next.player.x, target.z - next.player.z);
     diagnostic.pulses.push({ key, duration_ms: duration, from: { x: state.player.x, z: state.player.z }, to: { x: next.player.x, z: next.player.z }, beforeDistance, afterDistance, simulation_ms: (next.time - state.time) * 1000 });
@@ -155,7 +169,7 @@ async function walkTo(page, target, tolerance = .16, onObservation) {
   }
   throw new Error(`Keyboard route stuck at ${JSON.stringify((await game(page)).player)} approaching ${JSON.stringify(target)}`);
 }
-async function follow(page, world, to, { fightAfterHit = false } = {}) {
+async function follow(page, world, to, { fightAfterHit = false, allowDeath = false } = {}) {
   await focusGame(page);
   await page.waitForFunction(() => {
     const state = window.__DEVUNGEON__?.snapshot();
@@ -164,7 +178,7 @@ async function follow(page, world, to, { fightAfterHit = false } = {}) {
   let attacking = false;
   try {
     for (const point of mapRoute(world, (await game(page)).player, to)) {
-      await walkTo(page, point, .16, async (state) => {
+      const arrived = await walkTo(page, point, { allowDeath, onObservation: async (state) => {
         if (fightAfterHit && state.stats.hitsTaken > 0 && !attacking) {
           // The real player may fight while navigating. Waiting for exact
           // center arrival before attacking lets enemy knockback defeat an
@@ -172,7 +186,8 @@ async function follow(page, world, to, { fightAfterHit = false } = {}) {
           await page.keyboard.down("KeyJ");
           attacking = true;
         }
-      });
+      } });
+      if (!arrived) break; // Only the explicitly intentional loss setup allows this.
     }
   } finally {
     if (attacking) await page.keyboard.up("KeyJ");
@@ -181,6 +196,7 @@ async function follow(page, world, to, { fightAfterHit = false } = {}) {
 async function language(page, name, panel) {
   const groups = (panel ?? page).getByRole("group", { name: "界面语言 / Interface language" });
   await groups.first().getByRole("button", { name, exact: true }).click();
+  await page.waitForFunction((locale) => document.documentElement.lang === locale, name === "English" ? "en-US" : "zh-CN");
 }
 async function openAgent(page, agent) {
   const rows = page.locator(".agent-row").filter({ hasText: agent.name });
@@ -232,6 +248,7 @@ async function workspaceChecks(page, label) {
   await send(page, "FORGE 合成任务 continues while playing");
   await page.keyboard.press("Escape");
   await page.getByRole("dialog").waitFor({ state: "hidden" });
+  await restoredGameFocus(page);
   if (await page.locator(".journal-toggle").getAttribute("aria-expanded") === "false") await page.locator(".journal-toggle").click();
   await poll(() => work(page), (s) => s.receipts.some((r) => r.command.text.includes("FORGE 合成任务") && r.status === "completed"));
   check(`${label}: task survives closing workspace`, (await work(page)).tasks.some((t) => t.title.includes("FORGE 合成任务") && t.status === "review"));
@@ -262,6 +279,7 @@ async function workspaceChecks(page, label) {
   check(`${label}: workspace did not change project truth`, same((await forge(page)).project, truth));
   await page.keyboard.press("Escape");
   await page.getByRole("dialog").waitFor({ state: "hidden" });
+  await restoredGameFocus(page);
   check(`${label}: workspace releases focus to game`, await page.locator(".game-surface").evaluate((el) => document.activeElement === el));
   return { supervisor, pendingId: (await work(page)).approvals.find((a) => a.status === "pending").id };
 }
@@ -353,11 +371,11 @@ async function verifyProject(page, selected) {
     await page.keyboard.press("Enter");
     await poll(() => game(page), (s) => s.phase === "playing" && s.kills === 0);
     const first = world.scene.rooms.find((r) => r.room_id === world.scene.navigation.reachable_room_ids[0]);
-    const entrance = world.scene.doors.find((door) => door.room_id === first.room_id);
-    // Deliberately stand just inside the actual accepted-room entrance and
-    // receive attacks. Exact center traversal was already verified in combat;
-    // this case measures death isolation without fighting back or teleporting.
-    await follow(page, world, { x: entrance.position.x * 2 - entrance.outside.x, z: entrance.position.z * 2 - entrance.outside.z });
+    // This setup wants a genuine loss, so it must stop if the enemy kills the
+    // player before center arrival. Winning navigation above still requires
+    // every accepted center at .16 tolerance and never allows player death.
+    await page.keyboard.up("KeyJ");
+    await follow(page, world, first, { allowDeath: true });
     const losing = await poll(() => game(page), (s) => s.phase === "lost", 45000);
     check(`${selected}: actual enemy damage causes player death`, losing.player.hp === 0 && losing.stats.hitsTaken > 0);
     check(`${selected}: death never approves/cancels pending work`, (await work(page)).approvals.find((a) => a.id === workspace.pendingId)?.status === "pending");
@@ -371,6 +389,7 @@ async function verifyProject(page, selected) {
   const beforeUpdate = await forge(page);
   await page.getByTestId("forge-add-feature").click();
   const updated = await poll(() => forge(page), (s) => s.world?.layout.rooms.length > beforeUpdate.world.layout.rooms.length);
+  await poll(() => scene(page), (s) => s.project_context?.project_revision === updated.project.revision);
   const oldRooms = beforeUpdate.world.layout.rooms;
   check(`${selected}: incremental update pins all old room geometry`, oldRooms.every((r) => same(updated.world.layout.rooms.find((n) => n.room_id === r.room_id), r)));
   check(`${selected}: incremental update pins existing corridor paths`, beforeUpdate.world.layout.paths.every((p) => same(updated.world.layout.paths.find((n) => n.id === p.id), p)));
@@ -558,10 +577,13 @@ try {
   browser = await chromium.launch({ headless: suite !== "showcase" && process.env.FORGE_HEADED !== "1", ...(executablePath ? { executablePath } : {}), args: ["--disable-background-timer-throttling", "--disable-renderer-backgrounding",
     ...(softwareGL ? ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] : [])] });
   report.browser = browser.version(); report.executable = executablePath ?? "Playwright-managed Chromium";
-  const selections = suite === "showcase" ? ["showcase"] : suite === "public" ? ["public"] : suite === "all" ? ["tiny", "workbench", "public"] : ["tiny", "workbench"];
+  const selections = suite === "showcase" ? ["showcase"] : suite === "public" ? ["public"] : suite === "tiny" ? ["tiny"] : suite === "workbench" ? ["workbench"] : suite === "all" ? ["tiny", "workbench", "public"] : ["tiny", "workbench"];
   for (const selection of selections) {
     const context = await browser.newContext({ viewport: report.viewport, deviceScaleFactor: 1, reducedMotion: "reduce", ...(suite === "showcase" ? { recordVideo: { dir: output, size: report.viewport } } : {}) });
-    await context.tracing.start({ screenshots: true, snapshots: true, sources: true });
+    // Continuous filmstrip capture competes with software WebGL on CI. Keep
+    // DOM/action/source traces and all explicit PNG checkpoints; local captures
+    // retain the filmstrip by default and may opt out for harness stress runs.
+    await context.tracing.start({ screenshots: traceScreenshots, snapshots: true, sources: true });
     const page = await context.newPage();
     if (cpuThrottle > 1) {
       const cdp = await context.newCDPSession(page);
@@ -569,6 +591,7 @@ try {
     }
     page.setDefaultTimeout(20000);
     const errors = [];
+    let caseFailure;
     page.on("pageerror", (error) => errors.push(error.message));
     page.on("console", (message) => {
       if (["error", "warning"].includes(message.type())) report.console.push({ selection, type: message.type(), text: message.text() });
@@ -578,12 +601,17 @@ try {
       check(`${selection}: no uncaught browser error`, errors.length === 0, errors);
       report.cases.push({ selection, result });
     } catch (error) {
+      caseFailure = error;
       report.cases.push({ selection, failed: true, error: error.stack, game: await game(page).catch(() => undefined), forge: await forge(page).catch(() => undefined) });
       await screenshot(page, `${selection}-failure`).catch(() => {});
       throw error;
     } finally {
-      await context.tracing.stop({ path: join(output, `${selection}-trace.zip`) });
-      await context.close();
+      try {
+        await context.tracing.stop({ path: join(output, `${selection}-trace.zip`) });
+      } catch (error) {
+        (report.trace_errors ??= []).push({ selection, error: error.message });
+        if (!caseFailure) throw error; // Preserve an original gameplay failure.
+      } finally { await context.close(); }
       if (suite === "showcase") {
         const recorded = await page.video().path();
         await rename(recorded, join(output, "headed-showcase.webm"));
