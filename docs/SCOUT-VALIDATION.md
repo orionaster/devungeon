@@ -4,6 +4,11 @@ Scope: actual public project import and explicitly instrumented local SCOUT work
 into a real browser **event inspector**, not a completed dungeon integration.
 No private Agent logs/accounts, Crew content, keys, global hooks or paid services.
 
+**Wave 2 update:** main was reconciled through a normal merge (PRD v1.3 / ADR-0002),
+and a reusable same-origin host middleware plus actual HERO/WIZARD scene checks
+are now available. See [wave 2 evidence and review gates](SCOUT-WAVE2.md). The
+results below remain the first-wave record; they are not overwritten by later work.
+
 ## Reproduce
 
 Use a clean checkout of `feat/s3-scout-adapters`, Node >=24.13:

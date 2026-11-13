@@ -32,7 +32,7 @@ async function setup() {
   const url = `http://127.0.0.1:${(server.address() as {port: number}).port}`;
   return {bridge, url, events, fail: () => { fail = true; }, agentFail: () => { agentFail = true; }, close: async () => { server.close(); server.closeAllConnections(); await bridge.close(); await rm(dir, {recursive: true}); }};
 }
-test('HTTP snapshot, live SSE, resume replay and consumer all use actual normalized records', async () => {
+test('HTTP snapshot, live SSE, resume replay and consumer all use actual normalized records', {timeout: 10000}, async () => {
   const s = await setup(); const abort = new AbortController();
   try {
     await s.bridge.pollProject();
@@ -42,8 +42,10 @@ test('HTTP snapshot, live SSE, resume replay and consumer all use actual normali
     await reader.read(); // initial status/backlog
     s.events.push(event('real-protocol-test', 'tool_start', new Date().toISOString(), true));
     await s.bridge.pollAgent();
-    const liveText = new TextDecoder().decode((await reader.read()).value);
+    let liveText = '';
+    while (!liveText.includes('event: record') && liveText.length < 1_000_000) liveText += new TextDecoder().decode((await reader.read()).value);
     assert(liveText.includes('event: record')); assert(liveText.includes('"mode":"DEMO"'));
+    assert(liveText.indexOf('event: status') < liveText.indexOf('event: record'), 'renderer receives source connection before its first action');
     const history = await (await fetch(`${s.url}/v1/events?after=0`)).json();
     assert.equal(history.records.length, 1); assert.equal(history.records[0].mode, 'REPLAY');
     await s.bridge.pollAgent(); assert.equal(s.bridge.journal.entries.length, 1);
@@ -53,6 +55,17 @@ test('HTTP snapshot, live SSE, resume replay and consumer all use actual normali
     assert.equal((await fetch(`${s.url}/v1/events?after=-1`)).status, 400);
     assert.equal((await fetch(`${s.url}/v1/events?limit=1001`)).status, 400);
   } finally { abort.abort(); await s.close(); }
+});
+test('event delivery keeps future observations in replay; source silence expires without inventing work', async () => {
+  const s = await setup();
+  try {
+    const future = event('future', 'tool_start', new Date(Date.now() + 4000).toISOString());
+    assert.equal(s.bridge.envelope({cursor: 1, event: future}, false).mode, 'REPLAY');
+    s.events.push(future); await s.bridge.pollAgent();
+    assert.equal(s.bridge.status().connections.agent.mode, 'STALE');
+    s.bridge.states.agent = {mode: 'DEMO', reason: 'ok', last_success_at: '2026-01-01T00:00:00Z', checked_at: new Date().toISOString(), retry_at: null};
+    assert.equal(s.bridge.status().connections.agent.mode, 'STALE');
+  } finally {await s.close();}
 });
 test('source failure retains honest cached snapshot, missing permission is visible; no command routes', async () => {
   const s = await setup();

@@ -15,3 +15,8 @@ export interface AgentEventAdapter {
   readonly capabilities: readonly ['observe_events'];
   read(): Promise<AgentEvent[]>;
 }
+
+/** Delivery context is not source truth. Backlog never becomes LIVE. */
+export interface EventEnvelope {
+  schema_version: '1.0'; cursor: number; mode: 'LIVE' | 'DEMO' | 'REPLAY'; event: AgentEvent;
+}

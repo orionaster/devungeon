@@ -21,8 +21,17 @@ export interface ProjectAdapter {
 export type ConnectionMode = 'LIVE' | 'DEMO' | 'REPLAY' | 'STALE' | 'DISCONNECTED';
 export type ConnectionReason = 'ok' | 'not_connected' | 'unauthorized' | 'rate_limited' | 'unavailable' | 'invalid_data' | 'stale';
 export interface ConnectionState {
-  mode: ConnectionMode; reason: ConnectionReason; last_success_at: string | null;
+  mode: Exclude<ConnectionMode, 'REPLAY'>; reason: ConnectionReason; last_success_at: string | null;
   checked_at: string; retry_at: string | null;
+}
+export interface BridgeStatus {
+  schema_version: '1.0'; project_id: string; epoch: string; cursor: number;
+  connections: {project: ConnectionState; agent: ConnectionState};
+  capabilities: {project: readonly string[]; agent: readonly string[]; commands: readonly []};
+  warnings: string[];
+}
+export interface SnapshotEnvelope {
+  schema_version: '1.0'; connection: ConnectionState; snapshot: ProjectSnapshot | null;
 }
 export class AdapterError extends Error {
   readonly reason: ConnectionReason;

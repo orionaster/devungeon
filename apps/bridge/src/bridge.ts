@@ -4,8 +4,8 @@ import { join } from 'node:path';
 import { Journal } from './journal.ts';
 import { validateSnapshot } from './validation.ts';
 import { AdapterError } from '../../../packages/project-adapters/types.ts';
-import type { ConnectionState, ProjectAdapter, ProjectSnapshot } from '../../../packages/project-adapters/types.ts';
-import type { AgentEventAdapter, AgentEvent } from '../../../packages/agent-adapters/types.ts';
+import type { BridgeStatus, ConnectionState, ProjectAdapter, ProjectSnapshot } from '../../../packages/project-adapters/types.ts';
+import type { AgentEventAdapter, AgentEvent, EventEnvelope } from '../../../packages/agent-adapters/types.ts';
 import type { Entry } from './journal.ts';
 
 export class Bridge extends EventEmitter {
@@ -36,15 +36,16 @@ export class Bridge extends EventEmitter {
       if (entry) this.emit('record', this.envelope(entry, false));
     }
   }
-  envelope(entry: Entry, replay: boolean) {
-    const fresh = Date.now() - Date.parse(entry.event.occurred_at) <= 30000;
+  envelope(entry: Entry, replay: boolean): EventEnvelope {
+    const age = Date.now() - Date.parse(entry.event.occurred_at);
+    const fresh = age >= 0 && age <= 30000;
     return {schema_version: '1.0', cursor: entry.cursor, mode: replay || !fresh ? 'REPLAY' : entry.event.is_demo ? 'DEMO' : 'LIVE', event: entry.event};
   }
-  status() {
+  status(): BridgeStatus {
     const now = Date.now();
     for (const [channel, staleMs] of [['project', 360000], ['agent', 30000]] as const) {
       const state = this.states[channel];
-      if (state.mode === 'LIVE' && state.last_success_at && now - Date.parse(state.last_success_at) > staleMs) {
+      if (['LIVE', 'DEMO'].includes(state.mode) && state.last_success_at && now - Date.parse(state.last_success_at) > staleMs) {
         state.mode = 'STALE'; state.reason = 'stale';
       }
     }
@@ -84,10 +85,13 @@ export class Bridge extends EventEmitter {
       if (new Set(events.map(e => e.is_demo)).size > 1) throw new AdapterError('invalid_data');
       const {validateEvent} = await import('./validation.ts');
       events.forEach(e => validateEvent(e, this.project.projectId));
-      await this.publish(events);
       const last = events.reduce<string | null>((latest, e) => !latest || Date.parse(e.occurred_at) > Date.parse(latest) ? e.occurred_at : latest, null);
-      const recent = last && Date.now() - Date.parse(last) <= 30000;
+      const age = last ? Date.now() - Date.parse(last) : Infinity;
+      const recent = age >= 0 && age <= 30000;
       this.states.agent = {mode: recent ? events.every(e => e.is_demo) ? 'DEMO' : 'LIVE' : 'STALE', reason: recent ? 'ok' : 'stale', last_success_at: last, checked_at: new Date().toISOString(), retry_at: null};
+      // First fresh record must not arrive while a renderer still sees DISCONNECTED.
+      this.emit('status', this.status());
+      await this.publish(events);
     } catch (error) {
       const e = error instanceof AdapterError ? error : new AdapterError('invalid_data');
       this.states.agent = {...this.states.agent, mode: 'DISCONNECTED', reason: e.reason, checked_at: new Date().toISOString(), retry_at: null};

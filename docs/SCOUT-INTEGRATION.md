@@ -55,17 +55,60 @@ Transport rules:
   of gameplay and acceptance. Import/copy it with its Apache-2.0 repository notice
   or implement these rules in the host's own store.
 
-## Same-origin integration
+## Same-origin integration (Issue #12, wave 2)
 
 The bridge deliberately exposes no CORS allowance and denies foreign Origin,
 Host and cross-site browser requests. Do not bypass this with browser flags.
-The included inspector is same-origin. A separately hosted UI should use an
-explicit **local development proxy** for `/v1` pointing to
-`http://127.0.0.1:4313`, rewriting Host (`changeOrigin:true`). Use same-origin GET
-requests without an Origin header. If the proxy forwards an Origin, configure
-that trusted proxy to validate its own UI origin and omit the upstream Origin;
-never reflect arbitrary external origins. No public deployment is authorized.
-Another option is host injection of already approved record/status values.
+The included inspector is same-origin. The primary host can reuse the explicit
+zero-dependency Node middleware in `apps/bridge/src/same-origin.ts`:
+
+```ts
+import {createScoutMiddleware} from '../bridge/src/same-origin.ts';
+// In apps/web/vite.config.ts; enable only with an explicitly selected bridge.
+const scoutRead = {
+  name: 'devungeon-scout-readonly',
+  configureServer(server) {
+    server.middlewares.use(createScoutMiddleware({
+      hostOrigin: 'http://127.0.0.1:5173', bridgePort: 4313,
+    }));
+  },
+};
+```
+
+Mount the middleware directly (not under another Connect mount). Host consumers
+fetch `/scout-read/v1/snapshot`, `/scout-read/v1/status`, `/scout-read/v1/events`
+and `/scout-read/v1/stream`. WIZARD's existing `connectScoutStream` accepts the
+last path. BUILDER receives `snapshot` from the snapshot response, not its wrapper.
+The port is explicit; no upstream URL, repository parameter, token or arbitrary
+path comes from the browser. An unselected host should not mount this middleware.
+
+It verifies the exact UI Host/Origin and loopback peer before rewriting a fresh
+upstream request. Only the four GET routes, validated after/limit values and
+Last-Event-ID are forwarded. Cookie/Authorization/Origin are discarded. Foreign
+origins stay denied on the direct bridge. Unavailable bridge returns 502 with a
+stable error code; history remains a host projection concern. SSE client close
+releases its upstream request. No public deployment is authorized. Another
+option is host injection of already approved record/status values.
+
+Published TS types: `BridgeStatus` / `SnapshotEnvelope` in project-adapters/types
+and `EventEnvelope` in agent-adapters/types. No React or Vite runtime dependency
+is introduced by the middleware; there is no root package/lockfile change.
+
+## Shared locale / world boundary (Issues #10 and #14)
+
+SCOUT has no UI-locale store, language selector, world selector or gameplay API.
+Use WIZARD's **one shared locale provider/catalogue** in the primary host.
+Translate display labels from the stable mode, reason, source_kind, event_type
+and status values. Format displayed dates using that locale; keep UTC source
+strings intact. Show original Issue/PR titles, original messages, IDs and evidence
+separately. Do not translate their values inside ProjectSnapshot/AgentEvent or
+send them to a translation service. Source warnings/messages remain original
+diagnostic strings; the host may add its own locally translated explanation.
+
+No locale query is accepted by the proxy. Switching UI language or world pack
+must never reconnect/change source selection, rewrite timestamps, mutate events,
+reset the journal cursor or grant a command. The API is the same for the first
+pixel dungeon and future packs. No second game mode is implemented here.
 
 All mutation routes return 405; commands/approvals/chat capabilities are empty.
 S4 must add its own real authorization and audit design before enabling actions.
