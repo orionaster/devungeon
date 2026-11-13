@@ -30,6 +30,27 @@
       "source": "git+https://github.com/evanw/esbuild.git"
     },
     {
+      "name": "@jridgewell/resolve-uri",
+      "version": "3.1.3",
+      "license": "MIT",
+      "dev": true,
+      "source": "https://github.com/jridgewell/resolve-uri"
+    },
+    {
+      "name": "@jridgewell/sourcemap-codec",
+      "version": "1.6.0",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/jridgewell/sourcemaps.git"
+    },
+    {
+      "name": "@jridgewell/trace-mapping",
+      "version": "0.3.31",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/jridgewell/sourcemaps.git"
+    },
+    {
       "name": "@oxc-project/types",
       "version": "0.156.0",
       "license": "MIT",
@@ -70,6 +91,27 @@
       "license": "MIT",
       "dev": true,
       "source": "https://github.com/tweenjs/tween.js.git"
+    },
+    {
+      "name": "@types/chai",
+      "version": "5.2.3",
+      "license": "MIT",
+      "dev": true,
+      "source": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    {
+      "name": "@types/deep-eql",
+      "version": "4.0.2",
+      "license": "MIT",
+      "dev": true,
+      "source": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+    },
+    {
+      "name": "@types/estree",
+      "version": "1.0.10",
+      "license": "MIT",
+      "dev": true,
+      "source": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
     },
     {
       "name": "@types/node",
@@ -128,6 +170,27 @@
       "source": "https://github.com/microsoft/TypeScript.git"
     },
     {
+      "name": "@vitest/mocker",
+      "version": "5.1.0",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/vitest-dev/vitest.git"
+    },
+    {
+      "name": "@vitest/spy",
+      "version": "5.1.0",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/vitest-dev/vitest.git"
+    },
+    {
+      "name": "assertion-error",
+      "version": "2.0.1",
+      "license": "MIT",
+      "dev": true,
+      "source": "git@github.com:chaijs/assertion-error.git"
+    },
+    {
       "name": "base64-js",
       "version": "1.5.1",
       "license": "MIT",
@@ -140,6 +203,13 @@
       "license": "MIT",
       "dev": false,
       "source": "git://github.com/feross/buffer.git"
+    },
+    {
+      "name": "chai",
+      "version": "6.3.0",
+      "license": "MIT",
+      "dev": true,
+      "source": "https://github.com/chaijs/chai"
     },
     {
       "name": "csstype",
@@ -156,11 +226,32 @@
       "source": "git://github.com/lovell/detect-libc.git"
     },
     {
+      "name": "es-module-lexer",
+      "version": "2.3.2",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/guybedford/es-module-lexer.git"
+    },
+    {
       "name": "esbuild",
       "version": "0.28.2",
       "license": "MIT",
       "dev": true,
       "source": "git+https://github.com/evanw/esbuild.git"
+    },
+    {
+      "name": "estree-walker",
+      "version": "3.0.3",
+      "license": "MIT",
+      "dev": true,
+      "source": "https://github.com/Rich-Harris/estree-walker"
+    },
+    {
+      "name": "expect-type",
+      "version": "1.4.0",
+      "license": "Apache-2.0",
+      "dev": true,
+      "source": "https://github.com/mmkal/expect-type.git"
     },
     {
       "name": "fdir",
@@ -205,6 +296,13 @@
       "source": "https://github.com/parcel-bundler/lightningcss.git"
     },
     {
+      "name": "magic-string",
+      "version": "1.4.5",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/Rich-Harris/magic-string.git"
+    },
+    {
       "name": "meshoptimizer",
       "version": "1.1.1",
       "license": "MIT",
@@ -217,6 +315,13 @@
       "license": "MIT",
       "dev": true,
       "source": "ai/nanoid"
+    },
+    {
+      "name": "obug",
+      "version": "3.0.0",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/sxzz/obug.git"
     },
     {
       "name": "picocolors",
@@ -303,6 +408,13 @@
       "source": "7rulnik/source-map-js"
     },
     {
+      "name": "std-env",
+      "version": "4.3.0",
+      "license": "MIT",
+      "dev": true,
+      "source": "unjs/std-env"
+    },
+    {
       "name": "suspend-react",
       "version": "0.1.3",
       "license": "MIT",
@@ -315,6 +427,20 @@
       "license": "MIT",
       "dev": false,
       "source": "https://github.com/mrdoob/three.js"
+    },
+    {
+      "name": "tinybench",
+      "version": "6.2.3",
+      "license": "MIT",
+      "dev": true,
+      "source": "tinylibs/tinybench"
+    },
+    {
+      "name": "tinyexec",
+      "version": "1.3.1",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/tinylibs/tinyexec.git"
     },
     {
       "name": "tinyglobby",
@@ -357,6 +483,20 @@
       "license": "MIT",
       "dev": true,
       "source": "git+https://github.com/vitejs/vite.git"
+    },
+    {
+      "name": "vitest",
+      "version": "5.1.0",
+      "license": "MIT",
+      "dev": true,
+      "source": "git+https://github.com/vitest-dev/vitest.git"
+    },
+    {
+      "name": "why-is-node-running",
+      "version": "3.2.1",
+      "license": "MIT",
+      "dev": true,
+      "source": "https://github.com/mafintosh/why-is-node-running.git"
     },
     {
       "name": "zustand",

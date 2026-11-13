@@ -63,16 +63,16 @@ export function I18nProvider({ children }: PropsWithChildren) {
 export function useI18n(): I18nValue { return useContext(I18nContext); }
 
 const stopGameInput = (event: SyntheticEvent) => event.stopPropagation();
-export function LocaleSwitcher({ className }: { className?: string }) {
+export function LocaleSwitcher({ className,onPointerLocaleChange }: { className?: string;onPointerLocaleChange?:()=>void }) {
   const { locale, setLocale } = useI18n();
   return <div className={["dw-locale-switcher", className].filter(Boolean).join(" ")}
     role="group" aria-label="界面语言 / Interface language"
-    onKeyDown={stopGameInput} onKeyUp={stopGameInput}
+    onKeyDown={event=>{if(event.key!=="Escape")stopGameInput(event);}}
     onPointerDown={stopGameInput} onPointerUp={stopGameInput}
     onPointerMove={stopGameInput} onClick={stopGameInput} onWheel={stopGameInput}>
     <button type="button" lang="zh-CN" aria-pressed={locale === "zh-CN"}
-      onClick={() => setLocale("zh-CN")}>中文</button>
+      onClick={event => {setLocale("zh-CN");if(event.detail>0)onPointerLocaleChange?.();}}>中文</button>
     <button type="button" lang="en-US" aria-pressed={locale === "en-US"}
-      onClick={() => setLocale("en-US")}>English</button>
+      onClick={event => {setLocale("en-US");if(event.detail>0)onPointerLocaleChange?.();}}>English</button>
   </div>;
 }

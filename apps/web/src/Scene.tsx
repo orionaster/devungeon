@@ -12,11 +12,14 @@ import * as THREE from "three";
 import {
   DEMO_SCENE,
   geometry,
+  visibleDoorSeals,
   type Actor,
   type Enemy,
   type GameSnapshot,
   type SceneDefinition,
   type Room,
+  type AgentProjection,
+  type SceneDoor,
 } from "../../../packages/dungeon-engine/src";
 import { spriteTexture, tileTexture, type SpriteKind } from "./art";
 import {
@@ -27,6 +30,12 @@ import {
   runtime,
 } from "./runtime";
 const SceneContext = createContext<SceneDefinition>(DEMO_SCENE);
+/** Read-only event port: the host owns source scope, provenance and command permissions. */
+type AgentEventReader = Pick<AgentProjection, "actor">;
+const AgentEventsContext = createContext<AgentEventReader>(projection);
+const SelectAgentContext = createContext<(id: string) => void>((id) =>
+  runtime.selectAgent?.(id),
+);
 const temp = new THREE.Object3D();
 const EMPTY: GameSnapshot = {
   player: {
@@ -172,10 +181,22 @@ function Environment() {
           </mesh>
         </group>
       ))}
+      {visibleDoorSeals(scene).map((door, i) => (
+        <Gate key={`${door.room_id}:${i}`} door={door} />
+      ))}
       {scene.rooms
         .filter((r) => !r.enterable)
-        .map((r) => (
-          <Gate key={r.room_id} room={r} />
+        .map((room) => (
+          <group key={room.room_id}>
+            <mesh
+              rotation={[-Math.PI / 2, 0, 0]}
+              position={[room.x, 0.015, room.z]}
+            >
+              <ringGeometry args={[2, 2.1, 4]} />
+              <meshBasicMaterial color="#b89ae1" />
+            </mesh>
+            <Pixel kind="chest" position={[room.x, 0.1, room.z]} scale={1.5} />
+          </group>
         ))}
       {scene.rooms
         .flatMap((r) => [
@@ -224,25 +245,16 @@ function Environment() {
     </>
   );
 }
-function Gate({ room }: { room: Room }) {
-  const scene = useContext(SceneContext);
-  const nearest = [...scene.corridors].sort(
-    (a, b) =>
-      Math.hypot(a.x - room.x, a.z - room.z) -
-      Math.hypot(b.x - room.x, b.z - room.z),
-  )[0];
-  const horizontal =
-    !nearest || Math.abs(nearest.x - room.x) >= Math.abs(nearest.z - room.z);
-  const gx = horizontal
-    ? room.x + (Math.sign((nearest?.x ?? room.x - 1) - room.x) * room.width) / 2
-    : room.x;
-  const gz = horizontal
-    ? room.z
-    : room.z + (Math.sign(nearest!.z - room.z) * room.depth) / 2;
-  const bars = useMemo(
-    () => Array.from({ length: 9 }, (_, i) => [0, 0.95, (i - 4) * 0.43]),
-    [],
-  );
+function Gate({ door }: { door: SceneDoor }) {
+  const width = door.width ?? 1;
+  const bars = useMemo(() => {
+    const n = Math.max(3, Math.ceil(width / 0.43));
+    return Array.from({ length: n }, (_, i) => [
+      0,
+      0.95,
+      ((i - (n - 1) / 2) * width) / n,
+    ]);
+  }, [width]);
   const glow = useRef<THREE.Mesh>(null!);
   useFrame(({ clock }) => {
     if (glow.current)
@@ -254,16 +266,16 @@ function Gate({ room }: { room: Room }) {
   return (
     <group>
       <group
-        position={[gx, 0, gz]}
-        rotation={[0, horizontal ? 0 : Math.PI / 2, 0]}
+        position={[door.x, 0, door.z]}
+        rotation={[0, door.axis === "z" ? 0 : Math.PI / 2, 0]}
       >
         <Instanced positions={bars} size={[0.16, 1.9, 0.1]} color="#bd91df" />
         <mesh position={[0, 1.9, 0]}>
-          <boxGeometry args={[0.4, 0.22, 4.1]} />
+          <boxGeometry args={[0.4, 0.22, width + 0.1]} />
           <meshLambertMaterial color="#8d699c" />
         </mesh>
         <mesh ref={glow} position={[0, 0.95, 0]} rotation={[0, Math.PI / 2, 0]}>
-          <planeGeometry args={[4, 1.9]} />
+          <planeGeometry args={[width, 1.9]} />
           <meshBasicMaterial
             color="#b18bdd"
             transparent
@@ -273,11 +285,6 @@ function Gate({ room }: { room: Room }) {
           />
         </mesh>
       </group>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[room.x, 0.015, room.z]}>
-        <ringGeometry args={[2, 2.1, 4]} />
-        <meshBasicMaterial color="#b89ae1" />
-      </mesh>
-      <Pixel kind="chest" position={[room.x, 0.1, room.z]} scale={1.5} />
     </group>
   );
 }
@@ -447,15 +454,23 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
   );
 }
 function Agent({ index }: { index: number }) {
+  const agentEvents = useContext(AgentEventsContext),
+    selectAgent = useContext(SelectAgentContext);
   const a = useContext(SceneContext).agents[index],
     g = useRef<THREE.Group>(null!),
     spark = useRef<THREE.Mesh>(null!);
   useFrame(({ clock }) => {
-    const event = projection.actor(a.agent_id);
+    const event = agentEvents.actor(a.agent_id);
     const age = event.event
       ? (Date.now() - Date.parse(event.event.observed_at)) / 1000
       : 99;
-    const working = age < 3 && !event.stale;
+    const working =
+      age < 3 &&
+      !event.stale &&
+      !!event.event &&
+      ["started", "progress", "tool_call", "tested", "completed"].includes(
+        event.event.event_type,
+      );
     g.current.position.set(
       a.x +
         (working && !runtime.reducedEffects
@@ -484,7 +499,7 @@ function Agent({ index }: { index: number }) {
         kind={a.role}
         scale={1.1}
         animate
-        onClick={() => runtime.selectAgent?.(a.agent_id)}
+        onClick={() => selectAgent(a.agent_id)}
       />
       <mesh ref={spark} position={[0, 1.8, 0]}>
         <octahedronGeometry args={[0.12, 0]} />
@@ -626,7 +641,10 @@ function CameraAndLoop() {
       tx = bounds.x;
       tz = bounds.z;
     } else if (control.mode === "preview") {
-      const locked = scene.rooms.find((r) => !r.enterable);
+      const locked =
+        scene.rooms.find(
+          (r) => !r.enterable && r.room_id === control.previewRoomId,
+        ) ?? scene.rooms.find((r) => !r.enterable);
       tx = locked?.x ?? bounds.x;
       tz = locked?.z ?? bounds.z;
     }
@@ -671,54 +689,68 @@ function CameraAndLoop() {
 }
 export function DungeonScene({
   scene = DEMO_SCENE,
+  agentEvents = projection,
+  onSelectAgent,
+  fallback,
 }: {
   scene?: SceneDefinition;
+  agentEvents?: AgentEventReader;
+  onSelectAgent?: (id: string) => void;
+  fallback?: React.ReactNode;
 }) {
   return (
     <SceneContext.Provider value={scene}>
-      <Canvas
-        orthographic
-        camera={{ position: [3, 26, 21], zoom: 27, near: 0.1, far: 150 }}
-        dpr={0.75}
-        gl={{ antialias: false, powerPreference: "high-performance" }}
-        fallback={
-          <div className="webgl-fallback">
-            WebGL unavailable. Use the field notes to inspect DEMO rooms and
-            agents.
-          </div>
-        }
-      >
-        <color attach="background" args={["#101820"]} />
-        <ambientLight intensity={1.6} color="#c3daea" />
-        <directionalLight
-          position={[-10, 20, 5]}
-          intensity={2.0}
-          color="#ffe2b1"
-        />
-        <Suspense fallback={null}>
-          <Environment />
-          <Character />
-          {scene.enemies.map((_, i) => (
-            <Character key={i} enemyIndex={i} />
-          ))}
-          {scene.agents.map((_, i) => (
-            <Agent key={i} index={i} />
-          ))}
-          <Effects />
-          <Reward />
-          <CameraAndLoop />
-          <mesh
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, 0.03, 0]}
-            onPointerMove={(e) => {
-              pointer.aim = { x: e.point.x, z: e.point.z };
-            }}
+      <AgentEventsContext.Provider value={agentEvents}>
+        <SelectAgentContext.Provider
+          value={onSelectAgent ?? ((id) => runtime.selectAgent?.(id))}
+        >
+          <Canvas
+            orthographic
+            camera={{ position: [3, 26, 21], zoom: 27, near: 0.1, far: 150 }}
+            dpr={0.75}
+            gl={{ antialias: false, powerPreference: "high-performance" }}
+            fallback={
+              fallback ?? (
+                <div className="webgl-fallback">
+                  WebGL 不可用，请通过探索手记查看房间和 Agent。 / WebGL
+                  unavailable. Use the field notes to inspect rooms and agents.
+                </div>
+              )
+            }
           >
-            <planeGeometry args={[200, 200]} />
-            <meshBasicMaterial transparent opacity={0} depthWrite={false} />
-          </mesh>
-        </Suspense>
-      </Canvas>
+            <color attach="background" args={["#101820"]} />
+            <ambientLight intensity={1.6} color="#c3daea" />
+            <directionalLight
+              position={[-10, 20, 5]}
+              intensity={2.0}
+              color="#ffe2b1"
+            />
+            <Suspense fallback={null}>
+              <Environment />
+              <Character />
+              {scene.enemies.map((_, i) => (
+                <Character key={i} enemyIndex={i} />
+              ))}
+              {scene.agents.map((_, i) => (
+                <Agent key={i} index={i} />
+              ))}
+              <Effects />
+              <Reward />
+              <CameraAndLoop />
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, 0.03, 0]}
+                onPointerMove={(e) => {
+                  pointer.aim = { x: e.point.x, z: e.point.z };
+                }}
+              >
+                <planeGeometry args={[200, 200]} />
+                <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+              </mesh>
+            </Suspense>
+          </Canvas>
+        </SelectAgentContext.Provider>
+      </AgentEventsContext.Provider>
     </SceneContext.Provider>
   );
 }

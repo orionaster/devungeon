@@ -12,7 +12,9 @@
     "dev": "vite --config apps/web/vite.config.ts --host 127.0.0.1",
     "build": "tsc --noEmit && vite build --config apps/web/vite.config.ts",
     "preview": "vite preview --config apps/web/vite.config.ts --host 127.0.0.1",
-    "test": "tsx --test packages/dungeon-engine/test/*.test.ts",
+    "test": "npm run test:engine && npm run test:i18n",
+    "test:engine": "tsx --test packages/dungeon-engine/test/*.test.ts",
+    "test:i18n": "vitest run packages/workspace-ui/tests/i18n.test.ts --environment node",
     "check": "tsc --noEmit"
   },
   "dependencies": {
@@ -31,7 +33,8 @@
     "prettier": "3.6.2",
     "tsx": "4.23.15",
     "typescript": "7.0.2",
-    "vite": "8.3.8"
+    "vite": "8.3.8",
+    "vitest": "5.1.0"
   },
   "engines": {
     "node": ">=22.12.0"

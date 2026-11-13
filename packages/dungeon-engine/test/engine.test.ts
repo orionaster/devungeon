@@ -5,6 +5,7 @@ import {
   DEMO_SCENE,
   AgentProjection,
   sceneFromBlueprint,
+  visibleDoorSeals,
   type Input,
   type SceneDefinition,
 } from "../src/index";
@@ -175,4 +176,66 @@ test("event projection rejects malformed/cross-project/duplicate, keeps chronolo
   const copy = p.snapshot();
   copy[0].is_demo = false;
   assert.equal(p.snapshot()[0].is_demo, true);
+});
+test("explicit compiler doors override guessed positions and independently block dashes", async () => {
+  const definition = scene({
+    enemies: [],
+    spawn: { x: 1, z: 0 },
+    reward: { x: 1, z: 0 },
+    doors: [
+      { room_id: "arena", x: 3, z: 0, axis: "z", width: 12, locked: true },
+      { room_id: "vault", x: 17, z: 5, axis: "x", locked: true },
+    ],
+  });
+  assert.deepEqual(visibleDoorSeals(definition), definition.doors);
+  const g = await Dungeon.create(definition);
+  g.start();
+  tick(g, input(1, 0, false, true), 600);
+  assert.ok(
+    g.snapshot().player.x < 2.7,
+    "door collider blocks even when destination room is enterable",
+  );
+  g.dispose();
+  await assert.rejects(
+    Dungeon.create(
+      scene({
+        doors: [{ room_id: "unknown", x: 0, z: 0, axis: "x", locked: true }],
+      }),
+    ),
+    /scene door/,
+  );
+  await assert.rejects(
+    Dungeon.create(
+      scene({
+        doors: [{ room_id: "vault", x: 12, z: 0, axis: "z", locked: false }],
+      }),
+    ),
+    /advertise an unlocked door/,
+  );
+});
+test("visual-only NPC in a known locked room grants no player access", async () => {
+  const marker = {
+    ...DEMO_SCENE.agents[0],
+    room_id: "vault",
+    x: 17,
+    z: 0,
+    visual_only: true,
+    is_demo: true,
+    source_role: "worker" as const,
+  };
+  const g = await Dungeon.create(
+    scene({ spawn: { x: 8, z: 0 }, enemies: [], agents: [marker] }),
+  );
+  g.start();
+  tick(g, input(1, 0, false, true), 300);
+  assert.ok(g.snapshot().player.x < 11.75);
+  g.dispose();
+  await assert.rejects(
+    Dungeon.create(scene({ agents: [{ ...marker, visual_only: false }] })),
+    /Agent outside/,
+  );
+  await assert.rejects(
+    Dungeon.create(scene({ agents: [{ ...marker, x: 3 }] })),
+    /Agent outside/,
+  );
 });
