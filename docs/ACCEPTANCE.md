@@ -39,7 +39,7 @@
 - [ ] At least three new users can open and understand the game without author guidance.
 - [ ] Capture a 30–60 second demo that honestly distinguishes actual integrations from sample data.
 
-## F. Original pixel-dungeon visual acceptance (2026-11-13)
+## F. First-world-pack original pixel-dungeon visual acceptance (2026-11-13)
 
 - [ ] Real browser build has a coherent **original 2.5D pixel dungeon** look: crisp non-blurred sprites/tiles, responsive action, and no copied Soul Knight sprites/UI/audio/levels.
 - [ ] True 3D room geometry and collisions exist despite the pixel-art appearance; camera quarter-turns preserve sprite facing, movement and wall occlusion.
@@ -61,3 +61,17 @@
 - [ ] No third-party translation upload, new paid translation dependencies or private data flow without specific authorization.
 
 Trace: docs/I18N.md and Issue #10. Registration of this requirement is not implementation.
+
+
+## H. Project-adaptive worlds and distinct game modes (ADR-0002)
+
+- [ ] Given project purpose, style and structure signals, Designer provides explained, evidence-aware recommendations and marks unsupported packs honestly.
+- [ ] User can preview and explicitly override suggested world. zh-CN/en-US switching, program language or a single repository keyword alone never changes world type.
+- [ ] Same ProjectSnapshot can be explored in the first original pixel dungeon **and one genuinely different, implemented world mode** (e.g. build/explore city rather than a different dungeon skin).
+- [ ] Switching modes preserves source IDs, evidence, accepted/blocked state, original Agent events, approvals and permissions; game-only saves are separate with explicit compatibility warning.
+- [ ] Both modes display missing/unaccepted functionality correctly and enable live/stale/replay/demo Agent presentations with truthful provenance.
+- [ ] Unavailable or invalid pack falls back to factual graph/text view rather than rendering pretend gameplay.
+- [ ] Actual browser captures, controls and separate game-loop tests demonstrate the second mode; synthetic JSON fixtures alone are not proof.
+- [ ] Third-party assets/plugins have verified license, origin and permissions; no untrusted AI-generated code is auto-executed.
+
+Trace docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md and schema/world-experience.schema.json. This is a future acceptance target, not a claim of implementation.
