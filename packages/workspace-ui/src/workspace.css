@@ -1,0 +1,523 @@
+.dw-sheet,
+.dw-sheet * {
+  box-sizing: border-box;
+}
+.dw-sheet {
+  --dw-ink: #ecf3f4;
+  --dw-muted: #afc1cb;
+  --dw-line: #43586a;
+  --dw-accent: #71d2bc;
+  position: fixed;
+  z-index: 30;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  width: 464px;
+  display: flex;
+  flex-direction: column;
+  color: var(--dw-ink);
+  background: #1b2633;
+  border: 2px solid #526b7a;
+  box-shadow: 6px 6px 0 #111a25;
+  font:
+    14px/1.6 system-ui,
+    "Microsoft YaHei",
+    sans-serif;
+  animation: dw-arrive 180ms ease-out;
+  overflow: hidden;
+  outline: none;
+}
+.dw-overlay {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  background: #10172145;
+}
+.dw-sheet button,
+.dw-sheet select,
+.dw-sheet textarea {
+  font: inherit;
+}
+.dw-sheet button,
+.dw-sheet select {
+  cursor: pointer;
+}
+.dw-sheet button {
+  color: inherit;
+  border: 1px solid var(--dw-line);
+  background: #263746;
+  padding: 8px 12px;
+  border-radius: 2px;
+}
+.dw-sheet button:hover:not(:disabled) {
+  background: #344b5c;
+}
+.dw-sheet button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.dw-sheet :focus-visible {
+  outline: 2px solid #f4b45b;
+  outline-offset: 3px;
+}
+.dw-sheet p {
+  margin: 0 0 8px;
+  text-wrap: pretty;
+}
+.dw-sheet h2 {
+  font-size: 25px;
+  line-height: 1.3;
+  margin: 2px 0;
+  letter-spacing: 0.02em;
+}
+.dw-sheet h3 {
+  font-size: 15px;
+  margin: 12px 0 8px;
+}
+.dw-sheet a {
+  color: #8ee3ce;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.dw-sheet code {
+  font:
+    11px/1.6 ui-monospace,
+    Consolas,
+    monospace;
+  overflow-wrap: anywhere;
+  color: #bccfd8;
+  display: block;
+}
+.dw-sheet small {
+  font-size: 11px;
+  color: var(--dw-muted);
+}
+.dw-sheet-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--dw-line);
+  color: var(--dw-muted);
+  font-size: 11px;
+}
+.dw-sheet .dw-close {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: #cbd8de;
+}
+.dw-close kbd {
+  margin-left: 4px;
+  padding: 2px 5px;
+  border: 1px solid var(--dw-line);
+  font-size: 10px;
+}
+.dw-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 20px 12px;
+}
+.dw-identity > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+.dw-identity h2 {
+  overflow-wrap: anywhere;
+}
+.dw-portrait {
+  width: 66px;
+  height: 72px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #30434a;
+  border: 1px solid #526b7a;
+}
+.dw-portrait .dw-pixel-agent {
+  width: 40px;
+  height: 50px;
+}
+.dw-pixel-agent {
+  image-rendering: pixelated;
+  overflow: visible;
+}
+.dw-sheet .dw-role {
+  margin: 0;
+  color: var(--dw-muted);
+  font-size: 11px;
+}
+.dw-sheet .dw-agent-id {
+  margin: 3px 0 0;
+  font:
+    10px ui-monospace,
+    monospace;
+  color: var(--dw-muted);
+}
+.dw-state {
+  color: #c5d4df;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.dw-identity > .dw-state {
+  margin-left: auto;
+  align-self: center;
+}
+.dw-state-working,
+.dw-state-active {
+  color: #8ae1c9;
+}
+.dw-state-blocked,
+.dw-state-planned {
+  color: #f4c37c;
+}
+.dw-state-review {
+  color: #d6c3ff;
+}
+.dw-state-failed {
+  color: #ffa0a6;
+}
+.dw-connection {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px !important;
+  font-size: 10px;
+  color: var(--dw-muted);
+}
+.dw-mode {
+  color: #f4c37c;
+  font-weight: 650;
+}
+.dw-sheet .dw-source {
+  margin: 5px 20px 14px;
+  color: var(--dw-muted);
+  font-size: 11px;
+}
+.dw-current {
+  margin: 0 20px 16px;
+  padding: 10px 12px;
+  background: #243746;
+  border: 1px solid #3f5565;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px;
+}
+.dw-current > span {
+  color: var(--dw-muted);
+  font-size: 10px;
+  grid-column: 1/-1;
+}
+.dw-current strong {
+  font-weight: 550;
+  font-size: 12px;
+}
+.dw-tabs {
+  display: flex;
+  padding: 0 20px;
+  gap: 24px;
+  border-bottom: 1px solid var(--dw-line);
+}
+.dw-sheet .dw-tabs button {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 8px 0 10px;
+  color: var(--dw-muted);
+  font-size: 12px;
+}
+.dw-sheet .dw-tabs button[aria-pressed="true"] {
+  color: #a0e6d6;
+  border-bottom-color: var(--dw-accent);
+}
+.dw-count {
+  margin-left: 4px;
+  padding: 1px 4px;
+  color: #f4c37c;
+  font-size: 10px;
+}
+.dw-body {
+  min-height: 90px;
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  overscroll-behavior: contain;
+}
+.dw-sheet .dw-approval-notice {
+  width: 100%;
+  border-color: #967c48;
+  color: #f4c37c;
+  background: #3c382d;
+  text-align: left;
+  font-size: 11px;
+  margin-bottom: 16px;
+}
+.dw-approval-notice span {
+  float: right;
+}
+.dw-message {
+  padding: 12px 14px;
+  max-width: 94%;
+  margin-bottom: 16px;
+  background: #2a3b4a;
+}
+.dw-message > span {
+  color: #b3c6d0;
+  font-size: 10px;
+}
+.dw-message p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.dw-player-message {
+  margin-left: auto;
+  background: #28463f;
+}
+.dw-outcome-rejected,
+.dw-outcome-failed {
+  background: #49353d;
+}
+.dw-message details {
+  font-size: 10px;
+  margin-top: 8px;
+  color: var(--dw-muted);
+}
+.dw-message summary {
+  cursor: pointer;
+}
+.dw-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 28px 0 10px;
+}
+.dw-suggestions > span {
+  flex-basis: 100%;
+  color: var(--dw-muted);
+  font-size: 10px;
+}
+.dw-sheet .dw-suggestions button {
+  font-size: 11px;
+  background: none;
+}
+.dw-help {
+  font-size: 11px;
+  color: var(--dw-muted);
+}
+.dw-task {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--dw-line);
+}
+.dw-task > div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px;
+}
+.dw-task p {
+  font-size: 12px;
+}
+.dw-evidence {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 8px 0;
+  font-size: 11px;
+  color: #c1d1d9;
+}
+.dw-event {
+  border-bottom: 1px solid var(--dw-line);
+  padding: 12px 0;
+}
+.dw-event > div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 10px;
+  color: #c1d1d9;
+}
+.dw-event p {
+  margin-top: 6px;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+.dw-event > small {
+  display: block;
+  margin-bottom: 4px;
+}
+.dw-permissions p {
+  font-size: 12px;
+}
+.dw-capabilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  color: #c8d9df;
+  margin: 12px 0;
+  font-size: 11px;
+}
+.dw-approval {
+  padding: 12px;
+  margin-top: 14px;
+  border: 1px solid #8c794f;
+  background: #30352f;
+}
+.dw-approval > strong {
+  font-size: 12px;
+  color: #f4c37c;
+}
+.dw-approval p {
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.dw-approval small {
+  display: block;
+  margin-top: 8px;
+}
+.dw-approval-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.dw-sheet .dw-primary {
+  background: #71d2bc;
+  color: #142f2a;
+  border: 1px solid #71d2bc;
+  font-weight: 650;
+}
+.dw-sheet .dw-primary:hover:not(:disabled) {
+  background: #a0e6d6;
+}
+.dw-composer {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border-top: 1px solid var(--dw-line);
+  background: #202f3d;
+}
+.dw-composer-tools,
+.dw-composer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10px;
+  color: var(--dw-muted);
+}
+.dw-composer-tools select {
+  background: #263746;
+  border: 1px solid var(--dw-line);
+  color: #d9e7ec;
+  padding: 3px 5px;
+  margin-left: 6px;
+  font-size: 11px;
+}
+.dw-composer textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 50px;
+  max-height: 120px;
+  border: 0;
+  border-radius: 0;
+  padding: 10px 0;
+  margin: 6px 0;
+  outline-offset: 2px;
+  background: transparent;
+  color: var(--dw-ink);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.dw-composer textarea::placeholder {
+  color: #afc1cb;
+  opacity: 1;
+}
+.dw-composer-bottom .dw-primary {
+  font-size: 11px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+.dw-return {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-top: 1px solid var(--dw-line);
+  font-size: 10px;
+  color: var(--dw-muted);
+}
+.dw-sheet .dw-return button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #a0e6d6;
+  font-size: 11px;
+}
+.dw-error {
+  padding: 10px 20px;
+  background: #49353d;
+  color: #ffc6ca;
+  max-height: 125px;
+  overflow: auto;
+  font-size: 11px;
+}
+.dw-error button {
+  font-size: 11px;
+}
+.dw-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@keyframes dw-arrive {
+  from {
+    transform: translateX(12px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dw-sheet {
+    animation: none;
+  }
+}
+@media (max-width: 600px) {
+  .dw-sheet {
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: calc(100% - 16px);
+  }
+  .dw-identity {
+    padding-top: 12px;
+  }
+  .dw-current {
+    margin-bottom: 8px;
+  }
+  .dw-source {
+    margin-bottom: 8px !important;
+  }
+  .dw-sheet-top,
+  .dw-identity,
+  .dw-body,
+  .dw-composer,
+  .dw-return {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .dw-portrait {
+    height: 60px;
+    width: 56px;
+  }
+}
