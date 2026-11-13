@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "project_id": "synthetic-agents",
+  "project_revision": "demo-1",
+  "seed": 1337,
+  "zones": [
+    {
+      "id": "control",
+      "theme": "ancient stone citadel"
+    },
+    {
+      "id": "memory",
+      "theme": "magic library"
+    },
+    {
+      "id": "tools",
+      "theme": "steampunk forge"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "dispatch",
+      "x": 36,
+      "z": 0,
+      "width": 9,
+      "depth": 9,
+      "prefab": "archive",
+      "pinned": true
+    },
+    {
+      "room_id": "executor",
+      "x": 54,
+      "z": 36,
+      "width": 11,
+      "depth": 11,
+      "prefab": "boss-arena",
+      "pinned": true
+    },
+    {
+      "room_id": "goals",
+      "x": 0,
+      "z": 0,
+      "width": 9,
+      "depth": 9,
+      "prefab": "stone-chamber",
+      "pinned": true
+    },
+    {
+      "room_id": "history",
+      "x": 18,
+      "z": 18,
+      "width": 9,
+      "depth": 9,
+      "prefab": "workshop",
+      "pinned": true
+    },
+    {
+      "room_id": "milestone",
+      "x": 72,
+      "z": 18,
+      "width": 9,
+      "depth": 11,
+      "prefab": "boss-arena",
+      "pinned": true
+    },
+    {
+      "room_id": "planning",
+      "x": 18,
+      "z": 0,
+      "width": 11,
+      "depth": 11,
+      "prefab": "archive",
+      "pinned": true
+    },
+    {
+      "room_id": "registry",
+      "x": 18,
+      "z": 36,
+      "width": 11,
+      "depth": 9,
+      "prefab": "archive",
+      "pinned": true
+    },
+    {
+      "room_id": "retrieval",
+      "x": 36,
+      "z": 18,
+      "width": 9,
+      "depth": 9,
+      "prefab": "archive",
+      "pinned": true
+    }
+  ],
+  "connections": [
+    {
+      "from_room_id": "planning",
+      "to_room_id": "dispatch",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "dispatch",
+      "to_room_id": "executor",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "registry",
+      "to_room_id": "executor",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "goals",
+      "to_room_id": "history",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "executor",
+      "to_room_id": "milestone",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "retrieval",
+      "to_room_id": "milestone",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "goals",
+      "to_room_id": "planning",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "goals",
+      "to_room_id": "registry",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "history",
+      "to_room_id": "retrieval",
+      "kind": "gate"
+    }
+  ]
+}
