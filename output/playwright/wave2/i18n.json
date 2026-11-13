@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "name": "Fresh visitor defaults to Chinese",
+      "pass": true
+    },
+    {
+      "name": "Explicit locale persists locally",
+      "pass": true
+    },
+    {
+      "name": "Held movement releases across language control",
+      "pass": true,
+      "details": {
+        "stopped": {
+          "x": -8,
+          "z": -0.21833331137895584,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "later": {
+          "x": -8,
+          "z": -0.21833331137895584,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "Chinese switch preserves full paused game state",
+      "pass": true
+    },
+    {
+      "name": "Source IDs, geometry and access unchanged",
+      "pass": true
+    },
+    {
+      "name": "Agent history is not reset",
+      "pass": true
+    },
+    {
+      "name": "English switch preserves full game state",
+      "pass": true
+    },
+    {
+      "name": "Source message remains traceable in Chinese",
+      "pass": true
+    },
+    {
+      "name": "Inspecting does not alter paused game state",
+      "pass": true
+    },
+    {
+      "name": "Locale switches do not reload",
+      "pass": true
+    },
+    {
+      "name": "Narrow Chinese has no horizontal overflow",
+      "pass": true
+    },
+    {
+      "name": "No browser page errors",
+      "pass": true,
+      "details": []
+    }
+  ],
+  "sourcePreserved": true,
+  "originalInspectorText": "×\n中文\nEnglish\nDEMO · READ ONLY\nCinder\n\nbuilder · The Quiet Forge\n\nstarted\n\nCinder is shaping a new doorway.\n\nSource\nsynthetic:s1-script\nObserved\n11/14/2026, 00:36:52\nEvidence\napps/web/src/runtime.ts\nOriginal text\nCinder is shaping a new doorway.\nCapabilities\nDisplay-only. No external commands.\n\nThis is a scripted animation, not a real Agent session. Workbench integration is a separate module.",
+  "ended": "2026-11-13T16:36:57.682Z"
+}

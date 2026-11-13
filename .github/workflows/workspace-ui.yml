@@ -3,9 +3,9 @@ permissions:
   contents: read
 on:
   push:
-    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', '.github/workflows/workspace-ui.yml']
+    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', 'vitest.config.ts', '.github/workflows/workspace-ui.yml']
   pull_request:
-    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', '.github/workflows/workspace-ui.yml']
+    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', 'vitest.config.ts', '.github/workflows/workspace-ui.yml']
 jobs:
   workspace:
     runs-on: ubuntu-latest

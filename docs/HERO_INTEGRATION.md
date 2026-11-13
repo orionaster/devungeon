@@ -67,3 +67,7 @@ Use an explicit ID mapping/helper; do not guess by display name. On panel open c
 ## Diagnostics
 
 `window.__DEVUNGEON__` exposes defensive `snapshot()`, `events()`, `access()`, `camera()`, `metrics()` only. Browser acceptance drives actual keyboard/mouse inputs and reads those results. There are no cheat, HP, teleport or work-state mutation hooks. FPS is rolling visible-frame timing; it includes long visible hitches. Raw production sampling and environment are in `output/playwright/production-performance.json`.
+
+## Wave 2 WIZARD composition
+
+HERO 4d45bd4 and its follow-up 990e06a are synchronized on the WIZARD branch. Keep HERO's generic App scene/event/inspection ports; apps/web/src/WorkspaceGame.tsx is the default S4 DEMO composition. AgentWorkspace receives onRestoreFocus from the host after Radix releases the dialog, and local combat pauses independently of work. No native control is enabled. Shared locale and combined-source gates: docs/WIZARD-I18N-INTEGRATION.md. HERO-only clean Windows/browser evidence: docs/HERO_WAVE2.md; that evidence is not combined S4/SCOUT/BUILDER acceptance.
