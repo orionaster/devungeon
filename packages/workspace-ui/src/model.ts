@@ -112,7 +112,7 @@ export const approvalSchema = z.strictObject({
   id,
   command: commandSchema,
   reason: text,
-  scope: text,
+  scope: z.string().min(1).max(6000),
   status: z.enum(["pending", "approved", "denied"]),
   expires_at: time,
 });

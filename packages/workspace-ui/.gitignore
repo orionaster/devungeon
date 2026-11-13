@@ -2,3 +2,5 @@ test-results/
 playwright-report/
 .playwright-cli/
 output/local-scout/
+output/local-scout-metadata.jsonl
+output/codex-protocol/

@@ -33,8 +33,11 @@ const actionLabels: Record<Capability, string> = {
   assign_task: "派遣任务",
   request_review: "请求复审",
   cancel_task: "取消任务",
-  publish: "发布演练",
+  publish: "发布请求",
 };
+function actionName(action: Capability, isDemo: boolean) {
+  return action === "publish" && isDemo ? "发布演练" : actionLabels[action];
+}
 const receiptLabels: Record<Receipt["status"], string> = {
   received: "已接收",
   running: "执行中",
@@ -89,6 +92,7 @@ export function AgentWorkspace({
     adapter.getSnapshot,
   );
   const agent = snapshot.agents.find((item) => item.id === selectedAgentId);
+  const isDemo = agent?.is_demo ?? false;
   const [tab, setTab] = useState<Tab>("chat");
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [action, setAction] = useState<Capability>("chat");
@@ -197,6 +201,7 @@ export function AgentWorkspace({
         <Dialog.Overlay className="dw-overlay" />
         <Dialog.Content
           className="dw-sheet"
+          onEscapeKeyDown={(event) => event.stopPropagation()}
           onCloseAutoFocus={(event) => {
             event.preventDefault();
             returnFocus.current?.focus();
@@ -239,7 +244,7 @@ export function AgentWorkspace({
             </span>
           </Dialog.Description>
           <p className="dw-source">
-            {snapshot.mode === "demo"
+            {isDemo
               ? "本地模拟 · 不连接真实 AI，不执行外部操作"
               : snapshot.source}
           </p>
@@ -291,7 +296,7 @@ export function AgentWorkspace({
                     aria-label="对话与指令回执"
                     aria-live="polite"
                   >
-                    {snapshot.mode === "demo" ? (
+                    {isDemo ? (
                       <div className="dw-message dw-agent-message">
                         <span>{agent.name} · DEMO</span>
                         <p>
@@ -300,7 +305,9 @@ export function AgentWorkspace({
                       </div>
                     ) : (
                       <p className="dw-help">
-                        这里只显示来源记录。此连接尚未提供真实对话能力；请在“活动”查看可追溯证据。
+                        {agent.capabilities.includes("chat")
+                          ? "此连接支持真实对话。发送前将由可信桥接层判断授权范围。"
+                          : "这里只显示来源记录。此连接尚未提供真实对话能力；请在“活动”查看可追溯证据。"}
                       </p>
                     )}
                     {receipts.map((receipt) => (
@@ -310,7 +317,7 @@ export function AgentWorkspace({
                       >
                         <div className="dw-message dw-player-message">
                           <span>
-                            你 · {actionLabels[receipt.command.action]} ·{" "}
+                            你 · {actionName(receipt.command.action, isDemo)} ·{" "}
                             {clock(receipt.command.created_at)}
                           </span>
                           <p>{receipt.command.text}</p>
@@ -320,7 +327,7 @@ export function AgentWorkspace({
                         >
                           <span>
                             {receiptLabels[receipt.status]} ·{" "}
-                            {snapshot.mode.toUpperCase()}
+                            {agent.mode.toUpperCase()}
                           </span>
                           <p>{receipt.result ?? receipt.detail}</p>
                           <details>
@@ -445,12 +452,12 @@ export function AgentWorkspace({
                       权限由可信桥接层重新判断。游戏行为不产生授权；普通聊天不会被解析为执行指令。
                     </p>
                     <div className="dw-capabilities">
-                      {Object.entries(actionLabels).map(([key, label]) => (
+                      {Object.keys(actionLabels).map((key) => (
                         <span key={key}>
                           {agent.capabilities.includes(key as Capability)
                             ? "✓"
                             : "—"}{" "}
-                          {label}
+                          {actionName(key as Capability, isDemo)}
                         </span>
                       ))}
                     </div>
@@ -464,7 +471,9 @@ export function AgentWorkspace({
                       (item) => item.command.agent_id === agent.id,
                     ).length === 0 && (
                       <p>
-                        暂无审批。主管的“发布演练”可练习具体范围的一次授权。
+                        {isDemo
+                          ? "暂无审批。主管的“发布演练”可练习具体范围的一次授权。"
+                          : "暂无审批；当前仅显示来源已声明的能力。"}
                       </p>
                     )}
                     {snapshot.approvals
@@ -477,7 +486,7 @@ export function AgentWorkspace({
                               : approval.status === "approved"
                                 ? "已批准一次"
                                 : "已拒绝"}{" "}
-                            · {snapshot.mode.toUpperCase()}
+                            · {agent.mode.toUpperCase()}
                           </strong>
                           <p>{approval.reason}</p>
                           <p>{approval.scope}</p>
@@ -515,9 +524,7 @@ export function AgentWorkspace({
                                   )
                                 }
                               >
-                                {snapshot.mode === "demo"
-                                  ? "仅批准这次演练"
-                                  : "批准此范围一次"}
+                                {isDemo ? "仅批准这次演练" : "批准此范围一次"}
                               </button>
                             </div>
                           )}
@@ -559,7 +566,7 @@ export function AgentWorkspace({
                       setAction(event.target.value as Capability)
                     }
                   >
-                    {Object.entries(actionLabels).map(([value, label]) => (
+                    {Object.keys(actionLabels).map((value) => (
                       <option
                         key={value}
                         value={value}
@@ -567,7 +574,7 @@ export function AgentWorkspace({
                           !agent.capabilities.includes(value as Capability)
                         }
                       >
-                        {label}
+                        {actionName(value as Capability, isDemo)}
                         {!agent.capabilities.includes(value as Capability)
                           ? " · 不支持"
                           : ""}
@@ -576,11 +583,7 @@ export function AgentWorkspace({
                   </select>
                 </label>
                 <span>
-                  {snapshot.mode === "demo"
-                    ? "仅模拟执行"
-                    : readOnly
-                      ? "只读"
-                      : "由桥接层校验"}
+                  {isDemo ? "仅模拟执行" : readOnly ? "只读" : "由桥接层校验"}
                 </span>
               </div>
               <label className="dw-sr-only" htmlFor="dw-message">
@@ -618,7 +621,7 @@ export function AgentWorkspace({
                 >
                   {sending
                     ? "等待回执…"
-                    : snapshot.mode === "demo"
+                    : isDemo
                       ? "发送 · DEMO ↗"
                       : "发送 ↗"}
                 </button>

@@ -2,7 +2,6 @@ import type RAPIER from "@dimforge/rapier3d-compat";
 import { geometry, inside, isWalkable, validateScene } from "./scene";
 import type {
   Actor,
-  Enemy,
   GameSnapshot,
   Input,
   SceneDefinition,

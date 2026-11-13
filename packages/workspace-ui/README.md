@@ -1,27 +1,32 @@
-# In-world Agent workspace · S4 first slice
+# In-world Agent workspace · S4
 
-Select a teammate, inspect work, send a scoped request and return to exploring. The standalone command hall is an explicitly **DEMO 2D interaction host**, not the HERO 3D game. All chat/execution in this host is a fixed-rule local simulator, with no model calls, repository changes, external publication or credentials.
+Select a teammate in the **actual HERO 3D game**, inspect work, send a scoped DEMO request and return to the same adventure. The primary `apps/web/src/App.tsx` is integrated. An independent workbench host also supplies a 2D test room, a 3D integration room, and real-source read-only SCOUT inspection. All chat/execution is still a fixed-rule local simulator; there are no model calls, repository writes, external publication or provider credentials in the browser.
 
 Also implemented: a **real-source, read-only SCOUT event projection**. This observes events; it cannot send real Agent instructions. The full real instruction → Agent acknowledgement → execution → feedback → independent result verification acceptance item in Issue #4 remains open.
 
-## Run independently (Windows PowerShell)
+## Run (Windows PowerShell)
 
 ```powershell
-cd C:\Devungeon\wizard\packages\workspace-ui
+cd C:\Devungeon\wizard
 npm ci --ignore-scripts
+# Actual product game, including the workspace (port 5173):
 npm run dev
+# Or the independent workspace host (port 4174):
+npm run dev --workspace @devungeon/workspace-ui
 ```
 
-Open http://127.0.0.1:4174 . Click a teammate, or focus the room, move with WASD/arrows and press E nearby. Escape / “返回地牢” closes inspection. The adapter and controller remain alive, so closing a panel does not cancel work. A reload resets this deliberately nonpersistent demo.
+Primary game: http://127.0.0.1:5173 . Independent entries: http://127.0.0.1:4174 (2D DEMO), http://127.0.0.1:4174/?source=hero (HERO 3D integration room), and http://127.0.0.1:4174/?source=game (the same product App used by the primary entry). Click a teammate, or focus the game, move with WASD/arrows and press E nearby. Escape / “返回地牢” closes inspection. The adapter and controller remain alive, so closing a panel does not cancel work. A reload resets this deliberately nonpersistent demo.
 
 ```powershell
-npm test
-npm run build
+npm test # Existing game-engine checks
+npm test --workspace @devungeon/workspace-ui
+npm run build # Primary game
+npm run build --workspace @devungeon/workspace-ui
 npx playwright install chromium
-npm run test:browser
+npm run test:browser --workspace @devungeon/workspace-ui
 # An installed Chrome can be used instead of downloading Chromium:
 $env:PW_CHANNEL='chrome'
-npm run test:browser
+npm run test:browser --workspace @devungeon/workspace-ui
 ```
 
 Use Node 22.12+ / 24+ matching the package engine; validated on Node 24.13.1, npm 11.8.0 and Windows. Browser screenshots are in [output/playwright](output/playwright). Results and limitations: [VALIDATION.md](VALIDATION.md). Dependencies: [DEPENDENCIES.md](DEPENDENCIES.md).
@@ -65,7 +70,7 @@ Tasks can be unknown/planned/active/blocked/review/completed/failed/cancelled. T
 
 ## HERO integration
 
-HERO owns `apps/web`, the root npm workspace and root lockfile. This branch does not edit them. During supervised integration add this package to root workspaces, reconcile its dependencies with the root lockfile, and import its source/CSS. The local lockfile supports independent installation before that integration.
+The committed HERO branch (`4510207`, PR #9) is a dependency of this feature branch; no worktree or replacement engine was created. The root npm workspace/lockfile now includes this package and React is deduplicated. The original package-local lockfile was removed. The only primary App changes are workspace lifetime, Agent inspection, work-event projection and input/pause boundaries. HERO's game/room/camera UI is retained. The feature PR is stacked on HERO for supervisor review; main is not merged.
 
 ```tsx
 import {
@@ -90,7 +95,7 @@ The helper explicitly maps `demo-wizard`/Lumen to the **simulated supervisor**, 
 
 While inspection is open, clear pressed keys and gate keyboard/pointer attacks in the host. Escape should close only the inspector, then restore canvas focus; it must not also pause/restart/approve. Work events continue independently of local combat pause, player death, wins and losses. Do not pass the game state into this package. A real observed Agent with an undeclared role is shown as unknown, never assigned a guessed role.
 
-**Integration status:** stable IDs and selection/close/input contracts coordinated with HERO; helper tested. Actual merged HERO game integration is not claimed by this branch. No duplicate game engine or game main UI is introduced.
+**Integration status:** actual primary-App proximity/E → workspace → chat/dispatch → close → continue the same run is browser-tested. The separate 3D host also proves rendered-sprite click, local pause, player death and restart isolation. Work events drive the same character projection; the old independent S1 animation script is not started by the integrated App. Scene/runtime/physics are reused, not copied. No main-branch merge, public deployment or human acceptance is claimed.
 
 ## SCOUT integration and real-source inspection
 
@@ -119,16 +124,24 @@ For independent local verification, the optional Vite development host has a nar
 
 ```powershell
 $env:SCOUT_BRIDGE_PORT='4313'
-npm run dev
+npm run dev --workspace @devungeon/workspace-ui
 ```
 
-3. Open http://127.0.0.1:4174/?source=scout . Select the observed character and inspect Activity. If no Agent metadata is available, the view stays empty; GitHub events are not substituted.
+3. Open http://127.0.0.1:4174/?source=hero&connection=scout for **real SCOUT characters in the 3D DEMO forge**, or http://127.0.0.1:4174/?source=scout for the lightweight observation view. Select a character or approach and press E, then inspect Activity. If no Agent metadata is available, the view stays empty; GitHub events are not substituted. Positions/skins are explicit display placement in the DEMO room, not source project facts. Unknown Agent roles remain unknown. REPLAY is never animated as live work; disconnect/stale disables activity immediately. All command capabilities remain empty.
 4. To run the optional real bridge check against that running service:
 
 ```powershell
 $env:PW_CHANNEL='chrome'
 $env:RUN_SCOUT_INTEGRATION='1'
-npm run test:browser
+npm run test:browser --workspace @devungeon/workspace-ui
+# Additionally enable the actual reviewed read-only Git instrument → 3D check:
+$env:SCOUT_CHECKOUT='C:\Devungeon\scout'
+$env:SCOUT_METADATA_FILE='C:\Devungeon\wizard\packages\workspace-ui\output\local-scout-metadata.jsonl'
+npm run test:browser --workspace @devungeon/workspace-ui
 ```
 
-The bridge check is skipped by default, rather than silently substituting a mock service. The independent demo requires neither SCOUT nor HERO. Provider command control, durable work history, real AI chat, real approval authorization, game-scene acceptance and physical-device acceptance remain future work; see the validation report.
+The bridge checks are skipped by default, rather than silently substituting a mock service. The 2D DEMO and primary game require no running SCOUT service or account. The optional Git instrument test executes only the reviewed `observe-git.ts` against this public Devungeon checkout, using the explicit metadata file that the running SCOUT bridge must already observe.
+
+## Native connector readiness
+
+`npm run preflight:codex --workspace @devungeon/workspace-ui` performs only local App Server initialization and permission-profile discovery. On the tested CLI it confirmed the allowed `:read-only` profile and sent **zero inference requests**. It starts no thread/turn, prints no account details or credentials, and gives the browser no Codex control. This is readiness evidence, not a real chat connection. A real bidirectional provider bridge, scoped account use, durable audit and the full instruction → execution → verified result loop remain unfinished.

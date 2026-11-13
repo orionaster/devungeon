@@ -37,6 +37,20 @@ const request = (
 ) => controller.createCommand("agent-boss", action, text);
 
 describe("scoped simulated work", () => {
+  it("handles the maximum message size without invalid feedback or truncated approval scope", async () => {
+    vi.useFakeTimers();
+    const { controller } = setup();
+    const text = "长".repeat(4000);
+    await controller.send(request(controller, "chat", text));
+    await vi.advanceTimersByTimeAsync(101);
+    expect(controller.getSnapshot().receipts[0].status).toBe("completed");
+    expect(controller.getSnapshot().receipts[0].result!.length).toBeLessThan(
+      4000,
+    );
+    await controller.send(request(controller, "publish", text));
+    expect(controller.getSnapshot().approvals[0].scope).toContain(text);
+    expect(controller.getSnapshot().approvals[0].command.text).toBe(text);
+  });
   it("matches HERO NPC IDs without any GameState dependency", async () => {
     const work = createHeroDemoWorkspace();
     try {

@@ -75,7 +75,12 @@ describe("SCOUT read-only integration", () => {
         } as MessageEvent);
       }
     }
-    vi.stubGlobal("window", { location: { href: "http://127.0.0.1:4174/", origin: "http://127.0.0.1:4174" } });
+    vi.stubGlobal("window", {
+      location: {
+        href: "http://127.0.0.1:4174/",
+        origin: "http://127.0.0.1:4174",
+      },
+    });
     vi.stubGlobal("EventSource", FakeStream);
     try {
       const adapter = new ScoutWorkspaceAdapter(projectId);

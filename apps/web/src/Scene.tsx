@@ -11,6 +11,7 @@ import {
 import * as THREE from "three";
 import {
   DEMO_SCENE,
+  AgentProjection,
   geometry,
   type Actor,
   type Enemy,
@@ -27,6 +28,8 @@ import {
   runtime,
 } from "./runtime";
 const SceneContext = createContext<SceneDefinition>(DEMO_SCENE);
+const ProjectionContext = createContext<AgentProjection>(projection);
+const AgentActivityContext = createContext(true);
 const temp = new THREE.Object3D();
 const EMPTY: GameSnapshot = {
   player: {
@@ -447,15 +450,17 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
   );
 }
 function Agent({ index }: { index: number }) {
+  const agentProjection = useContext(ProjectionContext);
+  const activityEnabled = useContext(AgentActivityContext);
   const a = useContext(SceneContext).agents[index],
     g = useRef<THREE.Group>(null!),
     spark = useRef<THREE.Mesh>(null!);
   useFrame(({ clock }) => {
-    const event = projection.actor(a.agent_id);
+    const event = agentProjection.actor(a.agent_id);
     const age = event.event
       ? (Date.now() - Date.parse(event.event.observed_at)) / 1000
       : 99;
-    const working = age < 3 && !event.stale;
+    const working = activityEnabled && age < 3 && !event.stale;
     g.current.position.set(
       a.x +
         (working && !runtime.reducedEffects
@@ -671,55 +676,63 @@ function CameraAndLoop() {
 }
 export function DungeonScene({
   scene = DEMO_SCENE,
+  agentProjection = projection,
+  agentActivityEnabled = true,
 }: {
   scene?: SceneDefinition;
+  agentProjection?: AgentProjection;
+  agentActivityEnabled?: boolean;
 }) {
   return (
-    <SceneContext.Provider value={scene}>
-      <Canvas
-        orthographic
-        camera={{ position: [3, 26, 21], zoom: 27, near: 0.1, far: 150 }}
-        dpr={0.75}
-        gl={{ antialias: false, powerPreference: "high-performance" }}
-        fallback={
-          <div className="webgl-fallback">
-            WebGL unavailable. Use the field notes to inspect DEMO rooms and
-            agents.
-          </div>
-        }
-      >
-        <color attach="background" args={["#101820"]} />
-        <ambientLight intensity={1.6} color="#c3daea" />
-        <directionalLight
-          position={[-10, 20, 5]}
-          intensity={2.0}
-          color="#ffe2b1"
-        />
-        <Suspense fallback={null}>
-          <Environment />
-          <Character />
-          {scene.enemies.map((_, i) => (
-            <Character key={i} enemyIndex={i} />
-          ))}
-          {scene.agents.map((_, i) => (
-            <Agent key={i} index={i} />
-          ))}
-          <Effects />
-          <Reward />
-          <CameraAndLoop />
-          <mesh
-            rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, 0.03, 0]}
-            onPointerMove={(e) => {
-              pointer.aim = { x: e.point.x, z: e.point.z };
-            }}
+    <ProjectionContext.Provider value={agentProjection}>
+      <AgentActivityContext.Provider value={agentActivityEnabled}>
+        <SceneContext.Provider value={scene}>
+          <Canvas
+            orthographic
+            camera={{ position: [3, 26, 21], zoom: 27, near: 0.1, far: 150 }}
+            dpr={0.75}
+            gl={{ antialias: false, powerPreference: "high-performance" }}
+            fallback={
+              <div className="webgl-fallback">
+                WebGL unavailable. Use the field notes to inspect DEMO rooms and
+                agents.
+              </div>
+            }
           >
-            <planeGeometry args={[200, 200]} />
-            <meshBasicMaterial transparent opacity={0} depthWrite={false} />
-          </mesh>
-        </Suspense>
-      </Canvas>
-    </SceneContext.Provider>
+            <color attach="background" args={["#101820"]} />
+            <ambientLight intensity={1.6} color="#c3daea" />
+            <directionalLight
+              position={[-10, 20, 5]}
+              intensity={2.0}
+              color="#ffe2b1"
+            />
+            <Suspense fallback={null}>
+              <Environment />
+              <Character />
+              {scene.enemies.map((_, i) => (
+                <Character key={i} enemyIndex={i} />
+              ))}
+              {scene.agents.map((_, i) => (
+                <Agent key={i} index={i} />
+              ))}
+              <Effects />
+              <Reward />
+              <CameraAndLoop />
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, 0.03, 0]}
+                onPointerMove={(e) => {
+                  pointer.aim = { x: e.point.x, z: e.point.z };
+                }}
+              >
+                <planeGeometry args={[200, 200]} />
+                <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+              </mesh>
+            </Suspense>
+          </Canvas>
+        </SceneContext.Provider>
+      </AgentActivityContext.Provider>
+    </ProjectionContext.Provider>
   );
 }
 function Reward() {

@@ -6,7 +6,8 @@
   "type": "module",
   "workspaces": [
     "apps/web",
-    "packages/dungeon-engine"
+    "packages/dungeon-engine",
+    "packages/workspace-ui"
   ],
   "scripts": {
     "dev": "vite --config apps/web/vite.config.ts --host 127.0.0.1",

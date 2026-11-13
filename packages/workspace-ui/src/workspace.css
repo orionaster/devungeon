@@ -212,6 +212,12 @@
   grid-column: 1/-1;
 }
 .dw-current strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-weight: 550;
   font-size: 12px;
 }
@@ -322,6 +328,9 @@
 }
 .dw-task p {
   font-size: 12px;
+}
+.dw-task h3 {
+  overflow-wrap: anywhere;
 }
 .dw-evidence {
   display: grid;

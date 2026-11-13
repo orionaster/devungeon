@@ -410,7 +410,7 @@ export class DemoWorkspaceAdapter implements WorkspaceAdapter {
       }
       let result = "DEMO：已生成本地发布演练回执。没有发生外部发布。";
       if (command.action === "chat")
-        result = `DEMO 回复：收到「${command.text}」。目前机关门受阻，事件记录待核对。你可以派遣一个模拟任务，或离开继续探索。我是固定规则模拟器，没有调用真实 AI。`;
+        result = `DEMO 回复：收到「${command.text.length > 240 ? command.text.slice(0, 240) + "…" : command.text}」。目前机关门受阻，事件记录待核对。你可以派遣一个模拟任务，或离开继续探索。我是固定规则模拟器，没有调用真实 AI。`;
       if (command.action === "assign_task") {
         const task = {
           id: `task:${command.command_id}`,

@@ -1,0 +1,200 @@
+.hero-hall {
+  min-height: 100svh;
+  background: #101820;
+  color: #ecf3f4;
+  font-family: system-ui, "Microsoft YaHei", sans-serif;
+}
+.hero-hall-canvas {
+  position: fixed;
+  inset: 0;
+  outline: none;
+}
+.hero-hall-canvas:focus-visible {
+  outline: 2px solid #71d2bc;
+  outline-offset: -2px;
+}
+.hero-hall-header,
+.hero-hall-footer {
+  position: fixed;
+  left: 32px;
+  right: 32px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+.hero-hall-header {
+  top: 26px;
+  align-items: center;
+}
+.hero-hall-header > div {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.hero-hall-header strong {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+.hero-hall-header span {
+  font-size: 11px;
+  color: #afc1cb;
+}
+.hero-hall-header .hero-hall-demo {
+  color: #f4c37c;
+  padding: 6px 10px;
+  background: #1b2633;
+  border: 1px solid #526b7a;
+}
+.hero-hall-intro {
+  position: fixed;
+  top: 104px;
+  left: 32px;
+  max-width: 300px;
+  pointer-events: none;
+}
+.hero-hall-intro h1 {
+  font-size: 28px;
+  font-weight: 550;
+  margin: 10px 0 14px;
+}
+.hero-hall-intro p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #afc1cb;
+}
+.hero-hall-party {
+  position: fixed;
+  left: 32px;
+  bottom: 100px;
+  width: 220px;
+  background: #1b2633ef;
+  padding: 14px 18px;
+  border: 1px solid #43586a;
+}
+.hero-hall-party h2 {
+  font-size: 12px;
+  font-weight: 550;
+  margin: 0 0 8px;
+}
+.hero-hall-party h2 span {
+  float: right;
+  font-size: 10px;
+  color: #f4c37c;
+}
+.hero-hall-party button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  background: none;
+  color: #ecf3f4;
+  border: 0;
+  border-bottom: 1px solid #43586a;
+  cursor: pointer;
+  text-align: left;
+}
+.hero-hall-party .dw-pixel-agent {
+  width: 24px;
+  height: 30px;
+}
+.hero-hall-party strong {
+  display: block;
+  font-size: 12px;
+}
+.hero-hall-party small,
+.hero-hall-party p {
+  color: #afc1cb;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.hero-hall-party p {
+  margin: 12px 0 0;
+}
+.hero-hall-party button > span:last-child {
+  margin-left: auto;
+  color: #71d2bc;
+}
+.hero-hall-game {
+  position: fixed;
+  bottom: 100px;
+  right: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.hero-hall-game > span {
+  color: #c6d7df;
+  font-size: 11px;
+  padding: 3px 6px;
+  background: #1b2633ef;
+}
+.hero-hall-game button {
+  border: 1px solid #526b7a;
+  background: #1b2633;
+  padding: 7px 12px;
+  color: #d9e8ed;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+.hero-hall :focus-visible {
+  outline: 2px solid #f4b45b;
+  outline-offset: 3px;
+}
+.hero-hall-footer {
+  bottom: 26px;
+  font-size: 10px;
+  color: #afc1cb;
+}
+.hero-hall-error {
+  position: fixed;
+  inset: 30% 20%;
+  color: #ffc6ca;
+  background: #49353d;
+  padding: 20px;
+}
+.hero-hall-connection-error {
+  position: fixed;
+  left: 280px;
+  bottom: 60px;
+  max-width: 450px;
+  padding: 8px 12px;
+  color: #f4c37c;
+  background: #1b2633;
+  font-size: 11px;
+}
+@media (max-width: 700px) {
+  .hero-hall-header,
+  .hero-hall-footer {
+    left: 16px;
+    right: 16px;
+  }
+  .hero-hall-header > div > span,
+  .hero-hall-footer > span:last-child {
+    display: none;
+  }
+  .hero-hall-intro {
+    top: 80px;
+    left: 16px;
+  }
+  .hero-hall-intro h1 {
+    font-size: 22px;
+  }
+  .hero-hall-party {
+    left: 16px;
+    bottom: 80px;
+    width: 160px;
+    padding: 10px;
+  }
+  .hero-hall-game {
+    right: 16px;
+    bottom: 80px;
+  }
+  .hero-hall-footer {
+    font-size: 9px;
+  }
+}

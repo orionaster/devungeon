@@ -4,18 +4,20 @@
 
 Devungeon is a planned **open-source, explorable 2.5D pixel-art dungeon game + AI-agent workspace** that turns real software projects into living game worlds. Its rooms have genuine 3D space and collision, while the signature look is an **original top-down pixel dungeon** with crisp sprites, fast combat and expressive Agent characters.
 
-> **This branch: S1 playable browser slice, awaiting supervisor review.** Explore three original pixel rooms, fight an independent encounter, preview the sealed vault and observe clearly labeled DEMO companions. Real project import and real Agent/workbench integrations are separate work and are **not connected in this slice**. This is not the complete V1.
+> **This branch: S4 workspace integrated with the committed HERO game, awaiting supervisor review.** Explore, fight, select a companion and use the in-world DEMO chat/task/approval workspace. A separate 3D observation entry consumes real read-only SCOUT events with source evidence. Real AI chat/command execution is not connected yet; this is not the complete V1. See [S4 evidence and open items](packages/workspace-ui/VALIDATION.md).
 
 ## Play locally
 
-Node22.12+ and npm are required. On the HERO branch:
+Node24.13+ and npm are recommended for the combined game/workspace and optional SCOUT integration:
 
 ```powershell
-npm ci
+npm ci --ignore-scripts
 npm run dev
 ```
 
 Open http://127.0.0.1:5173. WASD moves, J attacks, Space dodges, Q/R rotate90°, wheel zooms, E inspects nearby companions, P pauses local combat. Use the header's guide for all controls. No account, paid service or API keys required.
+
+NPC click/E opens the WIZARD workspace. Simulated messages, dispatch, evidence and approvals share the same character IDs and event projection. Closing the sheet resumes the same game run; game death/restart never approves or cancels work. [Independent workbench and SCOUT 3D observation instructions](packages/workspace-ui/README.md).
 
 `npm test` runs engine checks; `npm run build` creates the production app, and `npm run preview -- --port 5174` serves it locally. See [actual validation and limitations](docs/HERO_VALIDATION.md), [scene/workbench contract](docs/HERO_INTEGRATION.md), and [locked dependency/license review](docs/HERO_DEPENDENCIES.md). Browser screenshots and measured results are in [output/playwright](output/playwright/). Gameplay victory never changes project acceptance.
 
@@ -36,7 +38,7 @@ Our goal is **fun, creative exploration, open-source collaboration, and a compel
 - [Acceptance](docs/ACCEPTANCE.md) — reproducible end-to-end cases, security and honesty checks.
 - [Roadmap](docs/ROADMAP.md) — incremental execution toward the complete V1 vision.
 - [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — mandatory original 2.5D pixel art, camera and gameplay readability.
-- [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — broad engine, map, artwork, observability and testing evaluation; **candidate packages are not installed yet**.
+- [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — original candidate evaluation; installed choices are pinned in the root lockfile and feature dependency records.
 - [Asset Provenance Ledger](docs/ASSET_PROVENANCE.md) — verified CC0 candidates, import rules, redistribution and notices.
 - [Contribution guide](CONTRIBUTING.md), [Agent rules](AGENTS.md).
 - [Project Snapshot schema](schema/project-snapshot.schema.json) and two **synthetic** examples under `examples/`.
@@ -58,11 +60,11 @@ Suggested stack (subject to slice tests): TypeScript + React + Vite + Three.js +
 
 ## Work / game separation
 
-| Real work | Game |
-|---|---|
-| Review and acceptance evidence determines feature status | Winning a fight determines game victory only |
-| Agent events and permissions have audit records | Visual effects, damage and items are gameplay state |
-| Real operations require capability checks and approval | An in-game sword never grants GitHub access |
+| Real work                                                | Game                                                |
+| -------------------------------------------------------- | --------------------------------------------------- |
+| Review and acceptance evidence determines feature status | Winning a fight determines game victory only        |
+| Agent events and permissions have audit records          | Visual effects, damage and items are gameplay state |
+| Real operations require capability checks and approval   | An in-game sword never grants GitHub access         |
 
 ## Examples
 
@@ -83,8 +85,8 @@ The repository includes **six project-specific, instructions-only Agent Skills**
 - Codex discovers repository-local Skills from `.agents/skills/`.
 - Claude Code uses [`.claude/skills/devungeon-workflow/SKILL.md`](.claude/skills/devungeon-workflow/SKILL.md), which routes to those canonical workflows; [`CLAUDE.md`](CLAUDE.md) gives project-wide guidance.
 - `python scripts/validate_skills.py` validates local Skill metadata without running/installing any Skill.
-- The repository **has not installed game runtime libraries, third-party Skills, MCP servers, hooks or art downloads** yet. These are implementation choices for S1–S4, and every chosen package needs a tested lockfile and appropriate license review.
+- Game/workspace runtime packages are installed through the tested root lockfile. No third-party Skill, global MCP server, persistent hook or external art download was added. Dependency notices ship with the local builds.
 
 ## Visual references and copyright
 
-The original 2.5D art direction borrows **genre qualities** from lively top-down pixel dungeon games (including *Soul Knight*), not their copyrighted sprites, music, branding, exact rooms or UI. Prefer a consistent CC0 starter pack such as [Kenney Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) and record any actual imported files in the asset provenance ledger.
+The original 2.5D art direction borrows **genre qualities** from lively top-down pixel dungeon games (including _Soul Knight_), not their copyrighted sprites, music, branding, exact rooms or UI. Prefer a consistent CC0 starter pack such as [Kenney Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) and record any actual imported files in the asset provenance ledger.

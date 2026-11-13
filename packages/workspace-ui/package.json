@@ -9,6 +9,7 @@
     "./styles.css": "./src/workspace.css"
   },
   "scripts": {
+    "preflight:codex": "node scripts/codex-preflight.mjs",
     "dev": "vite --host 127.0.0.1 --port 4174 --strictPort",
     "build": "tsc --noEmit && vite build",
     "test": "vitest run",

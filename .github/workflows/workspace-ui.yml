@@ -1,24 +1,23 @@
 name: Validate workspace UI
 on:
   push:
-    paths: ['packages/workspace-ui/**', '.github/workflows/workspace-ui.yml']
+    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', '.github/workflows/workspace-ui.yml']
   pull_request:
-    paths: ['packages/workspace-ui/**', '.github/workflows/workspace-ui.yml']
+    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', '.github/workflows/workspace-ui.yml']
 jobs:
   workspace:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/workspace-ui
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
-          cache-dependency-path: packages/workspace-ui/package-lock.json
+          cache-dependency-path: package-lock.json
       - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm run build
+      - run: npm test --workspace @devungeon/workspace-ui
+      - run: npm run build --workspace @devungeon/workspace-ui
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:browser
+      - run: npm run test:browser --workspace @devungeon/workspace-ui

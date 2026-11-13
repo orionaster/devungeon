@@ -6,6 +6,11 @@ import {
 } from "../../../packages/dungeon-engine/src";
 import { DungeonScene } from "./Scene";
 import {
+  AgentWorkspace,
+  createHeroDemoWorkspace,
+} from "../../../packages/workspace-ui/src";
+import "../../../packages/workspace-ui/src/workspace.css";
+import {
   actions,
   cameraControl,
   clearInput,
@@ -13,7 +18,6 @@ import {
   pointer,
   projection,
   runtime,
-  tickDemo,
 } from "./runtime";
 const agentNames = Object.fromEntries(
   DEMO_SCENE.agents.map((a) => [a.agent_id, a.name]),
@@ -26,6 +30,8 @@ function Glyph({ children }: { children: React.ReactNode }) {
   );
 }
 export default function App() {
+  const [workspace, setWorkspace] =
+    useState<ReturnType<typeof createHeroDemoWorkspace>>();
   const [game, setGame] = useState<GameSnapshot>(),
     [error, setError] = useState(""),
     [paused, setPaused] = useState(false),
@@ -88,11 +94,21 @@ export default function App() {
       clearInput();
     };
     runtime.selectRoom = (id) => setSelected(id);
-    tickDemo();
-    const timer = setInterval(tickDemo, 2800);
+    const work = createHeroDemoWorkspace();
+    const projected = new Set<string>();
+    const projectWork = () => {
+      for (const event of work.controller.getSnapshot().events) {
+        if (projected.has(event.event_id)) continue;
+        if (projection.ingest(event)) projected.add(event.event_id);
+      }
+    };
+    const unsubscribe = work.controller.subscribe(projectWork);
+    projectWork();
+    setWorkspace(work);
     return () => {
       alive = false;
-      clearInterval(timer);
+      unsubscribe();
+      work.dispose();
       created?.dispose();
       runtime.game = undefined;
       runtime.onFrame = undefined;
@@ -100,6 +116,12 @@ export default function App() {
   }, []);
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
+      if (
+        e.defaultPrevented ||
+        (selected &&
+          DEMO_SCENE.agents.some((agent) => agent.agent_id === selected))
+      )
+        return;
       if (
         e.target instanceof HTMLElement &&
         e.target.closest("input,textarea,select")
@@ -177,8 +199,9 @@ export default function App() {
     };
   }, [started, selected, help, atlas, game?.phase]);
   useEffect(() => {
+    runtime.paused = paused || !!selected || help || atlas;
     if (selected || help || atlas) clearInput();
-  }, [selected, help, atlas]);
+  }, [paused, selected, help, atlas]);
   const events = projection.snapshot();
   const chosenAgent = DEMO_SCENE.agents.find((a) => a.agent_id === selected);
   const chosenRoom = DEMO_SCENE.rooms.find((r) => r.room_id === selected);
@@ -586,17 +609,24 @@ export default function App() {
           </section>
         </div>
       )}
-      {selected && (
+      {workspace && (
+        <AgentWorkspace
+          adapter={workspace.controller}
+          selectedAgentId={chosenAgent ? selected : null}
+          onClose={() => {
+            clearInput();
+            setSelected(null);
+            requestAnimationFrame(focus);
+          }}
+        />
+      )}
+      {selected && !chosenAgent && (
         <div className="inspect-wrap">
           <section
             className="inspector"
             role="dialog"
             aria-modal="false"
-            aria-label={
-              chosenAgent
-                ? `${chosenAgent.name} DEMO inspector`
-                : "Room inspector"
-            }
+            aria-label="Room inspector"
           >
             <button
               className="close"
@@ -609,62 +639,33 @@ export default function App() {
               ×
             </button>
             <span className="tiny-badge">DEMO · READ ONLY</span>
-            <h2>{chosenAgent?.name ?? chosenRoom?.name}</h2>
-            {chosenAgent ? (
-              <>
-                <p>{chosenAgent.role} · The Quiet Forge</p>
-                <div className="inspect-state">
-                  {projection
-                    .actor(chosenAgent.agent_id)
-                    .event?.event_type.replace("_", " ") ?? "idle"}
-                </div>
-                <p>{projection.actor(chosenAgent.agent_id).event?.message}</p>
-                <dl>
-                  <dt>Source</dt>
-                  <dd>synthetic:s1-script</dd>
-                  <dt>Observed</dt>
-                  <dd>
-                    {projection.actor(chosenAgent.agent_id).event
-                      ?.observed_at ?? "No event yet"}
-                  </dd>
-                  <dt>Evidence</dt>
-                  <dd>apps/web/src/runtime.ts</dd>
-                  <dt>Capabilities</dt>
-                  <dd>Display-only. No external commands.</dd>
-                </dl>
-                <p className="truth-note">
-                  This is a scripted animation, not a real Agent session.
-                  Workbench integration is a separate module.
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="inspect-state">{chosenRoom?.status}</p>
-                <p>{chosenRoom?.reason}</p>
-                <button
-                  onClick={() => {
-                    if (chosenRoom?.enterable) {
-                      cameraControl.target = {
-                        x: chosenRoom.x,
-                        z: chosenRoom.z,
-                      };
-                      setMode("free");
-                    } else setMode("preview");
-                  }}
-                >
-                  {chosenRoom?.enterable
-                    ? "Focus this room →"
-                    : "Look beyond the seal →"}
-                </button>
-                <p className="truth-note">
-                  {chosenRoom?.enterable
-                    ? "Independent game space in a synthetic world."
-                    : "Camera preview grants no player access."}
-                  <br />
-                  No game reward can unlock project acceptance.
-                </p>
-              </>
-            )}
+            <h2>{chosenRoom?.name}</h2>
+            <>
+              <p className="inspect-state">{chosenRoom?.status}</p>
+              <p>{chosenRoom?.reason}</p>
+              <button
+                onClick={() => {
+                  if (chosenRoom?.enterable) {
+                    cameraControl.target = {
+                      x: chosenRoom.x,
+                      z: chosenRoom.z,
+                    };
+                    setMode("free");
+                  } else setMode("preview");
+                }}
+              >
+                {chosenRoom?.enterable
+                  ? "Focus this room →"
+                  : "Look beyond the seal →"}
+              </button>
+              <p className="truth-note">
+                {chosenRoom?.enterable
+                  ? "Independent game space in a synthetic world."
+                  : "Camera preview grants no player access."}
+                <br />
+                No game reward can unlock project acceptance.
+              </p>
+            </>
           </section>
         </div>
       )}
