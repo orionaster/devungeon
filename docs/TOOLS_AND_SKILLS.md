@@ -74,7 +74,8 @@ The [Agent Skills specification](https://agentskills.io/specification) uses dire
 Canonical skills:
 - **pixel-dungeon-visuals** — pixel art, 2.5D rendering and art provenance.
 - **playable-browser-validation** — prove a real playable browser slice instead of a static mock.
-- **project-world-compiler** — stable project graph, deterministic dungeons and incremental migrations.
+- **project-world-compiler** — stable project graph, deterministic first-dungeon adapter and future pack seams.
+- **project-experience-designer** — product-design signals, creator override, experience manifest, world/renderer/gameplay selection.
 - **agent-event-adapters** — truthful event capture, freshness, permissioned controls and safety.
 - **dependency-due-diligence** — compare, license-audit and pin tested dependencies.
 - **in-world-agent-workspace** — safe status, chat, command, audit and approvals.
