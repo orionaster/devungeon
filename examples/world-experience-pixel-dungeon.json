@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1",
+  "project_id": "synthetic-agents",
+  "project_revision": "demo-1",
+  "experience_id": "synthetic-agents:pixel-dungeon:v0",
+  "world_type": "pixel-dungeon",
+  "renderer_plugin": "devungeon-pixel-dungeon",
+  "gameplay_plugin": "dungeon-combat",
+  "design": {
+    "art_style": "original 2.5D pixel art",
+    "spatial_metaphor": "connected dungeon rooms, doors and locked gates",
+    "narrative": "Game-only monsters make tasks feel like quests"
+  },
+  "selection": {
+    "method": "fallback",
+    "rationale": "First bundled reference pack for a synthetic modular project, not a mandatory choice.",
+    "user_confirmed": false
+  },
+  "runtime_status": "experimental",
+  "signals": [
+    {
+      "kind": "functional-structure",
+      "value": "Synthetic multi-module Agent coordination",
+      "basis": "synthetic",
+      "source_ref": "examples/agent-workbench-synthetic.json"
+    },
+    {
+      "kind": "reference",
+      "value": "Built-in pixel-dungeon reference experience",
+      "basis": "synthetic"
+    }
+  ]
+}

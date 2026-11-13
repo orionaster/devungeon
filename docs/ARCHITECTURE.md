@@ -6,8 +6,8 @@ Status: design proposal, **not** implemented code. Refer to [PRD](PRD.md) for sc
 
 1. **Project truth domain** — inspect source data, normalize product capabilities / dependencies, represent unknown facts; verify acceptance with attributable evidence.
 2. **Agent operations domain** — observe live Agent activity, grant explicit capabilities to send commands, record approvals, results and failures.
-3. **World domain** — transform project graph into a persistent WorldBlueprint, perform procedural layout, incremental changes, navigation and room locks.
-4. **Gameplay domain** — player movement, combat, loot, local progression and game replay, never used as evidence that a software task was delivered.
+3. **World domain** — preserve semantic project graph and source IDs; select a versioned world experience, then use its adapter for geometry, topology, incremental changes and gated access.
+4. **Gameplay domain** — experience-specific player controls and activities (combat/construction/repairs/exploration), isolated from source facts, permissions and delivery acceptance.
 
 ```mermaid
 flowchart TD
@@ -15,9 +15,9 @@ flowchart TD
   C[Supervisor and Worker Agents] --> D[Agent adapters and trusted bridge]
   B --> E[Normalized Project Snapshot]
   D --> F[Auditable Agent Events]
-  E --> G[AI World Designer]
+  E --> G[Experience selector / AI designer + user choice]
   G --> H[Validated World Blueprint]
-  H --> I[Deterministic Dungeon Generator]
+  H --> I[Selected world-pack adapter / layout and gameplay]
   F --> J[Event Projection]
   I --> K[3D World and Workspace UI]
   J --> K
@@ -70,8 +70,15 @@ flowchart TD
 - Real Agent actions require capability and approval, denied operations do not execute.
 - Disconnected and simulated events are clearly visible, and replay cannot be mistaken for live mode.
 
-## Approved original pixel-art presentation (2026-11-13)
+## First world-pack's original pixel-art presentation (2026-11-13)
 
-The **world is spatially 3D**, the signature game's **presentation is pixel-art 2.5D**. Do not interpret React Three Fiber as an instruction to make smooth 3D cartoon assets. Use actual sprite sheets / tile textures (16×16 base grid recommended), nearest texture filtering, camera-aware sprite orientations, reduced pixel-scale resolution, simple tiled geometry and honest 3D collision. The first camera implementation should support discrete quarter-turn rotations and locked-room preview; unrestricted rotation is contingent on readability tests.
+The **world is spatially 3D**, the **first dungeon pack's** presentation is pixel-art 2.5D. Do not interpret React Three Fiber as an instruction to make smooth 3D cartoon assets. Use actual sprite sheets / tile textures (16×16 base grid recommended), nearest texture filtering, camera-aware sprite orientations, reduced pixel-scale resolution, simple tiled geometry and honest 3D collision. The first camera implementation should support discrete quarter-turn rotations and locked-room preview; unrestricted rotation is contingent on readability tests.
 
 The semantic graph and Agent event projections must remain renderer-neutral and separate from the entertainment game state. Asset art is chosen by original license and ledger in docs/ASSET_PROVENANCE.md. Candidate packages and tradeoffs: docs/TOOLS_AND_SKILLS.md.
+
+
+## ADR-0002: experience selector and pluggable world/gameplay (2026-11-13)
+
+See docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md. **Project facts are world-agnostic.** The pixel dungeon is the first working pack, not a hardcoded universal renderer. A separately validated, optional WorldExperience sidecar records creator selection, design signals and renderer/gameplay identifiers; schema/world-experience.schema.json is a **draft** and is not yet consumed by the game.
+
+The future World Experience selector proposes plausible packs from project design/brand/goals/structure and user preferences, reports supporting evidence/unknowns, and allows manual override. Selection cannot be based only on language, source code technology or project name. Each pack may have a distinct spatial grammar and real game loop; dynamic plugin execution remains allowlisted and separately reviewed. Existing HERO/BUILDER implementations continue as the dungeon pack, preserving current schema contracts while integration proceeds.

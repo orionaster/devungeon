@@ -20,6 +20,8 @@ PAIRS = (
     ("world-blueprint.schema.json", "demo-world-blueprint.json"),
     ("agent-event.schema.json", "demo-agent-event.json"),
     ("game-state.schema.json", "demo-game-state.json"),
+    ("world-experience.schema.json", "world-experience-pixel-dungeon.json"),
+    ("world-experience.schema.json", "world-experience-city-proposal.json"),
 )
 
 
@@ -79,6 +81,24 @@ def main() -> None:
     assert event["agent_id"] in {a["id"] for a in agent_project["agents"]}
     assert event["room_id"] in {r["id"] for r in agent_project["rooms"]}
     assert event["is_demo"] is True
+    # Optional experience proposals must refer to original project IDs/revisions.
+    experience_cases = (
+        ("world-experience-pixel-dungeon.json", agent_project),
+        ("world-experience-city-proposal.json", project),
+    )
+    modes = set()
+    for filename, source in experience_cases:
+        exp = load(EXAMPLE_DIR / filename)
+        assert exp["project_id"] == source["project"]["id"]
+        assert exp["project_revision"] == source["revision"]
+        # Locale must not be used as the world's design selection or source of truth.
+        assert "locale" not in exp and "ui_locale" not in exp
+        assert "accepted" not in exp and "permissions" not in exp
+        modes.add((exp["world_type"], exp["gameplay_plugin"]))
+    assert len(modes) == 2, "Experiences must illustrate distinct modes, not two recolored dungeons."
+    city = load(EXAMPLE_DIR / "world-experience-city-proposal.json")
+    assert city["runtime_status"] == "proposal-only", "Unimplemented city must not be claimed playable."
+    print("PASS optional experience proposals: source linkage, distinct modes and no acceptance fields")
     print("PASS cross-reference invariants for bundled synthetic fixtures")
 
 
