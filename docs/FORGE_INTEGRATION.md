@@ -50,7 +50,47 @@ The public test invokes the bounded `observe-git.ts` instrument on this public c
 
 ## Verification evidence
 
-Exact environment, commands, final counts, measured performance and final clean-checkout revision are recorded below after execution. Prior first-wave evidence is retained with its original scope; only FORGE evidence validates this combined entry.
+Windows 11 Home 10.0.26200, Intel Core Ultra 7 255H / Intel Arc 140T, Node 24.13.1, npm 11.8.0, installed Chrome 157.0.8103.78. Real WebGL through ANGLE / D3D11, viewport 1440×960 / DPR 1 (game canvas uses its intentionally lower pixel scale). No private provider or model was started.
+
+Fresh **independent local Git clone**, no existing node_modules or borrowed native dependencies: `C:\Devungeon\forge\output\clean-checkout\forge`, application commit `c6a922a11f518a3d1e4cf594efbe1dc89f8e249e`. Its origin was set to the real public repository for the bounded observer's remote allowlist. This is a full checkout with its own Git database, not a source archive. Final documentation/evidence commits do not change this application code.
+
+| Actual execution | Result / evidence boundary |
+| --- | --- |
+| Fresh `npm ci --ignore-scripts` | PASS; 124 packages installed / 130 audited, no install-time hooks. [Full clean log](evidence/forge/clean-validation.txt). |
+| Root check and all automated tests | PASS: 9 engine + 11 host integration + 55 generator + 77 workspace (includes 19 i18n) + 14 bridge = **166**, no double counting. |
+| Root production build, generator build, workspace build | PASS. Existing large-chunk and Radix `use client` bundle warnings remain. |
+| Fresh Windows root lifecycle test | PASS, four behavior checks in one actual-process test: two normal SSE-connected stop/restarts; exact origin denial; forced-death no-orphan/fail-closed behavior; external bridge remains caller-owned. [Report](evidence/forge/host-lifecycle.json). Forced OS termination can retain a lock; it is deliberately not deleted automatically. |
+| Dependency audit and React tree | Zero known advisories at execution; React / React DOM 19.3.1 deduplicated. [Audit](evidence/forge/clean-audit.json), [tree](evidence/forge/clean-react.json). |
+| Python protocol/Skill validators | PASS: 7 JSON fixtures, optional experience invariants, cross references and 8 local Skill metadata checks. |
+| Primary production browser | PASS: [83 assertions](evidence/forge/all-results.json), both full generated encounters, attack/hit/dodge/death/restart, all four camera-heading lock dashes, locked preview, actual sprite selection, DEMO chat/task/approval denial, paused whole-game locale invariance, project switching, stable incremental maps, concurrent real event/gameplay and public-source fault recovery. |
+| Fresh-clone production repeat | PASS: [87 assertions](evidence/forge/clean-browser-results.json), same complete primary app from the independent clone at c6a922a, including the four rendered UI-mode checks. `FORGE_SUITE=all FORGE_MANAGE_BRIDGE=1 npm run test:browser:ci` owns its production host and real bridge; both stopped cleanly afterward. This repeats/extends the 83 assertions rather than representing 87 unrelated additional cases. |
+| Public UI-mode repeat | PASS: [26 assertions](evidence/forge/public-results.json), overlapping the primary public cases and adding four actual rendered LIVE/STALE/DISCONNECTED/REPLAY label checks. These are **not** 26 additional independent cases to add to 83. |
+| WIZARD regression host | PASS: 17 browser tests, 2 explicit opt-in SCOUT cases skipped. Those are separate from the primary production public-source tests above. Both updated primary tests passed; original four-PR evidence remains separately scoped. |
+| Headed production recording | [42.72-second actual Chrome video](evidence/forge/headed-showcase.webm), 1440×960 / VP9 / 25fps. Chrome native playback reached 20s with readyState 4 and no media error: [media check](evidence/forge/showcase-media.json), [recording result](evidence/forge/showcase-results.json). Automated headed interaction and AI visual review do not establish independent human acceptance. |
+
+Measured primary run, on this machine only:
+
+| Selected project | Average sampled FPS | p95 frame ms | Worst observed frame ms | Draw calls / triangles at capture |
+| --- | ---: | ---: | ---: | ---: |
+| Tiny | 59.34 | 16.9 | 167.7 | 55 / 9,238 |
+| Workbench | 58.89 | 16.9 | 201.5 | 110 / 23,112 |
+| Public Devungeon | 57.20 | 17.4 | 345.0 | 56 / 29,678 |
+
+Cold hitches are visible and not claimed to meet a low-end device target. Headed recording averaged 59.08 FPS with p95 17.2ms / worst 291.9ms. Production initial JS is approximately 1.62MB (456KB gzip), with a separate 4.33MB Rapier chunk (1.67MB gzip). No unhandled browser exception was observed; deliberately stopped bridge probes produce expected HTTP 502/503 console entries. Three.Clock deprecation is inherited and still logged.
+
+Representative actual captures: [combat](evidence/forge/tiny-combat.png), [incremental complex map](evidence/forge/workbench-incremental.png), [Chinese approval](evidence/forge/workbench-approval-zh.png), [English approval](evidence/forge/workbench-approval-en.png), [public LIVE](evidence/forge/public-live-agent.png), [read-only observed Agent](evidence/forge/public-readonly-workspace.png), [STALE](evidence/forge/public-stale.png), [DISCONNECTED](evidence/forge/public-disconnected.png), [REPLAY](evidence/forge/public-replay.png). Raw traces are retained locally under ignored `output/playwright/forge*` (large, roughly 67–223MB per project) and uploaded by CI on its own runs; they are not committed with the application.
+
+### Failures found, corrected or retained
+
+- Initial shared package build failed on two previously unused generator type imports exposed by WIZARD's stricter compiler. Removed only those unused types; both independent package builds now pass.
+- First integration toolbar overlapped HP; a bottom placement then overlapped keyboard hints. The reviewed final top-center placement keeps both clear. The source journal now scrolls within the viewport.
+- Adding a real observed actor originally changed scene identity and would rebuild physics. Dynamic actor roster/display and immutable game scene now have separate ports; the real-event browser scenario starts combat before the first actor arrives and proves no reset.
+- Initial launcher killed the Windows bridge without journal cleanup. Normal shutdown now uses private lifecycle IPC and bounded owned-process cleanup. Aggressive OS force-kill probes disproved the stronger claim that all locks can always be removed; final behavior preserves the stale lock, leaves no process, and rejects restart rather than silently clearing it.
+- A malformed SSE frame initially closed permanently. A bounded reconnect and retained-history regression now pass; actual malformed selected metadata/repair was separately tested end to end. Duplicate replay delivery can never promote back to LIVE activity.
+- An intermediate public browser rerun was interrupted by development HMR and reset to the initial project. That run was rejected as evidence; the final acceptance uses a fixed production build, followed by a fresh-clone production repeat.
+- Recording initially lacked Playwright's pinned ffmpeg test binary. It was installed only into an ignored local test cache; native playback of the completed recording passes. No binary/cache/runtime dependency was added to the repository.
+
+Engineering assessment: the requested first-pack integration behaviors have working implementations and actual desktop-browser evidence. This is suitable for supervisor review of #12. Human acceptance remains open; real provider commands, a second gameplay type and the broader full-V1 checklist are not claimed complete.
 
 ## Dependencies and licenses
 

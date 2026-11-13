@@ -1,0 +1,2026 @@
+{
+  "started_at": "2026-11-13T19:08:59.915Z",
+  "suite": "all",
+  "url": "http://127.0.0.1:5184",
+  "platform": "win32",
+  "node": "v24.13.1",
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "dpr": 1,
+  "limitations": [
+    "Automated browser input on this Windows machine is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance."
+  ],
+  "checks": [
+    {
+      "name": "tiny: Chinese first visit",
+      "pass": true
+    },
+    {
+      "name": "tiny: BUILDER world uses selected source IDs",
+      "pass": true
+    },
+    {
+      "name": "tiny: synthetic project explicitly DEMO",
+      "pass": true
+    },
+    {
+      "name": "tiny: language preserves full paused game",
+      "pass": true
+    },
+    {
+      "name": "tiny: language preserves truth and layout",
+      "pass": true
+    },
+    {
+      "name": "tiny: actual keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "tiny: actual dodge executed",
+      "pass": true
+    },
+    {
+      "name": "tiny: full generated encounter won",
+      "pass": true,
+      "detail": {
+        "attacks": 2,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 55,
+        "blockedMoves": 5
+      }
+    },
+    {
+      "name": "tiny: actual attacks and damage loop",
+      "pass": true,
+      "detail": {
+        "attacks": 2,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 55,
+        "blockedMoves": 5
+      }
+    },
+    {
+      "name": "tiny: combat does not change project truth",
+      "pass": true
+    },
+    {
+      "name": "tiny: at least one unaccepted area remains locked",
+      "pass": true
+    },
+    {
+      "name": "tiny: heading 0 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.47754856164113,
+          "z": 6.405100225721469,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 2,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 39
+        }
+      }
+    },
+    {
+      "name": "tiny: heading 90 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.47754856164113,
+          "z": 6.405099959465076,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 3,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 73
+        }
+      }
+    },
+    {
+      "name": "tiny: heading 180 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.47754856164113,
+          "z": 6.405100170045841,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.2246467991473532e-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 4,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 107
+        }
+      }
+    },
+    {
+      "name": "tiny: heading 270 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.47754856164113,
+          "z": 6.405099771374296,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.8369701987210297e-16,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 5,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 140
+        }
+      }
+    },
+    {
+      "name": "tiny: locked room camera preview grants no entry",
+      "pass": true
+    },
+    {
+      "name": "tiny: locked room English preserves access and paused state",
+      "pass": true
+    },
+    {
+      "name": "tiny: incremental update pins all old room geometry",
+      "pass": true
+    },
+    {
+      "name": "tiny: incremental update pins existing corridor paths",
+      "pass": true
+    },
+    {
+      "name": "tiny: new synthetic feature is sealed",
+      "pass": true
+    },
+    {
+      "name": "tiny: no uncaught browser error",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "workbench: Chinese first visit",
+      "pass": true
+    },
+    {
+      "name": "workbench: BUILDER world uses selected source IDs",
+      "pass": true
+    },
+    {
+      "name": "workbench: synthetic project explicitly DEMO",
+      "pass": true
+    },
+    {
+      "name": "workbench: language preserves full paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: language preserves truth and layout",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual dodge executed",
+      "pass": true
+    },
+    {
+      "name": "workbench: full generated encounter won",
+      "pass": true,
+      "detail": {
+        "attacks": 10,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 110,
+        "blockedMoves": 6
+      }
+    },
+    {
+      "name": "workbench: actual attacks and damage loop",
+      "pass": true,
+      "detail": {
+        "attacks": 10,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 110,
+        "blockedMoves": 6
+      }
+    },
+    {
+      "name": "workbench: combat does not change project truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: at least one unaccepted area remains locked",
+      "pass": true
+    },
+    {
+      "name": "workbench: heading 0 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.41270140520575,
+          "z": 5.40509368018607,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 10,
+          "dodges": 2,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 41
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 90 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.41266901141083,
+          "z": 5.405093191532757,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 10,
+          "dodges": 3,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 75
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 180 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.41248795861249,
+          "z": 5.405100105053094,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.2246467991473532e-16,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 10,
+          "dodges": 4,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 110
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 270 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.4126904347339,
+          "z": 5.405100186998567,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.8369701987210297e-16,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 10,
+          "dodges": 5,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 144
+        }
+      }
+    },
+    {
+      "name": "workbench: locked room camera preview grants no entry",
+      "pass": true
+    },
+    {
+      "name": "workbench: locked room English preserves access and paused state",
+      "pass": true
+    },
+    {
+      "name": "workbench: mapped DEMO supervisor exists",
+      "pass": true,
+      "detail": [
+        {
+          "id": "agent-boss",
+          "name": "Demo Supervisor",
+          "role": "supervisor",
+          "status": "working",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "planning",
+          "task_id": "demo-plan",
+          "source": "DEMO supervisor",
+          "source_ref": "synthetic:supervisor",
+          "observed_at": "2026-11-13T19:10:16.194Z",
+          "capabilities": [
+            "chat",
+            "assign_task",
+            "request_review",
+            "cancel_task",
+            "publish"
+          ]
+        },
+        {
+          "id": "agent-build",
+          "name": "Demo Worker",
+          "role": "worker",
+          "status": "blocked",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "executor",
+          "task_id": "demo-gate",
+          "source": "DEMO worker",
+          "source_ref": "synthetic:worker",
+          "observed_at": "2026-11-13T19:10:16.194Z",
+          "capabilities": [
+            "chat",
+            "assign_task",
+            "cancel_task"
+          ]
+        },
+        {
+          "id": "agent-review",
+          "name": "Demo Reviewer",
+          "role": "reviewer",
+          "status": "review",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "history",
+          "task_id": "demo-review",
+          "source": "DEMO reviewer",
+          "source_ref": "synthetic:reviewer",
+          "observed_at": "2026-11-13T19:10:16.194Z",
+          "capabilities": [
+            "chat",
+            "request_review"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "workbench: clicking actual rendered NPC opens scoped workspace",
+      "pass": true
+    },
+    {
+      "name": "workbench: explicit DEMO workspace label",
+      "pass": true
+    },
+    {
+      "name": "workbench: chat completed only in DEMO",
+      "pass": true
+    },
+    {
+      "name": "workbench: task survives closing workspace",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale does not alter paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale preserves commands, source and pending approvals",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale uses no reload",
+      "pass": true
+    },
+    {
+      "name": "workbench: Chinese roundtrip preserves complete paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: explicit approval denial rejected operation",
+      "pass": true
+    },
+    {
+      "name": "workbench: workspace did not change project truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: workspace releases focus to game",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual enemy damage causes player death",
+      "pass": true
+    },
+    {
+      "name": "workbench: death never approves/cancels pending work",
+      "pass": true
+    },
+    {
+      "name": "workbench: restart retains task and pending approval",
+      "pass": true
+    },
+    {
+      "name": "workbench: restart does not change truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: incremental update pins all old room geometry",
+      "pass": true
+    },
+    {
+      "name": "workbench: incremental update pins existing corridor paths",
+      "pass": true
+    },
+    {
+      "name": "workbench: new synthetic feature is sealed",
+      "pass": true
+    },
+    {
+      "name": "project switch: second project has its own distinct map",
+      "pass": true
+    },
+    {
+      "name": "project switch: incremental layout and pending work survive return",
+      "pass": true
+    },
+    {
+      "name": "workbench: no uncaught browser error",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "public: real selected GitHub project imported",
+      "pass": true
+    },
+    {
+      "name": "public: source observations do not grant feature acceptance",
+      "pass": true
+    },
+    {
+      "name": "public: original issue/PR titles and source evidence retained",
+      "pass": true
+    },
+    {
+      "name": "public: actual command HTTP route denied",
+      "pass": true,
+      "detail": {
+        "status": 405,
+        "body": {
+          "error": "scout_read_only"
+        }
+      }
+    },
+    {
+      "name": "public: browser cannot select another upstream source",
+      "pass": true
+    },
+    {
+      "name": "public: direct bridge retains foreign-origin denial",
+      "pass": true
+    },
+    {
+      "name": "public: project events never create Agent actors",
+      "pass": true
+    },
+    {
+      "name": "public: bounded source instrument has explicit task scope",
+      "pass": true
+    },
+    {
+      "name": "public: real event arrives while player attacks and dodges",
+      "pass": true,
+      "detail": {
+        "before": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 0
+        },
+        "after": {
+          "attacks": 4,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 30,
+          "blockedMoves": 4
+        }
+      }
+    },
+    {
+      "name": "public: actual local Git observation reached game LIVE",
+      "pass": true
+    },
+    {
+      "name": "public: locale preserves original facts/events and paused game",
+      "pass": true
+    },
+    {
+      "name": "public: read-only source cannot chat or publish",
+      "pass": true
+    },
+    {
+      "name": "public: original non-sensitive commit evidence visible",
+      "pass": true
+    },
+    {
+      "name": "public: duplicate input does not duplicate event history",
+      "pass": true
+    },
+    {
+      "name": "public: silent real observer becomes STALE",
+      "pass": true
+    },
+    {
+      "name": "public: disconnect preserves history and project truth",
+      "pass": true
+    },
+    {
+      "name": "public: disconnect preserves paused gameplay",
+      "pass": true
+    },
+    {
+      "name": "public: reconnect recovers same event IDs as REPLAY",
+      "pass": true
+    },
+    {
+      "name": "public: reconnect leaves gameplay and source facts unchanged",
+      "pass": true
+    },
+    {
+      "name": "public: malformed metadata fails closed without history loss",
+      "pass": true
+    },
+    {
+      "name": "public: explicit source repair recovers",
+      "pass": true
+    },
+    {
+      "name": "public: no uncaught browser error",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "two projects generate distinct functional graphs",
+      "pass": true,
+      "detail": {
+        "tiny": {
+          "rooms": 3,
+          "dependencies": 2
+        },
+        "workbench": {
+          "rooms": 8,
+          "dependencies": 9
+        }
+      }
+    }
+  ],
+  "cases": [
+    {
+      "selection": "tiny",
+      "result": {
+        "selected": "tiny",
+        "rooms": 3,
+        "dependencies": 2,
+        "visited": [
+          "hero"
+        ],
+        "won": {
+          "time": 11.366666666666811,
+          "phase": "won",
+          "player": {
+            "x": 0.5607879153176327,
+            "z": 0.1570294838415407,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": -0.0016814015762764698,
+              "z": 0.9999985864433705
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "x": 0.5587580234314373,
+              "z": 1.3642895743250847,
+              "id": "[\"encounter\",\"hero\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": 0.0016814015762764698,
+                "z": -0.9999985864433705
+              },
+              "moving": false,
+              "hurt": 0.16333333333333333,
+              "state": "dead",
+              "timer": 0.39999999999999897,
+              "attackDirection": {
+                "x": 0.0016814014406903958,
+                "z": -0.9999985864435985
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [
+            {
+              "x": 0.5599350045704341,
+              "z": 0.66429053992033,
+              "id": 3,
+              "kind": "hit",
+              "life": 1.0408340855860843e-16,
+              "maxLife": 0.45,
+              "value": 30
+            },
+            {
+              "x": 0.5593465140009357,
+              "z": 1.0142900571227074,
+              "id": 4,
+              "kind": "hit",
+              "life": 0.33333333333333337,
+              "maxLife": 0.45,
+              "value": 25
+            },
+            {
+              "x": 0.5587580234314373,
+              "z": 1.3642895743250847,
+              "id": 5,
+              "kind": "kill",
+              "life": 0.5833333333333329,
+              "maxLife": 0.7
+            },
+            {
+              "x": -17.5,
+              "z": 0.5,
+              "id": 6,
+              "kind": "heal",
+              "life": 0.883333333333333,
+              "maxLife": 1
+            }
+          ],
+          "attackTime": 0.11333333333333337,
+          "attackDirection": {
+            "x": -0.0016814015762764698,
+            "z": 0.9999985864433705
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0,
+          "kills": 1,
+          "total": 1,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 2,
+            "dodges": 1,
+            "hitsTaken": 1,
+            "damageDealt": 55,
+            "blockedMoves": 5
+          }
+        },
+        "dashChecks": [
+          {
+            "heading": 0,
+            "player": {
+              "x": 18.47754856164113,
+              "z": 6.405100225721469,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 2,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 39
+            }
+          },
+          {
+            "heading": 1,
+            "player": {
+              "x": 18.47754856164113,
+              "z": 6.405099959465076,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 6.123233995736766e-17,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 3,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 73
+            }
+          },
+          {
+            "heading": 2,
+            "player": {
+              "x": 18.47754856164113,
+              "z": 6.405100170045841,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.2246467991473532e-16,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 4,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 107
+            }
+          },
+          {
+            "heading": 3,
+            "player": {
+              "x": 18.47754856164113,
+              "z": 6.405099771374296,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.8369701987210297e-16,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 5,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 140
+            }
+          }
+        ],
+        "metrics": {
+          "fps": 59.34170271123314,
+          "p95Ms": 16.900000005960464,
+          "worstMs": 167.7000000178814,
+          "frames": 1343,
+          "drawCalls": 55,
+          "triangles": 9238,
+          "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        "incremental": {
+          "added": [
+            "forge-demo-extension"
+          ],
+          "oldRoomCount": 3
+        }
+      }
+    },
+    {
+      "selection": "workbench",
+      "result": {
+        "selected": "workbench",
+        "rooms": 8,
+        "dependencies": 9,
+        "visited": [
+          "goals",
+          "registry"
+        ],
+        "won": {
+          "time": 26.79999999999976,
+          "phase": "won",
+          "player": {
+            "x": 18.40568817494932,
+            "z": 36.54975265846147,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": 0.02863263283394588,
+              "z": 0.9995900021193673
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "x": 0.41559966368367895,
+              "z": 2.475623182952404,
+              "id": "[\"encounter\",\"goals\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": -0.016319535505590285,
+                "z": -0.9998668275129852
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "dead",
+              "timer": -17.516666666666953,
+              "attackDirection": {
+                "x": -0.04565129803864433,
+                "z": 0.9989574360238713
+              }
+            },
+            {
+              "x": 18.47254098992562,
+              "z": 38.88364231772721,
+              "id": "[\"encounter\",\"registry\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": -0.028632632820147226,
+                "z": -0.9995900021197625
+              },
+              "moving": false,
+              "hurt": 0.16333333333333333,
+              "state": "dead",
+              "timer": -0.20000000000000093,
+              "attackDirection": {
+                "x": -0.04556340725495567,
+                "z": 0.9989614486652221
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [
+            {
+              "x": 18.462519568798598,
+              "z": 38.53378582186997,
+              "id": 7,
+              "kind": "hit",
+              "life": 0.33333333333333337,
+              "maxLife": 0.45,
+              "value": 25
+            },
+            {
+              "x": 18.47254098992562,
+              "z": 38.88364231772721,
+              "id": 8,
+              "kind": "kill",
+              "life": 0.5833333333333329,
+              "maxLife": 0.7
+            },
+            {
+              "x": -17.5,
+              "z": 0.5,
+              "id": 9,
+              "kind": "heal",
+              "life": 0.883333333333333,
+              "maxLife": 1
+            }
+          ],
+          "attackTime": 0.11333333333333337,
+          "attackDirection": {
+            "x": 0.02863263283394588,
+            "z": 0.9995900021193673
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0,
+          "kills": 2,
+          "total": 2,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 10,
+            "dodges": 1,
+            "hitsTaken": 1,
+            "damageDealt": 110,
+            "blockedMoves": 6
+          }
+        },
+        "dashChecks": [
+          {
+            "heading": 0,
+            "player": {
+              "x": 36.41270140520575,
+              "z": 5.40509368018607,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 10,
+              "dodges": 2,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 41
+            }
+          },
+          {
+            "heading": 1,
+            "player": {
+              "x": 36.41266901141083,
+              "z": 5.405093191532757,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 6.123233995736766e-17,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 10,
+              "dodges": 3,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 75
+            }
+          },
+          {
+            "heading": 2,
+            "player": {
+              "x": 36.41248795861249,
+              "z": 5.405100105053094,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.2246467991473532e-16,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 10,
+              "dodges": 4,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 110
+            }
+          },
+          {
+            "heading": 3,
+            "player": {
+              "x": 36.4126904347339,
+              "z": 5.405100186998567,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.8369701987210297e-16,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 10,
+              "dodges": 5,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 144
+            }
+          }
+        ],
+        "metrics": {
+          "fps": 58.888961591310604,
+          "p95Ms": 16.900000005960464,
+          "worstMs": 201.5,
+          "frames": 4278,
+          "drawCalls": 110,
+          "triangles": 23112,
+          "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        "incremental": {
+          "added": [
+            "forge-demo-extension"
+          ],
+          "oldRoomCount": 8
+        },
+        "workspace": {
+          "pendingId": "approval:50f2f7a1-e970-41d3-a2a9-81aaf155d069"
+        }
+      }
+    },
+    {
+      "selection": "public",
+      "result": {
+        "managed": true,
+        "project": {
+          "schema_version": "1.0",
+          "project": {
+            "id": "github:orionaster/devungeon",
+            "name": "orionaster/devungeon",
+            "source": {
+              "kind": "github",
+              "is_demo": false,
+              "reference": "https://github.com/orionaster/devungeon"
+            }
+          },
+          "revision": "cb538f6cf19fe4a07593add0e627ca42a2708df6a453981bddfbbbd54e8c9038",
+          "observed_at": "2026-11-13T19:10:48.078Z",
+          "zones": [
+            {
+              "id": "github:1456354784:work",
+              "name": "Observed repository work items"
+            }
+          ],
+          "rooms": [
+            {
+              "id": "github:issue:6367956382",
+              "zone_id": "github:1456354784:work",
+              "name": "S1 · Playable 2.5D pixel-art dungeon vertical slice (DEMO Agent)",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #1: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/1",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6367956879",
+              "zone_id": "github:1456354784:work",
+              "name": "S2 · Project graph → deterministic procedural world with incremental updates",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #2: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/2",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6367957313",
+              "zone_id": "github:1456354784:work",
+              "name": "S3 · Real project and Agent observation adapters with provenance",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #3: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/3",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6367957869",
+              "zone_id": "github:1456354784:work",
+              "name": "S4 · In-world supervisor/worker workspace: inspect, chat, scoped commands, approvals",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #4: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/4",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6368183029",
+              "zone_id": "github:1456354784:work",
+              "name": "docs: pixel-art dungeon direction + vetted tooling and Agent Skills",
+              "status": "review",
+              "depends_on": [],
+              "summary": "Pull request #5: closed. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/5",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6368793058",
+              "zone_id": "github:1456354784:work",
+              "name": "SCOUT: reconcile main and add safe same-origin game host integration",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #6: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/6",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6368947926",
+              "zone_id": "github:1456354784:work",
+              "name": "feat(s4): shared bilingual workspace integrated with HERO host ports",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #7: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/7",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6369013629",
+              "zone_id": "github:1456354784:work",
+              "name": "S2: integrate deterministic dungeon worlds with HERO and shared i18n",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #8: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/8",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6369015781",
+              "zone_id": "github:1456354784:work",
+              "name": "feat(hero): playable pixel world, Chinese-first UI and integration host ports",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #9: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/9",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374027510",
+              "zone_id": "github:1456354784:work",
+              "name": "UX · Chinese / English language switching across dungeon + Agent workspace",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #10: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/10",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374070334",
+              "zone_id": "github:1456354784:work",
+              "name": "docs: make Chinese-first bilingual UI a V1 requirement",
+              "status": "review",
+              "depends_on": [],
+              "summary": "Pull request #11: closed. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/11",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374094819",
+              "zone_id": "github:1456354784:work",
+              "name": "Integration wave 2 · Unified playable world + real observability + bilingual UI",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #12: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/12",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374421453",
+              "zone_id": "github:1456354784:work",
+              "name": "product: make Devungeon a project-adaptive multi-world game platform",
+              "status": "review",
+              "depends_on": [],
+              "summary": "Pull request #13: closed. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/13",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374431515",
+              "zone_id": "github:1456354784:work",
+              "name": "World Experience v2 · project-aware genre selection and a second genuinely playable world",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #14: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/14",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            }
+          ],
+          "agents": []
+        },
+        "originalIds": [
+          "github:6367956382:e3d23d686837503cd190883caea912fdadb7f3c7e6ef49a50f3a50e9a7c0bea4",
+          "github:6367956879:3d7f80e12a745ff00eda99276869a0a2d210f91220c1bf16293f46c93386f4fd",
+          "github:6367957313:e7a8b31c888a57e7765822f09d88755bf09d293eda35f19fbd15a51d762f0799",
+          "github:6367957869:79b3d601c17382cf7602d5e4c23b77a2bb226970292c0a2b684e80e20f7e947f",
+          "github:6368183029:8527b2ea67b9d03e9600e5251139161f6020c8fa1ab1061e762b02ae73372634",
+          "github:6368793058:d6894cf70de3ac621ac30941826d63111e5f2a28e0c0c2e07abd14daf262a2af",
+          "github:6368947926:9b7e06fd2a60a57f2226227d7f26602bed9ce6f036cb2b9758c20fec57e269b9",
+          "github:6369013629:879327f4c765120f8684e158a68226c1b3a71e77d344564ff09d6c5cd98fc4ce",
+          "github:6369015781:c7154f6095e6519db1e1a664c6fa051c990f1e0d7e1d9dc87bc3b86b02f2574b",
+          "github:6374027510:98a0c00ea4c575d772d7129c1e54d2515000aebe0cfb7ea2293345bffa361c17",
+          "github:6374070334:45852c0524a0f00ad2e6fffc68285057aaec94cbc88cc9763064f7266bdc8336",
+          "github:6374094819:98c74815398615d3e8a3109bb611d27f451bcb09530995ab5f8a8769a54732fa",
+          "github:6374421453:78313128d842e1b6eff623d88318f0c6703f61041acade16e8cebc5c5ee5668e",
+          "github:6374431515:ec57d24bd823dca87fc1327028f682c18093310c1d8222d52fc21b8a6c3b33da",
+          "scout-local:43f4633e3a7da9ffaafd2ac0c7f11970caaa744ffc0166b0ae27d17712582330",
+          "scout-local:27a50e3e68eee3ba9174e992c2617c7435a6eb662a3a592d84abacc828068f54"
+        ],
+        "live": {
+          "schema_version": "1.0",
+          "cursor": 15,
+          "mode": "LIVE",
+          "event": {
+            "schema_version": "1.0",
+            "event_id": "scout-local:43f4633e3a7da9ffaafd2ac0c7f11970caaa744ffc0166b0ae27d17712582330",
+            "project_id": "github:orionaster/devungeon",
+            "agent_id": "scout-local:80b8cc4aa13dbe2be12d14d3",
+            "room_id": "github:issue:6367956382",
+            "event_type": "tool_call",
+            "occurred_at": "2026-11-13T19:10:49.879Z",
+            "observed_at": "2026-11-13T19:10:50.618Z",
+            "source": "scout-local",
+            "source_ref": "local:metadata:scout-local:43f4633e3a7da9ffaafd2ac0c7f11970caaa744ffc0166b0ae27d17712582330",
+            "is_demo": false,
+            "message": "scout-local observed tool_start. This is activity evidence, not product acceptance.",
+            "idempotency_key": "scout-local:43f4633e3a7da9ffaafd2ac0c7f11970caaa744ffc0166b0ae27d17712582330",
+            "task_id": "github:issue:6367956382",
+            "status": "working",
+            "source_kind": "agent"
+          }
+        },
+        "stale": {
+          "schema_version": "1.0",
+          "project_id": "github:orionaster/devungeon",
+          "epoch": "ec699a4a-f771-49aa-ba07-2854669280dd",
+          "cursor": 16,
+          "connections": {
+            "project": {
+              "mode": "LIVE",
+              "reason": "ok",
+              "last_success_at": "2026-11-13T19:10:48.091Z",
+              "checked_at": "2026-11-13T19:10:48.091Z",
+              "retry_at": null
+            },
+            "agent": {
+              "mode": "STALE",
+              "reason": "stale",
+              "last_success_at": "2026-11-13T19:10:49.910Z",
+              "checked_at": "2026-11-13T19:11:20.843Z",
+              "retry_at": null
+            }
+          },
+          "capabilities": {
+            "commands": [],
+            "agent": [
+              "observe_events"
+            ],
+            "project": [
+              "read_project"
+            ]
+          },
+          "warnings": [
+            "Issue/PR projection only; capabilities, dependencies, CI and acceptance are unknown. REST pagination is not an atomic repository revision. GitHub observations never imply an Agent is working."
+          ]
+        },
+        "final": {
+          "status": {
+            "schema_version": "1.0",
+            "project_id": "github:orionaster/devungeon",
+            "epoch": "7e9c344c-07ff-4f7f-a825-17f1d92afb24",
+            "cursor": 16,
+            "connections": {
+              "project": {
+                "mode": "LIVE",
+                "reason": "ok",
+                "last_success_at": "2026-11-13T19:11:22.557Z",
+                "checked_at": "2026-11-13T19:11:22.557Z",
+                "retry_at": null
+              },
+              "agent": {
+                "mode": "STALE",
+                "reason": "stale",
+                "last_success_at": "2026-11-13T19:10:49.910Z",
+                "checked_at": "2026-11-13T19:11:22.976Z",
+                "retry_at": null
+              }
+            },
+            "capabilities": {
+              "commands": [],
+              "agent": [
+                "observe_events"
+              ],
+              "project": [
+                "read_project"
+              ]
+            },
+            "warnings": [
+              "Issue/PR projection only; capabilities, dependencies, CI and acceptance are unknown. REST pagination is not an atomic repository revision. GitHub observations never imply an Agent is working."
+            ]
+          },
+          "records": [
+            {
+              "schema_version": "1.0",
+              "cursor": 1,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6367956382:e3d23d686837503cd190883caea912fdadb7f3c7e6ef49a50f3a50e9a7c0bea4",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6367956382",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T09:58:07Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/issues/1",
+                "is_demo": false,
+                "message": "Issue #1 observed open; acceptance unknown.",
+                "idempotency_key": "github:6367956382:e3d23d686837503cd190883caea912fdadb7f3c7e6ef49a50f3a50e9a7c0bea4",
+                "task_id": "github:issue:6367956382",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 2,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6367956879:3d7f80e12a745ff00eda99276869a0a2d210f91220c1bf16293f46c93386f4fd",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6367956879",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T09:00:54Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/issues/2",
+                "is_demo": false,
+                "message": "Issue #2 observed open; acceptance unknown.",
+                "idempotency_key": "github:6367956879:3d7f80e12a745ff00eda99276869a0a2d210f91220c1bf16293f46c93386f4fd",
+                "task_id": "github:issue:6367956879",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 3,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6367957313:e7a8b31c888a57e7765822f09d88755bf09d293eda35f19fbd15a51d762f0799",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6367957313",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T08:44:38Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/issues/3",
+                "is_demo": false,
+                "message": "Issue #3 observed open; acceptance unknown.",
+                "idempotency_key": "github:6367957313:e7a8b31c888a57e7765822f09d88755bf09d293eda35f19fbd15a51d762f0799",
+                "task_id": "github:issue:6367957313",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 4,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6367957869:79b3d601c17382cf7602d5e4c23b77a2bb226970292c0a2b684e80e20f7e947f",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6367957869",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T08:44:40Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/issues/4",
+                "is_demo": false,
+                "message": "Issue #4 observed open; acceptance unknown.",
+                "idempotency_key": "github:6367957869:79b3d601c17382cf7602d5e4c23b77a2bb226970292c0a2b684e80e20f7e947f",
+                "task_id": "github:issue:6367957869",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 5,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6368183029:8527b2ea67b9d03e9600e5251139161f6020c8fa1ab1061e762b02ae73372634",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6368183029",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T09:01:14Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/pull/5",
+                "is_demo": false,
+                "message": "Pull request #5 observed closed; acceptance unknown.",
+                "idempotency_key": "github:6368183029:8527b2ea67b9d03e9600e5251139161f6020c8fa1ab1061e762b02ae73372634",
+                "task_id": "github:issue:6368183029",
+                "status": "review",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 6,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6368793058:d6894cf70de3ac621ac30941826d63111e5f2a28e0c0c2e07abd14daf262a2af",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6368793058",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T16:31:38Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/pull/6",
+                "is_demo": false,
+                "message": "Pull request #6 observed open; acceptance unknown.",
+                "idempotency_key": "github:6368793058:d6894cf70de3ac621ac30941826d63111e5f2a28e0c0c2e07abd14daf262a2af",
+                "task_id": "github:issue:6368793058",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 7,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6368947926:9b7e06fd2a60a57f2226227d7f26602bed9ce6f036cb2b9758c20fec57e269b9",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6368947926",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T17:53:17Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/pull/7",
+                "is_demo": false,
+                "message": "Pull request #7 observed open; acceptance unknown.",
+                "idempotency_key": "github:6368947926:9b7e06fd2a60a57f2226227d7f26602bed9ce6f036cb2b9758c20fec57e269b9",
+                "task_id": "github:issue:6368947926",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 8,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6369013629:879327f4c765120f8684e158a68226c1b3a71e77d344564ff09d6c5cd98fc4ce",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6369013629",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T17:29:15Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/pull/8",
+                "is_demo": false,
+                "message": "Pull request #8 observed open; acceptance unknown.",
+                "idempotency_key": "github:6369013629:879327f4c765120f8684e158a68226c1b3a71e77d344564ff09d6c5cd98fc4ce",
+                "task_id": "github:issue:6369013629",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 9,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6369015781:c7154f6095e6519db1e1a664c6fa051c990f1e0d7e1d9dc87bc3b86b02f2574b",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6369015781",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T16:58:16Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/pull/9",
+                "is_demo": false,
+                "message": "Pull request #9 observed open; acceptance unknown.",
+                "idempotency_key": "github:6369015781:c7154f6095e6519db1e1a664c6fa051c990f1e0d7e1d9dc87bc3b86b02f2574b",
+                "task_id": "github:issue:6369015781",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 10,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6374027510:98a0c00ea4c575d772d7129c1e54d2515000aebe0cfb7ea2293345bffa361c17",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6374027510",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T15:05:42Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/issues/10",
+                "is_demo": false,
+                "message": "Issue #10 observed open; acceptance unknown.",
+                "idempotency_key": "github:6374027510:98a0c00ea4c575d772d7129c1e54d2515000aebe0cfb7ea2293345bffa361c17",
+                "task_id": "github:issue:6374027510",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 11,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6374070334:45852c0524a0f00ad2e6fffc68285057aaec94cbc88cc9763064f7266bdc8336",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6374070334",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T15:08:07Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/pull/11",
+                "is_demo": false,
+                "message": "Pull request #11 observed closed; acceptance unknown.",
+                "idempotency_key": "github:6374070334:45852c0524a0f00ad2e6fffc68285057aaec94cbc88cc9763064f7266bdc8336",
+                "task_id": "github:issue:6374070334",
+                "status": "review",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 12,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6374094819:98c74815398615d3e8a3109bb611d27f451bcb09530995ab5f8a8769a54732fa",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6374094819",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T16:59:47Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/issues/12",
+                "is_demo": false,
+                "message": "Issue #12 observed open; acceptance unknown.",
+                "idempotency_key": "github:6374094819:98c74815398615d3e8a3109bb611d27f451bcb09530995ab5f8a8769a54732fa",
+                "task_id": "github:issue:6374094819",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 13,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6374421453:78313128d842e1b6eff623d88318f0c6703f61041acade16e8cebc5c5ee5668e",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6374421453",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T15:27:47Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/pull/13",
+                "is_demo": false,
+                "message": "Pull request #13 observed closed; acceptance unknown.",
+                "idempotency_key": "github:6374421453:78313128d842e1b6eff623d88318f0c6703f61041acade16e8cebc5c5ee5668e",
+                "task_id": "github:issue:6374421453",
+                "status": "review",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 14,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "github:6374431515:ec57d24bd823dca87fc1327028f682c18093310c1d8222d52fc21b8a6c3b33da",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "source:github",
+                "room_id": "github:issue:6374431515",
+                "event_type": "progress",
+                "occurred_at": "2026-11-13T15:27:10Z",
+                "observed_at": "2026-11-13T19:10:48.078Z",
+                "source": "github-public-rest-v1",
+                "source_ref": "https://github.com/orionaster/devungeon/issues/14",
+                "is_demo": false,
+                "message": "Issue #14 observed open; acceptance unknown.",
+                "idempotency_key": "github:6374431515:ec57d24bd823dca87fc1327028f682c18093310c1d8222d52fc21b8a6c3b33da",
+                "task_id": "github:issue:6374431515",
+                "status": "unknown",
+                "source_kind": "project"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 15,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "scout-local:43f4633e3a7da9ffaafd2ac0c7f11970caaa744ffc0166b0ae27d17712582330",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "scout-local:80b8cc4aa13dbe2be12d14d3",
+                "room_id": "github:issue:6367956382",
+                "event_type": "tool_call",
+                "occurred_at": "2026-11-13T19:10:49.879Z",
+                "observed_at": "2026-11-13T19:10:50.618Z",
+                "source": "scout-local",
+                "source_ref": "local:metadata:scout-local:43f4633e3a7da9ffaafd2ac0c7f11970caaa744ffc0166b0ae27d17712582330",
+                "is_demo": false,
+                "message": "scout-local observed tool_start. This is activity evidence, not product acceptance.",
+                "idempotency_key": "scout-local:43f4633e3a7da9ffaafd2ac0c7f11970caaa744ffc0166b0ae27d17712582330",
+                "task_id": "github:issue:6367956382",
+                "status": "working",
+                "source_kind": "agent"
+              }
+            },
+            {
+              "schema_version": "1.0",
+              "cursor": 16,
+              "mode": "REPLAY",
+              "event": {
+                "schema_version": "1.0",
+                "event_id": "scout-local:27a50e3e68eee3ba9174e992c2617c7435a6eb662a3a592d84abacc828068f54",
+                "project_id": "github:orionaster/devungeon",
+                "agent_id": "scout-local:80b8cc4aa13dbe2be12d14d3",
+                "room_id": "github:issue:6367956382",
+                "event_type": "completed",
+                "occurred_at": "2026-11-13T19:10:49.910Z",
+                "observed_at": "2026-11-13T19:10:50.619Z",
+                "source": "scout-local",
+                "source_ref": "https://github.com/orionaster/devungeon/commit/f3ab644f0f96710cf413178583eacf97c21280fe",
+                "is_demo": false,
+                "message": "scout-local observed tool_end. This is activity evidence, not product acceptance.",
+                "idempotency_key": "scout-local:27a50e3e68eee3ba9174e992c2617c7435a6eb662a3a592d84abacc828068f54",
+                "task_id": "github:issue:6367956382",
+                "status": "idle",
+                "source_kind": "agent"
+              }
+            }
+          ],
+          "transportConnected": true,
+          "error": ""
+        },
+        "concurrentGameplay": {
+          "before": {
+            "time": 0.26666666666666666,
+            "phase": "playing",
+            "player": {
+              "x": -17.5,
+              "z": 0.5,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": -1,
+                "z": 0
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "enemies": [
+              {
+                "id": "game-only:foyer-slime-a",
+                "kind": "slime",
+                "x": -19.197500001639128,
+                "z": 0.5,
+                "hp": 55,
+                "maxHp": 55,
+                "facing": {
+                  "x": 1,
+                  "z": 0
+                },
+                "moving": false,
+                "hurt": 0,
+                "state": "windup",
+                "timer": 0.4833333333333333,
+                "attackDirection": {
+                  "x": 1,
+                  "z": 0
+                }
+              },
+              {
+                "id": "game-only:foyer-slime-b",
+                "kind": "slime",
+                "x": -15.802499998360872,
+                "z": 0.5,
+                "hp": 55,
+                "maxHp": 55,
+                "facing": {
+                  "x": -1,
+                  "z": 0
+                },
+                "moving": false,
+                "hurt": 0,
+                "state": "windup",
+                "timer": 0.4833333333333333,
+                "attackDirection": {
+                  "x": -1,
+                  "z": 0
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [],
+            "attackTime": 0,
+            "attackDirection": {
+              "x": 1,
+              "z": 0
+            },
+            "dodgeTime": 0,
+            "dodgeCooldown": 0,
+            "kills": 0,
+            "total": 2,
+            "rewardClaimed": false,
+            "stats": {
+              "attacks": 0,
+              "dodges": 0,
+              "hitsTaken": 0,
+              "damageDealt": 0,
+              "blockedMoves": 0
+            }
+          },
+          "after": {
+            "time": 1.7166666666666655,
+            "phase": "playing",
+            "player": {
+              "x": -14.405064852617215,
+              "z": 0.5002000373771693,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": -0.9999999969778812,
+                "z": -0.00007774469415042648
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "enemies": [
+              {
+                "id": "game-only:foyer-slime-a",
+                "kind": "slime",
+                "x": -17.727500047534704,
+                "z": 0.5,
+                "hp": 55,
+                "maxHp": 55,
+                "facing": {
+                  "x": 0.9999999981874947,
+                  "z": 0.000060208059772776576
+                },
+                "moving": false,
+                "hurt": 0,
+                "state": "recover",
+                "timer": 0.13333333333333236,
+                "attackDirection": {
+                  "x": 1,
+                  "z": 0
+                }
+              },
+              {
+                "id": "game-only:foyer-slime-b",
+                "kind": "slime",
+                "x": -17.62249994650483,
+                "z": 0.49994989886909025,
+                "hp": 25,
+                "maxHp": 55,
+                "facing": {
+                  "x": 0.9999999969778812,
+                  "z": 0.00007774469415042648
+                },
+                "moving": false,
+                "hurt": 0,
+                "state": "recover",
+                "timer": 0.13333333333333236,
+                "attackDirection": {
+                  "x": -1,
+                  "z": 0
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [],
+            "attackTime": 0.18000000000000002,
+            "attackDirection": {
+              "x": -0.9999999969778812,
+              "z": -0.00007774469415042648
+            },
+            "dodgeTime": 0,
+            "dodgeCooldown": 0,
+            "kills": 0,
+            "total": 2,
+            "rewardClaimed": false,
+            "stats": {
+              "attacks": 4,
+              "dodges": 1,
+              "hitsTaken": 0,
+              "damageDealt": 30,
+              "blockedMoves": 4
+            }
+          }
+        },
+        "metrics": {
+          "fps": 57.20496539097426,
+          "p95Ms": 17.400000005960464,
+          "worstMs": 345,
+          "frames": 2109,
+          "drawCalls": 56,
+          "triangles": 29678,
+          "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        }
+      }
+    }
+  ],
+  "console": [
+    {
+      "selection": "tiny",
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "selection": "workbench",
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "selection": "public",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "selection": "public",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+    },
+    {
+      "selection": "public",
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    },
+    {
+      "selection": "public",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+    },
+    {
+      "selection": "public",
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 502 (Bad Gateway)"
+    }
+  ],
+  "browser": "157.0.8103.78",
+  "executable": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  "pass": true,
+  "finished_at": "2026-11-13T19:11:32.675Z"
+}

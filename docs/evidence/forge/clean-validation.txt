@@ -1,0 +1,264 @@
+c6a922a11f518a3d1e4cf594efbe1dc89f8e249e
+v24.13.1
+11.8.0
+ci --ignore-scripts
+
+added 124 packages, and audited 130 packages in 6s
+
+21 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+run check
+
+> devungeon@0.1.0 check
+> npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && npm run check --workspace @devungeon/scout-bridge
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+> @devungeon/scout-bridge@0.1.0 check
+> tsc --noEmit
+
+test
+
+> devungeon@0.1.0 test
+> npm run test:engine && npm run test:integration && npm test --workspace @devungeon/world-generator && npm test --workspace @devungeon/workspace-ui && npm test --workspace @devungeon/scout-bridge
+
+
+> devungeon@0.1.0 test:engine
+> tsx --test packages/dungeon-engine/test/*.test.ts
+
+✔ swept wall and locked-room collisions survive walking, repeated dodges, corners and restart (369.1526ms)
+✔ attack hits, defeats encounter and returns only a game result; source facts survive win/restart (14.0698ms)
+✔ enemy tells lead to damage, defeat and restart without source mutation (35.5859ms)
+✔ dodge grants brief protection and actual displacement without tunneling (4.1219ms)
+✔ spawn and blueprint access fail closed, invalid rectangles are rejected (1.1539ms)
+✔ scene ownership and tile-grid validation prevent mutable respawn and missing walls (3.8684ms)
+✔ event projection rejects malformed/cross-project/duplicate, keeps chronology and bounds history (3.3167ms)
+✔ explicit compiler doors override guessed positions and independently block dashes (21.3674ms)
+✔ visual-only NPC in a known locked room grants no player access (12.7836ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1626.718
+
+> devungeon@0.1.0 test:integration
+> vitest run
+
+
+ RUN  v5.1.0 C:/Devungeon/forge/output/clean-checkout/forge
+
+
+ Test Files  2 passed (2)
+      Tests  11 passed (11)
+   Start at  03:13:58
+   Duration  588ms (import 48%, transform 37%, tests 14%, worker 1%)
+
+
+> @devungeon/world-generator@0.1.0 test
+> npm run sync-schema && vitest run
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+ RUN  v5.1.0 C:/Devungeon/forge/output/clean-checkout/forge/packages/world-generator
+
+
+ Test Files  2 passed (2)
+      Tests  55 passed (55)
+   Start at  03:14:00
+   Duration  4.59s (tests 87%, import 7%, transform 5%)
+
+
+> @devungeon/workspace-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Devungeon/forge/output/clean-checkout/forge/packages/workspace-ui
+
+
+ Test Files  5 passed (5)
+      Tests  77 passed (77)
+   Start at  03:14:05
+   Duration  894ms (tests 40%, transform 30%, import 29%, worker 1%)
+
+
+> @devungeon/scout-bridge@0.1.0 test
+> node --test test/*.test.ts
+
+✔ public GitHub pagination, ETag and repeat import have stable IDs; closed stays review (22.6333ms)
+✔ GitHub denies unauthorized, unavailable, rate limited and private responses without leaking bodies (3.5384ms)
+✔ malformed pages cannot publish a partial snapshot; empty repo has honest overview (0.9011ms)
+✔ metadata enforces scope, rejects sensitive extra fields and future times (0.7622ms)
+✔ provider mappers discard transcripts, commands, messages and paths; lifecycle is idle (0.7047ms)
+✔ selected file handles partial writes, duplicate metadata, denied/missing files and rejects unsafe payload (9.4483ms)
+✔ durable journal serializes concurrent writes, deduplicates across restart and rejects corruption (10.0794ms)
+✔ HTTP snapshot, live SSE, resume replay and consumer all use actual normalized records (62.2304ms)
+✔ event delivery keeps future observations in replay; source silence expires without inventing work (6.741ms)
+✔ source failure retains honest cached snapshot, missing permission is visible; no command routes (19.0775ms)
+✔ mixed real/demo observer fails closed and old real observations cannot label demo as LIVE (4.1224ms)
+✔ freshness expires work, replay/demo/project events never start live Agent animation, late events cannot rewind (0.478ms)
+✔ same-origin host forwards only four read routes/cursors and strips ambient credentials (37.02ms)
+✔ host validates explicit loopback configuration and unavailable bridge is recoverable (8.0145ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346.5751
+run build
+
+> devungeon@0.1.0 build
+> npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && vite build --config apps/web/vite.config.ts
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 366 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/web/dist/index.html                     0.85 kB │ gzip:     0.54 kB
+apps/web/dist/assets/index-CGKEqmU3.css     26.90 kB │ gzip:     6.93 kB
+apps/web/dist/assets/index-DDzgsQHu.js   1,623.02 kB │ gzip:   456.46 kB
+apps/web/dist/assets/rapier-Ct8Isipz.js  4,332.82 kB │ gzip: 1,669.31 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-dialog/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-dialog/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-focus-guards/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-focus-guards/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-primitive/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-primitive/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-portal/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-portal/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-presence/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-presence/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-focus-scope/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-focus-scope/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+✓ built in 575ms
+run build --workspace @devungeon/world-generator
+
+> @devungeon/world-generator@0.1.0 build
+> npm run sync-schema && tsc -p tsconfig.json
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+run build --workspace @devungeon/workspace-ui
+
+> @devungeon/workspace-ui@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 372 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 0.68 kB │ gzip:     0.46 kB
+dist/assets/HeroWorkspaceHall-DcNFNvDi.css      2.95 kB │ gzip:     0.98 kB
+dist/assets/index-B0Ki5Okd.css                 14.86 kB │ gzip:     3.95 kB
+dist/assets/PrimaryGame-DczUJw0J.css           18.05 kB │ gzip:     4.94 kB
+dist/assets/HeroWorkspaceHall-C93VOXcT.js       6.73 kB │ gzip:     2.66 kB
+dist/assets/PrimaryGame-x3pmjv1p.js           217.62 kB │ gzip:    64.00 kB
+dist/assets/index-jYE6ICY_.js                 462.13 kB │ gzip:   141.76 kB
+dist/assets/Scene-4I3clWoG.js                 954.95 kB │ gzip:   254.54 kB
+dist/assets/rapier-Ct8Isipz.js              4,332.82 kB │ gzip: 1,669.31 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 394ms
+run test:host
+
+> devungeon@0.1.0 test:host
+> node --test scripts/forge-host.test.mjs
+
+Lifecycle evidence: C:\Devungeon\forge\output\clean-checkout\forge\output\playwright\forge-host-lifecycle\run-XK8Vni
+✔ normal app stop/restart releases locks; forced death leaves no orphan and fails closed (4109.114ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4188.9035
