@@ -67,7 +67,7 @@ export function LocaleSwitcher({ className,onPointerLocaleChange }: { className?
   const { locale, setLocale } = useI18n();
   return <div className={["dw-locale-switcher", className].filter(Boolean).join(" ")}
     role="group" aria-label="界面语言 / Interface language"
-    onKeyDown={event=>{if(event.key!=="Escape")stopGameInput(event);}}
+    onKeyDown={event=>{if(!["Escape","Tab"].includes(event.key))stopGameInput(event);}}
     onPointerDown={stopGameInput} onPointerUp={stopGameInput}
     onPointerMove={stopGameInput} onClick={stopGameInput} onWheel={stopGameInput}>
     <button type="button" lang="zh-CN" aria-pressed={locale === "zh-CN"}
