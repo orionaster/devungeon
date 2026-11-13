@@ -1,6 +1,6 @@
 # HERO scene / workbench contract
 
-**S4 integration note:** on `feat/s4-wizard-workspace`, the committed S1 dependency has been integrated and the primary `App.tsx` now uses `AgentWorkspace` for Agent inspection. The room inspector remains separate. `DungeonScene` additionally accepts an optional `agentProjection` and `agentActivityEnabled` for truthful SCOUT observation in the separate 3D workbench entry. The S1-only branch contract below remains the baseline; current S4 commands/evidence are in [workspace README](../packages/workspace-ui/README.md) and [validation](../packages/workspace-ui/VALIDATION.md).
+**Wave 2 S4 integration:** HERO App remains the generic scene/event/inspection host. On the WIZARD branch, apps/web/src/WorkspaceGame.tsx injects AgentWorkspace through renderAgentInspector while owning work separately from gameplay. DungeonScene uses agentEvents and onSelectAgent, plus agentActivityEnabled to suppress disconnected/stale cached animations. Current source/locale/focus contracts and remaining combined gates are in [WIZARD integration](WIZARD-I18N-INTEGRATION.md) and [HERO wave 2](HERO_WAVE2.md). The first-wave notes below are historical where superseded.
 
 S1 code lives on `feat/s1-hero-game`. It owns `apps/web`, `packages/dungeon-engine`, the initial root npm workspace and lockfile. Do not overwrite parallel BUILDER/SCOUT/WIZARD packages. This branch does not import or claim their live capabilities. Coordination is recorded on [Issue #1](https://github.com/orionaster/devungeon/issues/1).
 
