@@ -1,4 +1,6 @@
 name: Validate workspace UI
+permissions:
+  contents: read
 on:
   push:
     paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', '.github/workflows/workspace-ui.yml']
@@ -21,3 +23,10 @@ jobs:
       - run: npm run build --workspace @devungeon/workspace-ui
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser --workspace @devungeon/workspace-ui
+      - uses: actions/upload-artifact@v7.0.2
+        if: failure()
+        with:
+          name: workspace-browser-failure
+          path: packages/workspace-ui/test-results
+          retention-days: 7
+          if-no-files-found: ignore

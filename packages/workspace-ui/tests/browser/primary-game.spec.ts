@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
 
+// This drives a full WebGL/WASM entry and an entire return-to-game flow.
+// Match the other 3D cases; CI's cold WebGL/WASM entry exceeds the 30s default.
+test.setTimeout(65000);
+
 test("the actual product App connects its NPC to the workbench and resumes the same run", async ({
   page,
 }) => {
