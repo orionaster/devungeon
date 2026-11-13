@@ -48,3 +48,16 @@
 - [ ] Imported sprites, fonts, music and FX have verified license provenance and legal redistribution rights, recorded in docs/ASSET_PROVENANCE.md.
 
 **Current state:** None of the runtime acceptance items are claimed to have passed. This repository starter includes design/schema, a reviewed tool shortlist and Agent Skills only.
+
+
+## G. Bilingual Chinese-first product UX (2026-11-13)
+
+- [ ] Fresh browser startup defaults to readable Simplified Chinese; 中文 / English switch exists before and during gameplay.
+- [ ] All first-party game, world and Agent workspace UI covers both zh-CN and en-US with translation-key parity tests and clear fallback behavior.
+- [ ] Toggle live during player movement/combat and Agent interactions without reload, lost state or unauthorized task/approval action.
+- [ ] Room/Agent/project original IDs, geometry seeds, status and source evidence are unchanged by locale selection.
+- [ ] Raw external code, logs, issues and Agent messages preserve provenance; any Chinese explanation cannot invent acceptance.
+- [ ] Full real-browser captures of entry, combat, locked-room, Agent chat and approval/error states in both languages; Chinese font/line-wrap/keyboard accessibility checked.
+- [ ] No third-party translation upload, new paid translation dependencies or private data flow without specific authorization.
+
+Trace: docs/I18N.md and Issue #10. Registration of this requirement is not implementation.
