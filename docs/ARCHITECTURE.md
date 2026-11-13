@@ -69,3 +69,9 @@ flowchart TD
 - A game Boss kill never sets `accepted` on a real work item.
 - Real Agent actions require capability and approval, denied operations do not execute.
 - Disconnected and simulated events are clearly visible, and replay cannot be mistaken for live mode.
+
+## Approved original pixel-art presentation (2026-11-13)
+
+The **world is spatially 3D**, the signature game's **presentation is pixel-art 2.5D**. Do not interpret React Three Fiber as an instruction to make smooth 3D cartoon assets. Use actual sprite sheets / tile textures (16×16 base grid recommended), nearest texture filtering, camera-aware sprite orientations, reduced pixel-scale resolution, simple tiled geometry and honest 3D collision. The first camera implementation should support discrete quarter-turn rotations and locked-room preview; unrestricted rotation is contingent on readability tests.
+
+The semantic graph and Agent event projections must remain renderer-neutral and separate from the entertainment game state. Asset art is chosen by original license and ledger in docs/ASSET_PROVENANCE.md. Candidate packages and tradeoffs: docs/TOOLS_AND_SKILLS.md.

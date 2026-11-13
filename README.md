@@ -2,7 +2,7 @@
 
 **Your agents are working. You're playing. Your world is growing.**
 
-Devungeon is a planned **open-source, explorable 3D dungeon game + AI-agent workspace** that turns real software projects into living game worlds.
+Devungeon is a planned **open-source, explorable 2.5D pixel-art dungeon game + AI-agent workspace** that turns real software projects into living game worlds. Its rooms have genuine 3D space and collision, while the signature look is an **original top-down pixel dungeon** with crisp sprites, fast combat and expressive Agent characters.
 
 > **Current status: design / repository bootstrap only.** This repo starter contains the product requirements, architecture proposal, validation contract and synthetic examples. **The playable app and live Agent integrations have NOT been implemented.**
 
@@ -22,6 +22,9 @@ Our goal is **fun, creative exploration, open-source collaboration, and a compel
 - [Architecture](docs/ARCHITECTURE.md) — boundaries and candidate technical stack.
 - [Acceptance](docs/ACCEPTANCE.md) — reproducible end-to-end cases, security and honesty checks.
 - [Roadmap](docs/ROADMAP.md) — incremental execution toward the complete V1 vision.
+- [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — mandatory original 2.5D pixel art, camera and gameplay readability.
+- [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — broad engine, map, artwork, observability and testing evaluation; **candidate packages are not installed yet**.
+- [Asset Provenance Ledger](docs/ASSET_PROVENANCE.md) — verified CC0 candidates, import rules, redistribution and notices.
 - [Contribution guide](CONTRIBUTING.md), [Agent rules](AGENTS.md).
 - [Project Snapshot schema](schema/project-snapshot.schema.json) and two **synthetic** examples under `examples/`.
 
@@ -59,3 +62,16 @@ Source code and documentation: [Apache License 2.0](LICENSE). Creative/game asse
 ## Community
 
 Issues and PRs are welcome once the repository is live. Especially useful: original dungeon art, readable animations, browser performance tuning, project/Agent adapters, procedural layouts and accessible gameplay.
+
+## Agent development Skills
+
+The repository includes **six project-specific, instructions-only Agent Skills** under [`.agents/skills/`](.agents/skills/) for pixel visuals, browser gameplay validation, project-world compilation, truthful Agent event adapters, safe dependency reuse and in-world workbench commands.
+
+- Codex discovers repository-local Skills from `.agents/skills/`.
+- Claude Code uses [`.claude/skills/devungeon-workflow/SKILL.md`](.claude/skills/devungeon-workflow/SKILL.md), which routes to those canonical workflows; [`CLAUDE.md`](CLAUDE.md) gives project-wide guidance.
+- `python scripts/validate_skills.py` validates local Skill metadata without running/installing any Skill.
+- The repository **has not installed game runtime libraries, third-party Skills, MCP servers, hooks or art downloads** yet. These are implementation choices for S1–S4, and every chosen package needs a tested lockfile and appropriate license review.
+
+## Visual references and copyright
+
+The original 2.5D art direction borrows **genre qualities** from lively top-down pixel dungeon games (including *Soul Knight*), not their copyrighted sprites, music, branding, exact rooms or UI. Prefer a consistent CC0 starter pack such as [Kenney Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) and record any actual imported files in the asset provenance ledger.
