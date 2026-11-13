@@ -63,7 +63,15 @@ fs.writeFileSync(
   ) + "\n",
 );
 fs.mkdirSync("apps/web/public", { recursive: true });
-fs.writeFileSync("apps/web/public/THIRD_PARTY_NOTICES.txt", notices.join("\n"));
+fs.writeFileSync(
+  "apps/web/public/THIRD_PARTY_NOTICES.txt",
+  notices
+    .join("\n")
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+$/, ""))
+    .join("\n")
+    .trimEnd() + "\n",
+);
 console.log(
   `Reviewed ${rows.length} installed dependency manifests; compatible licenses only. Platform-optional packages absent on this host remain in lockfile.`,
 );
