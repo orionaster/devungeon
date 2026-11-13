@@ -25,6 +25,7 @@ const suite = process.env.FORGE_SUITE ?? "games";
 const output = resolve(process.env.FORGE_OUTPUT ?? join(root, "output/playwright/forge"));
 const bridgePort = Number(process.env.FORGE_SCOUT_PORT ?? 4318);
 const cpuThrottle = Number(process.env.FORGE_CPU_THROTTLE ?? 1);
+const softwareGL = process.env.FORGE_SOFTWARE_GL === "1";
 if (!Number.isFinite(cpuThrottle) || cpuThrottle < 1 || cpuThrottle > 20)
   throw new Error("FORGE_CPU_THROTTLE must be between 1 and 20 (test-only slowdown)");
 await mkdir(output, { recursive: true });
@@ -35,6 +36,7 @@ const report = {
   limitations: [`Automated browser input on ${process.platform} is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance.`,
     ...(cpuThrottle > 1 ? [`CPU slowdown ${cpuThrottle}x is a harness stress check, not device performance acceptance.`] : [])],
   cpu_throttle: cpuThrottle,
+  software_gl: softwareGL,
   checks: [], cases: [], console: [], navigation: [],
 };
 function check(name, pass, detail) {
@@ -124,13 +126,14 @@ function mapRoute(world, from, to) {
   }
   throw new Error(`No walkable keyboard route from ${JSON.stringify(from)} to ${JSON.stringify(to)}`);
 }
-async function walkTo(page, target, tolerance = .16) {
+async function walkTo(page, target, tolerance = .16, onObservation) {
   const diagnostic = { target, started_at: new Date().toISOString(), pulses: [] };
   report.navigation.push(diagnostic);
   let gain = .7;
   for (let i = 0; i < 170; i++) {
     const state = await game(page);
     assert.notEqual(state.phase, "lost", "Player died during route");
+    await onObservation?.(state);
     const dx = target.x - state.player.x, dz = target.z - state.player.z;
     if (Math.hypot(dx, dz) < tolerance) return;
     const heading = (await camera(page)).heading * Math.PI / 2;
@@ -152,13 +155,28 @@ async function walkTo(page, target, tolerance = .16) {
   }
   throw new Error(`Keyboard route stuck at ${JSON.stringify((await game(page)).player)} approaching ${JSON.stringify(target)}`);
 }
-async function follow(page, world, to) {
+async function follow(page, world, to, { fightAfterHit = false } = {}) {
   await focusGame(page);
   await page.waitForFunction(() => {
     const state = window.__DEVUNGEON__?.snapshot();
     return state && state.dodgeTime <= 0 && !state.player.moving;
   }, undefined, { timeout: 10000, polling: "raf" });
-  for (const point of mapRoute(world, (await game(page)).player, to)) await walkTo(page, point);
+  let attacking = false;
+  try {
+    for (const point of mapRoute(world, (await game(page)).player, to)) {
+      await walkTo(page, point, .16, async (state) => {
+        if (fightAfterHit && state.stats.hitsTaken > 0 && !attacking) {
+          // The real player may fight while navigating. Waiting for exact
+          // center arrival before attacking lets enemy knockback defeat an
+          // otherwise stationary test bot on a slow software renderer.
+          await page.keyboard.down("KeyJ");
+          attacking = true;
+        }
+      });
+    }
+  } finally {
+    if (attacking) await page.keyboard.up("KeyJ");
+  }
 }
 async function language(page, name, panel) {
   const groups = (panel ?? page).getByRole("group", { name: "界面语言 / Interface language" });
@@ -278,7 +296,7 @@ async function verifyProject(page, selected) {
   const visited = [];
   for (const roomId of world.scene.navigation.reachable_room_ids) {
     const room = world.scene.rooms.find((r) => r.room_id === roomId);
-    await follow(page, world, room); visited.push(roomId);
+    await follow(page, world, room, { fightAfterHit: true }); visited.push(roomId);
     if (visited.length === 1) {
       await poll(() => game(page), (s) => s.stats.hitsTaken > 0, 15000);
       await screenshot(page, `${selected}-combat`);
@@ -335,7 +353,11 @@ async function verifyProject(page, selected) {
     await page.keyboard.press("Enter");
     await poll(() => game(page), (s) => s.phase === "playing" && s.kills === 0);
     const first = world.scene.rooms.find((r) => r.room_id === world.scene.navigation.reachable_room_ids[0]);
-    await follow(page, world, first);
+    const entrance = world.scene.doors.find((door) => door.room_id === first.room_id);
+    // Deliberately stand just inside the actual accepted-room entrance and
+    // receive attacks. Exact center traversal was already verified in combat;
+    // this case measures death isolation without fighting back or teleporting.
+    await follow(page, world, { x: entrance.position.x * 2 - entrance.outside.x, z: entrance.position.z * 2 - entrance.outside.z });
     const losing = await poll(() => game(page), (s) => s.phase === "lost", 45000);
     check(`${selected}: actual enemy damage causes player death`, losing.player.hp === 0 && losing.stats.hitsTaken > 0);
     check(`${selected}: death never approves/cancels pending work`, (await work(page)).approvals.find((a) => a.id === workspace.pendingId)?.status === "pending");
@@ -533,7 +555,8 @@ try {
   const candidates = [process.env.FORGE_CHROME, "C:/Program Files/Google/Chrome/Application/chrome.exe", "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"].filter(Boolean);
   let executablePath;
   for (const candidate of candidates) { try { await access(candidate); executablePath = candidate; break; } catch {} }
-  browser = await chromium.launch({ headless: suite !== "showcase" && process.env.FORGE_HEADED !== "1", ...(executablePath ? { executablePath } : {}), args: ["--disable-background-timer-throttling", "--disable-renderer-backgrounding"] });
+  browser = await chromium.launch({ headless: suite !== "showcase" && process.env.FORGE_HEADED !== "1", ...(executablePath ? { executablePath } : {}), args: ["--disable-background-timer-throttling", "--disable-renderer-backgrounding",
+    ...(softwareGL ? ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] : [])] });
   report.browser = browser.version(); report.executable = executablePath ?? "Playwright-managed Chromium";
   const selections = suite === "showcase" ? ["showcase"] : suite === "public" ? ["public"] : suite === "all" ? ["tiny", "workbench", "public"] : ["tiny", "workbench"];
   for (const selection of selections) {
