@@ -4,7 +4,22 @@
 
 Devungeon is an **open-source, project-adaptive playable game world + AI-agent workspace**. The engine aims to interpret a software product's structure and design language, suggest different world forms and game mechanics, and let the creator choose. **Our first working reference is an original 2.5D top-down pixel dungeon**, but other projects need not become dungeons.
 
-> **Current main branch:** product specifications and protocols. First-wave implementation exists in **open, unmerged PRs #6–#9**, with independently reported tests; there is not yet a fully integrated multi-world application. The new world-choice sidecar is an experimental schema and two synthetic proposals, **not a city game**.
+> **This branch: S1 playable browser slice, awaiting supervisor review.** Explore three original pixel rooms, fight an independent encounter, preview the sealed vault and observe clearly labeled DEMO companions. Real project import and real Agent/workbench integrations are separate work and are **not connected in this slice**. This is not the complete V1.
+
+> **Integration status:** first-wave PRs #6–#9 remain under review. This branch now provides a Chinese-first game UI with live English switching through WIZARD's shared locale core. Full workspace/source/world-generator integration remains coordinated in Issues #10/#12. The project-adaptive world-choice sidecar is an experimental schema and two synthetic proposals, **not a city game or a working world switch**. See [wave-2 evidence and remaining review gates](docs/HERO_WAVE2.md).
+
+## Play locally
+
+Node22.12+ and npm are required. On the HERO branch:
+
+```powershell
+npm ci
+npm run dev
+```
+
+Open http://127.0.0.1:5173. WASD moves, J attacks, Space dodges, Q/R rotate90°, wheel zooms, E inspects nearby companions, P pauses local combat. Use the header's guide for all controls. No account, paid service or API keys required.
+
+`npm test` runs engine checks; `npm run build` creates the production app, and `npm run preview -- --port 5174` serves it locally. See [actual validation and limitations](docs/HERO_VALIDATION.md), [scene/workbench contract](docs/HERO_INTEGRATION.md), and [locked dependency/license review](docs/HERO_DEPENDENCIES.md). Browser screenshots and measured results are in [output/playwright](output/playwright/). Gameplay victory never changes project acceptance.
 
 ## The idea
 
@@ -24,7 +39,7 @@ Our goal is **fun, creative exploration, open-source collaboration, and a compel
 - [Acceptance](docs/ACCEPTANCE.md) — reproducible end-to-end cases, security and honesty checks.
 - [Roadmap](docs/ROADMAP.md) — incremental execution toward the complete V1 vision.
 - [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — original first world pack, NOT a mandatory look for all future projects.
-- [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — broad engine, map, artwork, observability and testing evaluation; **candidate packages are not installed yet**.
+- [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — broad engine, map, artwork, observability and testing evaluation; [HERO's installed versions](docs/HERO_DEPENDENCIES.md) and root lockfile record the actual S1 selection.
 - [Asset Provenance Ledger](docs/ASSET_PROVENANCE.md) — verified CC0 candidates, import rules, redistribution and notices.
 - [Contribution guide](CONTRIBUTING.md), [Agent rules](AGENTS.md).
 - [Project Snapshot schema](schema/project-snapshot.schema.json) and two **synthetic** examples under `examples/`.
@@ -71,7 +86,7 @@ The repository includes **seven project-specific, instructions-only Agent Skills
 - Codex discovers repository-local Skills from `.agents/skills/`.
 - Claude Code uses [`.claude/skills/devungeon-workflow/SKILL.md`](.claude/skills/devungeon-workflow/SKILL.md), which routes to those canonical workflows; [`CLAUDE.md`](CLAUDE.md) gives project-wide guidance.
 - `python scripts/validate_skills.py` validates local Skill metadata without running/installing any Skill.
-- The repository **has not installed game runtime libraries, third-party Skills, MCP servers, hooks or art downloads** yet. These are implementation choices for S1–S4, and every chosen package needs a tested lockfile and appropriate license review.
+- This branch installs the S1 React/Three.js/Rapier runtime with a tested lockfile and license review. It adds no third-party Skills, MCP servers, hooks or downloaded art. Other first-wave modules remain in their reviewed PRs.
 
 ## Visual references and copyright
 
