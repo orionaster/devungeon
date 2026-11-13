@@ -53,6 +53,7 @@ const work = new WorkspaceController(adapter, DEMO_OWNER, DEMO_PROJECT);
 <AgentWorkspace
   adapter={work}
   selectedAgentId={selectedAgentId}
+  onRestoreFocus={focusCanvas}
   onClose={() => {
     setSelectedAgentId(null);
     clearInput();
@@ -72,7 +73,7 @@ Tasks can be unknown/planned/active/blocked/review/completed/failed/cancelled. T
 
 ## HERO integration
 
-The committed HERO branch (`4510207`, PR #9) is a dependency of this feature branch; no worktree or replacement engine was created. The root npm workspace/lockfile now includes this package and React is deduplicated. The original package-local lockfile was removed. The only primary App changes are workspace lifetime, Agent inspection, work-event projection and input/pause boundaries. HERO's game/room/camera UI is retained. The feature PR is stacked on HERO for supervisor review; main is not merged.
+The HERO branch (`4d45bd4`, PR #9) is synchronized into this feature branch; no worktree or replacement engine was created. The root npm workspace/lockfile includes this package and React is deduplicated. The package-local lockfile was removed. HERO's App remains the generic scene/event/inspection host; `apps/web/src/WorkspaceGame.tsx` owns the separate default DEMO work binding and injects the inspector through its port. Shared provider, game/room/camera UI, source gating and input/pause/focus boundaries are retained. The feature PR stays stacked on HERO for supervisor review; it has not been merged to main.
 
 ```tsx
 import {

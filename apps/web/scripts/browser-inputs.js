@@ -1,5 +1,10 @@
-async (page) => {
+async function browserInputs(page) {
   await page.goto(new URL("/", page.url()).href);
+  await page
+    .getByRole("group", { name: "界面语言 / Interface language" })
+    .first()
+    .getByRole("button", { name: "English", exact: true })
+    .click();
   await page.getByRole("button", { name: "Enter the dungeon →" }).click();
   const initial = await page.evaluate(
     () => window.__DEVUNGEON__.snapshot().stats.attacks,
@@ -66,4 +71,4 @@ async (page) => {
     followRestored: true,
     synthetic600msHitchRecorded: worst,
   };
-};
+}

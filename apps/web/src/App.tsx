@@ -1,15 +1,27 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   DEMO_SCENE,
   Dungeon,
+  AgentProjection,
+  inside,
   type GameSnapshot,
+  type SceneDefinition,
+  type Room,
 } from "../../../packages/dungeon-engine/src";
 import { DungeonScene } from "./Scene";
 import {
-  AgentWorkspace,
-  createHeroDemoWorkspace,
-} from "../../../packages/workspace-ui/src";
-import "../../../packages/workspace-ui/src/workspace.css";
+  LocaleSwitcher,
+  useI18n,
+} from "../../../packages/workspace-ui/src/i18n";
+import {
+  gameRoomNameKeys,
+  gameAgentNameKeys,
+  gameRoleKeys,
+  gameAgentStatusKeys,
+  gameProjectStatusKeys,
+  gameDemoMessageKeys,
+  type GameMessageKey,
+} from "../../../packages/workspace-ui/src/i18n/game-catalogue";
 import {
   actions,
   cameraControl,
@@ -18,10 +30,8 @@ import {
   pointer,
   projection,
   runtime,
+  tickDemo,
 } from "./runtime";
-const agentNames = Object.fromEntries(
-  DEMO_SCENE.agents.map((a) => [a.agent_id, a.name]),
-);
 function Glyph({ children }: { children: React.ReactNode }) {
   return (
     <span className="glyph" aria-hidden="true">
@@ -29,9 +39,116 @@ function Glyph({ children }: { children: React.ReactNode }) {
     </span>
   );
 }
-export default function App() {
-  const [workspace, setWorkspace] =
-    useState<ReturnType<typeof createHeroDemoWorkspace>>();
+export interface GameHostProps {
+  scene?: SceneDefinition;
+  agentEvents?: AgentProjection;
+  demoEvents?: boolean;
+  /** Workspace/controller owns authorization; the host only exposes selection/focus. */
+  renderAgentInspector?: (context: {
+    agentId: string;
+    onClose: () => void;
+    restoreFocus: () => void;
+  }) => ReactNode;
+  roomDisplay?: (room: Room) => {
+    name: string;
+    reason: string;
+    status: string;
+  };
+  sourcePanel?: ReactNode;
+}
+export default function App({
+  scene = DEMO_SCENE,
+  agentEvents: incomingEvents,
+  demoEvents = true,
+  renderAgentInspector,
+  roomDisplay,
+  sourcePanel,
+}: GameHostProps) {
+  const { t, locale, formatDateTime } = useI18n();
+  // An explicitly imported source context must retain its original labels,
+  // even if its caller happens to reuse the reference pack's world ID.
+  const builtin =
+    scene.worldId === DEMO_SCENE.worldId && !scene.project_context;
+  const demoWorld =
+    !scene.project_context || scene.project_context.source.is_demo;
+  const roomName = (room: Room) =>
+    roomDisplay?.(room).name ??
+    (builtin && room.room_id in gameRoomNameKeys
+      ? t(gameRoomNameKeys[room.room_id as keyof typeof gameRoomNameKeys])
+      : room.name);
+  const roomReason = (room: Room) =>
+    roomDisplay?.(room).reason ??
+    (builtin && ["forge", "arena", "vault"].includes(room.room_id)
+      ? t(`game.room.${room.room_id}.reason` as GameMessageKey)
+      : room.reason);
+  const roomStatus = (room: Room) =>
+    roomDisplay?.(room).status ??
+    (room.status.includes("DEMO")
+      ? t(
+          room.enterable
+            ? "game.label.demoGameSpace"
+            : "game.label.plannedDemo",
+        )
+      : room.status in gameProjectStatusKeys
+        ? t(
+            gameProjectStatusKeys[
+              room.status as keyof typeof gameProjectStatusKeys
+            ],
+          )
+        : room.status);
+  const agentName = (id: string, name: string) =>
+    builtin && id in gameAgentNameKeys
+      ? t(gameAgentNameKeys[id as keyof typeof gameAgentNameKeys])
+      : name;
+  const roleName = (role: string) =>
+    t(gameRoleKeys[role as keyof typeof gameRoleKeys] ?? "game.role.unknown");
+  const eventStatus = (status: string) =>
+    t(
+      gameAgentStatusKeys[status as keyof typeof gameAgentStatusKeys] ??
+        "game.agentStatus.unknown",
+    );
+  const eventMessage = (e: {
+    source: string;
+    is_demo: boolean;
+    message?: string;
+  }) =>
+    e.source === "synthetic:s1-script" &&
+    e.is_demo &&
+    e.message &&
+    e.message in gameDemoMessageKeys ? (
+      t(gameDemoMessageKeys[e.message as keyof typeof gameDemoMessageKeys])
+    ) : e.message ? (
+      <>
+        {t("common.original")} · {e.message}
+      </>
+    ) : undefined;
+  useEffect(() => {
+    document.title = t("game.document.title");
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute("content", t("game.document.description"));
+  }, [t]);
+  const projectId =
+    scene.project_context?.project_id ??
+    (builtin
+      ? DEMO_SCENE.worldId
+      : (incomingEvents?.projectId ?? scene.worldId));
+  const eventScopeMismatch =
+    !!incomingEvents && incomingEvents.projectId !== projectId;
+  const eventProjection = useMemo(
+    () =>
+      (!eventScopeMismatch ? incomingEvents : undefined) ??
+      (scene === DEMO_SCENE
+        ? projection
+        : new AgentProjection(
+            projectId,
+            scene.agents.map((a) => a.agent_id),
+          )),
+    [scene, incomingEvents, projectId, eventScopeMismatch],
+  );
+  const agentNames = Object.fromEntries(
+    scene.agents.map((a) => [a.agent_id, a.name]),
+  );
   const [game, setGame] = useState<GameSnapshot>(),
     [error, setError] = useState(""),
     [paused, setPaused] = useState(false),
@@ -76,7 +193,19 @@ export default function App() {
   useEffect(() => {
     let alive = true;
     let created: Dungeon | undefined;
-    Dungeon.create(DEMO_SCENE)
+    setError("");
+    runtime.frame = undefined;
+    clearInput();
+    runtime.paused = false;
+    setPaused(false);
+    setStarted(false);
+    setGame(undefined);
+    setSelected(null);
+    setResultDismissed(false);
+    cameraControl.mode = "overview";
+    cameraControl.previewRoomId = undefined;
+    setCameraMode("overview");
+    Dungeon.create(scene)
       .then((g) => {
         created = g;
         if (!alive) {
@@ -87,44 +216,42 @@ export default function App() {
         runtime.frame = g.snapshot();
         setGame(g.snapshot());
       })
-      .catch((e) => setError(String(e)));
+      .catch((e) => {
+        if (alive) setError(String(e));
+      });
     runtime.onFrame = setGame;
     runtime.selectAgent = (id) => {
       setSelected(id);
       clearInput();
     };
     runtime.selectRoom = (id) => setSelected(id);
-    const work = createHeroDemoWorkspace();
-    const projected = new Set<string>();
-    const projectWork = () => {
-      for (const event of work.controller.getSnapshot().events) {
-        if (projected.has(event.event_id)) continue;
-        if (projection.ingest(event)) projected.add(event.event_id);
-      }
-    };
-    const unsubscribe = work.controller.subscribe(projectWork);
-    projectWork();
-    setWorkspace(work);
     return () => {
       alive = false;
-      unsubscribe();
-      work.dispose();
       created?.dispose();
       runtime.game = undefined;
+      runtime.frame = undefined;
       runtime.onFrame = undefined;
     };
-  }, []);
+  }, [scene]);
+  useEffect(() => {
+    runtime.agentEvents = eventProjection;
+    const scripted =
+      demoEvents && scene === DEMO_SCENE && eventProjection === projection;
+    if (scripted) tickDemo();
+    const timer = scripted ? setInterval(tickDemo, 2800) : undefined;
+    return () => {
+      clearInterval(timer);
+      if (runtime.agentEvents === eventProjection)
+        runtime.agentEvents = undefined;
+    };
+  }, [scene, eventProjection, demoEvents]);
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (
-        e.defaultPrevented ||
-        (selected &&
-          DEMO_SCENE.agents.some((agent) => agent.agent_id === selected))
-      )
-        return;
+      if (e.defaultPrevented) return;
       if (
         e.target instanceof HTMLElement &&
-        e.target.closest("input,textarea,select")
+        e.target.closest("input,textarea,select,button") &&
+        e.code !== "Escape"
       )
         return;
       if (
@@ -160,7 +287,7 @@ export default function App() {
         if (e.code === "KeyE") {
           const p = runtime.game?.snapshot().player;
           if (p) {
-            const near = DEMO_SCENE.agents.find(
+            const near = scene.agents.find(
               (a) => Math.hypot(p.x - a.x, p.z - a.z) < 3,
             );
             if (near) {
@@ -197,25 +324,32 @@ export default function App() {
       window.removeEventListener("pointerup", release);
       window.removeEventListener("pointercancel", release);
     };
-  }, [started, selected, help, atlas, game?.phase]);
+  }, [started, selected, help, atlas, game?.phase, scene]);
   useEffect(() => {
     runtime.paused = paused || !!selected || help || atlas;
-    if (selected || help || atlas) clearInput();
+    clearInput();
   }, [paused, selected, help, atlas]);
-  const events = projection.snapshot();
-  const chosenAgent = DEMO_SCENE.agents.find((a) => a.agent_id === selected);
-  const chosenRoom = DEMO_SCENE.rooms.find((r) => r.room_id === selected);
-  const remaining = game ? game.total - game.kills : 4;
+  const events = eventProjection.snapshot();
+  const chosenAgent = scene.agents.find((a) => a.agent_id === selected);
+  const chosenRoom = scene.rooms.find((r) => r.room_id === selected);
+  const remaining = game ? game.total - game.kills : scene.enemies.length;
   const phase = game?.phase;
   const results =
     started && !resultDismissed && (phase === "won" || phase === "lost");
+  const lockedRoom = scene.rooms.find((r) => !r.enterable);
+  const currentRoom = game
+    ? scene.rooms.find((r) => r.enterable && inside(game.player, r))
+    : undefined;
+  const chosenEvent = chosenAgent
+    ? eventProjection.actor(chosenAgent.agent_id).event
+    : undefined;
   return (
     <main className="app">
       <div
         ref={surface}
         className="game-surface"
         tabIndex={0}
-        aria-label="Dungeon. WASD move, J attack, Space dodge. Q and R rotate camera."
+        aria-label={t("game.aria.surface")}
         onContextMenu={(e) => e.preventDefault()}
         onPointerDown={(e) => {
           focus();
@@ -255,7 +389,13 @@ export default function App() {
           );
         }}
       >
-        <DungeonScene />
+        <DungeonScene
+          scene={scene}
+          agentEvents={eventProjection}
+          fallback={
+            <div className="webgl-fallback">{t("game.fallback.webgl")}</div>
+          }
+        />
       </div>
       <div className="vignette" />
       <header className="topbar">
@@ -265,38 +405,47 @@ export default function App() {
           </span>
           <div>
             <b>DEVUNGEON</b>
-            <small>A world in the making</small>
+            <small>{t("game.brand.tagline")}</small>
           </div>
         </div>
         <div className="chapter">
-          <span>THE EMBER ARCHIVE</span>
-          <small>Chapter I · Original pixel dungeon</small>
+          <span>{t("game.location.archive")}</span>
+          <small>{t("game.chapter.description")}</small>
         </div>
         <div className="top-actions">
-          <span className="demo-badge">DEMO WORLD</span>
+          <LocaleSwitcher
+            onPointerLocaleChange={() => {
+              if (started && !selected && !help && !atlas && !results) focus();
+            }}
+          />
+          <span className="demo-badge">
+            {!scene.project_context || scene.project_context.source.is_demo
+              ? t("game.label.demoWorld")
+              : t("game.label.readOnly")}
+          </span>
           <button
             onClick={() => {
               setAtlas(!atlas);
               clearInput();
             }}
-            aria-label="Open room atlas"
+            aria-label={t("game.aria.openAtlas")}
           >
             <Glyph>▧</Glyph>
-            <span>Atlas</span>
+            <span>{t("game.atlas.open")}</span>
           </button>
           <button
             onClick={() => {
               setHelp(!help);
               clearInput();
             }}
-            aria-label="Controls and settings"
+            aria-label={t("game.aria.controlsSettings")}
           >
             ?
           </button>
           {started && (
             <button
               onClick={() => pause(!paused)}
-              aria-label={paused ? "Resume game" : "Pause game"}
+              aria-label={paused ? t("game.aria.resume") : t("game.aria.pause")}
             >
               {paused ? "▶" : "Ⅱ"}
             </button>
@@ -304,21 +453,22 @@ export default function App() {
         </div>
       </header>
       {started && game && (
-        <section className="health-hud" aria-label="Player health">
+        <section className="health-hud" aria-label={t("game.aria.health")}>
           <div className="avatar">✦</div>
           <div>
             <div className="health-label">
-              <b>THE WAYFARER</b>
+              <b>{t("game.hud.playerName")}</b>
               <span>{game.player.hp} / 100</span>
             </div>
             <div className="health-track">
               <i style={{ width: `${game.player.hp}%` }} />
             </div>
             <small>
-              Emberblade <span>·</span>{" "}
+              {t("game.hud.weapon")}
+              <span>·</span>{" "}
               {game.rewardClaimed
-                ? "Archive sigil acquired"
-                : "A little courage goes a long way"}
+                ? t("game.hud.sigilAcquired")
+                : t("game.hud.courage")}
             </small>
           </div>
         </section>
@@ -329,51 +479,66 @@ export default function App() {
           <div>
             <b>
               {remaining === 0
-                ? "THE ARCHIVE IS QUIET"
-                : `${remaining} EMBERS REMAIN`}
+                ? t("game.encounter.quiet")
+                : t("game.encounter.remaining", { count: remaining })}
             </b>
             <small>
               {phase === "lost"
-                ? "The fire took this run. Try again."
+                ? t("game.encounter.defeatHint")
                 : remaining === 0
-                  ? "Your victory belongs to this adventure."
-                  : "Enter the archive. Read the tells. Strike back."}
+                  ? t("game.encounter.victoryHint")
+                  : t("game.encounter.instructions")}
             </small>
           </div>
         </section>
       )}
       {!started && (
         <section className="entry-panel">
-          <div className="entry-kicker">A SMALL DUNGEON. A LIVING WORLD.</div>
+          <div className="entry-kicker">{t("game.entry.kicker")}</div>
           <h1>
-            Keep the
+            {t("game.entry.titleLead")}
             <br />
-            <em>embers</em> alive.
+            <em>{t("game.entry.titleEmphasis")}</em>
+            {locale === "en-US" ? " " : ""}
+            {t("game.entry.titleEnd")}
           </h1>
           <p>
-            Beyond the forge, restless things stir.
+            {t("game.entry.descriptionLead")}
             <br />
-            Take your blade into the archive while
+            {t("game.entry.descriptionAction")}
             <br />
-            your companions shape what comes next.
+            {t("game.entry.descriptionCompanions")}
           </p>
           <button className="primary start" disabled={!game} onClick={start}>
             {error
-              ? "Engine unavailable"
+              ? t("game.entry.unavailable")
               : game
-                ? "Enter the dungeon"
-                : "Lighting the forge…"}
+                ? t("game.entry.start")
+                : t("game.entry.loading")}
             <span>→</span>
           </button>
           <div className="entry-controls">
-            <kbd>W A S D</kbd> wander <kbd>J</kbd> strike <kbd>SPACE</kbd> dodge
+            <kbd>W A S D</kbd>
+            {t("game.entry.wander")}
+            <kbd>J</kbd>
+            {t("game.entry.strike")}
+            <kbd>{t("game.hud.spaceKey")}</kbd>
+            {t("game.entry.dodge")}
           </div>
           <small className="entry-note">
-            One handcrafted encounter · No account needed
+            {t("game.entry.encounterNote")}
             <br />
-            Agent activity is a labeled simulation.
+            {t("game.entry.simulationNote")}
           </small>
-          {error && <p role="alert">{error}</p>}
+          {error && (
+            <div role="alert">
+              <p>{t("game.error.load")}</p>
+              <details>
+                <summary>{t("game.error.details")}</summary>
+                <code>{error}</code>
+              </details>
+            </div>
+          )}
         </section>
       )}
       {started && (
@@ -384,19 +549,31 @@ export default function App() {
             aria-expanded={journal}
           >
             <Glyph>≡</Glyph>
-            {journal ? "Close field notes" : "Field notes"}
+            {journal ? t("game.journal.close") : t("game.journal.open")}
           </button>
           {journal && (
             <aside className="journal">
               <div className="section-label">
-                <span>YOUR COMPANIONS</span>
-                <span className="tiny-badge">DEMO</span>
+                <span>{t("game.journal.companions")}</span>
+                <span className="tiny-badge">
+                  {t(demoWorld ? "game.label.demo" : "game.label.readOnly")}
+                </span>
               </div>
-              <h2>The forge stays busy.</h2>
-              <p className="muted">A simulated crew works while you play.</p>
+              <h2>{t("game.journal.title")}</h2>
+              <p className="muted">
+                {builtin
+                  ? t("game.journal.description")
+                  : t("game.label.sourceEvidence")}
+              </p>
               <div className="agent-list">
-                {DEMO_SCENE.agents.map((a) => {
-                  const e = projection.actor(a.agent_id);
+                {eventScopeMismatch && (
+                  <p role="status">{t("game.host.eventScopeMismatch")}</p>
+                )}
+                {!scene.agents.length && (
+                  <p className="muted">{t("game.host.noActors")}</p>
+                )}
+                {scene.agents.map((a) => {
+                  const e = eventProjection.actor(a.agent_id);
                   return (
                     <button
                       key={a.agent_id}
@@ -414,12 +591,18 @@ export default function App() {
                             : "✧"}
                       </span>
                       <span>
-                        <b>{a.name}</b>
+                        <b>{agentName(a.agent_id, a.name)}</b>
+                        {(a.is_demo ?? demoWorld) && !builtin && (
+                          <small>{t("game.label.demo")}</small>
+                        )}
+                        {a.visual_only && (
+                          <small>{t("game.host.visualOnly")}</small>
+                        )}
                         <small>
-                          {a.role} ·{" "}
+                          {roleName(a.source_role ?? a.role)} ·{" "}
                           {e.stale
-                            ? "idle / stale"
-                            : (e.event?.event_type.replace("_", " ") ?? "idle")}
+                            ? t("game.agentStatus.stale")
+                            : eventStatus(e.event?.event_type ?? "idle")}
                         </small>
                       </span>
                       <span className="row-arrow">↗</span>
@@ -429,36 +612,65 @@ export default function App() {
               </div>
               <div className="journal-feed">
                 <div className="section-label">
-                  FROM THE FORGE <span className="tiny-badge">SCRIPTED</span>
+                  {t("game.journal.feed")}
+                  <span className="tiny-badge">
+                    {t(
+                      events.every((e) => e.is_demo)
+                        ? "game.label.scripted"
+                        : "game.label.originalText",
+                    )}
+                  </span>
                 </div>
                 {events.slice(0, 2).map((e) => (
                   <div key={e.event_id} className="feed-event">
                     <span className="event-dot" />
                     <div>
-                      <b>{agentNames[e.agent_id]}</b>
-                      <p>{e.message}</p>
+                      <b>
+                        {agentName(
+                          e.agent_id,
+                          agentNames[e.agent_id] ?? e.agent_id,
+                        )}
+                      </b>
+                      <p>{eventMessage(e)}</p>
+                      {!builtin && (
+                        <small>
+                          {t(
+                            e.is_demo
+                              ? "common.mode.demo"
+                              : "game.host.observations",
+                          )}
+                        </small>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
-              <button
-                className="vault-link"
-                onClick={() => {
-                  setSelected("vault");
-                  setMode("preview");
-                }}
-              >
-                <span>♜</span>
-                <div>
-                  <b>The Unwritten Vault</b>
-                  <small>Locked · Preview the room</small>
-                </div>
-                <span>→</span>
-              </button>
+              {lockedRoom && (
+                <button
+                  className="vault-link"
+                  onClick={() => {
+                    setSelected(lockedRoom.room_id);
+                    cameraControl.previewRoomId = lockedRoom.room_id;
+                    setMode("preview");
+                  }}
+                >
+                  <span>♜</span>
+                  <div>
+                    <b>{roomName(lockedRoom)}</b>
+                    <small>{t("game.journal.previewLocked")}</small>
+                  </div>
+                  <span>→</span>
+                </button>
+              )}
+              {sourcePanel}
               <p className="truth-note">
-                DEMO events only. No real Agent is connected.
+                {t(
+                  demoWorld
+                    ? "game.journal.demoNotice"
+                    : "game.inspector.displayOnly",
+                )}
                 <br />
-                Combat never changes project acceptance.
+                {t("game.journal.acceptanceNotice")}
               </p>
             </aside>
           )}
@@ -466,45 +678,45 @@ export default function App() {
             <span>✦</span>
             <div>
               <small>
-                {game && game.player.x < -4
-                  ? "THE QUIET FORGE"
-                  : game && game.player.x > 9
-                    ? "THE SEALED PASSAGE"
-                    : "THE EMBER ARCHIVE"}
+                {currentRoom
+                  ? roomName(currentRoom)
+                  : t("game.location.passage")}
               </small>
               <p>
                 {paused
-                  ? "The adventure rests. The forge carries on."
-                  : "Explore. Observe. Leave a little light behind."}
+                  ? t("game.location.paused")
+                  : t("game.location.explore")}
               </p>
             </div>
           </div>
-          <nav className="quickbar" aria-label="Game controls">
+          <nav className="quickbar" aria-label={t("game.aria.gameControls")}>
             <div>
               <kbd>WASD</kbd>
-              <span>Move</span>
+              <span>{t("game.hud.move")}</span>
             </div>
             <div>
-              <kbd>J / CLICK</kbd>
-              <span>Strike</span>
+              <kbd>{t("game.hud.attackKey")}</kbd>
+              <span>{t("game.hud.strike")}</span>
             </div>
             <div className={game && game.dodgeCooldown > 0 ? "cooling" : ""}>
-              <kbd>SPACE</kbd>
+              <kbd>{t("game.hud.spaceKey")}</kbd>
               <span>
                 {game && game.dodgeCooldown > 0
-                  ? `${game.dodgeCooldown.toFixed(1)}s`
-                  : "Dodge"}
+                  ? t("game.hud.cooldown", {
+                      time: game.dodgeCooldown.toFixed(1),
+                    })
+                  : t("game.hud.dodge")}
               </span>
             </div>
             <div>
               <kbd>E</kbd>
-              <span>Inspect</span>
+              <span>{t("game.hud.inspect")}</span>
             </div>
           </nav>
         </>
       )}
-      <nav className="camera-tools" aria-label="Camera controls">
-        <button onClick={() => rotate(-1)} title="Q · quarter turn left">
+      <nav className="camera-tools" aria-label={t("game.aria.cameraControls")}>
+        <button onClick={() => rotate(-1)} title={t("game.camera.rotateLeft")}>
           ↶
         </button>
         <button
@@ -512,7 +724,7 @@ export default function App() {
             cameraControl.zoom = Math.max(20, cameraControl.zoom - 6);
             focus();
           }}
-          aria-label="Zoom out"
+          aria-label={t("game.camera.zoomOut")}
         >
           −
         </button>
@@ -522,78 +734,100 @@ export default function App() {
           }
           className={cameraMode === "overview" ? "active" : ""}
         >
-          {cameraMode === "overview" ? "Follow hero" : "World view"}
+          {cameraMode === "overview"
+            ? t("game.camera.follow")
+            : t("game.camera.overview")}
         </button>
         <button
           onClick={() => {
             cameraControl.zoom = Math.min(72, cameraControl.zoom + 6);
             focus();
           }}
-          aria-label="Zoom in"
+          aria-label={t("game.camera.zoomIn")}
         >
           +
         </button>
-        <button onClick={() => rotate(1)} title="R · quarter turn right">
+        <button onClick={() => rotate(1)} title={t("game.camera.rotateRight")}>
           ↷
         </button>
         <span>{cameraControl.heading * 90}°</span>
       </nav>
       <div className="performance" title={runtime.metrics.renderer}>
-        {Math.round(runtime.metrics.fps)} FPS <span>·</span> LOCAL ADVENTURE
+        {Math.round(runtime.metrics.fps)} FPS <span>·</span>
+        {t("game.hud.localAdventure")}
       </div>
       {paused && started && !results && (
         <div className="pause-banner">
-          <b>Adventure paused</b>
-          <span>DEMO companions continue independently.</span>
+          <b>{t("game.pause.title")}</b>
+          <span>
+            {t(builtin ? "game.pause.description" : "game.host.pause")}
+          </span>
           <button
             onClick={() => {
               pause(false);
               focus();
             }}
           >
-            Resume <kbd>P</kbd>
+            {t("game.pause.resume")}
+            <kbd>P</kbd>
           </button>
         </div>
       )}
       {results && (
         <div className="result-wrap">
-          <section className="result-panel" aria-live="polite">
+          <section
+            className="result-panel"
+            aria-live="polite"
+            role="dialog"
+            aria-modal="true"
+            aria-label={t(
+              phase === "won"
+                ? "game.result.victoryLabel"
+                : "game.result.defeatLabel",
+            )}
+          >
+            <LocaleSwitcher />
             <span className="result-sigil">{phase === "won" ? "✦" : "◇"}</span>
             <div className="section-label">
-              {phase === "won" ? "ENCOUNTER COMPLETE" : "THE EMBERS PREVAIL"}
+              {phase === "won"
+                ? t("game.result.victoryLabel")
+                : t("game.result.defeatLabel")}
             </div>
             <h2>
               {phase === "won"
-                ? "A little light restored."
-                : "Every hero stumbles."}
+                ? t("game.result.victoryTitle")
+                : t("game.result.defeatTitle")}
             </h2>
             <p>
               {phase === "won"
-                ? "The archive falls quiet. Claim the sigil at its center, or wander back to your companions."
-                : "The forge is still warm. Take a breath, watch the warning rings, and try another run."}
+                ? t("game.result.victoryDescription")
+                : t("game.result.defeatDescription")}
             </p>
             <div className="run-stats">
               <span>
                 <b>
                   {game?.kills}/{game?.total}
                 </b>
-                embers silenced
+                {t("game.result.killsLabel")}
               </span>
               <span>
-                <b>{game?.stats.dodges}</b>dodges
+                <b>{game?.stats.dodges}</b>
+                {t("game.result.dodgesLabel")}
               </span>
               <span>
-                <b>{Math.floor(game?.time ?? 0)}s</b>in the archive
+                <b>{Math.floor(game?.time ?? 0)}s</b>
+                {t("game.result.timeLabel")}
               </span>
             </div>
             <p className="result-truth">
-              GAME RESULT ONLY · Project acceptance is unchanged.
+              {t("game.result.acceptanceNotice")}
               <br />
-              The vault remains sealed. DEMO Agents keep working.
+              {t(builtin ? "game.result.vaultNotice" : "game.host.result")}
             </p>
             <div className="result-actions">
               <button className="primary" onClick={restart}>
-                Another adventure <span>↻</span>
+                {t("game.result.restart")}
+                <span>↻</span>
               </button>
               {phase === "won" && (
                 <button
@@ -602,80 +836,181 @@ export default function App() {
                     focus();
                   }}
                 >
-                  Keep exploring →
+                  {t("game.result.keepExploring")}
                 </button>
               )}
             </div>
           </section>
         </div>
       )}
-      {workspace && (
-        <AgentWorkspace
-          adapter={workspace.controller}
-          selectedAgentId={chosenAgent ? selected : null}
-          onClose={() => {
-            clearInput();
-            setSelected(null);
-            requestAnimationFrame(focus);
-          }}
-        />
-      )}
-      {selected && !chosenAgent && (
-        <div className="inspect-wrap">
-          <section
-            className="inspector"
-            role="dialog"
-            aria-modal="false"
-            aria-label="Room inspector"
-          >
-            <button
-              className="close"
-              onClick={() => {
-                setSelected(null);
-                focus();
-              }}
-              aria-label="Close inspector"
+      {selected &&
+        (chosenAgent && renderAgentInspector ? (
+          renderAgentInspector({
+            agentId: chosenAgent.agent_id,
+            restoreFocus: focus,
+            onClose: () => {
+              clearInput();
+              setSelected(null);
+              requestAnimationFrame(focus);
+            },
+          })
+        ) : (
+          <div className="inspect-wrap">
+            <section
+              className="inspector"
+              role="dialog"
+              aria-modal="false"
+              aria-label={
+                chosenAgent
+                  ? t(
+                      chosenAgent.is_demo === false
+                        ? "game.host.sourceAgentInspector"
+                        : "game.aria.agentInspector",
+                      {
+                        agent: agentName(
+                          chosenAgent.agent_id,
+                          chosenAgent.name,
+                        ),
+                      },
+                    )
+                  : t("game.aria.roomInspector")
+              }
             >
-              ×
-            </button>
-            <span className="tiny-badge">DEMO · READ ONLY</span>
-            <h2>{chosenRoom?.name}</h2>
-            <>
-              <p className="inspect-state">{chosenRoom?.status}</p>
-              <p>{chosenRoom?.reason}</p>
               <button
+                className="close"
                 onClick={() => {
-                  if (chosenRoom?.enterable) {
-                    cameraControl.target = {
-                      x: chosenRoom.x,
-                      z: chosenRoom.z,
-                    };
-                    setMode("free");
-                  } else setMode("preview");
+                  setSelected(null);
+                  focus();
                 }}
+                aria-label={t("game.aria.closeInspector")}
               >
-                {chosenRoom?.enterable
-                  ? "Focus this room →"
-                  : "Look beyond the seal →"}
+                ×
               </button>
-              <p className="truth-note">
-                {chosenRoom?.enterable
-                  ? "Independent game space in a synthetic world."
-                  : "Camera preview grants no player access."}
-                <br />
-                No game reward can unlock project acceptance.
-              </p>
-            </>
-          </section>
-        </div>
-      )}
+              <LocaleSwitcher />
+              <span className="tiny-badge">
+                {t(
+                  (chosenAgent?.is_demo ?? demoWorld)
+                    ? "game.label.demoReadOnly"
+                    : "game.label.readOnly",
+                )}
+              </span>
+              <h2>
+                {chosenAgent
+                  ? agentName(chosenAgent.agent_id, chosenAgent.name)
+                  : chosenRoom
+                    ? roomName(chosenRoom)
+                    : ""}
+              </h2>
+              {chosenAgent ? (
+                <>
+                  <p>
+                    {t("game.inspector.roleRoom", {
+                      role: roleName(
+                        chosenAgent.source_role ?? chosenAgent.role,
+                      ),
+                      room: scene.rooms.find(
+                        (r) => r.room_id === chosenAgent.room_id,
+                      )
+                        ? roomName(
+                            scene.rooms.find(
+                              (r) => r.room_id === chosenAgent.room_id,
+                            )!,
+                          )
+                        : chosenAgent.room_id,
+                    })}
+                  </p>
+                  <div className="inspect-state">
+                    {eventStatus(chosenEvent?.event_type ?? "idle")}
+                  </div>
+                  {chosenAgent.visual_only && (
+                    <p>{t("game.host.visualOnly")}</p>
+                  )}
+                  {chosenEvent && (
+                    <span className="tiny-badge">
+                      {t(
+                        chosenEvent.is_demo
+                          ? "common.mode.demo"
+                          : "game.host.observations",
+                      )}
+                    </span>
+                  )}
+                  <p>
+                    {chosenEvent
+                      ? eventMessage(chosenEvent)
+                      : t("game.inspector.noEvent")}
+                  </p>
+                  <dl>
+                    <dt>{t("game.inspector.source")}</dt>
+                    <dd>{chosenEvent?.source ?? t("common.disconnected")}</dd>
+                    <dt>{t("game.inspector.observed")}</dt>
+                    <dd>
+                      <time title={chosenEvent?.observed_at}>
+                        {chosenEvent
+                          ? formatDateTime(chosenEvent.observed_at)
+                          : t("game.inspector.noEvent")}
+                      </time>
+                    </dd>
+                    <dt>{t("game.inspector.evidence")}</dt>
+                    <dd>
+                      {chosenEvent?.source_ref ?? t("game.inspector.noEvent")}
+                    </dd>
+                    <dt>{t("game.label.originalText")}</dt>
+                    <dd>
+                      {chosenEvent?.message ?? t("game.inspector.noEvent")}
+                    </dd>
+                    <dt>{t("game.inspector.capabilities")}</dt>
+                    <dd>{t("game.inspector.displayOnly")}</dd>
+                  </dl>
+                  <p className="truth-note">
+                    {demoWorld
+                      ? t("game.inspector.simulationNotice")
+                      : t("game.host.observations")}{" "}
+                    {t("game.inspector.workbenchNotice")}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="inspect-state">
+                    {chosenRoom ? roomStatus(chosenRoom) : ""}
+                  </p>
+                  <p>{chosenRoom ? roomReason(chosenRoom) : ""}</p>
+                  <button
+                    onClick={() => {
+                      if (chosenRoom?.enterable) {
+                        cameraControl.target = {
+                          x: chosenRoom.x,
+                          z: chosenRoom.z,
+                        };
+                        setMode("free");
+                      } else {
+                        cameraControl.previewRoomId = chosenRoom?.room_id;
+                        setMode("preview");
+                      }
+                    }}
+                  >
+                    {chosenRoom?.enterable
+                      ? t("game.inspector.focusRoom")
+                      : t("game.inspector.previewSeal")}
+                  </button>
+                  <p className="truth-note">
+                    {chosenRoom?.enterable
+                      ? t("game.inspector.gameSpaceNotice")
+                      : t("game.inspector.previewNotice")}
+                    <br />
+                    {t("game.inspector.rewardNotice")}
+                  </p>
+                </>
+              )}
+            </section>
+          </div>
+        ))}
       {atlas && (
         <div className="modal-backdrop">
           <section
             className="modal atlas"
             role="dialog"
             aria-modal="true"
-            aria-label="Room atlas"
+            aria-label={t("game.aria.atlas")}
           >
             <button
               className="close"
@@ -683,42 +1018,53 @@ export default function App() {
                 setAtlas(false);
                 focus();
               }}
-              aria-label="Close atlas"
+              aria-label={t("game.aria.closeAtlas")}
             >
               ×
             </button>
-            <div className="section-label">FIELD ATLAS · DEMO WORLD</div>
-            <h2>Three rooms. One unfolding story.</h2>
+            <LocaleSwitcher />
+            <div className="section-label">
+              {builtin ? t("game.atlas.label") : t("game.host.observations")}
+            </div>
+            <h2>
+              {builtin
+                ? t("game.atlas.title")
+                : t("game.host.rooms", { count: scene.rooms.length })}
+            </h2>
             <div className="atlas-map">
-              {DEMO_SCENE.rooms.map((r, i) => (
+              {scene.rooms.map((r, i) => (
                 <button
                   key={r.room_id}
                   className={r.enterable ? "" : "locked"}
                   onClick={() => {
                     setSelected(r.room_id);
                     setAtlas(false);
-                    if (!r.enterable) setMode("preview");
-                    else {
+                    if (!r.enterable) {
+                      cameraControl.previewRoomId = r.room_id;
+                      setMode("preview");
+                    } else {
                       cameraControl.target = { x: r.x, z: r.z };
                       setMode("free");
                     }
                   }}
                 >
                   <span>{i === 0 ? "⚒" : i === 1 ? "✦" : "♜"}</span>
-                  <b>{r.name}</b>
+                  <b>{roomName(r)}</b>
                   <small>
-                    {r.enterable ? "Game space · DEMO" : "Planned · LOCKED"}
+                    {builtin
+                      ? r.enterable
+                        ? t("game.label.gameSpaceDemo")
+                        : t("game.label.plannedLocked")
+                      : roomStatus(r)}
                   </small>
                 </button>
               ))}
             </div>
-            <p>
-              Rooms use real 3D space. The violet seal blocks walking and
-              dodging. Only the camera may cross.
-            </p>
+            <p>{t("game.atlas.description")}</p>
             <p className="truth-note">
-              All room facts in this slice are synthetic fixtures. Real project
-              import is not connected.
+              {builtin
+                ? t("game.atlas.sourceNotice")
+                : t("game.label.sourceEvidence")}
             </p>
           </section>
         </div>
@@ -729,7 +1075,7 @@ export default function App() {
             className="modal"
             role="dialog"
             aria-modal="true"
-            aria-label="Controls and settings"
+            aria-label={t("game.aria.controlsSettings")}
           >
             <button
               className="close"
@@ -737,31 +1083,32 @@ export default function App() {
                 setHelp(false);
                 focus();
               }}
-              aria-label="Close controls"
+              aria-label={t("game.aria.closeControls")}
             >
               ×
             </button>
-            <div className="section-label">A WAYFARER'S GUIDE</div>
-            <h2>Stay light on your feet.</h2>
+            <LocaleSwitcher />
+            <div className="section-label">{t("game.help.label")}</div>
+            <h2>{t("game.help.title")}</h2>
             <dl className="controls-list">
-              <dt>WASD / arrows</dt>
-              <dd>Move relative to the camera</dd>
-              <dt>J / hold left click</dt>
-              <dd>Sweep the blade. J aims at the nearest enemy.</dd>
-              <dt>Space</dt>
-              <dd>Dodge with brief invulnerability</dd>
-              <dt>Q / R</dt>
-              <dd>Rotate camera 90° left / right</dd>
-              <dt>Wheel / + −</dt>
-              <dd>Zoom the camera</dd>
-              <dt>Right drag</dt>
-              <dd>Pan freely; C returns to the hero</dd>
-              <dt>F / C</dt>
-              <dd>World view / follow the hero</dd>
-              <dt>E / click companion</dt>
-              <dd>Inspect nearby DEMO companion</dd>
-              <dt>P / Escape</dt>
-              <dd>Pause local combat; DEMO events continue</dd>
+              <dt>{t("game.help.moveKeys")}</dt>
+              <dd>{t("game.help.move")}</dd>
+              <dt>{t("game.help.attackKeys")}</dt>
+              <dd>{t("game.help.attack")}</dd>
+              <dt>{t("game.help.dodgeKey")}</dt>
+              <dd>{t("game.help.dodge")}</dd>
+              <dt>{t("game.help.rotateKeys")}</dt>
+              <dd>{t("game.help.rotate")}</dd>
+              <dt>{t("game.help.zoomKeys")}</dt>
+              <dd>{t("game.help.zoom")}</dd>
+              <dt>{t("game.help.panKeys")}</dt>
+              <dd>{t("game.help.pan")}</dd>
+              <dt>{t("game.help.cameraKeys")}</dt>
+              <dd>{t("game.help.camera")}</dd>
+              <dt>{t("game.help.inspectKeys")}</dt>
+              <dd>{t("game.help.inspect")}</dd>
+              <dt>{t("game.help.pauseKeys")}</dt>
+              <dd>{t("game.help.pause")}</dd>
             </dl>
             <label className="setting">
               <input
@@ -772,14 +1119,12 @@ export default function App() {
                   runtime.reducedEffects = !e.target.checked;
                 }}
               />
-              Full particles & ambient motion
+              {t("game.help.fullEffects")}
             </label>
             <p className="truth-note">
-              No sound is bundled. Reduced motion follows your system
-              preference.
+              {t("game.help.soundNotice")}
               <br />
-              Desktop keyboard & mouse combat. Touch combat is not yet
-              supported.
+              {t("game.help.desktopNotice")}
             </p>
           </section>
         </div>

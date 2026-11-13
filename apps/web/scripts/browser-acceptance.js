@@ -1,5 +1,5 @@
 // Run with the pinned playwright-cli run-code --filename; real input only, diagnostics are read-only.
-async (page) => {
+async function browserAcceptance(page) {
   const report = {
     started: new Date().toISOString(),
     checks: [],
@@ -44,6 +44,11 @@ async (page) => {
     );
   };
   await page.goto(new URL("/", page.url()).href);
+  await page
+    .getByRole("group", { name: "界面语言 / Interface language" })
+    .first()
+    .getByRole("button", { name: "English", exact: true })
+    .click();
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.getByRole("button", { name: "Enter the dungeon →" }).waitFor();
   await page.screenshot({ path: "output/playwright/01-entry.png" });
@@ -78,6 +83,7 @@ async (page) => {
     (await read()).stats,
   );
   await page.keyboard.down("j");
+  let combatLocaleChecked = false;
   try {
     const deadline = Date.now() + 22000;
     while (Date.now() < deadline) {
@@ -105,6 +111,36 @@ async (page) => {
           200,
         );
       } else await page.waitForTimeout(250);
+      if (
+        !combatLocaleChecked &&
+        (await read()).stats.attacks >= 2 &&
+        (await read()).phase === "playing"
+      ) {
+        const before = await read();
+        const origin = await page.evaluate(() => performance.timeOrigin);
+        await page
+          .getByRole("group", { name: "界面语言 / Interface language" })
+          .last()
+          .getByRole("button", { name: "中文", exact: true })
+          .click();
+        await page.waitForTimeout(150);
+        await page.screenshot({ path: "output/playwright/zh-combat.png" });
+        const after = await read();
+        check(
+          "Live combat language switch preserves progression",
+          after.stats.attacks >= before.stats.attacks &&
+            after.stats.damageDealt >= before.stats.damageDealt &&
+            after.kills >= before.kills &&
+            (await page.evaluate((o) => performance.timeOrigin === o, origin)),
+          { before: before.stats, after: after.stats },
+        );
+        await page
+          .getByRole("group", { name: "界面语言 / Interface language" })
+          .last()
+          .getByRole("button", { name: "English", exact: true })
+          .click();
+        combatLocaleChecked = true;
+      }
       if ((await read()).stats.attacks > 0)
         await page.screenshot({ path: "output/playwright/02-combat.png" });
     }
@@ -274,4 +310,4 @@ async (page) => {
   });
   report.ended = new Date().toISOString();
   return report;
-};
+}

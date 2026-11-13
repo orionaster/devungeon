@@ -1,4 +1,48 @@
-import type { Rect, SceneDefinition, Tile, Vec2, Wall } from "./types";
+import type {
+  Rect,
+  SceneDefinition,
+  SceneDoor,
+  Tile,
+  Vec2,
+  Wall,
+} from "./types";
+export function doorRect(door: SceneDoor): Rect {
+  return {
+    x: door.x,
+    z: door.z,
+    width: door.axis === "x" ? (door.width ?? 1) : 0.22,
+    depth: door.axis === "z" ? (door.width ?? 1) : 0.22,
+  };
+}
+/** Explicit compiler placement wins; inference is retained only for legacy S1 scenes. */
+export function visibleDoorSeals(s: SceneDefinition): readonly SceneDoor[] {
+  if (s.doors !== undefined) return s.doors.filter((d) => d.locked);
+  return s.rooms
+    .filter((r) => !r.enterable)
+    .map((room) => {
+      const nearest = [...s.corridors].sort(
+        (a, b) =>
+          Math.hypot(a.x - room.x, a.z - room.z) -
+          Math.hypot(b.x - room.x, b.z - room.z),
+      )[0];
+      const horizontal =
+        !nearest ||
+        Math.abs(nearest.x - room.x) >= Math.abs(nearest.z - room.z);
+      return {
+        room_id: room.room_id,
+        x: horizontal
+          ? room.x +
+            (Math.sign((nearest?.x ?? room.x - 1) - room.x) * room.width) / 2
+          : room.x,
+        z: horizontal
+          ? room.z
+          : room.z + (Math.sign(nearest!.z - room.z) * room.depth) / 2,
+        axis: horizontal ? "z" : "x",
+        width: 4,
+        locked: true,
+      };
+    });
+}
 export const inside = (p: Vec2, r: Rect, margin = 0) =>
   Math.abs(p.x - r.x) < r.width / 2 - margin &&
   Math.abs(p.z - r.z) < r.depth / 2 - margin;
@@ -32,6 +76,22 @@ export function validateScene(s: SceneDefinition) {
     )
       throw Error("Invalid scene rectangle");
   const floors = [...s.rooms, ...s.corridors];
+  if ((s.doors?.length ?? 0) > 512) throw Error("Scene exceeds S1 door budget");
+  for (const d of s.doors ?? []) {
+    if (
+      !ids.has(d.room_id) ||
+      ![d.x, d.z, d.width ?? 1].every(Number.isFinite) ||
+      Math.abs(d.x) > 512 ||
+      Math.abs(d.z) > 512 ||
+      !["x", "z"].includes(d.axis) ||
+      typeof d.locked !== "boolean" ||
+      (d.width ?? 1) < 0.6 ||
+      (d.width ?? 1) > 16
+    )
+      throw Error("Invalid scene door");
+    if (!d.locked && !s.rooms.find((r) => r.room_id === d.room_id)!.enterable)
+      throw Error("A closed room cannot advertise an unlocked door");
+  }
   for (const r of floors)
     if (
       ![
@@ -63,11 +123,53 @@ export function validateScene(s: SceneDefinition) {
     throw Error("Spawn must be in an enterable room");
   if (!s.rooms.some((r) => r.enterable && inside(s.spawn, r, 0.4)))
     throw Error("Spawn must be in an enterable room");
-  for (const a of [...s.agents, ...s.enemies])
+  for (const a of s.enemies)
     if (![a.x, a.z].every(Number.isFinite) || !isWalkable(s, a, 0.35))
       throw Error("Actor outside walkable scene");
+  for (const a of s.agents) {
+    const room = s.rooms.find((r) => r.room_id === a.room_id);
+    if (
+      !room ||
+      ![a.x, a.z].every(Number.isFinite) ||
+      !["builder", "scout", "wizard"].includes(a.role) ||
+      (a.visual_only !== undefined && typeof a.visual_only !== "boolean") ||
+      (a.is_demo !== undefined && typeof a.is_demo !== "boolean")
+    )
+      throw Error("Invalid scene agent");
+    if (a.visual_only ? !inside(a, room, 0.15) : !isWalkable(s, a, 0.35))
+      throw Error("Agent outside its permitted scene area");
+  }
+  if (s.project_context) {
+    const p = s.project_context;
+    if (
+      typeof p.project_id !== "string" ||
+      !p.project_id ||
+      typeof p.project_revision !== "string" ||
+      !p.project_revision ||
+      typeof p.observed_at !== "string" ||
+      !Number.isFinite(Date.parse(p.observed_at)) ||
+      !p.source ||
+      !["synthetic", "manual", "local", "github", "agent"].includes(
+        p.source.kind,
+      ) ||
+      typeof p.source.is_demo !== "boolean"
+    )
+      throw Error("Invalid project context");
+  }
 }
 export function isWalkable(s: SceneDefinition, p: Vec2, margin = 0) {
+  if (
+    (s.doors ?? []).some(
+      (d) =>
+        d.locked &&
+        inside(p, {
+          ...doorRect(d),
+          width: doorRect(d).width + 2 * margin,
+          depth: doorRect(d).depth + 2 * margin,
+        }),
+    )
+  )
+    return false;
   if (
     s.rooms.some(
       (r) =>

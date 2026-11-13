@@ -14,20 +14,42 @@ export interface Room extends Rect {
   status: string;
   reason: string;
 }
+/** Axis is the direction across the doorway; width defaults to one tile. */
+export interface SceneDoor extends Vec2 {
+  room_id: string;
+  axis: "x" | "z";
+  locked: boolean;
+  width?: number;
+}
+export interface SceneAgent extends Vec2 {
+  agent_id: string;
+  name: string;
+  role: "builder" | "scout" | "wizard";
+  room_id: string;
+  visual_only?: boolean;
+  source_role?: "supervisor" | "worker" | "reviewer";
+  is_demo?: boolean;
+}
 export interface SceneDefinition {
   worldId: string;
   rooms: readonly Room[];
   corridors: readonly Rect[];
   spawn: Vec2;
   reward?: Vec2;
+  doors?: readonly SceneDoor[];
+  project_context?: {
+    project_id: string;
+    project_revision: string;
+    observed_at: string;
+    source: {
+      kind: "synthetic" | "manual" | "local" | "github" | "agent";
+      is_demo: boolean;
+      reference?: string;
+    };
+  };
   obstacles: readonly (Rect & { kind: "pillar" | "crate" })[];
   enemies: readonly (Vec2 & { id: string; kind: "slime" | "sentinel" })[];
-  agents: readonly (Vec2 & {
-    agent_id: string;
-    name: string;
-    role: "builder" | "scout" | "wizard";
-    room_id: string;
-  })[];
+  agents: readonly SceneAgent[];
 }
 export interface Input {
   moveX: number;

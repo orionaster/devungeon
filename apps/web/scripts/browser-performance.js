@@ -1,4 +1,4 @@
-async (page) => {
+async function browserPerformance(page) {
   const errors = [];
   page.on("pageerror", (error) => errors.push(String(error)));
   // Fault injection proves the renderer can run while the async physics chunk is late.
@@ -7,6 +7,11 @@ async (page) => {
     await route.continue();
   });
   await page.goto("http://127.0.0.1:5174");
+  await page
+    .getByRole("group", { name: "界面语言 / Interface language" })
+    .first()
+    .getByRole("button", { name: "English", exact: true })
+    .click();
   await page.setViewportSize({ width: 1440, height: 960 });
   await page.getByRole("button", { name: "Enter the dungeon →" }).waitFor();
   await page.unroute("**/rapier-*.js");
@@ -62,4 +67,4 @@ async (page) => {
     pageErrors: errors,
     report,
   };
-};
+}

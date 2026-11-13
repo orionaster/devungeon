@@ -299,7 +299,7 @@ export default function HeroWorkspaceHall({
       >
         <DungeonScene
           scene={visual.scene}
-          agentProjection={visual.projection}
+          agentEvents={visual.projection}
           agentActivityEnabled={activityEnabled}
         />
       </div>
@@ -401,6 +401,7 @@ export default function HeroWorkspaceHall({
           adapter={work.controller}
           selectedAgentId={selected}
           onClose={close}
+          onRestoreFocus={focus}
         />
       )}
     </main>

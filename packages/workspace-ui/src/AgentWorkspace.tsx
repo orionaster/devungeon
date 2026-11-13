@@ -40,12 +40,15 @@ export interface AgentWorkspaceProps {
   adapter: WorkspaceAdapter;
   selectedAgentId: string | null;
   onClose: () => void;
+  /** Called after the dialog releases focus; hosts can return to their game canvas. */
+  onRestoreFocus?: () => void;
 }
 /** Controlled selection only. Keep controller outside this component so work outlives the sheet. */
 export function AgentWorkspace({
   adapter,
   selectedAgentId,
   onClose,
+  onRestoreFocus,
 }: AgentWorkspaceProps) {
   const { locale, t, formatTime: clock } = useI18n();
   const actionName = (action: Capability, demo: boolean) =>
@@ -173,7 +176,8 @@ export function AgentWorkspace({
           onEscapeKeyDown={(event) => event.stopPropagation()}
           onCloseAutoFocus={(event) => {
             event.preventDefault();
-            returnFocus.current?.focus();
+            if (onRestoreFocus) onRestoreFocus();
+            else returnFocus.current?.focus();
           }}
         >
           <div className="dw-sheet-top">

@@ -96,7 +96,13 @@ export function useI18n(): I18nValue {
 }
 
 const stopGameInput = (event: SyntheticEvent) => event.stopPropagation();
-export function LocaleSwitcher({ className }: { className?: string }) {
+export function LocaleSwitcher({
+  className,
+  onPointerLocaleChange,
+}: {
+  className?: string;
+  onPointerLocaleChange?: () => void;
+}) {
   const { locale, setLocale } = useI18n();
   return (
     <div
@@ -118,7 +124,10 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         type="button"
         lang="zh-CN"
         aria-pressed={locale === "zh-CN"}
-        onClick={() => setLocale("zh-CN")}
+        onClick={(event) => {
+          setLocale("zh-CN");
+          if (event.detail > 0) onPointerLocaleChange?.();
+        }}
       >
         中文
       </button>
@@ -126,7 +135,10 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         type="button"
         lang="en-US"
         aria-pressed={locale === "en-US"}
-        onClick={() => setLocale("en-US")}
+        onClick={(event) => {
+          setLocale("en-US");
+          if (event.detail > 0) onPointerLocaleChange?.();
+        }}
       >
         English
       </button>

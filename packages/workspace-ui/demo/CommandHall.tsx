@@ -255,6 +255,7 @@ export function CommandHall() {
       <AgentWorkspace
         adapter={workspace}
         selectedAgentId={selected}
+        onRestoreFocus={() => game.current?.focus()}
         onClose={() => {
           setSelected(null);
           requestAnimationFrame(() => game.current?.focus());

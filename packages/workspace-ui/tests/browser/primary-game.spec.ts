@@ -9,12 +9,12 @@ test("the actual product App connects its NPC to the workbench and resumes the s
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/?source=game");
-  await page.getByRole("button", { name: "Enter the dungeon" }).click();
+  await page.goto(process.env.PRIMARY_APP_URL ?? "/?source=game");
+  await page.getByRole("button", { name: "进入地牢" }).click();
   await page.waitForFunction(
     () => window.__DEVUNGEON__?.snapshot()?.phase === "playing",
   );
-  const surface = page.getByLabel(/^Dungeon\. WASD/);
+  const surface = page.getByLabel(/^地牢。WASD/);
   await surface.focus();
   await page.keyboard.down("KeyW");
   await page.waitForFunction(
@@ -60,7 +60,7 @@ test("the actual product App connects its NPC to the workbench and resumes the s
     )
     .toBeGreaterThan(beforeMove + 0.3);
   await page.keyboard.up("KeyD");
-  await page.getByRole("button", { name: /Lumen wizard/ }).click();
+  await page.keyboard.press("KeyE");
   await expect(page.getByRole("log")).toContainText("任务已分派并生成模拟结果");
   await page.getByRole("button", { name: "任务", exact: true }).click();
   await expect(

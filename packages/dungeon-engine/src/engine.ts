@@ -1,5 +1,5 @@
 import type RAPIER from "@dimforge/rapier3d-compat";
-import { geometry, inside, isWalkable, validateScene } from "./scene";
+import { doorRect, geometry, inside, isWalkable, validateScene } from "./scene";
 import type {
   Actor,
   GameSnapshot,
@@ -53,6 +53,7 @@ export class Dungeon {
       ...geometry(scene).walls,
       ...scene.obstacles,
       ...scene.rooms.filter((r) => !r.enterable),
+      ...(scene.doors ?? []).filter((d) => d.locked).map(doorRect),
     ])
       this.world.createCollider(
         rapier.ColliderDesc.cuboid(w.width / 2, 2, w.depth / 2).setTranslation(

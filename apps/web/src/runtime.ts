@@ -5,12 +5,14 @@ import {
   type GameSnapshot,
   type Input,
   type Vec2,
+  type SceneDefinition,
 } from "../../../packages/dungeon-engine/src";
 export interface CameraControl {
   heading: number;
   zoom: number;
   mode: "follow" | "overview" | "preview" | "free";
   target: Vec2;
+  previewRoomId?: string;
 }
 export const keys = new Set<string>();
 export const pointer: { down: boolean; aim?: Vec2 } = { down: false };
@@ -33,6 +35,7 @@ export const runtime: {
   onFrame?: (s: GameSnapshot) => void;
   selectAgent?: (id: string) => void;
   selectRoom?: (id: string) => void;
+  agentEvents?: AgentProjection;
   metrics: {
     fps: number;
     p95Ms: number;
@@ -125,6 +128,7 @@ declare global {
       }[];
       events: () => ReturnType<AgentProjection["snapshot"]>;
       camera: () => CameraControl;
+      scene: () => SceneDefinition;
     };
   }
 }
@@ -133,11 +137,12 @@ window.__DEVUNGEON__ = {
   snapshot: () => runtime.game?.snapshot(),
   metrics: () => ({ ...runtime.metrics }),
   access: () =>
-    DEMO_SCENE.rooms.map((r) => ({
+    (runtime.game?.scene ?? DEMO_SCENE).rooms.map((r) => ({
       id: r.room_id,
       enterable: r.enterable,
       status: r.status,
     })),
-  events: () => projection.snapshot(),
+  events: () => (runtime.agentEvents ?? projection).snapshot(),
   camera: () => structuredClone(cameraControl),
+  scene: () => structuredClone(runtime.game?.scene ?? DEMO_SCENE),
 };
