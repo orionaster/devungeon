@@ -17,7 +17,7 @@
     "build": "npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && vite build --config apps/web/vite.config.ts",
     "preview": "node scripts/forge-host.mjs --preview",
     "test": "npm run test:engine && npm run test:integration && npm test --workspace @devungeon/world-generator && npm test --workspace @devungeon/workspace-ui && npm test --workspace @devungeon/scout-bridge",
-    "test:integration": "vitest run",
+    "test:integration": "npm run sync-schema --workspace @devungeon/world-generator && vitest run",
     "test:browser": "node scripts/forge-browser.mjs",
     "test:browser:ci": "node scripts/forge-verify.mjs",
     "test:host": "node --test scripts/forge-host.test.mjs",

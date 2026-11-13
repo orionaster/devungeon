@@ -89,6 +89,7 @@ Representative actual captures: [combat](evidence/forge/tiny-combat.png), [incre
 - A malformed SSE frame initially closed permanently. A bounded reconnect and retained-history regression now pass; actual malformed selected metadata/repair was separately tested end to end. Duplicate replay delivery can never promote back to LIVE activity.
 - An intermediate public browser rerun was interrupted by development HMR and reset to the initial project. That run was rejected as evidence; the final acceptance uses a fixed production build, followed by a fresh-clone production repeat.
 - Recording initially lacked Playwright's pinned ffmpeg test binary. It was installed only into an ignored local test cache; native playback of the completed recording passes. No binary/cache/runtime dependency was added to the repository.
+- The first remote workspace workflow ran `npm test` before any check/build, exposing missing generated schema copies. The integration test command now synchronizes the canonical root schemas itself; it no longer relies on a previous command. This changes test preparation only, not application behavior. The clean-checkout test-before-check regression and remote rerun are recorded with the final CI result.
 
 Engineering assessment: the requested first-pack integration behaviors have working implementations and actual desktop-browser evidence. This is suitable for supervisor review of #12. Human acceptance remains open; real provider commands, a second gameplay type and the broader full-V1 checklist are not claimed complete.
 
