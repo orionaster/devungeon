@@ -575,7 +575,7 @@ export default function App({
                   {t(demoWorld ? "game.label.demo" : "game.label.readOnly")}
                 </span>
               </div>
-              <h2>{t("game.journal.title")}</h2>
+              <h2>{t(demoWorld ? "game.journal.title" : "game.host.observations")}</h2>
               <p className="muted">
                 {builtin
                   ? t("game.journal.description")
@@ -631,7 +631,7 @@ export default function App({
                   {t("game.journal.feed")}
                   <span className="tiny-badge">
                     {t(
-                      events.every((e) => e.is_demo)
+                      events.length > 0 && events.every((e) => e.is_demo)
                         ? "game.label.scripted"
                         : "game.label.originalText",
                     )}

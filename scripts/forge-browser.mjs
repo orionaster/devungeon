@@ -24,13 +24,18 @@ const url = process.env.FORGE_URL ?? "http://127.0.0.1:5183";
 const suite = process.env.FORGE_SUITE ?? "games";
 const output = resolve(process.env.FORGE_OUTPUT ?? join(root, "output/playwright/forge"));
 const bridgePort = Number(process.env.FORGE_SCOUT_PORT ?? 4318);
+const cpuThrottle = Number(process.env.FORGE_CPU_THROTTLE ?? 1);
+if (!Number.isFinite(cpuThrottle) || cpuThrottle < 1 || cpuThrottle > 20)
+  throw new Error("FORGE_CPU_THROTTLE must be between 1 and 20 (test-only slowdown)");
 await mkdir(output, { recursive: true });
 const report = {
   started_at: new Date().toISOString(),
   suite, url, platform: process.platform, node: process.version,
   viewport: { width: 1440, height: 960 }, dpr: 1,
-  limitations: ["Automated browser input on this Windows machine is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance."],
-  checks: [], cases: [], console: [],
+  limitations: [`Automated browser input on ${process.platform} is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance.`,
+    ...(cpuThrottle > 1 ? [`CPU slowdown ${cpuThrottle}x is a harness stress check, not device performance acceptance.`] : [])],
+  cpu_throttle: cpuThrottle,
+  checks: [], cases: [], console: [], navigation: [],
 };
 function check(name, pass, detail) {
   report.checks.push({ name, pass: !!pass, ...(detail === undefined ? {} : { detail }) });
@@ -67,6 +72,21 @@ async function hold(page, key, ms) {
   await page.keyboard.down(key);
   try { await page.waitForTimeout(ms); }
   finally { await page.keyboard.up(key); }
+}
+async function movementPulse(page, key, ms, previousTime) {
+  // Queue release by a Node timer, independently of keydown's browser round
+  // trip. Waiting for its acknowledgement before starting the timer holds the
+  // key too long on software-rendered CI and repeatedly overshoots the target.
+  const down = page.keyboard.down(key);
+  try { await new Promise((done) => setTimeout(done, ms)); }
+  finally { await Promise.all([down, page.keyboard.up(key)]); }
+  // Observe an actual neutral simulation frame after keyup. We neither mutate
+  // GameState nor infer the position from a wall-clock delay or input duration.
+  await page.waitForFunction((time) => {
+    const state = window.__DEVUNGEON__?.snapshot();
+    return state && state.time > time && !state.player.moving && state.dodgeTime <= 0;
+  }, previousTime, { timeout: 10000, polling: "raf" });
+  return game(page);
 }
 async function focusGame(page) { await page.locator(".game-surface").focus(); }
 async function selectProject(page, selected) {
@@ -105,6 +125,9 @@ function mapRoute(world, from, to) {
   throw new Error(`No walkable keyboard route from ${JSON.stringify(from)} to ${JSON.stringify(to)}`);
 }
 async function walkTo(page, target, tolerance = .16) {
+  const diagnostic = { target, started_at: new Date().toISOString(), pulses: [] };
+  report.navigation.push(diagnostic);
+  let gain = .7;
   for (let i = 0; i < 170; i++) {
     const state = await game(page);
     assert.notEqual(state.phase, "lost", "Player died during route");
@@ -115,12 +138,26 @@ async function walkTo(page, target, tolerance = .16) {
     const sz = dx * Math.sin(heading) + dz * Math.cos(heading);
     const horizontal = Math.abs(sx) >= Math.abs(sz), amount = horizontal ? sx : sz;
     const key = horizontal ? amount > 0 ? "KeyD" : "KeyA" : amount > 0 ? "KeyS" : "KeyW";
-    await hold(page, key, Math.min(180, Math.max(12, Math.abs(amount) * 1000 / 4.3 - 12)));
+    const duration = Math.min(160, Math.max(4, Math.abs(amount) * 1000 / 4.3 * gain));
+    const next = await movementPulse(page, key, duration, state.time);
+    const moved = Math.hypot(next.player.x - state.player.x, next.player.z - state.player.z);
+    const beforeDistance = Math.hypot(dx, dz), afterDistance = Math.hypot(target.x - next.player.x, target.z - next.player.z);
+    diagnostic.pulses.push({ key, duration_ms: duration, from: { x: state.player.x, z: state.player.z }, to: { x: next.player.x, z: next.player.z }, beforeDistance, afterDistance, simulation_ms: (next.time - state.time) * 1000 });
+    // Reduce the next pulse after an observed overshoot; increase it only if
+    // a short press fell entirely between simulation frames. Arrival tolerance,
+    // keyboard routing and all swept-collision assertions are unchanged.
+    if (afterDistance > beforeDistance + .03 || moved > Math.abs(amount) * 1.4) gain = Math.max(.04, gain * .55);
+    else if (moved < .02) gain = Math.min(1, gain * 1.35);
+    else if (afterDistance < beforeDistance) gain = Math.min(.85, gain * 1.08);
   }
   throw new Error(`Keyboard route stuck at ${JSON.stringify((await game(page)).player)} approaching ${JSON.stringify(target)}`);
 }
 async function follow(page, world, to) {
   await focusGame(page);
+  await page.waitForFunction(() => {
+    const state = window.__DEVUNGEON__?.snapshot();
+    return state && state.dodgeTime <= 0 && !state.player.moving;
+  }, undefined, { timeout: 10000, polling: "raf" });
   for (const point of mapRoute(world, (await game(page)).player, to)) await walkTo(page, point);
 }
 async function language(page, name, panel) {
@@ -503,6 +540,10 @@ try {
     const context = await browser.newContext({ viewport: report.viewport, deviceScaleFactor: 1, reducedMotion: "reduce", ...(suite === "showcase" ? { recordVideo: { dir: output, size: report.viewport } } : {}) });
     await context.tracing.start({ screenshots: true, snapshots: true, sources: true });
     const page = await context.newPage();
+    if (cpuThrottle > 1) {
+      const cdp = await context.newCDPSession(page);
+      await cdp.send("Emulation.setCPUThrottlingRate", { rate: cpuThrottle });
+    }
     page.setDefaultTimeout(20000);
     const errors = [];
     page.on("pageerror", (error) => errors.push(error.message));
