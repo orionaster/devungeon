@@ -1,0 +1,68 @@
+Source archive: 4d45bd4ad92488d991665beb083fbd1847fffe6f
+Windows clean source, no .git or pre-existing node_modules
+
+added 74 packages, and audited 77 packages in 4s
+
+16 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> devungeon@0.1.0 test
+> npm run test:engine && npm run test:i18n
+
+
+> devungeon@0.1.0 test:engine
+> tsx --test packages/dungeon-engine/test/*.test.ts
+
+✔ swept wall and locked-room collisions survive walking, repeated dodges, corners and restart (284.142ms)
+✔ attack hits, defeats encounter and returns only a game result; source facts survive win/restart (8.5514ms)
+✔ enemy tells lead to damage, defeat and restart without source mutation (25.2882ms)
+✔ dodge grants brief protection and actual displacement without tunneling (3.9924ms)
+✔ spawn and blueprint access fail closed, invalid rectangles are rejected (0.7676ms)
+✔ scene ownership and tile-grid validation prevent mutable respawn and missing walls (1.7655ms)
+✔ event projection rejects malformed/cross-project/duplicate, keeps chronology and bounds history (3.3327ms)
+✔ explicit compiler doors override guessed positions and independently block dashes (14.2225ms)
+✔ visual-only NPC in a known locked room grants no player access (7.7762ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 943.6132
+
+> devungeon@0.1.0 test:i18n
+> vitest run packages/workspace-ui/tests/i18n.test.ts --environment node
+
+
+ RUN  v5.1.0 C:/Devungeon/hero/output/clean-checkout/hero-4d45bd4
+
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  00:49:04
+   Duration  294ms (transform 50%, import 31%, tests 16%, worker 3%)
+
+
+> devungeon@0.1.0 build
+> tsc --noEmit && vite build --config apps/web/vite.config.ts
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 45 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/web/dist/index.html                     0.85 kB │ gzip:     0.54 kB
+apps/web/dist/assets/index-BqY5c1ad.css     17.07 kB │ gzip:     4.70 kB
+apps/web/dist/assets/index-CUlQSSA6.js   1,250.63 kB │ gzip:   346.31 kB
+apps/web/dist/assets/rapier-Ct8Isipz.js  4,332.82 kB │ gzip: 1,669.31 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 493ms
+PASS clean npm ci + tests + build

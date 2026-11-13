@@ -1,5 +1,7 @@
 # HERO scene / workbench contract
 
+Wave 2 updates and exact optional door, visual-only marker, root App and shared locale ports are documented in [HERO_WAVE2.md](HERO_WAVE2.md). These updates supersede the first-wave-only host limitations below where noted. World geometry and game/source isolation remain the same.
+
 S1 code lives on `feat/s1-hero-game`. It owns `apps/web`, `packages/dungeon-engine`, the initial root npm workspace and lockfile. Do not overwrite parallel BUILDER/SCOUT/WIZARD packages. This branch does not import or claim their live capabilities. Coordination is recorded on [Issue #1](https://github.com/orionaster/devungeon/issues/1).
 
 ## Engine

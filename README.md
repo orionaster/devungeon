@@ -6,7 +6,7 @@ Devungeon is an **open-source, project-adaptive playable game world + AI-agent w
 
 > **This branch: S1 playable browser slice, awaiting supervisor review.** Explore three original pixel rooms, fight an independent encounter, preview the sealed vault and observe clearly labeled DEMO companions. Real project import and real Agent/workbench integrations are separate work and are **not connected in this slice**. This is not the complete V1.
 
-> **Integration status:** first-wave PRs #6–#9 remain under review. The project-adaptive world-choice sidecar is an experimental schema and two synthetic proposals, **not a city game or a working world switch**. Chinese-first UI and the shared workspace are being coordinated in Issues #10/#12.
+> **Integration status:** first-wave PRs #6–#9 remain under review. This branch now provides a Chinese-first game UI with live English switching through WIZARD's shared locale core. Full workspace/source/world-generator integration remains coordinated in Issues #10/#12. The project-adaptive world-choice sidecar is an experimental schema and two synthetic proposals, **not a city game or a working world switch**. See [wave-2 evidence and remaining review gates](docs/HERO_WAVE2.md).
 
 ## Play locally
 

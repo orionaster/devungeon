@@ -1,5 +1,7 @@
 # S1 dependency decision · 2026-11-13
 
+Wave 2 (2026-11-14): shared i18n core is local React code supplied by WIZARD, with no new runtime dependency or remote translation. The existing WIZARD tests use exact-pinned Vitest 5.1.0 (MIT), supporting Node ^22.12 / ^24 and Vite ^8 per the primary npm release manifest. It is a dev-only test dependency. Updated installed Windows manifest inventory has72 packages; audit still reports0 known advisories. See HERO_WAVE2.md for actual tests and remaining integrated-product gates.
+
 The actual problem is desktop-browser pixel combat sharing a scene with a React workbench. The existing broad comparison in TOOLS_AND_SKILLS.md was reviewed before installing.
 
 Selected React 19.3.1 / React DOM 19.3.1, R3F 9.8.2 (peers React >=19 <19.4, Three >=0.156), Three 0.187.0; MIT. Direct `@dimforge/rapier3d-compat` 0.21.0, Apache-2.0, supplies swept kinematic character collision in a renderer-independent engine. The maintained React Rapier 2.2.0 supports R3F9/React19 but pins Rapier0.19.2; direct Rapier avoids React ownership of game simulation and permits headless lock/combat tests. No duplicate physics engine. Drei is deferred: quarter-turn cameras need no additional helper dependency. Phaser/Pixi would need a second 3D stack; Godot web export complicates the native workbench. No paid services, global installs, hooks or keys.

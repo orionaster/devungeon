@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "name": "Replace event port preserves the full paused game",
+      "pass": true
+    },
+    {
+      "name": "Toggle event script preserves the full paused game",
+      "pass": true
+    },
+    {
+      "name": "Synthetic actor is labeled inside non-demo scene",
+      "pass": true
+    },
+    {
+      "name": "Visual marker is explicitly display only",
+      "pass": true
+    },
+    {
+      "name": "Other project events are not projected",
+      "pass": true
+    },
+    {
+      "name": "Valid scene recovers without stale startup error",
+      "pass": true
+    }
+  ],
+  "fixture": "synthetic contract flags only, no public source or real Agent connection",
+  "ended": "2026-11-13T16:46:20.572Z"
+}
