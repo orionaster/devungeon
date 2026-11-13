@@ -45,6 +45,11 @@ test("Chinese-first 3D workspace switches both ways without changing draft, appr
   await ready(page);
   await page.getByRole("button", { name: /Lumen/ }).click();
   const panel = page.getByRole("dialog");
+  await panel.getByRole("button", { name: "中文", exact: true }).focus();
+  await page.keyboard.press("Shift+Tab");
+  await expect(
+    panel.getByRole("button", { name: "返回游戏世界" }),
+  ).toBeFocused();
   await panel
     .getByRole("textbox", { name: "消息或任务内容" })
     .fill("原始文本 <scope> & {id}");

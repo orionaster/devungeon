@@ -103,7 +103,11 @@ export function LocaleSwitcher({ className }: { className?: string }) {
       className={["dw-locale-switcher", className].filter(Boolean).join(" ")}
       role="group"
       aria-label="界面语言 / Interface language"
-      onKeyDown={stopGameInput}
+      onKeyDown={(event) => {
+        // Dialog focus loops and dismissal own navigation keys. Only gameplay
+        // keys are stopped; keyup still reaches the host's held-key cleanup.
+        if (event.key !== "Tab" && event.key !== "Escape") stopGameInput(event);
+      }}
       onPointerDown={stopGameInput}
       onPointerUp={stopGameInput}
       onPointerMove={stopGameInput}
