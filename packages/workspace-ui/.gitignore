@@ -4,3 +4,4 @@ playwright-report/
 output/local-scout/
 output/local-scout-metadata.jsonl
 output/codex-protocol/
+output/codex-text/

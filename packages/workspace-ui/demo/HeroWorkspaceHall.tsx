@@ -22,6 +22,9 @@ import {
   createHeroDemoWorkspace,
   PixelAgent,
   ScoutWorkspaceAdapter,
+  CodexTextAdapter,
+  CODEX_TEXT_PROJECT,
+  CODEX_TEXT_REQUESTER,
   WorkspaceController,
 } from "../src";
 import type { WorkspaceSnapshot } from "../src";
@@ -42,7 +45,7 @@ declare global {
 export default function HeroWorkspaceHall({
   source = "demo",
 }: {
-  source?: "demo" | "scout";
+  source?: "demo" | "scout" | "codex";
 }) {
   const [work, setWork] = useState<Work>();
   const [game, setGame] = useState<GameSnapshot>();
@@ -54,7 +57,7 @@ export default function HeroWorkspaceHall({
   const [activityEnabled, setActivityEnabled] = useState(source === "demo");
   const surface = useRef<HTMLDivElement>(null);
   const initialScene: SceneDefinition =
-    source === "scout" ? { ...DEMO_SCENE, agents: [] } : DEMO_SCENE;
+    source !== "demo" ? { ...DEMO_SCENE, agents: [] } : DEMO_SCENE;
   const sceneRef = useRef(initialScene);
   const [visual, setVisual] = useState({ scene: initialScene, projection });
   const focus = () => surface.current?.focus({ preventScroll: true });
@@ -75,20 +78,23 @@ export default function HeroWorkspaceHall({
     const observer =
       source === "scout"
         ? new ScoutWorkspaceAdapter("github:orionaster/devungeon")
-        : null;
+        : source === "codex" ? new CodexTextAdapter() : null;
     const workspace: Work = observer
       ? (() => {
           const controller = new WorkspaceController(
             observer,
-            "local-viewer",
-            observer.projectId,
+            source === "codex" ? CODEX_TEXT_REQUESTER : "local-viewer",
+            source === "codex" ? CODEX_TEXT_PROJECT : "github:orionaster/devungeon",
           );
-          return { controller, dispose: () => controller.dispose() };
+          return { controller, dispose: () => {
+            controller.dispose();
+            if (observer instanceof CodexTextAdapter) observer.dispose();
+          } };
         })()
       : createHeroDemoWorkspace();
     let stopStream = () => {};
     let painter = projection;
-    let rosterKey = source === "scout" ? "" : "demo";
+    let rosterKey = source !== "demo" ? "" : "demo";
     const projected = new Set<string>();
     const project = () => {
       const state = workspace.controller.getSnapshot();
@@ -131,11 +137,11 @@ export default function HeroWorkspaceHall({
         // Replay metadata may be observed now. Only fresh LIVE observations or
         // explicit DEMO events are allowed to trigger a working animation.
         if (
-          !observer ||
+          (source !== "codex" || event.source === "codex-app-server") && (!observer ||
           (state.connected &&
             !state.stale &&
             ((mode === "demo" && event.is_demo) ||
-              (mode === "live" && !event.is_demo && age >= 0 && age < 3000)))
+              (mode === "live" && !event.is_demo && age >= 0 && age < 3000))))
         )
           painter.ingest(event);
         projected.add(event.event_id);
@@ -144,7 +150,7 @@ export default function HeroWorkspaceHall({
     const unsubscribe = workspace.controller.subscribe(project);
     project();
     setWork(workspace);
-    if (observer)
+    if (observer instanceof ScoutWorkspaceAdapter)
       stopStream = connectScoutStream(
         observer,
         "/scout-read/v1/stream",
@@ -295,14 +301,20 @@ export default function HeroWorkspaceHall({
         <span className="hero-hall-demo">
           {source === "scout"
             ? "DEMO 世界 / SCOUT 只读来源"
-            : "DEMO 世界 / 模拟 Agent"}
+            : source === "codex" ? "DEMO 世界 / Codex 文本试验 · 默认关闭" : "DEMO 世界 / 模拟 Agent"}
         </span>
       </header>
       <section className="hero-hall-intro">
         <p>HERO 场景 × WIZARD 工作台</p>
         <h1>队友就在地牢里。</h1>
         <p>
-          {source === "scout" ? (
+          {source === "codex" ? (
+            <>
+              独立合成会话，每条最多 1000 字，至多两次回复。
+              <br />
+              需主管明确启用；不允许工具、工程文件或任务执行。
+            </>
+          ) : source === "scout" ? (
             <>
               走近观察角色，核对真实活动与证据。
               <br />
@@ -389,7 +401,7 @@ function Party({ work, select }: { work: Work; select: (id: string) => void }) {
       <h2>
         工坊里的队友{" "}
         <span>
-          {snapshot.project_id === DEMO_SCENE.worldId ? "DEMO" : "只读来源"}
+          {snapshot.project_id === DEMO_SCENE.worldId ? "DEMO" : snapshot.project_id === CODEX_TEXT_PROJECT ? "文本试验" : "只读来源"}
         </span>
       </h2>
       {snapshot.agents.length === 0 && (

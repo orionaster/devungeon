@@ -240,7 +240,9 @@ export function AgentWorkspace({
                 : connectionLabel(snapshot, now)}
             </span>
             <span>
-              观测 {clock(agent?.observed_at ?? snapshot.observed_at)}
+              {Date.parse(agent?.observed_at ?? snapshot.observed_at) > 0
+                ? `观测 ${clock(agent?.observed_at ?? snapshot.observed_at)}`
+                : "尚无来源观测"}
             </span>
           </Dialog.Description>
           <p className="dw-source">
@@ -464,7 +466,7 @@ export function AgentWorkspace({
                     <p className="dw-help">角色来源 · {agent.source}</p>
                     <EvidenceRef value={agent.source_ref} />
                     <p className="dw-help">
-                      角色最近观测 {clock(agent.observed_at)}
+                      {Date.parse(agent.observed_at) > 0 ? `角色最近观测 ${clock(agent.observed_at)}` : "尚无角色来源观测"}
                     </p>
                     <h3>审批请求</h3>
                     {snapshot.approvals.filter(

@@ -9,6 +9,7 @@ export {
   scoutStatusSchema,
 } from "./scout-adapter";
 export { createHeroDemoWorkspace } from "./hero-integration";
+export { CodexTextAdapter, CODEX_TEXT_PROJECT, CODEX_TEXT_REQUESTER } from "./codex-adapter";
 export {
   DemoWorkspaceAdapter,
   DEMO_IDS,

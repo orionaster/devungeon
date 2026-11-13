@@ -19,7 +19,7 @@ root.render(
         source={
           new URLSearchParams(location.search).get("connection") === "scout"
             ? "scout"
-            : "demo"
+            : new URLSearchParams(location.search).get("connection") === "codex" ? "codex" : "demo"
         }
       />
     </Suspense>
