@@ -4,7 +4,7 @@
 
 Devungeon is a planned **open-source, explorable 2.5D pixel-art dungeon game + AI-agent workspace** that turns real software projects into living game worlds. Its rooms have genuine 3D space and collision, while the signature look is an **original top-down pixel dungeon** with crisp sprites, fast combat and expressive Agent characters.
 
-> **Current status: design / repository bootstrap only.** This repo starter contains the product requirements, architecture proposal, validation contract and synthetic examples. **The playable app and live Agent integrations have NOT been implemented.**
+> **Current status on this branch: SCOUT read-only adapter slice.** Public GitHub import, a scoped local metadata observer, local SSE/history and a browser event inspector are implemented. See [SCOUT verification](docs/SCOUT-VALIDATION.md) and [consumer interfaces](docs/SCOUT-INTEGRATION.md). **The playable dungeon and Claude/Codex/Crew provider subscriptions are not verified by this slice.**
 
 ## The idea
 

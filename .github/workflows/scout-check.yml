@@ -1,0 +1,27 @@
+name: SCOUT adapters and local bridge
+on:
+  push:
+    paths: ['apps/bridge/**', 'packages/project-adapters/**', 'packages/agent-adapters/**', 'schema/**', '.github/workflows/scout-check.yml']
+  pull_request:
+    paths: ['apps/bridge/**', 'packages/project-adapters/**', 'packages/agent-adapters/**', 'schema/**', '.github/workflows/scout-check.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: apps/bridge
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.1'
+          cache: npm
+          cache-dependency-path: apps/bridge/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - run: npm test
