@@ -28,6 +28,13 @@ export function taskCopy(
   isDemo: boolean,
   t: (key: TranslationKey) => string,
 ) {
+  if (task.display_kind === "scout-observation") {
+    return {
+      title: task.title,
+      detail: t("scout.task.observedAssociation"),
+      localized: true,
+    };
+  }
   const fixture = Object.prototype.hasOwnProperty.call(fixtures, task.id)
     ? fixtures[task.id as keyof typeof fixtures]
     : undefined;

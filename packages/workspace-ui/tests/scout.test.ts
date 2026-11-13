@@ -52,6 +52,70 @@ const record = {
 };
 
 describe("SCOUT read-only integration", () => {
+  it("reconnects after malformed SSE with one delayed retry, retained history and no new capabilities", async () => {
+    vi.useFakeTimers();
+    class FakeStream {
+      static CLOSED = 2;
+      static instances: FakeStream[] = [];
+      readyState = 1;
+      onerror?: () => void;
+      listeners = new Map<string, (message: MessageEvent) => void>();
+      constructor(readonly url: string) { FakeStream.instances.push(this); }
+      addEventListener(type: string, handler: (message: MessageEvent) => void) { this.listeners.set(type, handler); }
+      close() { this.readyState = FakeStream.CLOSED; }
+      emit(type: string, value: unknown) { this.raw(type, JSON.stringify(value)); }
+      raw(type: string, data: string) { this.listeners.get(type)?.({ data } as MessageEvent); }
+    }
+    vi.stubGlobal("window", { location: { href: "http://127.0.0.1:4174/", origin: "http://127.0.0.1:4174" } });
+    vi.stubGlobal("EventSource", FakeStream);
+    let stop: (() => void) | undefined;
+    try {
+      const adapter = new ScoutWorkspaceAdapter(projectId);
+      const observed: unknown[] = [];
+      const error = vi.fn();
+      stop = connectScoutStream(adapter, "/v1/stream", error, { onRecord: (value) => { observed.push(value); } });
+      const first = FakeStream.instances[0];
+      first.emit("status", status);
+      first.emit("record", record);
+      const originalEvents = adapter.getSnapshot().events;
+      first.raw("record", "{malformed SSE JSON");
+      expect(first.readyState).toBe(FakeStream.CLOSED);
+      expect(adapter.getSnapshot().connected).toBe(false);
+      expect(adapter.getSnapshot().events).toEqual(originalEvents);
+      expect(error).toHaveBeenCalledOnce();
+      expect(vi.getTimerCount()).toBe(1);
+      // Already queued messages on the rejected transport must stay rejected.
+      first.emit("record", { ...record, cursor: 2, event: { ...record.event, event_id: "queued-after-close", idempotency_key: "queued-after-close" } });
+      expect(observed).toHaveLength(1);
+      // A browser may report a terminal error as well; it must reuse the timer.
+      first.onerror?.();
+      first.onerror?.();
+      expect(vi.getTimerCount()).toBe(1);
+      await vi.advanceTimersByTimeAsync(1999);
+      expect(FakeStream.instances).toHaveLength(1);
+      await vi.advanceTimersByTimeAsync(1);
+      expect(FakeStream.instances).toHaveLength(2);
+      const repaired = FakeStream.instances[1];
+      repaired.emit("status", status);
+      repaired.emit("record", { ...record, mode: "REPLAY" });
+      expect(adapter.getSnapshot().connected).toBe(true);
+      expect(adapter.getSnapshot().events).toEqual(originalEvents);
+      expect(adapter.getSnapshot().agents[0].mode).toBe("replay");
+      expect(adapter.getSnapshot().agents[0].capabilities).toEqual([]);
+      // Repeated malformed input remains rate limited, and disposal cancels it.
+      repaired.raw("record", "invalid JSON again");
+      expect(vi.getTimerCount()).toBe(1);
+      stop();
+      await vi.advanceTimersByTimeAsync(5000);
+      expect(FakeStream.instances).toHaveLength(2);
+      expect(adapter.getSnapshot().connected).toBe(false);
+      expect(adapter.getSnapshot().events).toEqual(originalEvents);
+    } finally {
+      stop?.();
+      vi.unstubAllGlobals();
+      vi.useRealTimers();
+    }
+  });
   it("resets the transport cursor on epoch change and recovers terminal stream errors", async () => {
     vi.useFakeTimers();
     class FakeStream {
@@ -138,6 +202,7 @@ describe("SCOUT read-only integration", () => {
       event: {
         ...record.event,
         event_id: "real-actor",
+        idempotency_key: "real-actor",
         agent_id: "real-actor",
       },
     });

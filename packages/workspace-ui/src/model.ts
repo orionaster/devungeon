@@ -45,6 +45,8 @@ export const taskSchema = z.strictObject({
     "unknown",
   ]),
   detail: text,
+  // Authored display metadata; original titles/evidence and task facts stay intact.
+  display_kind: z.literal("scout-observation").optional(),
   evidence: z.array(
     z.strictObject({ label: text, ref: text, verified: z.boolean() }),
   ),

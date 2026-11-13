@@ -10,20 +10,38 @@ test("the actual product App connects its NPC to the workbench and resumes the s
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto(process.env.PRIMARY_APP_URL ?? "/?source=game");
+  await page.getByTestId("forge-project-select").selectOption("workbench");
+  await page.waitForFunction(() => {
+    const scene = window.__DEVUNGEON__?.scene();
+    const work = window.__DEVUNGEON_WORKSPACE__?.snapshot();
+    return !!work?.agents.some((agent) => agent.role === "supervisor") &&
+      scene?.project_context?.project_id === work.project_id &&
+      window.__DEVUNGEON__?.snapshot()?.phase === "ready";
+  });
+  const supervisor = await page.evaluate(() =>
+    window.__DEVUNGEON_WORKSPACE__!.snapshot().agents.find((agent) => agent.role === "supervisor")!,
+  );
   await page.getByRole("button", { name: "进入地牢" }).click();
   await page.waitForFunction(
     () => window.__DEVUNGEON__?.snapshot()?.phase === "playing",
   );
   const surface = page.getByLabel(/^地牢。WASD/);
   await surface.focus();
+  const initialZ = await page.evaluate(() => window.__DEVUNGEON__!.snapshot()!.player.z);
   await page.keyboard.down("KeyW");
-  await page.waitForFunction(
-    () => (window.__DEVUNGEON__!.snapshot()?.player.z ?? 1) < -0.65,
-  );
-  await page.keyboard.up("KeyW");
-  await page.keyboard.press("KeyE");
+  try {
+    await page.waitForFunction(
+      (z) => window.__DEVUNGEON__!.snapshot()!.player.z < z - 0.35,
+      initialZ,
+    );
+  } finally { await page.keyboard.up("KeyW"); }
+  // Compiled source Agents may occupy a sealed work room; party inspection is
+  // the supported UI path and never teleports the player through that seal.
+  if (await page.locator(".journal-toggle").getAttribute("aria-expanded") === "false")
+    await page.locator(".journal-toggle").click();
+  await page.locator(".agent-row").filter({ hasText: supervisor.name }).click();
   await expect(
-    page.getByRole("heading", { name: "Lumen", exact: true }),
+    page.getByRole("heading", { name: supervisor.name, exact: true }),
   ).toBeVisible();
   const gameBefore = await page.evaluate(
     () => window.__DEVUNGEON__!.snapshot()!,
@@ -37,7 +55,7 @@ test("the actual product App connects its NPC to the workbench and resumes the s
     await page.evaluate(() => window.__DEVUNGEON__!.snapshot()!.player),
   ).toEqual(gameBefore.player);
   await page.screenshot({
-    path: "output/playwright/primary-game-workspace.png",
+    path: "output/playwright/forge-primary-game-workspace.png",
     fullPage: true,
   });
   await page
@@ -60,7 +78,9 @@ test("the actual product App connects its NPC to the workbench and resumes the s
     )
     .toBeGreaterThan(beforeMove + 0.3);
   await page.keyboard.up("KeyD");
-  await page.keyboard.press("KeyE");
+  if (await page.locator(".journal-toggle").getAttribute("aria-expanded") === "false")
+    await page.locator(".journal-toggle").click();
+  await page.locator(".agent-row").filter({ hasText: supervisor.name }).click();
   await expect(page.getByRole("log")).toContainText("任务已分派并生成模拟结果");
   await page.getByRole("button", { name: "任务", exact: true }).click();
   await expect(

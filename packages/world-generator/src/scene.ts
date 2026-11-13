@@ -1,4 +1,4 @@
-import type { Collider, DesignerProposal, Lock, Placement, Point, ProjectGraph, SavedLayout, SceneLayout, Tile } from './types.js';
+import type { Collider, DesignerProposal, Lock, Point, ProjectGraph, SavedLayout, SceneLayout, Tile } from './types.js';
 import { cells, compare, door, edgeId, hash, key, porch, requireThat, samePoint } from './util.js';
 
 export function projectLocks(graph: ProjectGraph): Map<string, Lock> {

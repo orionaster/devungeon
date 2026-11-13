@@ -36,6 +36,7 @@ export const runtime: {
   selectAgent?: (id: string) => void;
   selectRoom?: (id: string) => void;
   agentEvents?: AgentProjection;
+  displayScene?: SceneDefinition;
   metrics: {
     fps: number;
     p95Ms: number;
@@ -144,5 +145,6 @@ window.__DEVUNGEON__ = {
     })),
   events: () => (runtime.agentEvents ?? projection).snapshot(),
   camera: () => structuredClone(cameraControl),
-  scene: () => structuredClone(runtime.game?.scene ?? DEMO_SCENE),
+  scene: () =>
+    structuredClone(runtime.displayScene ?? runtime.game?.scene ?? DEMO_SCENE),
 };

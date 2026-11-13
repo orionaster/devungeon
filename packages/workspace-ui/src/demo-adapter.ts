@@ -20,14 +20,14 @@ export const DEMO_OWNER = "demo-owner";
 export const DEMO_IDS = ["agent-boss", "agent-build", "agent-review"] as const;
 export interface DemoIdentityFixture {
   project_id: string;
-  agents: Record<
+  agents: Partial<Record<
     (typeof DEMO_IDS)[number],
     {
       id: string;
       name: string;
       room_id: string;
     }
-  >;
+  >>;
 }
 function initialSnapshot(now: string): WorkspaceSnapshot {
   return snapshotSchema.parse({
@@ -167,18 +167,18 @@ export class DemoWorkspaceAdapter implements WorkspaceAdapter {
       const identity = (originalId: string) =>
         fixture.agents[originalId as (typeof DEMO_IDS)[number]];
       initial.project_id = fixture.project_id;
-      initial.agents = initial.agents.map((agent) => ({
+      initial.agents = initial.agents.filter((agent) => identity(agent.id)).map((agent) => ({
         ...agent,
         ...identity(agent.id),
       }));
-      initial.tasks = initial.tasks.map((task) => ({
+      initial.tasks = initial.tasks.filter((task) => identity(task.agent_id)).map((task) => ({
         ...task,
-        agent_id: identity(task.agent_id).id,
+        agent_id: identity(task.agent_id)!.id,
       }));
-      initial.events = initial.events.map((event) => ({
+      initial.events = initial.events.filter((event) => identity(event.agent_id)).map((event) => ({
         ...event,
         project_id: fixture.project_id,
-        agent_id: identity(event.agent_id).id,
+        agent_id: identity(event.agent_id)!.id,
       }));
     }
     this.state = freezeSnapshot(snapshotSchema.parse(initial));

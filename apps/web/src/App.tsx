@@ -41,8 +41,11 @@ function Glyph({ children }: { children: React.ReactNode }) {
 }
 export interface GameHostProps {
   scene?: SceneDefinition;
+  /** Observed actor markers can change without rebuilding combat/physics. */
+  agentRoster?: SceneDefinition["agents"];
   agentEvents?: AgentProjection;
   demoEvents?: boolean;
+  agentActivityEnabled?: boolean;
   /** Workspace/controller owns authorization; the host only exposes selection/focus. */
   renderAgentInspector?: (context: {
     agentId: string;
@@ -57,13 +60,19 @@ export interface GameHostProps {
   sourcePanel?: ReactNode;
 }
 export default function App({
-  scene = DEMO_SCENE,
+  scene: gameScene = DEMO_SCENE,
+  agentRoster,
   agentEvents: incomingEvents,
   demoEvents = true,
+  agentActivityEnabled = true,
   renderAgentInspector,
   roomDisplay,
   sourcePanel,
 }: GameHostProps) {
+  const scene = useMemo(
+    () => (agentRoster ? { ...gameScene, agents: agentRoster } : gameScene),
+    [gameScene, agentRoster],
+  );
   const { t, locale, formatDateTime } = useI18n();
   // An explicitly imported source context must retain its original labels,
   // even if its caller happens to reuse the reference pack's world ID.
@@ -205,7 +214,7 @@ export default function App({
     cameraControl.mode = "overview";
     cameraControl.previewRoomId = undefined;
     setCameraMode("overview");
-    Dungeon.create(scene)
+    Dungeon.create(gameScene)
       .then((g) => {
         created = g;
         if (!alive) {
@@ -231,6 +240,12 @@ export default function App({
       runtime.game = undefined;
       runtime.frame = undefined;
       runtime.onFrame = undefined;
+    };
+  }, [gameScene]);
+  useEffect(() => {
+    runtime.displayScene = scene;
+    return () => {
+      if (runtime.displayScene === scene) runtime.displayScene = undefined;
     };
   }, [scene]);
   useEffect(() => {
@@ -392,6 +407,7 @@ export default function App({
         <DungeonScene
           scene={scene}
           agentEvents={eventProjection}
+          agentActivityEnabled={agentActivityEnabled}
           fallback={
             <div className="webgl-fallback">{t("game.fallback.webgl")}</div>
           }
@@ -528,7 +544,7 @@ export default function App({
           <small className="entry-note">
             {t("game.entry.encounterNote")}
             <br />
-            {t("game.entry.simulationNote")}
+            {t(demoWorld ? "game.entry.simulationNote" : "forge.publicNotice")}
           </small>
           {error && (
             <div role="alert">

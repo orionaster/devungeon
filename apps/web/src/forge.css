@@ -1,0 +1,146 @@
+.forge-toolbar {
+  position: fixed;
+  z-index: 5;
+  left: 50%;
+  top: 82px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #101c24ed;
+  border: 1px solid #4a6168;
+  border-radius: 4px;
+  max-width: calc(100vw - 44px);
+  font-size: 12px;
+  color: #e4e5d4;
+}
+.forge-toolbar label {
+  display: grid;
+  gap: 4px;
+  color: #a7bbb6;
+}
+.forge-toolbar select,
+.forge-toolbar button {
+  font: inherit;
+  color: #eef2df;
+  border: 1px solid #526661;
+  background: #233338;
+  padding: 7px;
+  border-radius: 3px;
+  max-width: 310px;
+}
+.forge-toolbar button {
+  cursor: pointer;
+}
+.forge-toolbar summary {
+  cursor: pointer;
+  color: #dbbe78;
+  padding: 7px 0;
+}
+.forge-toolbar details p {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  max-width: 560px;
+  padding: 12px;
+  background: #15232d;
+  border: 1px solid #526661;
+  line-height: 1.6;
+}
+.forge-source {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #41535b;
+  font-size: 12px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  color: #c1cfc7;
+}
+.forge-source h3,
+.forge-source h4 {
+  color: #efd28f;
+  margin: 6px 0;
+}
+.forge-source small,
+.forge-source code {
+  display: block;
+  font-size: 11px;
+  color: #99ada9;
+}
+.forge-source p {
+  margin: 8px 0;
+}
+.forge-source pre {
+  white-space: pre-wrap;
+  font-size: 10px;
+}
+.forge-source summary {
+  cursor: pointer;
+  color: #e2c78f;
+}
+.forge-facts article {
+  padding: 12px 0;
+  border-top: 1px solid #364b53;
+}
+.forge-events {
+  padding-left: 18px;
+  max-height: 290px;
+  overflow: auto;
+}
+.forge-events li {
+  margin: 12px 0;
+}
+.forge-events span {
+  display: block;
+}
+.forge-source a {
+  color: #e7cb89;
+}
+.forge-fallback {
+  padding: 180px 30px 30px;
+  max-width: 880px;
+  margin: auto;
+  height: 100vh;
+  overflow: auto;
+}
+.forge-fallback .forge-source {
+  max-width: 760px;
+}
+.app .journal,
+.journal {
+  max-height: calc(100dvh - 190px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.pause-banner {
+  top: 175px;
+}
+@media (max-width: 1200px) {
+  .forge-toolbar details {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .forge-toolbar {
+    left: 8px;
+    top: 82px;
+    transform: none;
+    max-width: calc(100vw - 16px);
+    gap: 6px;
+    padding: 7px;
+    font-size: 10px;
+  }
+  .forge-toolbar select {
+    max-width: 185px;
+  }
+  .health-hud {
+    top: 152px;
+  }
+  .encounter-hud {
+    top: 216px;
+  }
+  .pause-banner {
+    top: 260px;
+  }
+}

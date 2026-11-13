@@ -1,0 +1,40 @@
+name: FORGE unified product
+on:
+  push:
+    branches: ['integration/wave2']
+  pull_request:
+    paths: ['apps/**', 'packages/**', 'scripts/forge*', 'package*.json', 'tsconfig.json', 'vitest.config.ts', '.github/workflows/forge.yml']
+permissions:
+  contents: read
+jobs:
+  integrated:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.1'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+      - run: npm run test:host
+      - if: runner.os == 'Linux'
+        run: npx playwright install --with-deps chromium
+      - if: runner.os == 'Linux'
+        run: npm run test:browser:ci
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: forge-${{ runner.os }}
+          path: |
+            output/playwright/forge/*-results.json
+            output/playwright/forge/*-trace.zip
+            output/playwright/forge/*-failure.png
+            output/playwright/forge-host-lifecycle/**/report.json
+          retention-days: 7
+          if-no-files-found: ignore

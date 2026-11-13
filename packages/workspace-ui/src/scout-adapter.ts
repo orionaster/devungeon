@@ -50,14 +50,24 @@ export const scoutStatusSchema = z.object({
     agent: z.array(z.string()),
     project: z.array(z.string()),
   }),
+  warnings: z.array(z.string()).default([]),
 });
 type RecordEnvelope = z.infer<typeof scoutRecordSchema>;
+
+/** Additional host projections observe the same validated connection. They do
+ * not open another stream, receive credentials or gain command capabilities. */
+export interface ScoutStreamObserver {
+  onStatus?: (status: z.infer<typeof scoutStatusSchema>) => void;
+  onRecord?: (record: RecordEnvelope) => void;
+  onSnapshot?: (notice: { revision: string }) => void;
+}
 
 /** Observe-only SCOUT projection. Capability presence in an event never grants commands. */
 export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
   private state: WorkspaceSnapshot;
   private listeners = new Set<() => void>();
   private records = new Map<string, RecordEnvelope>();
+  private idempotency = new Map<string, string>();
   private latest = new Map<string, RecordEnvelope>();
   private epoch?: string;
   private cursor = 0;
@@ -72,7 +82,7 @@ export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
         mode: "replay",
         connected: false,
         observed_at: new Date(0).toISOString(),
-        source: "SCOUT · 只读事件观察 · 尚未连接",
+        source: "SCOUT · observe_events · DISCONNECTED · not_connected",
         agents: [],
         tasks: [],
         events: [],
@@ -105,6 +115,7 @@ export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
     const epochChanged = !!this.epoch && status.epoch !== this.epoch;
     if (epochChanged) {
       this.records.clear();
+      this.idempotency.clear();
       this.latest.clear();
       this.cursor = 0;
       this.update({
@@ -121,7 +132,7 @@ export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
     this.update({
       connected: agent.mode !== "DISCONNECTED",
       stale: agent.mode === "STALE",
-      source: `SCOUT · 只读 Agent 事件 · ${agent.mode} · ${agent.reason}`,
+      source: `SCOUT · observe_events · ${agent.mode} · ${agent.reason}`,
       observed_at: agent.last_success_at ?? this.state.observed_at,
     });
     return epochChanged;
@@ -140,14 +151,21 @@ export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
     if (existing) {
       if (JSON.stringify(existing.event) !== JSON.stringify(event))
         throw new Error("相同事件 ID 内容冲突。");
-      return false;
+      // A fresh connection can replay an already seen event. Downgrade its
+      // delivery mode so cached LIVE activity is never relabeled as current.
+      // Repeated deliveries cannot promote history back into LIVE work.
+      if (record.mode !== "REPLAY" || existing.mode === "REPLAY") return false;
+    } else {
+      if (record.cursor <= this.cursor)
+        throw new Error("未知事件的游标发生倒退。请重新连接并回放。");
+      if (this.idempotency.has(event.idempotency_key))
+        throw new Error("相同幂等键对应不同事件 ID，已拒绝。");
+      if (this.records.size >= 10000)
+        throw new Error("事件容量已满，请重新建立投影。");
+      this.cursor = record.cursor;
     }
-    if (record.cursor <= this.cursor)
-      throw new Error("未知事件的游标发生倒退。请重新连接并回放。");
-    if (this.records.size >= 10000)
-      throw new Error("事件容量已满，请重新建立投影。");
-    this.cursor = record.cursor;
     this.records.set(event.event_id, record);
+    this.idempotency.set(event.idempotency_key, event.event_id);
     // GitHub issue/PR activity must not manufacture Agent characters.
     if (event.source_kind !== "agent") return false;
     const previous = this.latest.get(event.agent_id);
@@ -161,7 +179,7 @@ export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
     );
     const agents: Agent[] = [...this.latest.values()].map((item) => ({
       id: item.event.agent_id,
-      name: this.roster[item.event.agent_id]?.name ?? "观察到的 Agent",
+      name: this.roster[item.event.agent_id]?.name ?? item.event.agent_id,
       is_demo: item.event.is_demo,
       mode: item.mode.toLowerCase() as Agent["mode"],
       role: this.roster[item.event.agent_id]?.role ?? "unknown",
@@ -193,6 +211,7 @@ export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
         status: "unknown" as const,
         detail:
           "仅观察到此任务关联，任务完成度未知。工具结束不等于任务结束或项目验收。",
+        display_kind: "scout-observation" as const,
         evidence: [
           { label: "原始活动来源", ref: latest.source_ref!, verified: false },
         ],
@@ -237,7 +256,7 @@ export class ScoutWorkspaceAdapter implements WorkspaceAdapter {
   disconnect() {
     this.update({
       connected: false,
-      source: "SCOUT · 只读事件桥未连接；保留历史记录",
+      source: "SCOUT · observe_events · DISCONNECTED · history_retained",
     });
   }
   send = async (_command: Command): Promise<Receipt> => {
@@ -255,6 +274,7 @@ export function connectScoutStream(
   adapter: ScoutWorkspaceAdapter,
   path = "/v1/stream",
   onError?: (message: string) => void,
+  observer: ScoutStreamObserver = {},
 ): () => void {
   const url = new URL(path, window.location.href);
   if (url.origin !== window.location.origin)
@@ -262,23 +282,36 @@ export function connectScoutStream(
   let stream: EventSource;
   let disposed = false;
   let retry: ReturnType<typeof setTimeout> | undefined;
+  // At most one delayed fresh connection. Closing an EventSource explicitly
+  // disables its native reconnect, so validation failures need this path too.
+  const scheduleReconnect = () => {
+    if (disposed || retry) return;
+    retry = setTimeout(() => {
+      retry = undefined;
+      if (!disposed) stream = open();
+    }, 2000);
+  };
   const open = (): EventSource => {
     const current = new EventSource(url.href);
     const apply =
       (handler: (value: unknown) => unknown) => (message: MessageEvent) => {
-        if (disposed || current !== stream) return;
+        if (disposed || current !== stream || current.readyState === EventSource.CLOSED) return;
         try {
           handler(JSON.parse(message.data));
         } catch {
           adapter.disconnect();
           current.close();
           onError?.("SCOUT 数据校验失败，已关闭连接。");
+          scheduleReconnect();
         }
       };
     current.addEventListener(
       "status",
       apply((value) => {
-        if (adapter.ingestStatus(value)) {
+        const status = scoutStatusSchema.parse(value);
+        const changed = adapter.ingestStatus(status);
+        observer.onStatus?.(status);
+        if (changed) {
           // A new journal epoch requires replay from zero, not an old Last-Event-ID.
           clearTimeout(retry);
           retry = undefined;
@@ -289,7 +322,17 @@ export function connectScoutStream(
     );
     current.addEventListener(
       "record",
-      apply((value) => adapter.ingestRecord(value)),
+      apply((value) => {
+        const record = scoutRecordSchema.parse(value);
+        adapter.ingestRecord(record);
+        observer.onRecord?.(record);
+      }),
+    );
+    current.addEventListener(
+      "snapshot",
+      apply((value) => {
+        observer.onSnapshot?.(z.object({ revision: z.string().min(1) }).parse(value));
+      }),
     );
     current.onerror = () => {
       if (disposed || current !== stream) return;
@@ -297,11 +340,7 @@ export function connectScoutStream(
       onError?.("SCOUT 事件流断开；正在等待重连。");
       // Ordinary network drops retain native cursor resume. A terminal HTTP error
       // (e.g. cursor-ahead after a journal change) needs a fresh connection.
-      if (current.readyState === EventSource.CLOSED && !retry)
-        retry = setTimeout(() => {
-          retry = undefined;
-          if (!disposed) stream = open();
-        }, 2000);
+      if (current.readyState === EventSource.CLOSED) scheduleReconnect();
     };
     return current;
   };

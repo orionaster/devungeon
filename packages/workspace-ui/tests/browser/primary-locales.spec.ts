@@ -5,12 +5,24 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
   page,
 }) => {
   await page.goto(process.env.PRIMARY_APP_URL ?? "/?source=game");
+  await page.getByTestId("forge-project-select").selectOption("workbench");
+  await page.waitForFunction(() => {
+    const scene = window.__DEVUNGEON__?.scene();
+    const work = window.__DEVUNGEON_WORKSPACE__?.snapshot();
+    return !!work?.agents.some((agent) => agent.role === "supervisor") &&
+      scene?.project_context?.project_id === work.project_id &&
+      window.__DEVUNGEON__?.snapshot()?.phase === "ready";
+  });
+  const supervisor = await page.evaluate(() =>
+    window.__DEVUNGEON_WORKSPACE__!.snapshot().agents.find((agent) => agent.role === "supervisor")!,
+  );
+  const lockedRoom = await page.evaluate(() => window.__DEVUNGEON__!.scene().rooms.find((room) => !room.enterable)!);
   const entry = page
     .getByRole("group", { name: "界面语言 / Interface language" })
     .first();
   await expect(page.getByRole("button", { name: "进入地牢" })).toBeVisible();
   await page.screenshot({
-    path: "output/playwright/primary-entry-zh.png",
+    path: "output/playwright/forge-primary-entry-zh.png",
     fullPage: true,
   });
   await entry.getByRole("button", { name: "English", exact: true }).click();
@@ -18,18 +30,22 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
     page.getByRole("button", { name: "Enter the dungeon" }),
   ).toBeVisible();
   await page.screenshot({
-    path: "output/playwright/primary-entry-en.png",
+    path: "output/playwright/forge-primary-entry-en.png",
     fullPage: true,
   });
   await page.getByRole("button", { name: "Enter the dungeon" }).click();
   await page.waitForFunction(
     () => window.__DEVUNGEON__?.snapshot()?.phase === "playing",
   );
+  await page.locator(".game-surface").focus();
+  const initialZ = await page.evaluate(() => window.__DEVUNGEON__!.snapshot()!.player.z);
   await page.keyboard.down("KeyW");
-  await page.waitForFunction(
-    () => (window.__DEVUNGEON__!.snapshot()?.player.z ?? 1) < -0.2,
-  );
-  await page.keyboard.up("KeyW");
+  try {
+    await page.waitForFunction(
+      (z) => window.__DEVUNGEON__!.snapshot()!.player.z < z - 0.25,
+      initialZ,
+    );
+  } finally { await page.keyboard.up("KeyW"); }
   await page.keyboard.press("KeyJ");
   await expect
     .poll(() =>
@@ -39,7 +55,7 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
   await entry.getByRole("button", { name: "中文", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
   await page.screenshot({
-    path: "output/playwright/primary-hud-zh.png",
+    path: "output/playwright/forge-primary-hud-zh.png",
     fullPage: true,
   });
   const before = await page.evaluate(() => window.__DEVUNGEON__!.snapshot()!);
@@ -51,13 +67,15 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
   expect(after.time).toBeGreaterThanOrEqual(before.time);
   expect(Math.abs(after.player.z - before.player.z)).toBeLessThan(0.05);
   await page.screenshot({
-    path: "output/playwright/primary-hud-en.png",
+    path: "output/playwright/forge-primary-hud-en.png",
     fullPage: true,
   });
-  await page.getByRole("button", { name: /Lumen/ }).click();
+  if (await page.locator(".journal-toggle").getAttribute("aria-expanded") === "false")
+    await page.locator(".journal-toggle").click();
+  await page.locator(".agent-row").filter({ hasText: supervisor.name }).click();
   const panel = page.getByRole("dialog");
   await expect(
-    panel.getByRole("heading", { name: "Lumen", exact: true }),
+    panel.getByRole("heading", { name: supervisor.name, exact: true }),
   ).toBeVisible();
   await panel
     .getByRole("combobox", { name: "Choose action" })
@@ -75,12 +93,12 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
     .toBe(1);
   await panel.getByRole("button", { name: /^Permissions/ }).click();
   await page.screenshot({
-    path: "output/playwright/primary-approval-en.png",
+    path: "output/playwright/forge-primary-approval-en.png",
     fullPage: true,
   });
   await panel.getByRole("button", { name: "Chat", exact: true }).click();
   await page.screenshot({
-    path: "output/playwright/primary-workspace-en.png",
+    path: "output/playwright/forge-primary-workspace-en.png",
     fullPage: true,
   });
   const work = await page.evaluate(() => {
@@ -111,12 +129,12 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
     }),
   ).toEqual(work);
   await page.screenshot({
-    path: "output/playwright/primary-workspace-zh.png",
+    path: "output/playwright/forge-primary-workspace-zh.png",
     fullPage: true,
   });
   await panel.getByRole("button", { name: /^权限/ }).click();
   await page.screenshot({
-    path: "output/playwright/primary-approval-zh.png",
+    path: "output/playwright/forge-primary-approval-zh.png",
     fullPage: true,
   });
   await panel.getByRole("button", { name: "返回游戏世界" }).focus();
@@ -136,11 +154,14 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
     .poll(() => page.evaluate(() => window.__DEVUNGEON__!.snapshot()!.player.x))
     .toBeGreaterThan(x + 0.25);
   await page.keyboard.up("KeyD");
-  await page.getByRole("button", { name: /未竟秘库/ }).click();
+  if (await page.locator(".journal-toggle").getAttribute("aria-expanded") === "false")
+    await page.locator(".journal-toggle").click();
+  await page.locator(".vault-link").click();
   const room = page.getByRole("dialog");
-  await expect(room).toContainText("等待项目验收证据");
+  await expect(room.getByRole("heading", { name: lockedRoom.name, exact: true })).toBeVisible();
+  await expect(room).toContainText("镜头预览不会授予玩家进入权限。");
   await page.screenshot({
-    path: "output/playwright/primary-locked-room-zh.png",
+    path: "output/playwright/forge-primary-locked-room-zh.png",
     fullPage: true,
   });
   const access = await page.evaluate(() => window.__DEVUNGEON__!.access());
@@ -151,7 +172,8 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
     .getByRole("group", { name: "界面语言 / Interface language" })
     .getByRole("button", { name: "English", exact: true })
     .click();
-  await expect(room).toContainText("The Unwritten Vault");
+  // Canonical feature names remain original source text in either UI locale.
+  await expect(room.getByRole("heading", { name: lockedRoom.name, exact: true })).toBeVisible();
   await expect(room).toContainText("Camera preview grants no player access.");
   expect(await page.evaluate(() => window.__DEVUNGEON__!.access())).toEqual(
     access,
@@ -160,7 +182,7 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
     roomPaused,
   );
   await page.screenshot({
-    path: "output/playwright/primary-locked-room-en.png",
+    path: "output/playwright/forge-primary-locked-room-en.png",
     fullPage: true,
   });
 });

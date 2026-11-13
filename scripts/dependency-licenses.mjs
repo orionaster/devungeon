@@ -55,7 +55,7 @@ for (const [key, p] of Object.entries(lock.packages)) {
 }
 rows.sort((a, b) => a.name.localeCompare(b.name));
 fs.writeFileSync(
-  "docs/HERO_LICENSES.json",
+  "docs/DEPENDENCY_LICENSES.json",
   JSON.stringify(
     { lockfileVersion: lock.lockfileVersion, packages: rows },
     null,

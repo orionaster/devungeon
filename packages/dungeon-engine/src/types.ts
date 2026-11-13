@@ -27,7 +27,7 @@ export interface SceneAgent extends Vec2 {
   role: "builder" | "scout" | "wizard";
   room_id: string;
   visual_only?: boolean;
-  source_role?: "supervisor" | "worker" | "reviewer";
+  source_role?: "supervisor" | "worker" | "reviewer" | "unknown";
   is_demo?: boolean;
 }
 export interface SceneDefinition {

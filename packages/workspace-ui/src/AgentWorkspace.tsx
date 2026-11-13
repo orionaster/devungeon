@@ -399,7 +399,8 @@ export function AgentWorkspace({
                         )}
                         <h3>{taskCopy(task, isDemo, t).title}</h3>
                         <p>{taskCopy(task, isDemo, t).detail}</p>
-                        {taskCopy(task, isDemo, t).localized &&
+                        {isDemo && taskCopy(task, isDemo, t).localized &&
+                          task.display_kind !== "scout-observation" &&
                           locale !== "zh-CN" && (
                             <details>
                               <summary>{t("common.originalDemo")}</summary>
@@ -410,9 +411,12 @@ export function AgentWorkspace({
                         {task.evidence.length ? (
                           task.evidence.map((evidence) => (
                             <div className="dw-evidence" key={evidence.ref}>
-                              <small>{t("common.original")}</small>
+                              {task.display_kind !== "scout-observation" && (
+                                <small>{t("common.original")}</small>
+                              )}
                               <span>
-                                ↳ {evidence.label} ·{" "}
+                                ↳ {task.display_kind === "scout-observation"
+                                  ? t("scout.task.activityEvidence") : evidence.label} ·{" "}
                                 {evidence.verified
                                   ? t("workspace.sourceVerified")
                                   : t("workspace.notVerified")}

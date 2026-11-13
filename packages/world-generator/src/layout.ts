@@ -1,6 +1,6 @@
 import { Path } from 'rot-js';
 import { Ajv2020 } from 'ajv/dist/2020.js';
-import type { Bounds, DesignerProposal, PathReservation, Placement, Point, ProjectGraph, RoomReservation, SavedLayout } from './types.js';
+import type { Bounds, DesignerProposal, Placement, Point, ProjectGraph, RoomReservation, SavedLayout } from './types.js';
 import { byId, cells, compare, DEFAULT_BOUNDS, edgeId, GENERATOR_VERSION, hash, inBounds, inside, key, MAX_PATH_TILES, MAX_ROOMS, porch, PREFABS, requireThat, samePoint } from './util.js';
 
 const integer = { type: 'integer' };

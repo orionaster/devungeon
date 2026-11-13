@@ -4,25 +4,24 @@
 
 Devungeon is an **open-source, project-adaptive playable game world + AI-agent workspace**. The engine aims to interpret a software product's structure and design language, suggest different world forms and game mechanics, and let the creator choose. **Our first working reference is an original 2.5D top-down pixel dungeon**, but other projects need not become dungeons.
 
-> **This branch: S4 workspace integrated with the committed HERO game, awaiting supervisor review.** Explore, fight, select a companion and use the in-world DEMO chat/task/approval workspace. A separate 3D observation entry consumes real read-only SCOUT events with source evidence. Real AI chat/command execution is not connected yet; this is not the complete V1. See [S4 evidence and open items](packages/workspace-ui/VALIDATION.md).
+> **FORGE integration, awaiting review:** one app combines HERO combat, BUILDER's two project maps, SCOUT's public Devungeon observations and WIZARD's bilingual in-world workspace. Real model chat/commands remain unavailable; synthetic interactions are labeled DEMO. This is the first pixel-dungeon pack, not the complete multi-world V1. See [integration and actual verification](docs/FORGE_INTEGRATION.md).
 
 ## Play locally
 
-Node24.13+ and npm are recommended for the combined game/workspace and optional SCOUT integration:
+Use Node 24.13+ and npm on Windows, Linux or macOS:
 
 ```powershell
 npm ci --ignore-scripts
 npm run dev
 ```
 
-Open http://127.0.0.1:5173. WASD moves, J attacks, Space dodges, Q/R rotate90°, wheel zooms, E inspects nearby companions, P pauses local combat. Use the header's guide for all controls. No account, paid service or API keys required.
+Open http://127.0.0.1:5173. The same command starts a loopback-only read-only bridge for the explicitly selected public `orionaster/devungeon` repository. No account, paid service, API keys or provider process is used. First startup is Chinese; switch to English in the header without reloading.
 
-NPC click/E opens the WIZARD workspace. Simulated messages, dispatch, evidence and approvals share the same character IDs and event projection. Closing the sheet resumes the same game run; game death/restart never approves or cancels work. [Independent workbench and SCOUT 3D observation instructions](packages/workspace-ui/README.md).
+Choose Tiny landing page (3 features / 2 dependencies), Agent workbench (8 / 9), or public Devungeon in the project selector. The first two are synthetic DEMO fixtures; **Extend map · DEMO** appends a sealed feature while retaining old room/corridor positions. Switching project or applying a new map restarts only the local encounter. Public facts update immediately; changed maps are staged until explicitly applied. Public Issues/PRs are observed work items, not inferred accepted capabilities. All unaccepted project rooms remain locked; a separate game-only foyer encounter is still playable.
 
-`npm test` runs engine checks; `npm run build` creates the production app, and `npm run preview -- --port 5174` serves it locally. See [actual validation and limitations](docs/HERO_VALIDATION.md), [scene/workbench contract](docs/HERO_INTEGRATION.md), and [locked dependency/license review](docs/HERO_DEPENDENCIES.md). Browser screenshots and measured results are in [output/playwright](output/playwright/). Gameplay victory never changes project acceptance.
-> **Integration status:** first-wave PRs #6–#9 remain subject to supervisor review. This feature branch is runnable; there is not yet a fully integrated multi-world application. The optional world-choice schema and synthetic proposals do not implement another game mode.
+WASD moves, J attacks, Space dodges, Q/R rotate 90°, wheel zooms, E inspects a nearby companion, P pauses local combat. Click a visible Agent or its party row to open the workspace, including visual-only markers in locked rooms. DEMO supports local simulated chat/tasks/approval exercises. Public observers support inspection only; no live model command channel is enabled. Death, restart and pause never cancel Agent work, approve actions or change project acceptance.
 
-> **SCOUT branch:** public GitHub import, a scoped local metadata observer, local SSE/history and a browser event inspector are implemented. See [SCOUT verification](docs/SCOUT-VALIDATION.md) and [consumer interfaces](docs/SCOUT-INTEGRATION.md). These renderer-neutral sources remain compatible with ADR-0002. **This slice does not establish a playable multi-world platform or Claude/Codex/Crew provider subscription.**
+`npm run check`, `npm test` and `npm run build` check the complete integration. `npm run preview` serves the production app with the same local bridge. Set `DEVUNGEON_PORT` / `DEVUNGEON_SCOUT_PORT` to avoid occupied ports. Ctrl+C stops the owned processes; local public journals live in ignored `.devungeon-scout/forge`. Browser reproduction, source observer opt-in, evidence and remaining limits are in [FORGE_INTEGRATION.md](docs/FORGE_INTEGRATION.md). The canonical install is the root `package-lock.json`; React and React DOM are deduplicated. The old per-package records document first-wave standalone contributions.
 
 ## The idea
 
