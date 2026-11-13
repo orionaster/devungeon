@@ -1,0 +1,146 @@
+{
+  "worldId": "[\"synthetic-site\",\"demo-1\"]",
+  "project_context": {
+    "project_id": "synthetic-site",
+    "project_revision": "demo-1",
+    "observed_at": "2026-11-13T00:00:00Z",
+    "source": {
+      "kind": "synthetic",
+      "is_demo": true
+    }
+  },
+  "doors": [
+    {
+      "room_id": "contact",
+      "x": 18.5,
+      "z": 5.5,
+      "axis": "x",
+      "locked": true
+    },
+    {
+      "room_id": "hero",
+      "x": 0.5,
+      "z": 5.5,
+      "axis": "x",
+      "locked": false
+    },
+    {
+      "room_id": "launch",
+      "x": 36.5,
+      "z": 4.5,
+      "axis": "x",
+      "locked": true
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "__game_foyer__",
+      "x": -17.5,
+      "z": 0.5,
+      "width": 7,
+      "depth": 7,
+      "name": "Game-only foyer",
+      "enterable": true,
+      "status": "game-only",
+      "reason": "Safe spawn; not a project capability."
+    },
+    {
+      "room_id": "contact",
+      "x": 18.5,
+      "z": 0.5,
+      "width": 9,
+      "depth": 9,
+      "name": "Contact CTA",
+      "enterable": false,
+      "status": "active",
+      "reason": "Project status is active; player entry requires accepted."
+    },
+    {
+      "room_id": "hero",
+      "x": 0.5,
+      "z": 0.5,
+      "width": 9,
+      "depth": 9,
+      "name": "Hero section",
+      "enterable": true,
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "room_id": "launch",
+      "x": 36.5,
+      "z": 0.5,
+      "width": 7,
+      "depth": 7,
+      "name": "Publish website",
+      "enterable": false,
+      "status": "planned",
+      "reason": "Project status is planned; player entry requires accepted. Unmet dependencies: contact."
+    }
+  ],
+  "corridors": [
+    {
+      "x": -11.5,
+      "z": 5.5,
+      "width": 13,
+      "depth": 1
+    },
+    {
+      "x": 15.5,
+      "z": 6.5,
+      "width": 43,
+      "depth": 1
+    },
+    {
+      "x": -17.5,
+      "z": 4.5,
+      "width": 1,
+      "depth": 3
+    },
+    {
+      "x": -5.5,
+      "z": 6,
+      "width": 1,
+      "depth": 2
+    },
+    {
+      "x": 0.5,
+      "z": 5.5,
+      "width": 1,
+      "depth": 3
+    },
+    {
+      "x": 36.5,
+      "z": 6,
+      "width": 1,
+      "depth": 2
+    }
+  ],
+  "spawn": {
+    "x": -17.5,
+    "z": 0.5
+  },
+  "obstacles": [],
+  "enemies": [
+    {
+      "x": 0.5,
+      "z": 0.5,
+      "id": "[\"encounter\",\"hero\"]",
+      "kind": "slime"
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": "agent-site",
+      "name": "Demo Builder",
+      "room_id": "contact",
+      "x": 18.5,
+      "z": 0.5,
+      "role": "builder",
+      "source_role": "worker",
+      "visual_only": true,
+      "is_demo": true
+    }
+  ],
+  "agent_ids_without_room": []
+}

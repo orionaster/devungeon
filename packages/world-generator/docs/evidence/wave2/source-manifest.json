@@ -1,0 +1,29 @@
+{
+  "source": "Selected actual HERO App, DungeonScene, engine and shared i18n; no copied implementation.",
+  "hero_sources": {
+    "apps/web/src/App.tsx": "f49ec949d96320217479ac2cca29754253ca6f2a26a70c881390dc0fd5e01a4b",
+    "apps/web/src/Scene.tsx": "5da7acbe6827bb192043f33a50ce3231f3ebf70f1f906c006641814a1cae51cc",
+    "apps/web/src/runtime.ts": "295ece4b9247636519f00006aadfd5d467398309f15fc67ae80dbc0fb3fc11dd",
+    "apps/web/src/art.ts": "05b06d97d669c4d06be39dd5bd699dcef342b7d412f5d654fa6c35803fbe9c85",
+    "apps/web/src/style.css": "563578e279a587382284873ff06c8bf2ce5c4fb8eb9ba14e588131c63b13691d",
+    "packages/dungeon-engine/src/types.ts": "b25acb505f8391cd9bbd4d607fce8c56a65151dca34004e9a945beecd0564ba7",
+    "packages/dungeon-engine/src/scene.ts": "2fad8ddaafd29187d0a4c0e2976b6163653605f4cd052d1577cbffe3f2808d6b",
+    "packages/dungeon-engine/src/engine.ts": "fc4bf0cb6bdbbac9bdc9d746b9eea2383da8c5c65ba85e04dbe382daa0f39cfa",
+    "packages/workspace-ui/src/i18n/index.tsx": "8e5fa2339b67a86b6cd92a01a65e5a05a5234ebca9c5f8b51e83a64b8ea949e5",
+    "packages/workspace-ui/src/i18n/core.ts": "0897c3b93821646908cbe4a3781897da3fee4e080cb296a85bdb0f6ed9ef9fe5",
+    "packages/workspace-ui/src/i18n/catalogues.ts": "ece1199638e0f67cdd4e47f3c06e8a7e98b86c8b12d1d2d64c9b4cf316beece7",
+    "packages/workspace-ui/src/i18n/game-catalogue.ts": "84301c47efaf7fc346e64a03c155897d839e6d4fb251f1c3485e678b0eecd7ae",
+    "package-lock.json": "41a36af0ecf2d79c6a19be5560b02adfc3cb1e9172951fc3a71517afc36895ba"
+  },
+  "builder_sources": {
+    "integration/hero-host/main.tsx": "aace9caa92e7582f522ac14d3b74d01dd92d97c8b6ed46d8d75c16698068d634",
+    "src/hero.ts": "41eb49af6c5b1ade824ff8ecad21ae695168b253ee9121a39908eb01ef74ad04",
+    "src/presentation.ts": "81bb573340370b5b95ac0b6ffb2ebab921e86610d1752063bd3e206a5e01a9bc",
+    "src/index.ts": "647cb6b17034fb90085135c651b95a0663298900a11809e40b47f91a5016ebd6"
+  },
+  "artifact_hashes": {
+    "index-89QcbpbD.js": "099ef2cbcd76d6cf1557b418fb4b8e0403bbd22c9dc983dd04c59c4106373390",
+    "index-BqY5c1ad.css": "4a4a89ea8cc97ef110115d062362b305e721c4ead3c1a11e333b5a2243b1dc45",
+    "rapier-Ct8Isipz.js": "e244d575a1a0b1b6e4f94d2bb99397e443af4083d35176dc87cbc0e95210ffab"
+  }
+}

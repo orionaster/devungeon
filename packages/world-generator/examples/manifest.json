@@ -1,0 +1,35 @@
+{
+  "generator_version": "0.1.0",
+  "source": "Bundled synthetic fixtures only; no real project integration.",
+  "worlds": [
+    {
+      "name": "tiny-landing-page",
+      "seed": 1337,
+      "rooms": 3,
+      "zones": 1,
+      "dependencies": 2,
+      "tiles": 546,
+      "colliders": 229,
+      "walkable": 189,
+      "reachable": [
+        "hero"
+      ],
+      "digest": "9d46817abfa058c65fa9b6d862c3013ae39f266288ffb0156fa08d7a62833bed"
+    },
+    {
+      "name": "agent-workbench-synthetic",
+      "seed": 1337,
+      "rooms": 8,
+      "zones": 3,
+      "dependencies": 9,
+      "tiles": 1565,
+      "colliders": 742,
+      "walkable": 457,
+      "reachable": [
+        "goals",
+        "registry"
+      ],
+      "digest": "13a04edebcaf40aeea67a97f06bbc79d94b4408b5a39e77692ecb917f51d0fb1"
+    }
+  ]
+}

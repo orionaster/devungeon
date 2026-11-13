@@ -1,0 +1,76 @@
+{
+  "fixture": "tiny",
+  "actual_host": "HERO App + DungeonScene + Rapier + shared WIZARD I18nProvider",
+  "default_locale": "zh-CN",
+  "locale_round_trip_preserved_full_paused_game": true,
+  "source_layout_unchanged": true,
+  "engine_instance_unchanged": true,
+  "visited_accepted_rooms": [
+    "hero"
+  ],
+  "combat": {
+    "phase": "won",
+    "hp": 84,
+    "stats": {
+      "attacks": 2,
+      "dodges": 0,
+      "hitsTaken": 1,
+      "damageDealt": 55,
+      "blockedMoves": 0
+    }
+  },
+  "locked_door": "contact",
+  "dash_attempts": [
+    {
+      "heading": 0,
+      "player": {
+        "x": 18.476554810085844,
+        "z": 6.405100202136964
+      },
+      "dodges": 1
+    },
+    {
+      "heading": 1,
+      "player": {
+        "x": 18.476554810085844,
+        "z": 6.405099979972874
+      },
+      "dodges": 2
+    },
+    {
+      "heading": 2,
+      "player": {
+        "x": 18.476554810085844,
+        "z": 6.4051002092746785
+      },
+      "dodges": 3
+    },
+    {
+      "heading": 3,
+      "player": {
+        "x": 18.476554810085844,
+        "z": 6.405099987110589
+      },
+      "dodges": 4
+    }
+  ],
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "dpr": 1,
+  "metrics": {
+    "fps": 143.83660162035352,
+    "p95Ms": 7.100000008940697,
+    "worstMs": 79.1000000089407,
+    "frames": 7513,
+    "drawCalls": 43,
+    "triangles": 7156,
+    "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "source_agent_ids": [
+    "agent-site"
+  ],
+  "limitation": "Synthetic project fixtures in the real host. SCOUT live stream / full WIZARD workspace are not exercised by this entry."
+}

@@ -1,0 +1,18 @@
+{
+  "expansion": {
+    "source_id": "synthetic-site",
+    "project_revision": "demo-2",
+    "old_room_ids": [
+      "contact",
+      "hero",
+      "launch"
+    ],
+    "added": [
+      "analytics"
+    ],
+    "old_geometry_and_corridors_unchanged": true,
+    "new_room_locked": true
+  },
+  "invalid_fixture_recovers_to_labeled_tiny": true,
+  "arbitrary_pack_or_plugin_executed": false
+}
