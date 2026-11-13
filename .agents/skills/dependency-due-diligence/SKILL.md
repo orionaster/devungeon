@@ -16,3 +16,6 @@ Read docs/TOOLS_AND_SKILLS.md and docs/ASSET_PROVENANCE.md; identify the actual 
 
 ## Stop condition
 Research ends with a runnable and measured minimal integration or a documented blocker. Don't maintain a huge unused dependency catalog just for appearance.
+
+## Per-world dependency boundary
+Do not mandate the first pixel-dungeon engine/physics/art across all future world types. Only evaluate a second mode's tools when implementing a concrete playable slice. Record plugin permissions, version/licensing and rollback. No user project signal grants permission to auto-install an executable game pack.

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:devungeon:world-experience:v0.1",
+  "title": "Devungeon optional WorldExperience proposal v0.1",
+  "description": "Per-project selection of a world/renderer/gameplay pack; never a source of project acceptance or Agent permissions. Experimental contract, no runtime support implied.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_id",
+    "project_revision",
+    "experience_id",
+    "world_type",
+    "renderer_plugin",
+    "gameplay_plugin",
+    "selection",
+    "runtime_status",
+    "signals"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "experience_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "world_type": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "renderer_plugin": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "gameplay_plugin": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "art_style",
+        "spatial_metaphor"
+      ],
+      "properties": {
+        "art_style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "spatial_metaphor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme_notes": {
+          "type": "string"
+        },
+        "narrative": {
+          "type": "string"
+        }
+      }
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "rationale",
+        "user_confirmed"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "ai-suggested",
+            "user-selected",
+            "fallback"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "user_confirmed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "runtime_status": {
+      "enum": [
+        "proposal-only",
+        "experimental",
+        "verified-playable"
+      ]
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "value",
+          "basis"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "product-goal",
+              "brand-style",
+              "functional-structure",
+              "audience",
+              "creator-preference",
+              "reference",
+              "unknown"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          },
+          "basis": {
+            "enum": [
+              "user-declared",
+              "source-observed",
+              "model-inferred",
+              "synthetic"
+            ]
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

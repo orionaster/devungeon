@@ -4,7 +4,7 @@
 
 ## Scope, decision rule and stop condition
 
-Goal: build a **fun, playable, original 2.5D pixel-art dungeon** with a real project graph and eventually truthful Agent operations in a browser. Choose maintained, well-documented, reasonably lightweight open-source components with compatible licenses. Prefer existing components over custom rendering, physics, asset editors, or observability plumbing, but do **not** depend on a full generic agent framework just to visualize its events.
+Goal: build a **project-adaptive world engine**, starting with a fun, playable, original 2.5D pixel-art dungeon pack, while preserving real project truth and truthful Agent operations. ADR-0002 introduces different world forms and gameplay over time; the game stack below is the **first pack's evaluated tooling**, not an enforced universal engine. Choose maintained, well-documented, reasonably lightweight open-source components with compatible licenses. Prefer existing components over custom rendering, physics, asset editors, or observability plumbing, but do **not** depend on a full generic agent framework just to visualize its events.
 
 Before adding package versions to an app: inspect current release, transitive licenses, security advisories, browser/Windows compatibility, maintenance, bundle size, APIs and actual performance. Pin a lockfile with the first executable vertical slice. Research stops once a workable vertical slice has verified dependencies; do not prolong the search indefinitely.
 
@@ -74,7 +74,8 @@ The [Agent Skills specification](https://agentskills.io/specification) uses dire
 Canonical skills:
 - **pixel-dungeon-visuals** — pixel art, 2.5D rendering and art provenance.
 - **playable-browser-validation** — prove a real playable browser slice instead of a static mock.
-- **project-world-compiler** — stable project graph, deterministic dungeons and incremental migrations.
+- **project-world-compiler** — stable project graph, deterministic first-dungeon adapter and future pack seams.
+- **project-experience-designer** — product-design signals, creator override, experience manifest, world/renderer/gameplay selection.
 - **agent-event-adapters** — truthful event capture, freshness, permissioned controls and safety.
 - **dependency-due-diligence** — compare, license-audit and pin tested dependencies.
 - **in-world-agent-workspace** — safe status, chat, command, audit and approvals.
@@ -112,3 +113,8 @@ These are **newly authored repo skills**, not copies of third-party scripts. No 
 7. In S4 test allowed and denied commands, approvals and disconnect behavior with a real authorized source.
 
 **Review cadence:** revisit chosen package versions, licenses and official API semantics at implementation time or on a relevant major release. Record changed decisions; don't continually chase every trending library.
+
+
+## Project-adaptive experience architecture decision (ADR-0002)
+
+The earlier shortlist remains valid for the **first pixel-dungeon pack** and its current open PRs. Do not automatically install the entire shortlist for every genre. Future world experiences should compare the smallest mature implementation for their actual mechanics (e.g., a city-building renderer, pathfinding/road layout, or a station-navigation package) only when a **concrete second-mode playable slice** is scheduled. Reuse ProjectSnapshot, project ID, Agent event provenance, permissions and localized work panels. Choose independent, versioned and allowlisted world-pack adapters; AI proposals cannot install new code or assets. Cite docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md.
