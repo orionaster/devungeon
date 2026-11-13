@@ -22,6 +22,8 @@ NPC click/E opens the WIZARD workspace. Simulated messages, dispatch, evidence a
 `npm test` runs engine checks; `npm run build` creates the production app, and `npm run preview -- --port 5174` serves it locally. See [actual validation and limitations](docs/HERO_VALIDATION.md), [scene/workbench contract](docs/HERO_INTEGRATION.md), and [locked dependency/license review](docs/HERO_DEPENDENCIES.md). Browser screenshots and measured results are in [output/playwright](output/playwright/). Gameplay victory never changes project acceptance.
 > **Integration status:** first-wave PRs #6–#9 remain subject to supervisor review. This feature branch is runnable; there is not yet a fully integrated multi-world application. The optional world-choice schema and synthetic proposals do not implement another game mode.
 
+> **SCOUT branch:** public GitHub import, a scoped local metadata observer, local SSE/history and a browser event inspector are implemented. See [SCOUT verification](docs/SCOUT-VALIDATION.md) and [consumer interfaces](docs/SCOUT-INTEGRATION.md). These renderer-neutral sources remain compatible with ADR-0002. **This slice does not establish a playable multi-world platform or Claude/Codex/Crew provider subscription.**
+
 ## The idea
 
 - **Explore your project**: an AI World Designer suggests a suitable game world based on product/design signals and real project structures; you can override it. Available world packs compile that truth into an explorable world.

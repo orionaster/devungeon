@@ -1,0 +1,63 @@
+{
+  "verified_at": "2026-11-13T16:24:58.088Z",
+  "host": "http://127.0.0.1:4178",
+  "bridge": "http://127.0.0.1:4318",
+  "project_id": "github:orionaster/devungeon",
+  "source": {
+    "kind": "github",
+    "is_demo": false,
+    "reference": "https://github.com/orionaster/devungeon"
+  },
+  "source_revision": "c8b96438774a1425fd92f6469cb0b41f7c717fbd83e9f30b1d33dbd5681635bd",
+  "source_observed_at": "2026-11-13T16:24:19.058Z",
+  "rooms": 14,
+  "records": 18,
+  "agent_records": 2,
+  "original_title": "Integration wave 2 · Unified playable world + real observability + bilingual UI",
+  "checks": [
+    "exact snapshot preserved through same-origin host",
+    "read-only command and source-selection denials",
+    "direct bridge foreign Origin still denied",
+    "resume through host preserves cursor, REPLAY and exact event",
+    "project facts are separate from Agent observations",
+    "no accepted inferred"
+  ],
+  "evidence": [
+    {
+      "schema_version": "1.0",
+      "event_id": "scout-local:828241b8d423e917154cb3bf39ef3e19d618ff46fe82cd7c4fd8b4e5afad273c",
+      "idempotency_key": "scout-local:828241b8d423e917154cb3bf39ef3e19d618ff46fe82cd7c4fd8b4e5afad273c",
+      "project_id": "github:orionaster/devungeon",
+      "task_id": "github:issue:6374094819",
+      "agent_id": "scout-local:80b8cc4aa13dbe2be12d14d3",
+      "event_type": "tool_call",
+      "status": "working",
+      "occurred_at": "2026-11-13T16:22:10.030Z",
+      "observed_at": "2026-11-13T16:22:10.805Z",
+      "source": "scout-local",
+      "source_kind": "agent",
+      "source_ref": "local:metadata:scout-local:828241b8d423e917154cb3bf39ef3e19d618ff46fe82cd7c4fd8b4e5afad273c",
+      "is_demo": false,
+      "message": "scout-local observed tool_start. This is activity evidence, not product acceptance.",
+      "room_id": "github:issue:6374094819"
+    },
+    {
+      "schema_version": "1.0",
+      "event_id": "scout-local:d55a2d8407503c9dd3a64118bcfe61589b2df505eb492c5412e4fdc2998e9b11",
+      "idempotency_key": "scout-local:d55a2d8407503c9dd3a64118bcfe61589b2df505eb492c5412e4fdc2998e9b11",
+      "project_id": "github:orionaster/devungeon",
+      "task_id": "github:issue:6374094819",
+      "agent_id": "scout-local:80b8cc4aa13dbe2be12d14d3",
+      "event_type": "completed",
+      "status": "idle",
+      "occurred_at": "2026-11-13T16:22:10.062Z",
+      "observed_at": "2026-11-13T16:22:10.805Z",
+      "source": "scout-local",
+      "source_kind": "agent",
+      "source_ref": "https://github.com/orionaster/devungeon/commit/566c6531b9b579f26d96fb4c5966b8c6ec20d10a",
+      "is_demo": false,
+      "message": "scout-local observed tool_end. This is activity evidence, not product acceptance.",
+      "room_id": "github:issue:6374094819"
+    }
+  ]
+}

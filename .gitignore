@@ -16,3 +16,4 @@ output/playwright/browser-result.txt
 output/playwright/production-result.txt
 output/playwright/input-result.txt
 output/clean-checkout/
+.devungeon-scout/
