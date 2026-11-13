@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { compileWorld, createNavigator, toHeroScene } from '../dist/index.js';
 const hero = resolve(process.argv[2] ?? '../hero');
-const { Dungeon, validateScene, geometry, isWalkable } = await import(pathToFileURL(resolve(hero, 'packages/dungeon-engine/src/index.ts')).href);
+const { Dungeon, validateScene, geometry, isWalkable, visibleDoorSeals } = await import(pathToFileURL(resolve(hero, 'packages/dungeon-engine/src/index.ts')).href);
 const reports = [];
 const input = { moveX: 0, moveZ: 0, attack: false, dodge: false };
 for (const name of ['tiny-landing-page', 'agent-workbench-synthetic']) {
@@ -16,6 +16,14 @@ for (const name of ['tiny-landing-page', 'agent-workbench-synthetic']) {
   const result = compileWorld(snapshot, { seed: 1337 }); assert(result.ok);
   const world = result.world, scene = toHeroScene(world), nav = createNavigator(world.scene);
   validateScene(scene);
+  assert.equal(typeof visibleDoorSeals, 'function', 'HERO must implement the explicit-door contract');
+  assert.deepEqual(visibleDoorSeals(scene), scene.doors.filter(d => d.locked), 'Visible gate locations differ from the compiler doors');
+  const withAgents = toHeroScene(world, { includeAgents: true }); validateScene(withAgents);
+  assert.deepEqual(withAgents.agents.map(a => a.agent_id), world.graph.agents.filter(a => a.room_id !== undefined).map(a => a.id));
+  for (const a of withAgents.agents) {
+    assert(a.visual_only && a.room_id === world.graph.agents.find(s => s.id === a.agent_id).room_id);
+    if (!scene.rooms.find(r => r.room_id === a.room_id).enterable) assert(!isWalkable(withAgents, a), 'An Agent marker opened a locked room');
+  }
   for (const p of world.scene.navigation.walkable) assert(isWalkable(scene, { x: p.x + .5, z: p.z + .5 }, .28), `HERO rejects walkable tile ${JSON.stringify(p)}`);
   for (const r of world.scene.rooms.filter(r => !r.lock.enterable)) assert(!isWalkable(scene, { x: r.x + .5, z: r.z + .5 }), 'Locked center became walkable');
   const expectedTiles = new Set([
@@ -64,7 +72,7 @@ for (const name of ['tiny-landing-page', 'agent-workbench-synthetic']) {
   assert.deepEqual(after.world.graph, world.graph, 'Combat changed project truth');
   assert.deepEqual(after.world.scene.doors, world.scene.doors, 'Combat unlocked a real feature');
   const combatStats = combat.snapshot().stats; combat.dispose();
-  reports.push({ name, scene_validated: true, exact_floor_raster: true, physics_steps: steps, visited_accepted_rooms: world.scene.navigation.reachable_room_ids, locked_doors_tested: world.scene.doors.filter(d => d.locked).map(d => d.room_id), combat_phase: 'won', combat_stats: combatStats, source_unchanged: true });
+  reports.push({ name, scene_validated: true, exact_floor_raster: true, explicit_visible_doors: true, source_agent_ids_preserved: true, physics_steps: steps, visited_accepted_rooms: world.scene.navigation.reachable_room_ids, locked_doors_tested: world.scene.doors.filter(d => d.locked).map(d => d.room_id), combat_phase: 'won', combat_stats: combatStats, source_unchanged: true });
 }
 const stressSnapshot = { schema_version: '1.0', project: { id: 'long-test', name: 'Synthetic long corridors', source: { kind: 'synthetic', is_demo: true } }, revision: 'demo-1', observed_at: '2026-11-13T00:00:00Z', zones: [{ id: 'z', name: 'Zone' }], agents: [], rooms: Array.from({ length: 32 }, (_, i) => ({ id: `r${i}`, name: `Feature ${i}`, zone_id: 'z', status: 'accepted', depends_on: [], evidence: [{ type: 'test', ref: `synthetic:${i}`, verification: 'synthetic' }], acceptance_criteria: ['Synthetic criterion'] })) };
 const stress = compileWorld(stressSnapshot, { seed: 1337 }); assert(stress.ok);

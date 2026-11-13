@@ -6,7 +6,18 @@ import { GENERATOR_VERSION, GenerationError, requireThat } from './util.js';
 export type * from './types.js';
 export { createNavigator } from './navigation.js';
 export { toHeroScene, type HeroScene } from './hero.js';
+export { WORLD_MESSAGE_KEYS, describeWorld, describeHeroRooms, describeDiagnostic, statusMessage, lockMessages, renderWorldMessage, renderWorldName } from './presentation.js';
+export type { WorldMessageKey, WorldMessage, WorldName, WorldDisplay, WorldRoomDisplay, WorldTranslator } from './presentation.js';
 export { GENERATOR_VERSION } from './util.js';
+
+/** Validated world-neutral facts port. Does not choose a pack or build a map. */
+export function compileProjectGraph(input: unknown): { ok: true; graph: ProjectGraph } | { ok: false; diagnostics: import('./types.js').Diagnostic[] } {
+  try { return { ok: true, graph: buildGraph(readSnapshot(input)) }; }
+  catch (error) {
+    if (error instanceof GenerationError) return { ok: false, diagnostics: [error.diagnostic()] };
+    throw error;
+  }
+}
 
 /** No I/O, clock, global RNG, game state or acceptance-write capability. */
 export function compileWorld(input: unknown, options: CompileOptions): CompileResult {

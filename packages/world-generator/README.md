@@ -1,9 +1,11 @@
 # @devungeon/world-generator
 
-Runnable S2 project-to-world compiler. It turns the two bundled **synthetic**
+Runnable S2 compiler for the **first pixel-dungeon world pack**. It turns the two bundled **synthetic**
 projects into different navigable dungeons, with deterministic generation and
 persistent incremental expansion. It does not connect to a live repository or
 write project acceptance. HERO supplies the actual 2.5D renderer/combat engine.
+The validated `compileProjectGraph` facts port is independent of this pack.
+ADR-0002's second gameplay mode and experience selector are not implemented here.
 
 From a checkout of this branch, on Node 24:
 
@@ -20,6 +22,10 @@ Open [the local navigation harness](http://127.0.0.1:4274). WASD/arrows move, Sh
 dashes, Q/E rotates by 90°, R respawns. Choose either fixture, inspect locked rooms,
 add a module, or regress the foundation. The **2D diagnostic harness** is explicitly
 DEMO; it is not the HERO 2.5D game or a live Agent integration.
+This older developer diagnostic retains English technical copy. For the
+Chinese-first game UI and shared locale verification, use the actual HERO
+consumer in the wave-2 section below; do not use the diagnostic as product UX
+acceptance evidence.
 
 ![Two different generated worlds](docs/evidence/complex-navigation.png)
 
@@ -130,3 +136,52 @@ It reads but never edits the HERO checkout. Tests use actual HERO `Dungeon`,
 `geometry`, `validateScene` and Rapier. Its output records hashes of the tested
 engine files, since HERO is developing independently. This check is separate from
 HERO browser rendering and cannot certify sprites/occlusion/manual play quality.
+
+## Integration wave 2 (#12 / #10)
+
+`toHeroScene(world, {includeEnemies:true, includeAgents:true})` carries exact
+door coordinates/orientations, source context and source-ID-preserving visual
+Agent markers. `compileProjectGraph(snapshot)` exposes validated facts without
+choosing a world, seed or locale. `describeWorld`, `describeHeroRooms` and
+`renderWorldMessage(ref,t)` produce display refs for WIZARD's one shared provider.
+They never translate or rewrite original evidence or IDs.
+
+The consumer entry **reuses the actual HERO App, DungeonScene, engine, original
+art and shared provider** through its scene/roomDisplay/sourcePanel props. It
+adds a source selector, not another renderer, combat implementation or locale
+store. It writes only this package's ignored output. The HERO checkout is read
+only; never reinstall dependencies in another Agent's active worktree.
+
+With this package and a compatible HERO checkout installed:
+
+```powershell
+cd C:\Devungeon\builder\packages\world-generator
+npm ci --ignore-scripts
+npm run build
+node scripts/serve-hero-host.mjs --hero C:/Devungeon/hero --build
+node scripts/serve-hero-host.mjs --hero C:/Devungeon/hero --preview
+```
+
+Open [the actual HERO consumer](http://127.0.0.1:4275/?fixture=tiny), or choose
+`?fixture=complex`. Source choices preserve original names; `demo-2` adds the
+analytics module with the saved layout. Gameplay controls and Chinese/English
+UI come from HERO/shared i18n. Locale changes do not recreate the bundle/engine.
+Builds record tested source hashes and reject concurrent source changes. One
+resolved React copy serves the entry, renderer and shared Provider.
+
+Repeat the keyboard proof (the earlier 2D proof is separate):
+
+```powershell
+npx --yes --package @playwright/cli@0.1.24 playwright-cli --session builder-wave2 open http://127.0.0.1:4275/?fixture=tiny
+npx --yes --package @playwright/cli@0.1.24 playwright-cli --session builder-wave2 resize 1440 1000
+npx --yes --package @playwright/cli@0.1.24 playwright-cli --session builder-wave2 snapshot
+npx --yes --package @playwright/cli@0.1.24 playwright-cli --session builder-wave2 run-code --filename scripts/browser-hero-proof.js
+npx --yes --package @playwright/cli@0.1.24 playwright-cli --session builder-wave2 goto http://127.0.0.1:4275/?fixture=complex
+npx --yes --package @playwright/cli@0.1.24 playwright-cli --session builder-wave2 run-code --filename scripts/browser-hero-proof.js
+```
+
+Omitting `--headed` prevents parallel Agent browser checks from stealing OS focus
+and triggering the game's normal blur-pause behavior. Use `--headed` for visual
+review; either mode renders the actual WebGL game. This entry does not exercise
+SCOUT live streams or the full WIZARD workspace; the unified product / human
+acceptance gate remains separate. See [wave-2 validation](docs/WAVE2.md).

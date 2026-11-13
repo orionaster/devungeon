@@ -72,6 +72,8 @@ describe('two canonical synthetic projects', () => {
     for (const name of ['tiny-landing-page', 'agent-workbench-synthetic']) {
       const saved = JSON.parse(readFileSync(new URL(`../examples/${name}.world.json`, import.meta.url), 'utf8'));
       expect(compile(fixture(name))).toEqual(saved);
+      const scene = JSON.parse(readFileSync(new URL(`../examples/${name}.hero-scene.json`, import.meta.url), 'utf8'));
+      expect(toHeroScene(compile(fixture(name)), { includeEnemies: true, includeAgents: true })).toEqual(scene);
     }
   });
 });
