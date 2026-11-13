@@ -28,6 +28,7 @@ import {
   WorkspaceController,
 } from "../src";
 import type { WorkspaceSnapshot } from "../src";
+import { LocaleSwitcher, useI18n } from "../src/i18n";
 import "../src/workspace.css";
 import "./hero-hall.css";
 
@@ -47,6 +48,7 @@ export default function HeroWorkspaceHall({
 }: {
   source?: "demo" | "scout" | "codex";
 }) {
+  const { t } = useI18n();
   const [work, setWork] = useState<Work>();
   const [game, setGame] = useState<GameSnapshot>();
   const [selected, setSelected] = useState<string | null>(null);
@@ -78,18 +80,25 @@ export default function HeroWorkspaceHall({
     const observer =
       source === "scout"
         ? new ScoutWorkspaceAdapter("github:orionaster/devungeon")
-        : source === "codex" ? new CodexTextAdapter() : null;
+        : source === "codex"
+          ? new CodexTextAdapter()
+          : null;
     const workspace: Work = observer
       ? (() => {
           const controller = new WorkspaceController(
             observer,
             source === "codex" ? CODEX_TEXT_REQUESTER : "local-viewer",
-            source === "codex" ? CODEX_TEXT_PROJECT : "github:orionaster/devungeon",
+            source === "codex"
+              ? CODEX_TEXT_PROJECT
+              : "github:orionaster/devungeon",
           );
-          return { controller, dispose: () => {
-            controller.dispose();
-            if (observer instanceof CodexTextAdapter) observer.dispose();
-          } };
+          return {
+            controller,
+            dispose: () => {
+              controller.dispose();
+              if (observer instanceof CodexTextAdapter) observer.dispose();
+            },
+          };
         })()
       : createHeroDemoWorkspace();
     let stopStream = () => {};
@@ -137,11 +146,12 @@ export default function HeroWorkspaceHall({
         // Replay metadata may be observed now. Only fresh LIVE observations or
         // explicit DEMO events are allowed to trigger a working animation.
         if (
-          (source !== "codex" || event.source === "codex-app-server") && (!observer ||
-          (state.connected &&
-            !state.stale &&
-            ((mode === "demo" && event.is_demo) ||
-              (mode === "live" && !event.is_demo && age >= 0 && age < 3000))))
+          (source !== "codex" || event.source === "codex-app-server") &&
+          (!observer ||
+            (state.connected &&
+              !state.stale &&
+              ((mode === "demo" && event.is_demo) ||
+                (mode === "live" && !event.is_demo && age >= 0 && age < 3000))))
         )
           painter.ingest(event);
         projected.add(event.event_id);
@@ -278,7 +288,7 @@ export default function HeroWorkspaceHall({
         ref={surface}
         className="hero-hall-canvas"
         tabIndex={0}
-        aria-label="3D 地牢，WASD 移动，J 攻击，空格闪避，靠近队友按 E 交谈"
+        aria-label={t("heroHall.surface")}
         onPointerDown={() => focus()}
         onWheel={(event) => {
           cameraControl.zoom = Math.max(
@@ -296,55 +306,55 @@ export default function HeroWorkspaceHall({
       <header className="hero-hall-header">
         <div>
           <strong>DEVUNGEON</strong>
-          <span>余烬工坊 · 3D 工作台联调</span>
+          <span>{t("heroHall.subtitle")}</span>
         </div>
         <span className="hero-hall-demo">
-          {source === "scout"
-            ? "DEMO 世界 / SCOUT 只读来源"
-            : source === "codex" ? "DEMO 世界 / Codex 文本试验 · 默认关闭" : "DEMO 世界 / 模拟 Agent"}
+          {t(
+            source === "scout"
+              ? "heroHall.scout"
+              : source === "codex"
+                ? "heroHall.codex"
+                : "heroHall.demo",
+          )}
         </span>
+        <div style={{ pointerEvents: "auto" }}>
+          <LocaleSwitcher />
+        </div>
       </header>
       <section className="hero-hall-intro">
-        <p>HERO 场景 × WIZARD 工作台</p>
-        <h1>队友就在地牢里。</h1>
+        <p>{t("heroHall.eyebrow")}</p>
+        <h1>{t("heroHall.heading")}</h1>
         <p>
-          {source === "codex" ? (
-            <>
-              独立合成会话，每条最多 1000 字，至多两次回复。
-              <br />
-              需主管明确启用；不允许工具、工程文件或任务执行。
-            </>
-          ) : source === "scout" ? (
-            <>
-              走近观察角色，核对真实活动与证据。
-              <br />
-              此连接只读，游戏暂停不影响事件观察。
-            </>
-          ) : (
-            <>
-              走近交谈，交付目标，然后继续冒险。
-              <br />
-              面板打开时暂停本地战斗，后台工作继续。
-            </>
+          {t(
+            source === "codex"
+              ? "heroHall.codexIntro"
+              : source === "scout"
+                ? "heroHall.scoutIntro"
+                : "heroHall.intro",
           )}
         </p>
       </section>
       {work && <Party work={work} select={select} />}
-      <aside className="hero-hall-game" aria-label="独立游戏状态">
-        <span>游戏生命 {game?.player.hp ?? "—"} / 100</span>
+      <aside className="hero-hall-game" aria-label={t("heroHall.gameState")}>
+        <span>{t("heroHall.health", { hp: game?.player.hp ?? "—" })}</span>
         <span>
-          击败 {game?.kills ?? 0} / {game?.total ?? 4}
+          {t("heroHall.kills", {
+            kills: game?.kills ?? 0,
+            total: game?.total ?? 4,
+          })}
         </span>
         <span>
-          {game?.phase === "lost"
-            ? "本次冒险失败"
-            : game?.phase === "won"
-              ? "战斗胜利 · 仅游戏结果"
-              : selected
-                ? "交谈中 · 战斗暂停"
-                : paused
-                  ? "战斗已暂停"
-                  : "自由探索"}
+          {t(
+            game?.phase === "lost"
+              ? "heroHall.lost"
+              : game?.phase === "won"
+                ? "heroHall.won"
+                : selected
+                  ? "heroHall.inspecting"
+                  : paused
+                    ? "heroHall.paused"
+                    : "heroHall.exploring",
+          )}
         </span>
         <button
           onClick={() => {
@@ -353,9 +363,9 @@ export default function HeroWorkspaceHall({
             focus();
           }}
         >
-          {paused ? "继续冒险" : "暂停战斗"}
+          {t(paused ? "heroHall.resume" : "heroHall.pause")}
         </button>
-        <button onClick={restart}>重新开始冒险</button>
+        <button onClick={restart}>{t("heroHall.restart")}</button>
         <button
           onClick={() => {
             cameraControl.mode =
@@ -363,22 +373,28 @@ export default function HeroWorkspaceHall({
             focus();
           }}
         >
-          跟随 / 全览
+          {t("heroHall.camera")}
         </button>
       </aside>
       {error && (
         <p className="hero-hall-error" role="alert">
-          {error}
+          {t("errors.raw")} · {t("common.original")}: {error}
         </p>
       )}
       {connectionError && (
-        <p className="hero-hall-connection-error" role="status">
-          {connectionError} 游戏可继续，来源记录保留。
-        </p>
+        <div className="hero-hall-connection-error" role="status">
+          {t("heroHall.connectionError", { error: t("common.disconnected") })}
+          <details>
+            <summary>
+              {t("errors.raw")} · {t("common.original")}
+            </summary>
+            <span>{connectionError}</span>
+          </details>
+        </div>
       )}
       <footer className="hero-hall-footer">
-        <span>WASD 移动 · J 攻击 · Space 闪避 · Q/R 转向 · E 交谈</span>
-        <span>游戏胜负不验收项目，也不批准或取消工作</span>
+        <span>{t("heroHall.controls")}</span>
+        <span>{t("heroHall.isolation")}</span>
       </footer>
       {work && (
         <AgentWorkspace
@@ -392,41 +408,40 @@ export default function HeroWorkspaceHall({
 }
 
 function Party({ work, select }: { work: Work; select: (id: string) => void }) {
+  const { locale, t } = useI18n();
   const snapshot = useSyncExternalStore(
     work.controller.subscribe,
     work.controller.getSnapshot,
   );
   return (
-    <aside className="hero-hall-party" aria-label="地牢队友">
+    <aside className="hero-hall-party" aria-label={t("heroHall.party")}>
       <h2>
-        工坊里的队友{" "}
+        {t("heroHall.party")}{" "}
         <span>
-          {snapshot.project_id === DEMO_SCENE.worldId ? "DEMO" : snapshot.project_id === CODEX_TEXT_PROJECT ? "文本试验" : "只读来源"}
+          {snapshot.project_id === DEMO_SCENE.worldId
+            ? "DEMO"
+            : t(
+                snapshot.project_id === CODEX_TEXT_PROJECT
+                  ? "heroHall.textTrial"
+                  : "heroHall.readSource",
+              )}
         </span>
       </h2>
-      {snapshot.agents.length === 0 && (
-        <p>尚未收到 Agent 记录；项目工作项不会被绘成 Agent。</p>
-      )}
+      {snapshot.agents.length === 0 && <p>{t("heroHall.noActors")}</p>}
       {snapshot.agents.map((agent) => (
         <button key={agent.id} onClick={() => select(agent.id)}>
           <PixelAgent role={agent.role} />
           <span>
             <strong>{agent.name}</strong>
             <small>
-              {agent.role === "supervisor"
-                ? "主管"
-                : agent.role === "worker"
-                  ? "执行"
-                  : agent.role === "reviewer"
-                    ? "审查"
-                    : "角色未声明"}{" "}
-              · {agentConnectionLabel(snapshot, agent)}
+              {t(`agent.role.${agent.role}`)} ·{" "}
+              {agentConnectionLabel(snapshot, agent, Date.now(), locale)}
             </small>
           </span>
           <span>↗</span>
         </button>
       ))}
-      <p>与地牢中的角色共享 ID、工作事件和面板。</p>
+      <p>{t("heroHall.sharedIds")}</p>
     </aside>
   );
 }

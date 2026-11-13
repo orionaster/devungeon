@@ -1,5 +1,18 @@
 # S4 workspace evidence · 2026-11-13
 
+## Wave 2 update · 2026-11-14 (#12/#10)
+
+Main's ADR-0002, PRD v1.3 and I18N specification are synchronized without discarding the first pixel dungeon. Shared locale contract and outstanding combined gate: [WIZARD-I18N-INTEGRATION.md](../../docs/WIZARD-I18N-INTEGRATION.md).
+
+- Shared typed offline catalogues, Chinese-first provider, local preference, two complete dictionaries and accessible selector; no added package or second React copy. HERO received the independent core commit `4e8fb12` and owns `game.*`; BUILDER and SCOUT share the display/source boundary.
+- **76 workspace/bridge/i18n tests pass**, including 19 locale-core and four presentation/source-integrity checks. Root and package strict builds pass. React/React DOM are deduplicated at 19.3.1. Existing physics chunk warnings remain.
+- Default Windows Chrome regression: **16 browser cases pass, 2 real-SCOUT cases explicitly skip**. Four added cases prove zh-CN → en-US → zh-CN without rewriting draft, approval, receipts, events, tasks, IDs or player state; preference persistence; held-key release and keyboard Space isolation; narrow English layout and default-off native denial. Follow-up source-label/layout changes were checked again in all four locale cases.
+- New screenshots: `i18n-workspace-{zh,en}.png`, `i18n-approval-{zh,en}.png`, `i18n-native-off-en-mobile.png`. Original source/Agent/approval text intentionally keeps its original language and is marked as original. Initial authored DEMO task copy has explicit static translations with original records preserved.
+- The primary game translations, two compiled navigable projects and public SCOUT event in **one primary host** remain a combined HERO/BUILDER/SCOUT/WIZARD gate, followed by Windows fresh-checkout and human acceptance. This local WIZARD regression does not substitute for it. Keep #7 stacked until #9 merges and then retarget/rerun CI.
+- Real Codex/Claude control remains off and is **not** a requirement to unblock this integration wave. No provider account/config, private Crew, external translation service or model quota was used in wave 2. No second gameplay mode, self-merge, force push or public deployment.
+
+The following section records first-wave evidence; its counts are historical, not the current combined acceptance result.
+
 The workspace is integrated into the **actual product App** and a separate 3D SCOUT observation entry. The real AI command execution acceptance item in Issue #4 is still open.
 
 ## Executed locally

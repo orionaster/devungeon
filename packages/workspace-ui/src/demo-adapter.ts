@@ -1,3 +1,4 @@
+import { WorkspaceFault } from "./errors";
 import {
   approvalSchema,
   commandSchema,
@@ -14,7 +15,6 @@ import type {
   WorkspaceAdapter,
   WorkspaceSnapshot,
 } from "./model";
-
 export const DEMO_PROJECT = "synthetic-agents";
 export const DEMO_OWNER = "demo-owner";
 export const DEMO_IDS = ["agent-boss", "agent-build", "agent-review"] as const;
@@ -22,10 +22,13 @@ export interface DemoIdentityFixture {
   project_id: string;
   agents: Record<
     (typeof DEMO_IDS)[number],
-    { id: string; name: string; room_id: string }
+    {
+      id: string;
+      name: string;
+      room_id: string;
+    }
   >;
 }
-
 function initialSnapshot(now: string): WorkspaceSnapshot {
   return snapshotSchema.parse({
     project_id: DEMO_PROJECT,
@@ -141,7 +144,6 @@ function initialSnapshot(now: string): WorkspaceSnapshot {
     approvals: [],
   });
 }
-
 /** Local deterministic simulator. No external executor exists in this class. */
 export class DemoWorkspaceAdapter implements WorkspaceAdapter {
   private state: WorkspaceSnapshot;
@@ -296,7 +298,7 @@ export class DemoWorkspaceAdapter implements WorkspaceAdapter {
     );
     if (previous) {
       if (JSON.stringify(previous.command) !== JSON.stringify(command))
-        throw new Error("同一 command_id 不可用于不同内容。");
+        throw new WorkspaceFault("errors.command.conflict");
       return previous;
     }
     const denied = this.deniedReason(command);
@@ -314,7 +316,7 @@ export class DemoWorkspaceAdapter implements WorkspaceAdapter {
         reason: "发布属于敏感能力。本演练仅生成本地合成回执，不上传、不发布。",
         scope: `项目 ${command.project_id} / Agent ${command.agent_id} / 仅一次 publish / 内容：${command.text}`,
         status: "pending",
-        expires_at: new Date(Date.parse(this.now()) + 300_000).toISOString(),
+        expires_at: new Date(Date.parse(this.now()) + 300000).toISOString(),
       });
       this.update({ approvals: [...this.state.approvals, approval] });
       this.event(command, "blocked", "等待明确批准；尚未执行发布演练。");

@@ -8,6 +8,7 @@ import {
   PixelAgent,
   WorkspaceController,
 } from "../src";
+import { LocaleSwitcher, useI18n } from "../src/i18n";
 import "../src/workspace.css";
 import "./scene.css";
 
@@ -18,21 +19,8 @@ const positions = [
   { x: 23, y: 60 },
   { x: 72, y: 59 },
 ];
-const roles = {
-  supervisor: "主管",
-  worker: "执行",
-  reviewer: "审查",
-  unknown: "角色未知",
-};
-const statuses = {
-  idle: "待命",
-  working: "工作中",
-  blocked: "受阻",
-  review: "待核对",
-  unknown: "未知",
-};
-
 export function CommandHall() {
+  const { locale, t } = useI18n();
   const snapshot = useSyncExternalStore(
     workspace.subscribe,
     workspace.getSnapshot,
@@ -40,7 +28,7 @@ export function CommandHall() {
   const [selected, setSelected] = useState<string | null>(null);
   const [player, setPlayer] = useState({ x: 47, y: 77 });
   const [settings, setSettings] = useState(false);
-  const [feedback, setFeedback] = useState("");
+  const [feedback, setFeedback] = useState(false);
   const game = useRef<HTMLDivElement>(null);
   const closestIndex = positions.findIndex(
     (point) => Math.hypot(point.x - player.x, point.y - player.y) < 14,
@@ -87,32 +75,29 @@ export function CommandHall() {
           <span className="hall-rune">◈</span>
           <strong>DEVUNGEON</strong>
           <span className="hall-divider" />
-          <span>指挥厅</span>
+          <span>{t("hall.title")}</span>
         </div>
         <div className="hall-connection">
-          <span>{connectionLabel(snapshot)}</span>
+          <span>{connectionLabel(snapshot, Date.now(), locale)}</span>
+          <LocaleSwitcher />
           <button
             onClick={() => setSettings((value) => !value)}
             aria-expanded={settings}
           >
-            演示设置
+            {t("hall.settings")}
           </button>
         </div>
       </header>
       <section className="hall-title">
-        <p>休整之地 · Agent 工作台</p>
-        <h1>
-          冒险间隙，
-          <br />
-          和队友聊聊。
-        </h1>
-        <p>查看进展，交付目标，然后继续你的旅程。</p>
+        <p>{t("hall.eyebrow")}</p>
+        <h1>{t("hall.heading")}</h1>
+        <p>{t("hall.intro")}</p>
       </section>
       <div
         className="hall-stage"
         ref={game}
         tabIndex={0}
-        aria-label="指挥厅交互试验场。WASD 移动，靠近队友后按 E 交谈。这是 2D 模拟宿主。"
+        aria-label={t("hall.surface")}
       >
         <svg
           className="hall-room"
@@ -217,18 +202,21 @@ export function CommandHall() {
               top: `${positions[index].y}%`,
             }}
             onClick={() => setSelected(agent.id)}
-            aria-label={`与${agent.name}交谈，${roles[agent.role]}`}
+            aria-label={t("hall.talkTo", {
+              name: agent.name,
+              role: t(`agent.role.${agent.role}`),
+            })}
           >
             <span className="hall-npc-state">
-              {statuses[agent.status]} · DEMO
+              {t(`agent.status.${agent.status}`)} · DEMO
             </span>
             <PixelAgent role={agent.role} />
             <span className="hall-npc-name">
               {agent.name}
-              <small>{roles[agent.role]}</small>
+              <small>{t(`agent.role.${agent.role}`)}</small>
             </span>
             {closestIndex === index && !selected && (
-              <span className="hall-interact">E 交谈</span>
+              <span className="hall-interact">{t("hall.interact")}</span>
             )}
           </button>
         ))}
@@ -237,19 +225,20 @@ export function CommandHall() {
           style={{ left: `${player.x}%`, top: `${player.y}%` }}
         >
           <PixelAgent role="worker" />
-          <span>你</span>
+          <span>{t("workspace.you")}</span>
         </div>
-        <span className="hall-room-name">COMMAND HALL</span>
+        <span className="hall-room-name">{t("hall.title")}</span>
       </div>
-      <aside className="hall-party" aria-label="队友快捷选择">
-        <span>队伍 / 3</span>
+      <aside className="hall-party" aria-label={t("hall.quickSelect")}>
+        <span>{t("hall.party", { count: snapshot.agents.length })}</span>
         {snapshot.agents.map((agent) => (
           <button key={agent.id} onClick={() => setSelected(agent.id)}>
             <PixelAgent role={agent.role} />
             <span>
               <strong>{agent.name}</strong>
               <small>
-                {roles[agent.role]} · {statuses[agent.status]}
+                {t(`agent.role.${agent.role}`)} ·{" "}
+                {t(`agent.status.${agent.status}`)}
               </small>
             </span>
             <span className="hall-party-arrow">↗</span>
@@ -258,9 +247,10 @@ export function CommandHall() {
       </aside>
       <footer className="hall-footer">
         <div>
-          <kbd>W A S D</kbd> 移动 <kbd>E</kbd> 靠近交谈 <span>或点击队友</span>
+          <kbd>W A S D</kbd> {t("hall.move")} <kbd>E</kbd> {t("hall.approach")}{" "}
+          <span>{t("hall.orClick")}</span>
         </div>
-        <p>DEMO · 2D 交互试验场 / 非完整游戏场景</p>
+        <p>{t("hall.footer")}</p>
       </footer>
       <AgentWorkspace
         adapter={workspace}
@@ -271,30 +261,33 @@ export function CommandHall() {
         }}
       />
       {settings && (
-        <section className="hall-settings" aria-label="演示连接设置">
-          <h2>模拟连接</h2>
-          <p>只改变本地模拟器；不会连接外部服务。</p>
+        <section
+          className="hall-settings"
+          aria-label={t("hall.connectionSettings")}
+        >
+          <h2>{t("hall.simulatedConnection")}</h2>
+          <p>{t("hall.settingsHelp")}</p>
           <button onClick={() => demo.setConnection(!snapshot.connected)}>
-            {snapshot.connected ? "模拟断线" : "重新连接"}
+            {t(snapshot.connected ? "hall.disconnect" : "hall.reconnect")}
           </button>
-          <button onClick={() => demo.makeStale()}>模拟状态过期</button>
+          <button onClick={() => demo.makeStale()}>{t("hall.stale")}</button>
           <button
             onClick={() => {
               demo.failNext();
-              setFeedback("下一条可执行指令将模拟失败。");
+              setFeedback(true);
             }}
           >
-            下次模拟失败
+            {t("hall.failNext")}
           </button>
           <button
             onClick={() => {
               setSettings(false);
-              setFeedback("");
+              setFeedback(false);
             }}
           >
-            关闭设置
+            {t("hall.closeSettings")}
           </button>
-          <p role="status">{feedback}</p>
+          <p role="status">{feedback ? t("hall.failFeedback") : ""}</p>
         </section>
       )}
     </main>

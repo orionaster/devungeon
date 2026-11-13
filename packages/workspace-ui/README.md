@@ -6,6 +6,8 @@ Also implemented: a **real-source, read-only SCOUT event projection**. This obse
 
 ## Run (Windows PowerShell)
 
+Wave 2 (#12/#10) adds a shared Chinese-first zh-CN/en-US provider, local preference, bilingual workspace/independent hosts and state-preserving browser checks. The workspace stays independent of future world packs; no second gameplay mode is implemented. Real provider control remains off and is not this wave's blocker. See [shared contract and remaining integration gate](../../docs/WIZARD-I18N-INTEGRATION.md).
+
 ```powershell
 cd C:\Devungeon\wizard
 npm ci --ignore-scripts

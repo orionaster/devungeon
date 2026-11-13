@@ -64,6 +64,40 @@
   margin: 0 0 8px;
   text-wrap: pretty;
 }
+.dw-approval-scope {
+  margin: 12px 0;
+}
+.dw-approval-scope dt {
+  color: var(--dw-muted);
+  margin-top: 8px;
+}
+.dw-approval-scope dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.dw-sheet .dw-locale-switcher {
+  flex: 0 0 auto;
+}
+.dw-sheet-top {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dw-error pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.dw-agent-message > small {
+  display: block;
+  margin: 4px 0;
+  color: var(--dw-muted);
+}
+.dw-source-original {
+  display: block;
+  margin-top: 4px;
+  color: var(--dw-muted);
+  overflow-wrap: anywhere;
+}
 .dw-sheet h2 {
   font-size: 25px;
   line-height: 1.3;

@@ -28,7 +28,7 @@ test("select, chat, leave and return with background task evidence", async ({
     .getByRole("combobox", { name: "选择操作" })
     .selectOption("assign_task");
   await send(page, "整理北侧机关门规则");
-  await page.getByRole("button", { name: "返回地牢" }).click();
+  await page.getByRole("button", { name: "返回游戏世界" }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await page.keyboard.press("w");
   await openBoss(page);

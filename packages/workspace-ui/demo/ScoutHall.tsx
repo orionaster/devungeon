@@ -8,6 +8,7 @@ import {
   connectionLabel,
   agentConnectionLabel,
 } from "../src";
+import { LocaleSwitcher, useI18n } from "../src/i18n";
 
 const scout = new ScoutWorkspaceAdapter("github:orionaster/devungeon");
 const controller = new WorkspaceController(
@@ -17,6 +18,7 @@ const controller = new WorkspaceController(
 );
 
 export function ScoutHall() {
+  const { locale, t } = useI18n();
   const snapshot = useSyncExternalStore(
     controller.subscribe,
     controller.getSnapshot,
@@ -33,23 +35,33 @@ export function ScoutHall() {
         <div className="hall-brand">
           <span className="hall-rune">◈</span>
           <strong>DEVUNGEON</strong>
-          <span>SCOUT 观察席</span>
+          <span>{t("hall.scout.title")}</span>
         </div>
-        <span className="hall-connection">{connectionLabel(snapshot)}</span>
+        <div className="hall-connection">
+          <span>{connectionLabel(snapshot, Date.now(), locale)}</span>
+          <LocaleSwitcher />
+        </div>
       </header>
       <div className="scout-intro">
-        <p>真实来源 · 只读连接</p>
-        <h1>工作留下的痕迹。</h1>
-        <p>
-          从 SCOUT
-          的本地事件桥观察角色。点击角色可核对原始时间、任务关联与证据。
-        </p>
-        <p>当前桥仅支持观察；真实聊天、调度与审批均不可用。</p>
-        <p>GitHub 工作项不会被绘成正在工作的 Agent。</p>
+        <p>{t("hall.readOnlySource")}</p>
+        <h1>{t("hall.scout.heading")}</h1>
+        <p>{t("hall.scout.intro")}</p>
+        <p>{t("hall.scout.readOnly")}</p>
+        <p>{t("hall.scout.noAgentInference")}</p>
       </div>
-      <section className="scout-room" aria-label="SCOUT 只读角色观察区">
+      <section className="scout-room" aria-label={t("hall.scout.area")}>
         {snapshot.agents.length === 0 ? (
-          <p>{error || "等待 Agent 事件。公开项目事件不会创建 Agent 角色。"}</p>
+          <div>
+            <p>{t(error ? "common.disconnected" : "hall.scout.empty")}</p>
+            {error && (
+              <details>
+                <summary>
+                  {t("errors.raw")} · {t("common.original")}
+                </summary>
+                <p>{error}</p>
+              </details>
+            )}
+          </div>
         ) : (
           snapshot.agents.map((agent) => (
             <button
@@ -57,17 +69,21 @@ export function ScoutHall() {
               className="scout-agent"
               onClick={() => setSelected(agent.id)}
             >
-              <span>{agentConnectionLabel(snapshot, agent)}</span>
+              <span>
+                {agentConnectionLabel(snapshot, agent, Date.now(), locale)}
+              </span>
               <PixelAgent role={agent.role} />
               <strong>{agent.name}</strong>
-              <small>点击核对来源与证据</small>
+              <small>{t("hall.scout.inspect")}</small>
             </button>
           ))
         )}
       </section>
       <footer className="hall-footer">
-        <span>{snapshot.source}</span>
-        <p>2D 工作台集成宿主 · 非完整游戏</p>
+        <span>
+          {t("common.original")} · {snapshot.source}
+        </span>
+        <p>{t("hall.scout.footer")}</p>
       </footer>
       <AgentWorkspace
         adapter={controller}

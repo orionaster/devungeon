@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { translate, type Locale } from "./i18n/core.ts";
 
 const id = z.string().min(1).max(160);
 const text = z.string().trim().min(1).max(4000);
@@ -152,28 +153,31 @@ export interface WorkspaceAdapter {
 }
 
 export const STALE_AFTER_MS = 60_000;
-export function connectionLabel(snapshot: WorkspaceSnapshot, now = Date.now()) {
-  const mode = {
-    demo: "DEMO · 模拟",
-    live: "LIVE · 真实来源",
-    replay: "REPLAY · 历史回放",
-  }[snapshot.mode];
-  if (!snapshot.connected) return `${mode} · 未连接`;
+export function connectionLabel(
+  snapshot: WorkspaceSnapshot,
+  now = Date.now(),
+  locale: Locale = "zh-CN",
+) {
+  const mode = translate(locale, `common.mode.${snapshot.mode}`);
+  if (!snapshot.connected)
+    return `${mode} · ${translate(locale, "common.disconnected")}`;
   if (snapshot.stale || now - Date.parse(snapshot.observed_at) > STALE_AFTER_MS)
-    return `${mode} · 状态已过期`;
+    return `${mode} · ${translate(locale, "common.stale")}`;
   return mode;
 }
 export function agentConnectionLabel(
   snapshot: WorkspaceSnapshot,
   agent: Agent,
   now = Date.now(),
+  locale: Locale = "zh-CN",
 ) {
   const base = connectionLabel(
     { ...snapshot, mode: agent.mode, observed_at: agent.observed_at },
     now,
+    locale,
   );
   return agent.is_demo && agent.mode !== "demo"
-    ? `DEMO · 模拟来源 · ${base}`
+    ? `${translate(locale, "common.mode.demo")} · ${base}`
     : base;
 }
 export function safeEvidenceUrl(ref: string): string | undefined {

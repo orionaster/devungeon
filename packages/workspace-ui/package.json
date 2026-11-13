@@ -6,6 +6,7 @@
   "license": "Apache-2.0",
   "exports": {
     ".": "./src/index.ts",
+    "./i18n": "./src/i18n/index.tsx",
     "./styles.css": "./src/workspace.css"
   },
   "scripts": {
