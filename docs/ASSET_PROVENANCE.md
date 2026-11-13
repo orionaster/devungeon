@@ -2,6 +2,12 @@
 
 Status: **no third-party binary art/audio asset is vendored yet**. This is the required review process before packaging or publishing public demo footage.
 
+## S1 original assets · HERO branch · 2026-11-13
+
+`apps/web/src/art.ts` contains original code-authored16×24 character frames and16×16 stone/rune tile textures. Eight sprite kinds, four frames, directional hero/Agent variants; limited project palette, nearest filtering, no mipmaps. Authored in the HERO task (pixel_art subagent), reviewed in real Chromium screenshots at0/90/180/270; source and permission grant follow this repository's Apache2 license. Native Canvas drawing code is the source artifact; there is no downloaded source archive or vendored image/audio/font pack. SHA256 of formatted source: `05B06D97D669C4D06BE39DD5BD699DCEF342B7D412F5D654FA6C35803FBE9C85`. The matching Git commit and PR preserve its author/change history. See `apps/web/src/ART_LICENSE.md`.
+
+S1 also contains original simple geometry/VFX and an inline original favicon in `apps/web/index.html`; same source license. Only local system fonts are requested. No third-party visual/audio bytes were imported, no Kenney art was downloaded, and no protected Soul Knight assets/UI/music/rooms were used. Kenney remains a candidate for later work, not a current runtime dependency.
+
 ## Approved *candidate sources*, not yet imported
 
 | Source | Art | License at primary source | Preferred use | Notes |
