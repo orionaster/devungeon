@@ -35,6 +35,7 @@ jobs:
           name: forge-${{ runner.os }}
           path: |
             output/playwright/forge/*-results.json
+            output/playwright/forge/navigation-progress.json
             output/playwright/forge-host-lifecycle/**/report.json
           retention-days: 7
           if-no-files-found: ignore

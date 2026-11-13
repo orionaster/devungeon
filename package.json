@@ -22,7 +22,7 @@
     "test:browser:ci": "node scripts/forge-verify.mjs",
     "test:host": "node --test scripts/forge-host.test.mjs",
     "test:engine": "tsx --test packages/dungeon-engine/test/*.test.ts",
-    "test:i18n": "vitest run packages/workspace-ui/tests/i18n.test.ts --environment node",
+    "test:i18n": "npm test --workspace @devungeon/workspace-ui -- tests/i18n.test.ts",
     "check": "npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && npm run check --workspace @devungeon/scout-bridge"
   },
   "dependencies": {

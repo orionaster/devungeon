@@ -1,0 +1,17 @@
+
+> devungeon@0.1.0 test:i18n
+> npm test --workspace @devungeon/workspace-ui -- tests/i18n.test.ts
+
+
+> @devungeon/workspace-ui@0.1.0 test
+> vitest run tests/i18n.test.ts
+
+
+ RUN  v5.1.0 C:/Devungeon/forge/packages/workspace-ui
+
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  04:27:47
+   Duration  211ms (import 48%, transform 25%, tests 23%, worker 4%)
+

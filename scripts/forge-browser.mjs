@@ -12,6 +12,7 @@
  */
 import assert from "node:assert/strict";
 import { mkdir, writeFile, readFile, appendFile, access, rename } from "node:fs/promises";
+import { writeFileSync } from "node:fs";
 import { resolve, join } from "node:path";
 import { fork, execFile } from "node:child_process";
 import { promisify } from "node:util";
@@ -46,13 +47,38 @@ function check(name, pass, detail) {
   report.checks.push({ name, pass: !!pass, ...(detail === undefined ? {} : { detail }) });
   if (!pass) throw new Error(`${name}: ${JSON.stringify(detail)}`);
   console.log(`PASS ${name}`);
+  progress({ phase: "check", name }, true);
 }
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-const game = (page) => page.evaluate(() => window.__DEVUNGEON__?.snapshot());
+const diagnosticSessions = new WeakMap();
+/** Same read-only ports as the UI proof. Direct CDP reads avoid collecting a
+ * Playwright DOM snapshot for every game/camera observation on software CI. */
+async function readGameCamera(page) {
+  const cdp = diagnosticSessions.get(page);
+  assert.ok(cdp, "The test owns this Chromium diagnostic session");
+  const reply = await cdp.send("Runtime.evaluate", {
+    expression: "(() => { const port = window.__DEVUNGEON__; return port ? { game: port.snapshot(), camera: port.camera() } : null; })()",
+    returnByValue: true,
+  });
+  if (reply.exceptionDetails) throw new Error(reply.exceptionDetails.text);
+  return reply.result.value;
+}
+const game = async (page) => (await readGameCamera(page))?.game;
 const forge = (page) => page.evaluate(() => window.__DEVUNGEON_FORGE__?.snapshot());
 const work = (page) => page.evaluate(() => window.__DEVUNGEON_WORKSPACE__?.snapshot());
 const scene = (page) => page.evaluate(() => window.__DEVUNGEON__?.scene());
-const camera = (page) => page.evaluate(() => window.__DEVUNGEON__?.camera());
+const camera = async (page) => (await readGameCamera(page))?.camera;
+let lastProgressWrite = 0;
+function progress(detail, force = false) {
+  const now = Date.now();
+  if (!force && now - lastProgressWrite < 1000) return;
+  lastProgressWrite = now;
+  writeFileSync(join(output, "navigation-progress.json"), JSON.stringify({
+    schema_version: 1, completed: false, observed_at: new Date(now).toISOString(),
+    suite, url, current_case: report.current_case, checks_completed: report.checks.length,
+    last_check: report.checks.at(-1), detail,
+  }, null, 2) + "\n");
+}
 const stableWork = (value) => {
   if (!value) return value;
   const { revision, observed_at, agents, ...data } = value;
@@ -87,12 +113,9 @@ async function movementPulse(page, key, ms, previousTime, allowDeath = false) {
   finally { await Promise.all([down, page.keyboard.up(key)]); }
   // Observe an actual neutral simulation frame after keyup. We neither mutate
   // GameState nor infer the position from a wall-clock delay or input duration.
-  await page.waitForFunction(({ time, allowDeath }) => {
-    const state = window.__DEVUNGEON__?.snapshot();
-    return state && ((allowDeath && state.phase === "lost") ||
-      (state.time > time && !state.player.moving && state.dodgeTime <= 0));
-  }, { time: previousTime, allowDeath }, { timeout: 10000, polling: "raf" });
-  return game(page);
+  return poll(() => game(page), (state) => state &&
+    ((allowDeath && state.phase === "lost") ||
+      (state.time > previousTime && !state.player.moving && state.dodgeTime <= 0)), 10000, 20);
 }
 async function focusGame(page) { await page.locator(".game-surface").focus(); }
 async function restoredGameFocus(page) {
@@ -139,9 +162,13 @@ function mapRoute(world, from, to) {
 async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath = false } = {}) {
   const diagnostic = { target, allow_death: allowDeath, started_at: new Date().toISOString(), pulses: [] };
   report.navigation.push(diagnostic);
+  const initial = await readGameCamera(page);
+  const heading = initial.camera.heading * Math.PI / 2; // This route issues no Q/R input.
+  let state = initial.game;
   let gain = .7;
+  progress({ phase: "navigation-start", target, player: state.player, allow_death: allowDeath }, true);
+  console.log(`NAV ${report.current_case} target ${target.x},${target.z}`);
   for (let i = 0; i < 170; i++) {
-    const state = await game(page);
     if (allowDeath && state.phase === "lost") {
       diagnostic.outcome = "actual-death-before-target";
       return false;
@@ -149,32 +176,37 @@ async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath
     assert.notEqual(state.phase, "lost", "Player died during route");
     await onObservation?.(state);
     const dx = target.x - state.player.x, dz = target.z - state.player.z;
-    if (Math.hypot(dx, dz) < tolerance) { diagnostic.outcome = "arrived"; return true; }
-    const heading = (await camera(page)).heading * Math.PI / 2;
+    if (Math.hypot(dx, dz) < tolerance) {
+      diagnostic.outcome = "arrived";
+      progress({ phase: "navigation-arrived", target, player: state.player, pulses: i }, true);
+      return true;
+    }
     const sx = dx * Math.cos(heading) - dz * Math.sin(heading);
     const sz = dx * Math.sin(heading) + dz * Math.cos(heading);
     const horizontal = Math.abs(sx) >= Math.abs(sz), amount = horizontal ? sx : sz;
     const key = horizontal ? amount > 0 ? "KeyD" : "KeyA" : amount > 0 ? "KeyS" : "KeyW";
-    const duration = Math.min(160, Math.max(4, Math.abs(amount) * 1000 / 4.3 * gain));
+    const duration = Math.min(Math.abs(amount) > 2 ? 500 : 160,
+      Math.max(4, Math.abs(amount) * 1000 / 4.3 * gain));
     const next = await movementPulse(page, key, duration, state.time, allowDeath);
     const moved = Math.hypot(next.player.x - state.player.x, next.player.z - state.player.z);
     const beforeDistance = Math.hypot(dx, dz), afterDistance = Math.hypot(target.x - next.player.x, target.z - next.player.z);
     diagnostic.pulses.push({ key, duration_ms: duration, from: { x: state.player.x, z: state.player.z }, to: { x: next.player.x, z: next.player.z }, beforeDistance, afterDistance, simulation_ms: (next.time - state.time) * 1000 });
+    progress({ phase: "navigation-pulse", target, pulse: i + 1, key, duration_ms: duration,
+      player: next.player, game_phase: next.phase, game_time: next.time, distance: afterDistance });
+    if (i > 0 && i % 20 === 0) console.log(`NAV ${report.current_case} pulse ${i + 1} position ${next.player.x.toFixed(3)},${next.player.z.toFixed(3)} distance ${afterDistance.toFixed(3)}`);
     // Reduce the next pulse after an observed overshoot; increase it only if
     // a short press fell entirely between simulation frames. Arrival tolerance,
     // keyboard routing and all swept-collision assertions are unchanged.
     if (afterDistance > beforeDistance + .03 || moved > Math.abs(amount) * 1.4) gain = Math.max(.04, gain * .55);
     else if (moved < .02) gain = Math.min(1, gain * 1.35);
     else if (afterDistance < beforeDistance) gain = Math.min(.85, gain * 1.08);
+    state = next;
   }
   throw new Error(`Keyboard route stuck at ${JSON.stringify((await game(page)).player)} approaching ${JSON.stringify(target)}`);
 }
 async function follow(page, world, to, { fightAfterHit = false, allowDeath = false } = {}) {
   await focusGame(page);
-  await page.waitForFunction(() => {
-    const state = window.__DEVUNGEON__?.snapshot();
-    return state && state.dodgeTime <= 0 && !state.player.moving;
-  }, undefined, { timeout: 10000, polling: "raf" });
+  await poll(() => game(page), (state) => state && state.dodgeTime <= 0 && !state.player.moving, 10000, 20);
   let attacking = false;
   try {
     for (const point of mapRoute(world, (await game(page)).player, to)) {
@@ -579,14 +611,16 @@ try {
   report.browser = browser.version(); report.executable = executablePath ?? "Playwright-managed Chromium";
   const selections = suite === "showcase" ? ["showcase"] : suite === "public" ? ["public"] : suite === "tiny" ? ["tiny"] : suite === "workbench" ? ["workbench"] : suite === "all" ? ["tiny", "workbench", "public"] : ["tiny", "workbench"];
   for (const selection of selections) {
+    report.current_case = selection;
     const context = await browser.newContext({ viewport: report.viewport, deviceScaleFactor: 1, reducedMotion: "reduce", ...(suite === "showcase" ? { recordVideo: { dir: output, size: report.viewport } } : {}) });
     // Continuous filmstrip capture competes with software WebGL on CI. Keep
     // DOM/action/source traces and all explicit PNG checkpoints; local captures
     // retain the filmstrip by default and may opt out for harness stress runs.
     await context.tracing.start({ screenshots: traceScreenshots, snapshots: true, sources: true });
     const page = await context.newPage();
+    const cdp = await context.newCDPSession(page);
+    diagnosticSessions.set(page, cdp);
     if (cpuThrottle > 1) {
-      const cdp = await context.newCDPSession(page);
       await cdp.send("Emulation.setCPUThrottlingRate", { rate: cpuThrottle });
     }
     page.setDefaultTimeout(20000);
@@ -630,5 +664,10 @@ try {
   await browser?.close();
   report.finished_at = new Date().toISOString();
   await writeFile(join(output, `${suite}-results.json`), JSON.stringify(report, null, 2) + "\n");
+  await writeFile(join(output, "navigation-progress.json"), JSON.stringify({
+    schema_version: 1, completed: true, pass: report.pass, observed_at: report.finished_at,
+    suite, url, checks_completed: report.checks.length,
+    last_check: report.checks.at(-1)?.name, results_file: `${suite}-results.json`,
+  }, null, 2) + "\n");
   console.log(`Results: ${join(output, `${suite}-results.json`)}`);
 }
