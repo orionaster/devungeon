@@ -4,7 +4,20 @@
 
 Devungeon is a planned **open-source, explorable 2.5D pixel-art dungeon game + AI-agent workspace** that turns real software projects into living game worlds. Its rooms have genuine 3D space and collision, while the signature look is an **original top-down pixel dungeon** with crisp sprites, fast combat and expressive Agent characters.
 
-> **Current status: design / repository bootstrap only.** This repo starter contains the product requirements, architecture proposal, validation contract and synthetic examples. **The playable app and live Agent integrations have NOT been implemented.**
+> **This branch: S1 playable browser slice, awaiting supervisor review.** Explore three original pixel rooms, fight an independent encounter, preview the sealed vault and observe clearly labeled DEMO companions. Real project import and real Agent/workbench integrations are separate work and are **not connected in this slice**. This is not the complete V1.
+
+## Play locally
+
+Node22.12+ and npm are required. On the HERO branch:
+
+```powershell
+npm ci
+npm run dev
+```
+
+Open http://127.0.0.1:5173. WASD moves, J attacks, Space dodges, Q/R rotate90°, wheel zooms, E inspects nearby companions, P pauses local combat. Use the header's guide for all controls. No account, paid service or API keys required.
+
+`npm test` runs engine checks; `npm run build` creates the production app, and `npm run preview -- --port 5174` serves it locally. See [actual validation and limitations](docs/HERO_VALIDATION.md), [scene/workbench contract](docs/HERO_INTEGRATION.md), and [locked dependency/license review](docs/HERO_DEPENDENCIES.md). Browser screenshots and measured results are in [output/playwright](output/playwright/). Gameplay victory never changes project acceptance.
 
 ## The idea
 

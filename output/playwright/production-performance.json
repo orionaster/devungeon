@@ -1,0 +1,287 @@
+{
+  "production": true,
+  "delayedPhysicsStartupPassed": true,
+  "pageErrors": [],
+  "report": {
+    "start": {
+      "time": 0.03333333333333333,
+      "phase": "playing",
+      "player": {
+        "x": -8,
+        "z": 1,
+        "hp": 100,
+        "maxHp": 100,
+        "facing": {
+          "x": 1,
+          "z": 0
+        },
+        "moving": false,
+        "hurt": 0
+      },
+      "enemies": [
+        {
+          "id": "ember-1",
+          "kind": "slime",
+          "x": 1,
+          "z": 0,
+          "hp": 55,
+          "maxHp": 55,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -0.03333333333333333,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "ember-2",
+          "kind": "slime",
+          "x": 5,
+          "z": -2,
+          "hp": 55,
+          "maxHp": 55,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -0.03333333333333333,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "ember-3",
+          "kind": "slime",
+          "x": 5,
+          "z": 2,
+          "hp": 55,
+          "maxHp": 55,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -0.03333333333333333,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "warden",
+          "kind": "sentinel",
+          "x": 6,
+          "z": -4,
+          "hp": 90,
+          "maxHp": 90,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -0.03333333333333333,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        }
+      ],
+      "projectiles": [],
+      "effects": [],
+      "attackTime": 0,
+      "attackDirection": {
+        "x": 1,
+        "z": 0
+      },
+      "dodgeTime": 0,
+      "dodgeCooldown": 0,
+      "kills": 0,
+      "total": 4,
+      "rewardClaimed": false,
+      "stats": {
+        "attacks": 0,
+        "dodges": 0,
+        "hitsTaken": 0,
+        "damageDealt": 0,
+        "blockedMoves": 0
+      }
+    },
+    "end": {
+      "time": 6.033333333333317,
+      "phase": "playing",
+      "player": {
+        "x": -0.7238169312477112,
+        "z": 1.3806231617927551,
+        "hp": 76,
+        "maxHp": 100,
+        "facing": {
+          "x": 0.8596496453283032,
+          "z": -0.5108840252806135
+        },
+        "moving": false,
+        "hurt": 0.10000000000000003
+      },
+      "enemies": [
+        {
+          "id": "ember-1",
+          "kind": "slime",
+          "x": 0.7495866939425468,
+          "z": -0.3247189442627132,
+          "hp": 0,
+          "maxHp": 55,
+          "facing": {
+            "x": -0.6061485001283468,
+            "z": 0.79535149197833
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "dead",
+          "timer": -3.849999999999991,
+          "attackDirection": {
+            "x": -0.8830736032379115,
+            "z": 0.46923449496431074
+          }
+        },
+        {
+          "id": "ember-2",
+          "kind": "slime",
+          "x": 1.7935598157346249,
+          "z": -0.22041692771017551,
+          "hp": 0,
+          "maxHp": 55,
+          "facing": {
+            "x": -0.8596496453198035,
+            "z": 0.5108840252949158
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "dead",
+          "timer": -6.033333333333317,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "ember-3",
+          "kind": "slime",
+          "x": 1.9298301562666893,
+          "z": 1.4354447841178626,
+          "hp": 0,
+          "maxHp": 55,
+          "facing": {
+            "x": -0.9807972376970497,
+            "z": -0.1950301990098893
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "dead",
+          "timer": -6.033333333333317,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "warden",
+          "kind": "sentinel",
+          "x": 4.917563892900944,
+          "z": -3.2488777469843626,
+          "hp": 90,
+          "maxHp": 90,
+          "facing": {
+            "x": -0.7730279704456491,
+            "z": 0.6343719389354171
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "windup",
+          "timer": 0.566666666666666,
+          "attackDirection": {
+            "x": -0.7730279701173712,
+            "z": 0.6343719393354476
+          }
+        }
+      ],
+      "projectiles": [
+        {
+          "id": 14,
+          "x": 0.3405994889468442,
+          "z": 2.4560562513405326,
+          "vx": -3.157943135609307,
+          "vz": 3.8765184318223045,
+          "life": 1.4833333333333387
+        },
+        {
+          "id": 16,
+          "x": -1.5708592868384406,
+          "z": 0.12680585406141867,
+          "vx": -4.418245625138067,
+          "vz": 2.3407489391107976,
+          "life": 1.4833333333333387
+        }
+      ],
+      "effects": [
+        {
+          "x": -0.49190853536129,
+          "z": 1.1903115808963776,
+          "id": 17,
+          "kind": "hurt",
+          "life": 0.35000000000000003,
+          "maxLife": 0.5,
+          "value": 12
+        }
+      ],
+      "attackTime": 0.04666666666666672,
+      "attackDirection": {
+        "x": 0.8596496453283032,
+        "z": -0.5108840252806135
+      },
+      "dodgeTime": 0,
+      "dodgeCooldown": 0,
+      "kills": 3,
+      "total": 4,
+      "rewardClaimed": false,
+      "stats": {
+        "attacks": 13,
+        "dodges": 0,
+        "hitsTaken": 2,
+        "damageDealt": 165,
+        "blockedMoves": 0
+      }
+    },
+    "frames": 848,
+    "averageFps": 141.31684636799392,
+    "p95Ms": 7.099999999999454,
+    "worstMs": 83.29999999999973,
+    "rolling": {
+      "fps": 140.7151456400446,
+      "p95Ms": 7.299999997019768,
+      "worstMs": 87.40000000596046,
+      "frames": 1266,
+      "drawCalls": 51,
+      "triangles": 6620,
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    "viewport": [
+      1440,
+      960
+    ],
+    "dpr": 1.0000000298023224,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36"
+  }
+}
