@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:devungeon:agent-event:v1",
+  "title": "Devungeon AgentEvent v1 (draft)",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "event_id", "project_id", "agent_id", "event_type", "occurred_at", "observed_at", "source", "is_demo"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "event_id": {"type": "string", "minLength": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "agent_id": {"type": "string", "minLength": 1},
+    "room_id": {"type": "string"},
+    "event_type": {"enum": ["started", "progress", "tool_call", "tested", "blocked", "review_requested", "completed", "failed", "disconnected", "command_result"]},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "source": {"type": "string", "minLength": 1},
+    "source_ref": {"type": "string"},
+    "is_demo": {"type": "boolean"},
+    "message": {"type": "string"},
+    "command_id": {"type": "string"}
+  }
+}

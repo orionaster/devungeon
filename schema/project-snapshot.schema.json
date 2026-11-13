@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:devungeon:project-snapshot:v1",
+  "title": "Devungeon ProjectSnapshot v1 (draft)",
+  "description": "Facts about the real or synthetic project, NOT gameplay state or generated world geometry.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "project", "revision", "observed_at", "zones", "rooms", "agents"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "source"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "description": {"type": "string"},
+        "source": {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "is_demo"],
+          "properties": {
+            "kind": {"enum": ["synthetic", "manual", "local", "github", "agent"]},
+            "is_demo": {"type": "boolean"},
+            "reference": {"type": "string"}
+          }
+        }
+      }
+    },
+    "revision": {"type": "string", "minLength": 1},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "zones": {
+      "type": "array", "minItems": 1,
+      "items": {"type": "object", "additionalProperties": false, "required": ["id", "name"], "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "theme_hint": {"type": "string"}
+      }}
+    },
+    "rooms": {
+      "type": "array", "minItems": 1,
+      "items": {"type": "object", "additionalProperties": false, "required": ["id", "zone_id", "name", "status", "depends_on", "acceptance_criteria", "evidence"], "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "zone_id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "summary": {"type": "string"},
+        "status": {"enum": ["planned", "ready", "active", "blocked", "review", "accepted", "failed", "regressed", "archived"]},
+        "depends_on": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "acceptance_criteria": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+      }, "allOf": [{"if": {"properties": {"status": {"const": "accepted"}}, "required": ["status"]}, "then": {"properties": {"evidence": {"minItems": 1}}}}]}
+    },
+    "agents": {
+      "type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "name", "role", "status"], "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "role": {"enum": ["supervisor", "worker", "reviewer"]},
+        "status": {"enum": ["idle", "working", "blocked", "awaiting_approval", "offline", "unknown"]},
+        "room_id": {"type": "string"},
+        "last_seen_at": {"type": "string", "format": "date-time"},
+        "is_demo": {"type": "boolean"}
+      }}
+    }
+  },
+  "$defs": {
+    "evidence": {"type": "object", "additionalProperties": false, "required": ["type", "ref", "verification"], "properties": {
+      "type": {"enum": ["commit", "pull_request", "issue", "test", "deployment", "manual_review", "other"]},
+      "ref": {"type": "string", "minLength": 1},
+      "verification": {"enum": ["verified", "unverified", "synthetic"]},
+      "description": {"type": "string"}
+    }}
+  }
+}

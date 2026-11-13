@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "project": {"id": "synthetic-site", "name": "Tiny Landing Page (synthetic)", "description": "A made-up one-page marketing website", "source": {"kind": "synthetic", "is_demo": true}},
+  "revision": "demo-1",
+  "observed_at": "2026-11-13T00:00:00Z",
+  "zones": [{"id": "experience", "name": "Landing Experience", "theme_hint": "cozy starter dungeon"}],
+  "rooms": [
+    {"id": "hero", "zone_id": "experience", "name": "Hero section", "summary": "Present the product value", "status": "accepted", "depends_on": [], "acceptance_criteria": ["Hero renders at desktop width"], "evidence": [{"type": "manual_review", "ref": "synthetic:hero-review", "verification": "synthetic", "description": "Example evidence only"}]},
+    {"id": "contact", "zone_id": "experience", "name": "Contact CTA", "summary": "User can request more information", "status": "active", "depends_on": ["hero"], "acceptance_criteria": ["CTA works on mobile"], "evidence": []},
+    {"id": "launch", "zone_id": "experience", "name": "Publish website", "summary": "Public deployment", "status": "planned", "depends_on": ["contact"], "acceptance_criteria": ["Published URL responds"], "evidence": []}
+  ],
+  "agents": [{"id": "agent-site", "name": "Demo Builder", "role": "worker", "status": "working", "room_id": "contact", "is_demo": true}]
+}

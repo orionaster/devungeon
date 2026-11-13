@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "project": {"id": "synthetic-agents", "name": "Agent Workbench (synthetic)", "description": "A wholly invented modular agent platform, not the Crew private repository", "source": {"kind": "synthetic", "is_demo": true}},
+  "revision": "demo-1",
+  "observed_at": "2026-11-13T00:00:00Z",
+  "zones": [
+    {"id": "control", "name": "Command Hall", "theme_hint": "ancient stone citadel"},
+    {"id": "tools", "name": "Mechanical Workshop", "theme_hint": "steampunk forge"},
+    {"id": "memory", "name": "Archive", "theme_hint": "magic library"}
+  ],
+  "rooms": [
+    {"id": "goals", "zone_id": "control", "name": "Goal intake", "status": "accepted", "depends_on": [], "acceptance_criteria": ["User goal is recorded"], "evidence": [{"type": "test", "ref": "synthetic:test-goal", "verification": "synthetic"}]},
+    {"id": "planning", "zone_id": "control", "name": "Supervisor planning", "status": "active", "depends_on": ["goals"], "acceptance_criteria": ["Plan is reviewable"], "evidence": []},
+    {"id": "dispatch", "zone_id": "control", "name": "Agent task dispatch", "status": "planned", "depends_on": ["planning"], "acceptance_criteria": ["Task delivered to worker"], "evidence": []},
+    {"id": "registry", "zone_id": "tools", "name": "Tool registry", "status": "accepted", "depends_on": ["goals"], "acceptance_criteria": ["Known tools listed"], "evidence": [{"type": "test", "ref": "synthetic:test-tools", "verification": "synthetic"}]},
+    {"id": "executor", "zone_id": "tools", "name": "Tool execution", "status": "blocked", "depends_on": ["dispatch", "registry"], "acceptance_criteria": ["End-to-end authorized action runs"], "evidence": []},
+    {"id": "history", "zone_id": "memory", "name": "Event journal", "status": "review", "depends_on": ["goals"], "acceptance_criteria": ["Events are persisted and queryable"], "evidence": []},
+    {"id": "retrieval", "zone_id": "memory", "name": "Knowledge retrieval", "status": "planned", "depends_on": ["history"], "acceptance_criteria": ["Prior context retrieved correctly"], "evidence": []},
+    {"id": "milestone", "zone_id": "control", "name": "Autonomous work milestone", "status": "planned", "depends_on": ["executor", "retrieval"], "acceptance_criteria": ["Full trace and approval verified"], "evidence": []}
+  ],
+  "agents": [
+    {"id": "agent-boss", "name": "Demo Supervisor", "role": "supervisor", "status": "working", "room_id": "planning", "is_demo": true},
+    {"id": "agent-build", "name": "Demo Worker", "role": "worker", "status": "blocked", "room_id": "executor", "is_demo": true},
+    {"id": "agent-review", "name": "Demo Reviewer", "role": "reviewer", "status": "idle", "room_id": "history", "is_demo": true}
+  ]
+}

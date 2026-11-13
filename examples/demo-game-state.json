@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0", "world_id": "synthetic-site",
+  "player": {"x": 0, "z": 0, "hp": 100, "weapon": "wooden-sword", "xp": 0},
+  "enemies": [{"id": "demo-slime", "hp": 10, "x": 2, "z": 2}],
+  "inventory": ["starter-potion"]
+}

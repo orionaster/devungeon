@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:devungeon:world-blueprint:v1",
+  "title": "Devungeon WorldBlueprint v1 (draft)",
+  "description": "AI/human-selected layout and theme. Never a source of product acceptance truth.",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "project_id", "project_revision", "seed", "zones", "rooms", "connections"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "project_revision": {"type": "string", "minLength": 1},
+    "seed": {"type": "integer"},
+    "zones": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "theme"], "properties": {
+      "id": {"type": "string"}, "theme": {"type": "string"}, "narrative": {"type": "string"}
+    }}},
+    "rooms": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["room_id", "x", "z", "width", "depth"], "properties": {
+      "room_id": {"type": "string"},
+      "x": {"type": "number"}, "z": {"type": "number"},
+      "width": {"type": "number", "exclusiveMinimum": 0},
+      "depth": {"type": "number", "exclusiveMinimum": 0},
+      "prefab": {"type": "string"}, "pinned": {"type": "boolean"}
+    }}},
+    "connections": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["from_room_id", "to_room_id", "kind"], "properties": {
+      "from_room_id": {"type": "string"}, "to_room_id": {"type": "string"},
+      "kind": {"enum": ["corridor", "gate", "portal", "stairs"]}
+    }}}
+  }
+}

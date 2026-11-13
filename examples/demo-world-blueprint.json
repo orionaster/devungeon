@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0", "project_id": "synthetic-site", "project_revision": "demo-1", "seed": 1337,
+  "zones": [{"id": "experience", "theme": "cozy ancient castle", "narrative": "A tiny introductory dungeon"}],
+  "rooms": [
+    {"room_id": "hero", "x": 0, "z": 0, "width": 8, "depth": 8, "prefab": "starter-hall", "pinned": true},
+    {"room_id": "contact", "x": 12, "z": 0, "width": 7, "depth": 7, "prefab": "small-combat-room"},
+    {"room_id": "launch", "x": 23, "z": 0, "width": 9, "depth": 9, "prefab": "boss-gate"}
+  ],
+  "connections": [
+    {"from_room_id": "hero", "to_room_id": "contact", "kind": "gate"},
+    {"from_room_id": "contact", "to_room_id": "launch", "kind": "gate"}
+  ]
+}

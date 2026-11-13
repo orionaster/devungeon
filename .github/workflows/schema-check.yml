@@ -1,0 +1,26 @@
+name: Validate synthetic protocol examples
+on:
+  push:
+    paths:
+      - 'schema/**'
+      - 'examples/**'
+      - 'scripts/validate_examples.py'
+      - 'requirements-dev.txt'
+      - '.github/workflows/schema-check.yml'
+  pull_request:
+    paths:
+      - 'schema/**'
+      - 'examples/**'
+      - 'scripts/validate_examples.py'
+      - 'requirements-dev.txt'
+      - '.github/workflows/schema-check.yml'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python scripts/validate_examples.py

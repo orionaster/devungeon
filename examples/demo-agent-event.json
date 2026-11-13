@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "event_id": "demo-event-001",
+  "project_id": "synthetic-agents",
+  "agent_id": "agent-boss",
+  "room_id": "planning",
+  "event_type": "progress",
+  "occurred_at": "2026-11-13T00:00:00Z",
+  "observed_at": "2026-11-13T00:00:01Z",
+  "source": "synthetic:event-fixture",
+  "is_demo": true,
+  "message": "Illustrative planning event; no real agent called"
+}

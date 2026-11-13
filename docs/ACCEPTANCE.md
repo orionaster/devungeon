@@ -1,0 +1,42 @@
+# Devungeon — acceptance checklist (not yet executed)
+
+## A. Game is truly playable
+
+- [ ] The user can start a run, move their character, dodge, attack, hit and be hit, finish a dungeon encounter and see a result.
+- [ ] The player can rotate/zoom camera and inspect locked rooms but cannot enter them through game controls or collision exploits.
+- [ ] A low-end mode or fallback view preserves essential task evidence.
+- [ ] Background Agent status continues to update while the player fights (or clearly says disconnected).
+
+## B. Project representations are accurate
+
+- [ ] Two structurally different projects create different rooms / zone dependency graphs.
+- [ ] Identical input and layout seed reproduce the same world shape within one generator version.
+- [ ] Adding one project feature changes only affected rooms and connections; others keep stable IDs and locations.
+- [ ] An Issue close / PR merge / green CI alone cannot override separately required acceptance checks.
+- [ ] Review, accepted, blocked and regressed states are visually distinct and evidence-linked.
+- [ ] Unknown facts are shown as unknown, not invented.
+
+## C. Agent controls work end to end
+
+- [ ] At least one real supervisor/worker Agent connector emits observable, attributable events.
+- [ ] Clicking an Agent shows task, status, last seen time and source evidence.
+- [ ] User can send a real supported instruction and see acknowledged result, errors and eventual completion.
+- [ ] Capability-denied, unconnected, malformed and risky operations do not silently execute.
+- [ ] The frontend never receives secrets; per-project scopes and user approvals are enforced.
+
+## D. Real work and game stay isolated
+
+- [ ] Winning a battle never changes the accepted status of any real feature.
+- [ ] User-game failures never cancel or roll back real tasks.
+- [ ] Synthetic events are clearly labeled `DEMO` throughout scenes, panels and screenshots.
+- [ ] Replay is clearly separate from live, even if the event stream looks identical.
+
+## E. Open source and public release
+
+- [ ] Launch steps are reproducible from a fresh checkout.
+- [ ] Security/privacy checklist passes; no user private content or credentials in examples or screenshots.
+- [ ] Code/art/sound licenses are documented and compatible.
+- [ ] At least three new users can open and understand the game without author guidance.
+- [ ] Capture a 30–60 second demo that honestly distinguishes actual integrations from sample data.
+
+**Current state:** None of the runtime acceptance items are claimed to have passed. This repository starter includes design and schema only.

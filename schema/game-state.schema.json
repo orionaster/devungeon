@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:devungeon:game-state:v1",
+  "title": "Devungeon GameState v1 (draft)",
+  "description": "No project acceptance status or Agent authorization fields permitted.",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "world_id", "player", "enemies", "inventory"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "world_id": {"type": "string", "minLength": 1},
+    "player": {"type": "object", "additionalProperties": false, "required": ["x", "z", "hp"], "properties": {
+      "x": {"type": "number"}, "z": {"type": "number"},
+      "hp": {"type": "number", "minimum": 0},
+      "weapon": {"type": "string"},
+      "xp": {"type": "integer", "minimum": 0}
+    }},
+    "enemies": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["id", "hp", "x", "z"], "properties": {
+      "id": {"type": "string"}, "hp": {"type": "number", "minimum": 0}, "x": {"type": "number"}, "z": {"type": "number"}
+    }}},
+    "inventory": {"type": "array", "items": {"type": "string"}}
+  }
+}
