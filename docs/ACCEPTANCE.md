@@ -39,4 +39,12 @@
 - [ ] At least three new users can open and understand the game without author guidance.
 - [ ] Capture a 30–60 second demo that honestly distinguishes actual integrations from sample data.
 
-**Current state:** None of the runtime acceptance items are claimed to have passed. This repository starter includes design and schema only.
+## F. Original pixel-dungeon visual acceptance (2026-11-13)
+
+- [ ] Real browser build has a coherent **original 2.5D pixel dungeon** look: crisp non-blurred sprites/tiles, responsive action, and no copied Soul Knight sprites/UI/audio/levels.
+- [ ] True 3D room geometry and collisions exist despite the pixel-art appearance; camera quarter-turns preserve sprite facing, movement and wall occlusion.
+- [ ] Camera can inspect a locked room without the player crossing its door; DEMO/REPLAY/LIVE labels remain readable even with pixel rendering.
+- [ ] Tested frame captures at a fixed viewport/DPR and real device performance logs are attached. Bright particles do not hide gameplay or task labels.
+- [ ] Imported sprites, fonts, music and FX have verified license provenance and legal redistribution rights, recorded in docs/ASSET_PROVENANCE.md.
+
+**Current state:** None of the runtime acceptance items are claimed to have passed. This repository starter includes design/schema, a reviewed tool shortlist and Agent Skills only.
