@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "project_id": "synthetic-site",
+  "project_revision": "demo-1",
+  "experience_id": "synthetic-site:city:v0",
+  "world_type": "city",
+  "renderer_plugin": "devungeon-city-proposal",
+  "gameplay_plugin": "city-build-explore",
+  "design": {
+    "art_style": "stylized small-city diorama",
+    "spatial_metaphor": "districts, roads and building plots",
+    "narrative": "Feature groups grow as buildings in a walkable district"
+  },
+  "selection": {
+    "method": "ai-suggested",
+    "rationale": "One possible presentation for an illustrative marketing site, not a hard-coded product-type rule. No playable city exists yet.",
+    "user_confirmed": false
+  },
+  "runtime_status": "proposal-only",
+  "signals": [
+    {
+      "kind": "product-goal",
+      "value": "Synthetic one-page marketing website",
+      "basis": "synthetic",
+      "source_ref": "examples/tiny-landing-page.json"
+    }
+  ]
+}

@@ -2,13 +2,15 @@
 
 **Your agents are working. You're playing. Your world is growing.**
 
-Devungeon is a planned **open-source, explorable 2.5D pixel-art dungeon game + AI-agent workspace** that turns real software projects into living game worlds. Its rooms have genuine 3D space and collision, while the signature look is an **original top-down pixel dungeon** with crisp sprites, fast combat and expressive Agent characters.
+Devungeon is an **open-source, project-adaptive playable game world + AI-agent workspace**. The engine aims to interpret a software product's structure and design language, suggest different world forms and game mechanics, and let the creator choose. **Our first working reference is an original 2.5D top-down pixel dungeon**, but other projects need not become dungeons.
 
-> **Current status on this branch: SCOUT read-only adapter slice.** Public GitHub import, a scoped local metadata observer, local SSE/history and a browser event inspector are implemented. See [SCOUT verification](docs/SCOUT-VALIDATION.md) and [consumer interfaces](docs/SCOUT-INTEGRATION.md). **The playable dungeon and Claude/Codex/Crew provider subscriptions are not verified by this slice.**
+> **Current main branch:** product specifications and protocols. First-wave implementation exists in **open, unmerged PRs #6–#9**, with independently reported tests; there is not yet a fully integrated multi-world application. The new world-choice sidecar is an experimental schema and two synthetic proposals, **not a city game**.
+
+> **SCOUT branch:** public GitHub import, a scoped local metadata observer, local SSE/history and a browser event inspector are implemented. See [SCOUT verification](docs/SCOUT-VALIDATION.md) and [consumer interfaces](docs/SCOUT-INTEGRATION.md). These renderer-neutral sources remain compatible with ADR-0002. **This slice does not establish a playable multi-world platform or Claude/Codex/Crew provider subscription.**
 
 ## The idea
 
-- **Explore your project**: An AI World Designer interprets real modules, features, dependencies and verification evidence and creates a project-specific dungeon.
+- **Explore your project**: an AI World Designer suggests a suitable game world based on product/design signals and real project structures; you can override it. Available world packs compile that truth into an explorable world.
 - **Watch agents work**: Supervisors and workers appear as dungeon characters; observed tool calls, development tasks and validation events become in-world actions.
 - **Play while they build**: Move, dodge, fight monsters and explore. Game victory is separate from real project acceptance.
 - **Manage work inside the game**: Select or approach an Agent, chat, inspect status and evidence, and request operations permitted by the underlying real Agent system.
@@ -18,11 +20,12 @@ Our goal is **fun, creative exploration, open-source collaboration, and a compel
 
 ## Documents
 
-- [Full Chinese PRD v1.0](docs/PRD.md) — complete agreed product vision and V1 acceptance goals.
+- [Full Chinese PRD v1.3](docs/PRD.md) — complete product vision, Chinese-first UX and project-adaptive world types.
+- [ADR-0002: Project-adaptive worlds](docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md) — multi-world decision, genuine gameplay differences and first-wave compatibility.
 - [Architecture](docs/ARCHITECTURE.md) — boundaries and candidate technical stack.
 - [Acceptance](docs/ACCEPTANCE.md) — reproducible end-to-end cases, security and honesty checks.
 - [Roadmap](docs/ROADMAP.md) — incremental execution toward the complete V1 vision.
-- [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — mandatory original 2.5D pixel art, camera and gameplay readability.
+- [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — original first world pack, NOT a mandatory look for all future projects.
 - [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — broad engine, map, artwork, observability and testing evaluation; **candidate packages are not installed yet**.
 - [Asset Provenance Ledger](docs/ASSET_PROVENANCE.md) — verified CC0 candidates, import rules, redistribution and notices.
 - [Contribution guide](CONTRIBUTING.md), [Agent rules](AGENTS.md).
@@ -65,7 +68,7 @@ Issues and PRs are welcome once the repository is live. Especially useful: origi
 
 ## Agent development Skills
 
-The repository includes **six project-specific, instructions-only Agent Skills** under [`.agents/skills/`](.agents/skills/) for pixel visuals, browser gameplay validation, project-world compilation, truthful Agent event adapters, safe dependency reuse and in-world workbench commands.
+The repository includes **seven project-specific, instructions-only Agent Skills** under [`.agents/skills/`](.agents/skills/) for pixel visuals, browser gameplay validation, project-world compilation, truthful Agent event adapters, safe dependency reuse and in-world workbench commands.
 
 - Codex discovers repository-local Skills from `.agents/skills/`.
 - Claude Code uses [`.claude/skills/devungeon-workflow/SKILL.md`](.claude/skills/devungeon-workflow/SKILL.md), which routes to those canonical workflows; [`CLAUDE.md`](CLAUDE.md) gives project-wide guidance.
@@ -75,3 +78,10 @@ The repository includes **six project-specific, instructions-only Agent Skills**
 ## Visual references and copyright
 
 The original 2.5D art direction borrows **genre qualities** from lively top-down pixel dungeon games (including *Soul Knight*), not their copyrighted sprites, music, branding, exact rooms or UI. Prefer a consistent CC0 starter pack such as [Kenney Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) and record any actual imported files in the asset provenance ledger.
+
+
+## Experience selection (planned; not yet a running game switch)
+
+World packs may implement different **spatial metaphors and game loops**, not only alternative colors: pixel dungeon (combat), city (build/explore), space station (repair/explore), museum (collect/explore). Their shared foundation is real project IDs, dependencies, evidence, Agent observation and safe Agent commands; the user can choose a different world than the AI proposes. UI Chinese/English selection does **not** select a world.
+
+The versioned **optional** draft manifest and its two *synthetic* proposal fixtures live in [schema/world-experience.schema.json](schema/world-experience.schema.json), [pixel dungeon](examples/world-experience-pixel-dungeon.json), and [city proposal](examples/world-experience-city-proposal.json). City is **proposal-only**. A second world is not complete until a separate playable interaction loop passes real browser tests. See ADR-0002.

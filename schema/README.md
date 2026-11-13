@@ -12,3 +12,4 @@ SCOUT's read-only v1 output additionally requires `task_id`, `status`,
 the four new fields additively so legacy synthetic v1 fixtures still validate.
 Transport mode/cursor are outside the event in the SSE/history envelope; replay
 never changes original `is_demo`. See [consumer contract](../docs/SCOUT-INTEGRATION.md).
+world-experience.schema.json: optional **experimental** (v0.1) design/world/renderer/gameplay selection sidecar. It does not replace v1 ProjectSnapshot or WorldBlueprint and does not grant real acceptance/Agent permissions. The synthetic examples under examples/world-experience-*.json model an experimental first dungeon and an **unimplemented city proposal**. Their validation proves shape and source linkage, not a working game. See docs/ADR-0002-PROJECT-ADAPTIVE-WORLDS.md.

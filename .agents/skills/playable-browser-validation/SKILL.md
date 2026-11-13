@@ -18,3 +18,6 @@ Read docs/ACCEPTANCE.md, docs/VISUAL_DIRECTION.md and the current gameplay Issue
 A human can truly play, combat works, locks hold, agent events animate truthfully, and a reviewer can reproduce the evidence. "CI green" alone is not done.
 
 Reference: https://playwright.dev/docs/trace-viewer
+
+## More than one experience (future; ADR-0002)
+When a second world pack is implemented, actual browser tests must show **different gameplay**, not a new theme on the same dungeon. Verify selection/override, preserved ProjectSnapshot/Agent evidence/permissions, world switching, missing-pack fallback and isolated per-pack game-only saves. Browser tests of the existing pixel-dungeon slice remain valid independently.

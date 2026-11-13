@@ -19,3 +19,6 @@ Read docs/PRD.md, docs/ARCHITECTURE.md, docs/ACCEPTANCE.md and current S4 GitHub
 2. Forbidden/unsupported/unconnected calls must not execute and must show an honest error.
 3. Audit includes request ID, requester, scope, outcome, source and approval status, without raw tokens.
 4. DEMO, replay, disconnected, stale and live states are visually distinct in world and panel.
+
+## Multi-world rule (ADR-0002)
+The Agent workbench must remain independent of dungeon combat and rendering metaphors. A city builder, space station or museum may host the same Agent IDs, status, safe commands and provenance; a world-type or UI-locale switch cannot revoke approvals, issue commands or fabricate task changes.
