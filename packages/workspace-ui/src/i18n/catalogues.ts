@@ -1,5 +1,5 @@
 // First-party display text only. Source dialogue, IDs, evidence and commands are never translated.
-import { zhGame, enGame } from "./game-catalogue";
+import { zhGame, enGame } from "./game-catalogue.ts";
 const sharedZh = {
   "common.language": "界面语言",
   "common.unknownTime": "尚无来源观测",
@@ -54,6 +54,20 @@ const sharedZh = {
   "work.event.disconnected": "连接断开",
   "work.event.command_result": "指令结果",
   "workspace.location": "队友档案",
+  "demo.task.planTitle": "为下一段旅程拟定计划",
+  "demo.task.planDetail":
+    "等待你的目标。主管可派遣合成任务，也可以说明目前的阻塞。",
+  "demo.task.gateTitle": "修复北侧机关门",
+  "demo.task.gateDetail":
+    "缺少门锁规则的确认。此处是合成场景；没有改动真实代码。",
+  "demo.task.reviewTitle": "核对指挥厅事件记录",
+  "demo.task.reviewDetail":
+    "证据已备好，等待独立核对。审查结束不会自动验收项目。",
+  "workspace.demoSource": "本地模拟 · 不连接真实 AI，不执行外部操作",
+  "workspace.currentTask": "当前任务",
+  "workspace.views": "Agent 信息视图",
+  "workspace.sourceReadOnly": "来源记录 · 此连接只读，不接受指令。",
+  "workspace.sourceChat": "连接声明支持对话，指令仍需桥接层校验。",
   "workspace.close": "关闭工作台，继续探索",
   "workspace.missingAgent": "Agent 不存在",
   "workspace.tabs.chat": "对话",
@@ -64,34 +78,46 @@ const sharedZh = {
   "workspace.notInProject": "此 Agent 不在已连接项目中。请关闭面板重新选择。",
   "workspace.noTask": "暂无任务 · 可以先询问状态",
   "work.approvalCount": {
-    "one": "{count} 项审批待处理",
-    "other": "{count} 项审批待处理"
+    one: "{count} 项审批待处理",
+    other: "{count} 项审批待处理",
   },
   "workspace.viewScope": "查看范围 →",
-  "workspace.demoGreeting": "旅人，想先看看进展，还是交给我一项任务？你可以随时离开，模拟工作会继续。",
-  "workspace.liveHelp": "此连接支持真实对话。发送前将由可信桥接层判断授权范围。",
-  "workspace.readOnlyHelp": "这里只显示来源记录。此连接尚未提供真实对话能力；请在“活动”查看可追溯证据。",
+  "workspace.demoGreeting":
+    "旅人，想先看看进展，还是交给我一项任务？你可以随时离开，模拟工作会继续。",
+  "workspace.liveHelp":
+    "此连接支持真实对话。发送前将由可信桥接层判断授权范围。",
+  "workspace.readOnlyHelp":
+    "这里只显示来源记录。此连接尚未提供真实对话能力；请在“活动”查看可追溯证据。",
   "workspace.conversation": "对话与指令回执",
   "workspace.you": "你",
   "workspace.commandRecord": "指令记录",
   "workspace.tryAsking": "试着问问",
   "workspace.suggestion.blockers": "现在有什么阻塞？",
   "workspace.suggestion.next": "接下来该做什么？",
-  "workspace.taskHelp": "执行结束与项目验收分别记录。这里没有修改验收状态的入口。",
-  "workspace.taskEmpty": "尚无任务。发送一项支持的派遣请求后，结果将显示在这里。",
+  "workspace.taskHelp":
+    "执行结束与项目验收分别记录。这里没有修改验收状态的入口。",
+  "workspace.taskEmpty":
+    "尚无任务。发送一项支持的派遣请求后，结果将显示在这里。",
   "workspace.sourceVerified": "来源标记为已验证",
   "workspace.notVerified": "未独立验证",
   "workspace.noEvidence": "暂无结果证据。",
-  "workspace.eventHelp": "事件按发生时间展示；来源时间保留，回放不会刷新为实时。",
+  "workspace.eventHelp":
+    "事件按发生时间展示；来源时间保留，回放不会刷新为实时。",
   "workspace.noMessage": "来源未提供消息。",
   "workspace.commandId": "指令 {id}",
   "workspace.capabilities": "此角色的能力",
-  "workspace.permissionHelp": "权限由可信桥接层重新判断。游戏行为不产生授权；普通聊天不会被解析为执行指令。",
+  "workspace.permissionHelp":
+    "权限由可信桥接层重新判断。游戏行为不产生授权；普通聊天不会被解析为执行指令。",
   "workspace.agentSource": "角色来源",
   "workspace.lastSeen": "角色最近观测 {time}",
   "workspace.noAgentObservation": "尚无角色来源观测",
   "workspace.approvals": "审批请求",
-  "workspace.approvalsEmptyDemo": "暂无审批。主管的“发布演练”可练习具体范围的一次授权。",
+  "workspace.approvalDisplay": "核对这次请求的具体范围。原始审批记录保留如下。",
+  "workspace.project": "项目",
+  "workspace.targetAgent": "目标 Agent",
+  "workspace.requestText": "请求原文",
+  "workspace.approvalsEmptyDemo":
+    "暂无审批。主管的“发布演练”可练习具体范围的一次授权。",
   "workspace.approvalsEmpty": "暂无审批；当前仅显示来源已声明的能力。",
   "workspace.approval.pending": "等待审批",
   "workspace.approval.approved": "已批准一次",
@@ -118,7 +144,8 @@ const sharedZh = {
   "workspace.return": "返回游戏世界 →",
   "errors.sendFailed": "发送失败。",
   "errors.approvalFailed": "审批失败。",
-  "errors.unknownReceipt": "回执未知时，请核对活动记录；重发将沿用原指令 ID，不代表远端已停止。",
+  "errors.unknownReceipt":
+    "回执未知时，请核对活动记录；重发将沿用原指令 ID，不代表远端已停止。",
   "errors.raw": "原始诊断",
   "errors.snapshot.project": "收到跨项目的工作台数据。",
   "errors.snapshot.events": "事件来源、项目或唯一性校验失败。",
@@ -132,21 +159,42 @@ const sharedZh = {
   "errors.command.stale": "状态已过期；请重新连接后核对。",
   "errors.command.unsupported": "该 Agent 不支持此操作。",
   "errors.command.agentStale": "角色状态为回放或已过期；没有发送。",
-  "errors.command.timeout": "等待回执超时。远端状态未知；请凭原始指令 ID 核对。",
+  "errors.command.timeout":
+    "等待回执超时。远端状态未知；请凭原始指令 ID 核对。",
   "errors.command.conflict": "同一 command_id 不可用于不同内容。",
   "errors.command.receipt": "桥接回执与原始指令不匹配。",
   "errors.approval.scope": "审批范围不匹配或已经处理。",
   "errors.approval.receipt": "审批回执与原始指令不匹配。",
   "hall.title": "指挥厅",
+  "hall.talkTo": "与{name}交谈，{role}",
+  "hall.interact": "E 交谈",
+  "hall.quickSelect": "队友快捷选择",
+  "hall.party": "队伍 / {count}",
+  "hall.move": "移动",
+  "hall.approach": "靠近交谈",
+  "hall.orClick": "或点击队友",
+  "hall.footer": "DEMO · 2D 交互试验场 / 非完整游戏场景",
+  "hall.connectionSettings": "演示连接设置",
+  "hall.simulatedConnection": "模拟连接",
+  "hall.settingsHelp": "只改变本地模拟器；不会连接外部服务。",
+  "hall.disconnect": "模拟断线",
+  "hall.reconnect": "重新连接",
+  "hall.stale": "模拟状态过期",
+  "hall.failNext": "下次模拟失败",
+  "hall.failFeedback": "下一条可执行指令将模拟失败。",
+  "hall.closeSettings": "关闭设置",
+  "heroHall.gameState": "独立游戏状态",
   "hall.settings": "演示设置",
   "hall.eyebrow": "休整之地 · Agent 工作台",
   "hall.heading": "冒险间隙，和队友聊聊。",
   "hall.intro": "查看进展，交付目标，然后继续你的旅程。",
-  "hall.surface": "指挥厅交互试验场。WASD 移动，靠近队友后按 E 交谈。这是 2D 模拟宿主。",
+  "hall.surface":
+    "指挥厅交互试验场。WASD 移动，靠近队友后按 E 交谈。这是 2D 模拟宿主。",
   "hall.readOnlySource": "真实来源 · 只读连接",
   "hall.scout.title": "SCOUT 观察席",
   "hall.scout.heading": "工作留下的痕迹。",
-  "hall.scout.intro": "从 SCOUT 的本地事件桥观察角色。点击角色可核对原始时间、任务关联与证据。",
+  "hall.scout.intro":
+    "从 SCOUT 的本地事件桥观察角色。点击角色可核对原始时间、任务关联与证据。",
   "hall.scout.readOnly": "当前桥仅支持观察；真实聊天、调度与审批均不可用。",
   "hall.scout.noAgentInference": "GitHub 工作项不会被绘成正在工作的 Agent。",
   "hall.scout.area": "SCOUT 只读角色观察区",
@@ -160,9 +208,12 @@ const sharedZh = {
   "heroHall.codex": "DEMO 世界 / Codex 文本试验 · 默认关闭",
   "heroHall.eyebrow": "HERO 场景 × WIZARD 工作台",
   "heroHall.heading": "队友就在世界里。",
-  "heroHall.intro": "走近交谈，交付目标，然后继续冒险。面板打开时暂停本地战斗，后台工作继续。",
-  "heroHall.scoutIntro": "走近观察角色，核对真实活动与证据。此连接只读，游戏暂停不影响事件观察。",
-  "heroHall.codexIntro": "独立合成会话，每条最多 1000 字，至多两次回复。需主管明确启用；不允许工具、工程文件或任务执行。",
+  "heroHall.intro":
+    "走近交谈，交付目标，然后继续冒险。面板打开时暂停本地战斗，后台工作继续。",
+  "heroHall.scoutIntro":
+    "走近观察角色，核对真实活动与证据。此连接只读，游戏暂停不影响事件观察。",
+  "heroHall.codexIntro":
+    "独立合成会话，每条最多 1000 字，至多两次回复。需主管明确启用；不允许工具、工程文件或任务执行。",
   "heroHall.health": "游戏生命 {hp} / 100",
   "heroHall.kills": "击败 {kills} / {total}",
   "heroHall.lost": "本次冒险失败",
@@ -198,8 +249,9 @@ const sharedZh = {
   "world.prefab.bossArena": "首领竞技场",
   "world.theme.default": "项目地牢",
   "world.source.original": "原始来源名称",
-  "world.unknown.tasks": "任务情况未知",
-  "world.unknown.verification": "尚无独立验收证据",
+  "world.unknown.tasks": "快照未提供独立任务列表与任务进度。",
+  "world.unknown.verification":
+    "快照未提供功能级核验时间与置信度，证据标记保留原值。",
   "world.status.planned": "规划中",
   "world.status.ready": "就绪",
   "world.status.active": "进行中",
@@ -217,9 +269,12 @@ const sharedZh = {
   "world.error.persistence": "存储状态异常（{code}）",
   "world.error.design": "设计提案无效（{code}）",
   "world.error.compatibility": "场景接口不兼容（{code}）",
-  "world.error.generic": "世界生成异常（{code}）"
+  "world.error.generic": "世界生成异常（{code}）",
 } as const;
-const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; readonly other: string }> = {
+const sharedEn: Record<
+  keyof typeof sharedZh,
+  string | { readonly one: string; readonly other: string }
+> = {
   "common.language": "Interface language",
   "common.unknownTime": "No source observation",
   "common.mode.demo": "DEMO · Simulated",
@@ -273,6 +328,23 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "work.event.disconnected": "Disconnected",
   "work.event.command_result": "Command result",
   "workspace.location": "Teammate record",
+  "demo.task.planTitle": "Plan the next part of the journey",
+  "demo.task.planDetail":
+    "Awaiting your goal. The supervisor can dispatch synthetic tasks or explain current blockers.",
+  "demo.task.gateTitle": "Repair the northern mechanism gate",
+  "demo.task.gateDetail":
+    "Gate-lock rules need confirmation. This is a synthetic scene; no real code was changed.",
+  "demo.task.reviewTitle": "Review command hall event records",
+  "demo.task.reviewDetail":
+    "Evidence is ready for independent review. Finishing a review does not accept the project.",
+  "workspace.demoSource":
+    "Local simulation · No real AI connection or external operations",
+  "workspace.currentTask": "Current task",
+  "workspace.views": "Agent information views",
+  "workspace.sourceReadOnly":
+    "Source records · Read only; commands are unavailable.",
+  "workspace.sourceChat":
+    "The connection declares chat support; the bridge still checks authorization.",
   "workspace.close": "Close workspace and continue exploring",
   "workspace.missingAgent": "Agent unavailable",
   "workspace.tabs.chat": "Chat",
@@ -280,38 +352,53 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "workspace.tabs.events": "Activity",
   "workspace.tabs.permissions": "Permissions",
   "workspace.tabContent": "{tab} content",
-  "workspace.notInProject": "This Agent is not in the connected project. Close the panel and select again.",
+  "workspace.notInProject":
+    "This Agent is not in the connected project. Close the panel and select again.",
   "workspace.noTask": "No task · Ask about status",
   "work.approvalCount": {
-    "one": "{count} approval pending",
-    "other": "{count} approvals pending"
+    one: "{count} approval pending",
+    other: "{count} approvals pending",
   },
   "workspace.viewScope": "View scope →",
-  "workspace.demoGreeting": "Traveler, inspect progress or give me a task. You can leave at any time; simulated work continues.",
-  "workspace.liveHelp": "This connection supports real chat. The trusted bridge checks authorization before sending.",
-  "workspace.readOnlyHelp": "This connection displays source records only. Real chat is unavailable; inspect attributable evidence in Activity.",
+  "workspace.demoGreeting":
+    "Traveler, inspect progress or give me a task. You can leave at any time; simulated work continues.",
+  "workspace.liveHelp":
+    "This connection supports real chat. The trusted bridge checks authorization before sending.",
+  "workspace.readOnlyHelp":
+    "This connection displays source records only. Real chat is unavailable; inspect attributable evidence in Activity.",
   "workspace.conversation": "Conversation and command receipts",
   "workspace.you": "You",
   "workspace.commandRecord": "Command record",
   "workspace.tryAsking": "Try asking",
   "workspace.suggestion.blockers": "What is blocked right now?",
   "workspace.suggestion.next": "What should we do next?",
-  "workspace.taskHelp": "Execution and project acceptance are recorded separately. This panel cannot change acceptance.",
-  "workspace.taskEmpty": "No tasks yet. Results of supported task requests will appear here.",
+  "workspace.taskHelp":
+    "Execution and project acceptance are recorded separately. This panel cannot change acceptance.",
+  "workspace.taskEmpty":
+    "No tasks yet. Results of supported task requests will appear here.",
   "workspace.sourceVerified": "Marked verified by source",
   "workspace.notVerified": "Not independently verified",
   "workspace.noEvidence": "No result evidence yet.",
-  "workspace.eventHelp": "Events retain original occurrence times. Replay is never refreshed into live activity.",
+  "workspace.eventHelp":
+    "Events retain original occurrence times. Replay is never refreshed into live activity.",
   "workspace.noMessage": "The source supplied no message.",
   "workspace.commandId": "Command {id}",
   "workspace.capabilities": "Agent capabilities",
-  "workspace.permissionHelp": "The trusted bridge rechecks permissions. Gameplay grants no authority; chat text is not an execution command.",
+  "workspace.permissionHelp":
+    "The trusted bridge rechecks permissions. Gameplay grants no authority; chat text is not an execution command.",
   "workspace.agentSource": "Agent source",
   "workspace.lastSeen": "Agent last observed {time}",
   "workspace.noAgentObservation": "No Agent source observation",
   "workspace.approvals": "Approval requests",
-  "workspace.approvalsEmptyDemo": "No approvals. Use the supervisor's publication rehearsal to practice one scoped authorization.",
-  "workspace.approvalsEmpty": "No approvals. Only capabilities declared by the source are shown.",
+  "workspace.approvalDisplay":
+    "Review this exact request. The original approval record is preserved below.",
+  "workspace.project": "Project",
+  "workspace.targetAgent": "Target Agent",
+  "workspace.requestText": "Original request",
+  "workspace.approvalsEmptyDemo":
+    "No approvals. Use the supervisor's publication rehearsal to practice one scoped authorization.",
+  "workspace.approvalsEmpty":
+    "No approvals. Only capabilities declared by the source are shown.",
   "workspace.approval.pending": "Awaiting approval",
   "workspace.approval.approved": "Approved once",
   "workspace.approval.denied": "Denied",
@@ -328,7 +415,8 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "workspace.bridgeChecks": "Validated by bridge",
   "workspace.message": "Message or task content",
   "workspace.placeholder": "Describe your goal, or ask about progress…",
-  "workspace.readOnlyPlaceholder": "This connection is read only; commands are unavailable",
+  "workspace.readOnlyPlaceholder":
+    "This connection is read only; commands are unavailable",
   "workspace.newline": "Enter for a new line · Click to send",
   "workspace.waiting": "Awaiting receipt…",
   "workspace.sendDemo": "Send · DEMO ↗",
@@ -337,10 +425,12 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "workspace.return": "Return to the game world →",
   "errors.sendFailed": "Sending failed.",
   "errors.approvalFailed": "Approval failed.",
-  "errors.unknownReceipt": "If the receipt is unknown, check Activity. Retrying keeps the original command ID and does not imply the remote operation stopped.",
+  "errors.unknownReceipt":
+    "If the receipt is unknown, check Activity. Retrying keeps the original command ID and does not imply the remote operation stopped.",
   "errors.raw": "Original diagnostic",
   "errors.snapshot.project": "Received workspace data for another project.",
-  "errors.snapshot.events": "Event provenance, project or uniqueness validation failed.",
+  "errors.snapshot.events":
+    "Event provenance, project or uniqueness validation failed.",
   "errors.snapshot.ids": "Duplicate entity IDs.",
   "errors.snapshot.task": "Task target does not exist.",
   "errors.snapshot.agentTask": "Agent and current task do not match.",
@@ -348,40 +438,76 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "errors.command.scope": "Project or requester does not match.",
   "errors.command.disconnected": "Disconnected; nothing was sent.",
   "errors.command.replay": "Replay is read only; nothing was sent.",
-  "errors.command.stale": "The observation is stale; reconnect and reconcile first.",
+  "errors.command.stale":
+    "The observation is stale; reconnect and reconcile first.",
   "errors.command.unsupported": "This Agent does not support this action.",
-  "errors.command.agentStale": "The Agent is replaying or stale; nothing was sent.",
-  "errors.command.timeout": "Receipt observation timed out. The remote outcome is unknown; reconcile using the original command ID.",
-  "errors.command.conflict": "The same command_id cannot be reused for different content.",
-  "errors.command.receipt": "The bridge receipt does not match the original command.",
-  "errors.approval.scope": "The approval scope does not match, or was already handled.",
-  "errors.approval.receipt": "The approval receipt does not match the original command.",
+  "errors.command.agentStale":
+    "The Agent is replaying or stale; nothing was sent.",
+  "errors.command.timeout":
+    "Receipt observation timed out. The remote outcome is unknown; reconcile using the original command ID.",
+  "errors.command.conflict":
+    "The same command_id cannot be reused for different content.",
+  "errors.command.receipt":
+    "The bridge receipt does not match the original command.",
+  "errors.approval.scope":
+    "The approval scope does not match, or was already handled.",
+  "errors.approval.receipt":
+    "The approval receipt does not match the original command.",
   "hall.title": "Command hall",
+  "hall.talkTo": "Talk to {name}, {role}",
+  "hall.interact": "E Talk",
+  "hall.quickSelect": "Quick teammate selection",
+  "hall.party": "Party / {count}",
+  "hall.move": "Move",
+  "hall.approach": "Talk nearby",
+  "hall.orClick": "or select a teammate",
+  "hall.footer": "DEMO · 2D interaction test / Not the full game",
+  "hall.connectionSettings": "DEMO connection settings",
+  "hall.simulatedConnection": "Simulated connection",
+  "hall.settingsHelp":
+    "Changes only the local simulator; no external service is connected.",
+  "hall.disconnect": "Simulate disconnection",
+  "hall.reconnect": "Reconnect",
+  "hall.stale": "Simulate stale state",
+  "hall.failNext": "Fail the next simulated action",
+  "hall.failFeedback": "The next supported simulated action will fail.",
+  "hall.closeSettings": "Close settings",
+  "heroHall.gameState": "Independent game state",
   "hall.settings": "Demo settings",
   "hall.eyebrow": "A place to rest · Agent workspace",
   "hall.heading": "Between adventures, talk to your teammates.",
-  "hall.intro": "Inspect progress, hand over a goal, then continue your journey.",
-  "hall.surface": "Command hall interaction test. Move with WASD and press E near a teammate. This is a 2D DEMO host.",
+  "hall.intro":
+    "Inspect progress, hand over a goal, then continue your journey.",
+  "hall.surface":
+    "Command hall interaction test. Move with WASD and press E near a teammate. This is a 2D DEMO host.",
   "hall.readOnlySource": "Real source · Read-only connection",
   "hall.scout.title": "SCOUT observation post",
   "hall.scout.heading": "The traces of work.",
-  "hall.scout.intro": "Observe actors through SCOUT's local event bridge. Select one to inspect original times, task links and evidence.",
-  "hall.scout.readOnly": "This bridge is observe-only. Real chat, dispatch and approvals are unavailable.",
-  "hall.scout.noAgentInference": "GitHub work items are never depicted as working Agents.",
+  "hall.scout.intro":
+    "Observe actors through SCOUT's local event bridge. Select one to inspect original times, task links and evidence.",
+  "hall.scout.readOnly":
+    "This bridge is observe-only. Real chat, dispatch and approvals are unavailable.",
+  "hall.scout.noAgentInference":
+    "GitHub work items are never depicted as working Agents.",
   "hall.scout.area": "SCOUT read-only actor observation",
-  "hall.scout.empty": "Waiting for Agent events. Public project events do not create Agent actors.",
+  "hall.scout.empty":
+    "Waiting for Agent events. Public project events do not create Agent actors.",
   "hall.scout.inspect": "Select to inspect provenance and evidence",
   "hall.scout.footer": "2D workspace integration host · Not the full game",
   "heroHall.subtitle": "Ember forge · 3D workspace integration",
-  "heroHall.surface": "3D dungeon: WASD to move, J to attack, Space to dodge, E near a teammate to talk",
+  "heroHall.surface":
+    "3D dungeon: WASD to move, J to attack, Space to dodge, E near a teammate to talk",
   "heroHall.demo": "DEMO world / Simulated Agents",
   "heroHall.scout": "DEMO world / SCOUT read-only source",
   "heroHall.codex": "DEMO world / Codex text trial · Off by default",
   "heroHall.eyebrow": "HERO scene × WIZARD workspace",
   "heroHall.heading": "Your teammates are in the world.",
-  "heroHall.intro": "Approach, talk and hand over a goal, then keep exploring. The panel pauses local combat; work continues.",
-  "heroHall.scoutIntro": "Approach an observed actor and inspect real activity and evidence. This connection is read only; pausing gameplay does not pause observation.",
-  "heroHall.codexIntro": "Isolated synthetic text trial: 1,000 characters per request, at most two turns. Explicit operator enablement is required; no tools, project files or task execution.",
+  "heroHall.intro":
+    "Approach, talk and hand over a goal, then keep exploring. The panel pauses local combat; work continues.",
+  "heroHall.scoutIntro":
+    "Approach an observed actor and inspect real activity and evidence. This connection is read only; pausing gameplay does not pause observation.",
+  "heroHall.codexIntro":
+    "Isolated synthetic text trial: 1,000 characters per request, at most two turns. Explicit operator enablement is required; no tools, project files or task execution.",
   "heroHall.health": "Game health {hp} / 100",
   "heroHall.kills": "Defeated {kills} / {total}",
   "heroHall.lost": "Adventure lost",
@@ -393,23 +519,31 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "heroHall.pause": "Pause combat",
   "heroHall.restart": "Restart adventure",
   "heroHall.camera": "Follow / overview",
-  "heroHall.connectionError": "{error} Gameplay can continue; source records are retained.",
-  "heroHall.controls": "WASD move · J attack · Space dodge · Q/R rotate · E talk",
-  "heroHall.isolation": "Game wins/losses never accept projects, approve or cancel work",
+  "heroHall.connectionError":
+    "{error} Gameplay can continue; source records are retained.",
+  "heroHall.controls":
+    "WASD move · J attack · Space dodge · Q/R rotate · E talk",
+  "heroHall.isolation":
+    "Game wins/losses never accept projects, approve or cancel work",
   "heroHall.party": "Teammates in the forge",
-  "heroHall.noActors": "No Agent records yet. Project work items are not rendered as Agents.",
-  "heroHall.sharedIds": "Shares IDs, work events and inspection with in-world actors.",
+  "heroHall.noActors":
+    "No Agent records yet. Project work items are not rendered as Agents.",
+  "heroHall.sharedIds":
+    "Shares IDs, work events and inspection with in-world actors.",
   "heroHall.textTrial": "Text trial",
   "heroHall.readSource": "Read-only source",
   "loading.world": "Entering Devungeon…",
   "loading.forge": "Entering the 3D forge…",
   "world.foyer.name": "Entry camp",
-  "world.foyer.reason": "Game-only entry and return area; not project acceptance.",
+  "world.foyer.reason":
+    "Game-only entry and return area; not project acceptance.",
   "world.removed.name": "Historical area",
-  "world.removed.reason": "The source feature was removed; retained as history only.",
+  "world.removed.reason":
+    "The source feature was removed; retained as history only.",
   "world.entry.open": "Accessible",
   "world.entry.locked": "Unavailable",
-  "world.lock.statusNotAccepted": "Feature not accepted. Current status: {status}",
+  "world.lock.statusNotAccepted":
+    "Feature not accepted. Current status: {status}",
   "world.lock.dependencies": "Dependencies not accepted: {ids}",
   "world.prefab.stoneChamber": "Stone chamber",
   "world.prefab.workshop": "Workshop",
@@ -417,8 +551,9 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "world.prefab.bossArena": "Boss arena",
   "world.theme.default": "Project dungeon",
   "world.source.original": "Original source name",
-  "world.unknown.tasks": "Task information unknown",
-  "world.unknown.verification": "No independent acceptance evidence",
+  "world.unknown.tasks": "Snapshot has no separate task list or task progress.",
+  "world.unknown.verification":
+    "Snapshot lacks per-feature verification time/confidence; supplied evidence flags are preserved.",
   "world.status.planned": "Planned",
   "world.status.ready": "Ready",
   "world.status.active": "Active",
@@ -436,10 +571,9 @@ const sharedEn: Record<keyof typeof sharedZh, string | { readonly one: string; r
   "world.error.persistence": "Persistence error ({code})",
   "world.error.design": "Invalid design proposal ({code})",
   "world.error.compatibility": "Scene interface incompatible ({code})",
-  "world.error.generic": "World generation error ({code})"
+  "world.error.generic": "World generation error ({code})",
 };
 export const zhCN = { ...sharedZh, ...zhGame } as const;
 export const enUS = { ...sharedEn, ...enGame } as const;
 export const catalogues = { "zh-CN": zhCN, "en-US": enUS } as const;
-export type TranslationKey = keyof typeof catalogues["zh-CN"];
-
+export type TranslationKey = keyof (typeof catalogues)["zh-CN"];

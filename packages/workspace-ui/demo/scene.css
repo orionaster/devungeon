@@ -1,0 +1,460 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #151e29;
+  color: #ecf3f4;
+  font-family: system-ui, "Microsoft YaHei", sans-serif;
+}
+button {
+  font: inherit;
+}
+button:focus-visible,
+.hall-stage:focus-visible {
+  outline: 2px solid #f4b45b;
+  outline-offset: 5px;
+}
+.hall {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #1b2230;
+}
+.hall-header {
+  position: relative;
+  z-index: 2;
+  padding: 27px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12px;
+}
+.hall-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hall-brand strong {
+  letter-spacing: 0.15em;
+  font-size: 13px;
+}
+.hall-rune {
+  color: #71d2bc;
+  font-size: 24px;
+  line-height: 1;
+}
+.hall-divider {
+  height: 18px;
+  width: 1px;
+  background: #526b7a;
+}
+.hall-brand > span:last-child {
+  color: #afc1cb;
+}
+.hall-connection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 10px;
+  color: #f4c37c;
+}
+.hall-connection button {
+  background: transparent;
+  border: 1px solid #526b7a;
+  padding: 7px 10px;
+  color: #c3d2db;
+  font-size: 11px;
+  cursor: pointer;
+}
+.hall-title {
+  position: absolute;
+  top: 130px;
+  left: 5.5%;
+  z-index: 2;
+  pointer-events: none;
+}
+.hall-title p {
+  color: #adbdc8;
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+.hall-title h1 {
+  font-size: 33px;
+  font-weight: 550;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+.hall-stage {
+  position: relative;
+  width: min(900px, 74vw);
+  aspect-ratio: 4/3;
+  margin: -15px auto 0;
+  outline: none;
+}
+.hall-room {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+.hall-npc {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  padding: 0;
+  border: 0;
+  color: #ecf3f4;
+  background: transparent;
+  cursor: pointer;
+}
+.hall-npc .dw-pixel-agent {
+  width: 48px;
+  height: 60px;
+  filter: drop-shadow(4px 4px 0 #172330);
+}
+.hall-npc:hover .dw-pixel-agent {
+  transform: translateY(-3px);
+}
+.hall-npc-state {
+  padding: 3px 6px;
+  background: #1b2633;
+  color: #b4d8cf;
+  font-size: 9px;
+  margin-bottom: 12px;
+  border: 1px solid #415a64;
+}
+.hall-npc-worker .hall-npc-state {
+  color: #f4c37c;
+}
+.hall-npc-reviewer .hall-npc-state {
+  color: #d6c3ff;
+}
+.hall-npc-name {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+  background: #1b2633e8;
+  padding: 3px 7px;
+}
+.hall-npc-name small {
+  color: #b3c2cd;
+  font-size: 9px;
+}
+.hall-interact {
+  position: absolute;
+  top: -25px;
+  padding: 3px 6px;
+  font-size: 10px;
+  background: #71d2bc;
+  color: #17382f;
+}
+.hall-player {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.hall-player .dw-pixel-agent {
+  height: 48px;
+  width: 38px;
+  filter: saturate(0.35);
+}
+.hall-player span {
+  margin-top: 5px;
+  font-size: 10px;
+  color: #aabcc8;
+}
+.hall-room-name {
+  position: absolute;
+  bottom: 6%;
+  width: 100%;
+  text-align: center;
+  font:
+    10px ui-monospace,
+    monospace;
+  letter-spacing: 0.25em;
+  color: #92a7b6;
+  pointer-events: none;
+}
+.hall-party {
+  position: absolute;
+  left: 36px;
+  bottom: 100px;
+  width: 180px;
+  z-index: 3;
+}
+.hall-party > span {
+  display: block;
+  font-size: 10px;
+  color: #a9bcc9;
+  margin-bottom: 8px;
+}
+.hall-party button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  width: 100%;
+  text-align: left;
+  color: #edf3f5;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #344655;
+  cursor: pointer;
+}
+.hall-party .dw-pixel-agent {
+  height: 30px;
+  width: 24px;
+}
+.hall-party strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 550;
+}
+.hall-party small {
+  color: #afc1cb;
+  font-size: 10px;
+}
+.hall-party-arrow {
+  margin-left: auto;
+  color: #71d2bc;
+}
+.hall-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 36px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 10px;
+  color: #b6c6d2;
+}
+.hall-footer kbd {
+  display: inline-block;
+  border: 1px solid #526b7a;
+  padding: 4px 6px;
+  margin-right: 5px;
+  margin-left: 14px;
+  color: #dce9ec;
+}
+.hall-footer kbd:first-child {
+  margin-left: 0;
+}
+.hall-footer span {
+  margin-left: 14px;
+}
+.hall-footer p {
+  color: #aab9c6;
+  font-size: 9px;
+}
+.hall-settings {
+  position: absolute;
+  z-index: 10;
+  right: 36px;
+  top: 80px;
+  padding: 20px;
+  width: 300px;
+  background: #263746;
+  border: 2px solid #526b7a;
+}
+.hall-settings h2 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+.hall-settings p {
+  color: #afc1cb;
+  font-size: 12px;
+}
+.hall-settings button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #526b7a;
+  background: #1b2633;
+  color: #ecf3f4;
+  cursor: pointer;
+}
+.scout-intro {
+  margin: 50px 5%;
+  max-width: 560px;
+}
+.scout-intro h1 {
+  font-size: 30px;
+  font-weight: 550;
+}
+.scout-intro p {
+  color: #afc1cb;
+  line-height: 1.8;
+  font-size: 13px;
+}
+.scout-room {
+  margin: 20px 5% 120px;
+  width: min(750px, 90%);
+  min-height: 300px;
+  padding: 40px;
+  border: 16px solid #435667;
+  background: #303e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scout-agent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 14px;
+  background: transparent;
+  color: #ecf3f4;
+  border: 0;
+  cursor: pointer;
+}
+.scout-agent > span {
+  font-size: 11px;
+  color: #f4c37c;
+}
+.scout-agent .dw-pixel-agent {
+  width: 64px;
+  height: 80px;
+}
+.scout-agent strong {
+  font:
+    11px ui-monospace,
+    monospace;
+  overflow-wrap: anywhere;
+}
+.scout-agent small {
+  font-size: 11px;
+  color: #afc1cb;
+}
+@media (min-width: 1200px) {
+  .hall-inspecting .hall-stage {
+    margin-left: 9%;
+    margin-right: 0;
+    width: min(800px, 67vw);
+  }
+  .hall-inspecting .hall-title {
+    top: 125px;
+    left: 3%;
+  }
+  .hall-inspecting .hall-title h1 {
+    font-size: 26px;
+  }
+}
+@media (max-width: 1000px) {
+  .hall-title {
+    top: 100px;
+    left: 5%;
+  }
+  .hall-title h1 {
+    font-size: 24px;
+  }
+  .hall-title > p:last-child {
+    max-width: 170px;
+    line-height: 1.8;
+  }
+  .hall-stage {
+    margin-top: 70px;
+    width: 90vw;
+  }
+  .hall-party {
+    left: 30px;
+    bottom: 80px;
+    width: 150px;
+  }
+}
+@media (max-width: 600px) {
+  .hall-header {
+    padding: 18px 14px;
+    align-items: flex-start;
+  }
+  .hall-brand {
+    gap: 8px;
+  }
+  .hall-brand strong {
+    font-size: 10px;
+  }
+  .hall-connection {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+  .hall-title {
+    top: 100px;
+    left: 20px;
+  }
+  .hall-title h1 {
+    font-size: 22px;
+  }
+  .hall-title p:last-child {
+    max-width: 240px;
+  }
+  .hall-stage {
+    margin-top: 180px;
+    width: 110vw;
+    margin-left: -5vw;
+  }
+  .hall-npc {
+    min-width: 76px;
+  }
+  .hall-npc .dw-pixel-agent {
+    width: 32px;
+    height: 40px;
+  }
+  .hall-npc-name {
+    font-size: 10px;
+  }
+  .hall-npc-name small {
+    display: none;
+  }
+  .hall-npc-state {
+    margin-bottom: 5px;
+    font-size: 8px;
+  }
+  .hall-party {
+    position: relative;
+    width: auto;
+    margin: 0 20px 110px;
+    bottom: auto;
+    left: auto;
+    display: flex;
+    gap: 10px;
+  }
+  .hall-party > span {
+    display: none;
+  }
+  .hall-party button {
+    gap: 8px;
+  }
+  .hall-party-arrow {
+    display: none;
+  }
+  .hall-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px 20px;
+    gap: 6px;
+  }
+  .hall-footer p {
+    margin: 2px 0;
+  }
+  .hall-footer span {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hall-npc:hover .dw-pixel-agent {
+    transform: none;
+  }
+}

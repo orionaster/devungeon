@@ -3,7 +3,7 @@ import path from "node:path";
 const lock = JSON.parse(fs.readFileSync("package-lock.json", "utf8"));
 const rows = [],
   notices = [
-    "Devungeon S1 third-party notices. Generated from the exact npm lockfile and installed packages.",
+    "Devungeon third-party notices. Generated from the exact npm lockfile and installed packages.",
     "Source game code/art: Apache-2.0. See repository LICENSE and NOTICE.",
     "",
   ];
@@ -67,6 +67,7 @@ fs.writeFileSync(
   "apps/web/public/THIRD_PARTY_NOTICES.txt",
   notices
     .join("\n")
+    .replace(/\r\n?/g, "\n")
     .split("\n")
     .map((line) => line.replace(/[ \t]+$/, ""))
     .join("\n")

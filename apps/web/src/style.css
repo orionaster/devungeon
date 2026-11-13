@@ -761,7 +761,7 @@ small {
 .inspector {
   position: relative;
   pointer-events: auto;
-  background: #1a2932f7;
+  background: #1a2932;
   border: 1px solid #73868a;
   padding: 30px 23px;
   max-height: 100%;

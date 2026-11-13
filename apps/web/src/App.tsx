@@ -47,6 +47,7 @@ export interface GameHostProps {
   renderAgentInspector?: (context: {
     agentId: string;
     onClose: () => void;
+    restoreFocus: () => void;
   }) => ReactNode;
   roomDisplay?: (room: Room) => {
     name: string;
@@ -64,7 +65,10 @@ export default function App({
   sourcePanel,
 }: GameHostProps) {
   const { t, locale, formatDateTime } = useI18n();
-  const builtin = scene.worldId === DEMO_SCENE.worldId;
+  // An explicitly imported source context must retain its original labels,
+  // even if its caller happens to reuse the reference pack's world ID.
+  const builtin =
+    scene.worldId === DEMO_SCENE.worldId && !scene.project_context;
   const demoWorld =
     !scene.project_context || scene.project_context.source.is_demo;
   const roomName = (room: Room) =>
@@ -111,9 +115,13 @@ export default function App({
     e.source === "synthetic:s1-script" &&
     e.is_demo &&
     e.message &&
-    e.message in gameDemoMessageKeys
-      ? t(gameDemoMessageKeys[e.message as keyof typeof gameDemoMessageKeys])
-      : e.message;
+    e.message in gameDemoMessageKeys ? (
+      t(gameDemoMessageKeys[e.message as keyof typeof gameDemoMessageKeys])
+    ) : e.message ? (
+      <>
+        {t("common.original")} · {e.message}
+      </>
+    ) : undefined;
   useEffect(() => {
     document.title = t("game.document.title");
     document
@@ -239,9 +247,11 @@ export default function App({
   }, [scene, eventProjection, demoEvents]);
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
+      if (e.defaultPrevented) return;
       if (
         e.target instanceof HTMLElement &&
-        e.target.closest("input,textarea,select")
+        e.target.closest("input,textarea,select,button") &&
+        e.code !== "Escape"
       )
         return;
       if (
@@ -316,8 +326,9 @@ export default function App({
     };
   }, [started, selected, help, atlas, game?.phase, scene]);
   useEffect(() => {
-    if (selected || help || atlas) clearInput();
-  }, [selected, help, atlas]);
+    runtime.paused = paused || !!selected || help || atlas;
+    clearInput();
+  }, [paused, selected, help, atlas]);
   const events = eventProjection.snapshot();
   const chosenAgent = scene.agents.find((a) => a.agent_id === selected);
   const chosenRoom = scene.rooms.find((r) => r.room_id === selected);
@@ -836,9 +847,11 @@ export default function App({
         (chosenAgent && renderAgentInspector ? (
           renderAgentInspector({
             agentId: chosenAgent.agent_id,
+            restoreFocus: focus,
             onClose: () => {
+              clearInput();
               setSelected(null);
-              focus();
+              requestAnimationFrame(focus);
             },
           })
         ) : (

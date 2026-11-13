@@ -1,6 +1,6 @@
 # HERO scene / workbench contract
 
-Wave 2 updates and exact optional door, visual-only marker, root App and shared locale ports are documented in [HERO_WAVE2.md](HERO_WAVE2.md). These updates supersede the first-wave-only host limitations below where noted. World geometry and game/source isolation remain the same.
+**Wave 2 S4 integration:** HERO App remains the generic scene/event/inspection host. On the WIZARD branch, apps/web/src/WorkspaceGame.tsx injects AgentWorkspace through renderAgentInspector while owning work separately from gameplay. DungeonScene uses agentEvents and onSelectAgent, plus agentActivityEnabled to suppress disconnected/stale cached animations. Current source/locale/focus contracts and remaining combined gates are in [WIZARD integration](WIZARD-I18N-INTEGRATION.md) and [HERO wave 2](HERO_WAVE2.md). The first-wave notes below are historical where superseded.
 
 S1 code lives on `feat/s1-hero-game`. It owns `apps/web`, `packages/dungeon-engine`, the initial root npm workspace and lockfile. Do not overwrite parallel BUILDER/SCOUT/WIZARD packages. This branch does not import or claim their live capabilities. Coordination is recorded on [Issue #1](https://github.com/orionaster/devungeon/issues/1).
 
@@ -67,3 +67,7 @@ Use an explicit ID mapping/helper; do not guess by display name. On panel open c
 ## Diagnostics
 
 `window.__DEVUNGEON__` exposes defensive `snapshot()`, `events()`, `access()`, `camera()`, `metrics()` only. Browser acceptance drives actual keyboard/mouse inputs and reads those results. There are no cheat, HP, teleport or work-state mutation hooks. FPS is rolling visible-frame timing; it includes long visible hitches. Raw production sampling and environment are in `output/playwright/production-performance.json`.
+
+## Wave 2 WIZARD composition
+
+HERO 4d45bd4 and its follow-up 990e06a are synchronized on the WIZARD branch. Keep HERO's generic App scene/event/inspection ports; apps/web/src/WorkspaceGame.tsx is the default S4 DEMO composition. AgentWorkspace receives onRestoreFocus from the host after Radix releases the dialog, and local combat pauses independently of work. No native control is enabled. Shared locale and combined-source gates: docs/WIZARD-I18N-INTEGRATION.md. HERO-only clean Windows/browser evidence: docs/HERO_WAVE2.md; that evidence is not combined S4/SCOUT/BUILDER acceptance.

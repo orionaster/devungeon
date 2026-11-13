@@ -17,7 +17,6 @@ import {
   type Enemy,
   type GameSnapshot,
   type SceneDefinition,
-  type Room,
   type AgentProjection,
   type SceneDoor,
 } from "../../../packages/dungeon-engine/src";
@@ -33,6 +32,9 @@ const SceneContext = createContext<SceneDefinition>(DEMO_SCENE);
 /** Read-only event port: the host owns source scope, provenance and command permissions. */
 type AgentEventReader = Pick<AgentProjection, "actor">;
 const AgentEventsContext = createContext<AgentEventReader>(projection);
+const INACTIVE_EVENTS: AgentEventReader = {
+  actor: () => ({ event: undefined, stale: true }),
+};
 const SelectAgentContext = createContext<(id: string) => void>((id) =>
   runtime.selectAgent?.(id),
 );
@@ -690,17 +692,22 @@ function CameraAndLoop() {
 export function DungeonScene({
   scene = DEMO_SCENE,
   agentEvents = projection,
+  agentActivityEnabled = true,
   onSelectAgent,
   fallback,
 }: {
   scene?: SceneDefinition;
   agentEvents?: AgentEventReader;
+  /** A source disconnect/stale state must suppress even a still-fresh cached animation. */
+  agentActivityEnabled?: boolean;
   onSelectAgent?: (id: string) => void;
   fallback?: React.ReactNode;
 }) {
   return (
     <SceneContext.Provider value={scene}>
-      <AgentEventsContext.Provider value={agentEvents}>
+      <AgentEventsContext.Provider
+        value={agentActivityEnabled ? agentEvents : INACTIVE_EVENTS}
+      >
         <SelectAgentContext.Provider
           value={onSelectAgent ?? ((id) => runtime.selectAgent?.(id))}
         >
