@@ -1,0 +1,210 @@
+[
+  {
+    "run": "interactions-final",
+    "started_at": "2026-11-14T11:05:50.585Z",
+    "pass": false,
+    "failure": "AssertionError [ERR_ASSERTION]: locale switch preserves paused gameplay and source/Agent state\n    at check (file:///C:/Devungeon/first-play/scripts/first-play-interactions.mjs:34:10)\n    at file:///C:/Devungeon/first-play/scripts/first-play-interactions.mjs:157:3",
+    "checks_passed": 2
+  },
+  {
+    "run": "interactions-diagnostic",
+    "started_at": "2026-11-14T11:06:07.057Z",
+    "pass": false,
+    "failure": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /来源档案柜|Source archive/. Input:\n\n'Moss · 观测室伙伴'\n\n    at selected (file:///C:/Devungeon/first-play/scripts/first-play-interactions.mjs:117:12)\n    at async file:///C:/Devungeon/first-play/scripts/first-play-interactions.mjs:243:5",
+    "checks_passed": 22
+  },
+  {
+    "run": "interactions-retry",
+    "started_at": "2026-11-14T11:07:26.156Z",
+    "pass": false,
+    "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.inspector') to be visible\u001b[22m\n\n    at selected (C:\\Devungeon\\first-play\\scripts\\first-play-interactions.mjs:105:38)\n    at C:\\Devungeon\\first-play\\scripts\\first-play-interactions.mjs:247:11",
+    "checks_passed": 23,
+    "approaches": [
+      {
+        "target": {
+          "id": "source-desk",
+          "x": -3,
+          "z": -0.8
+        },
+        "player": {
+          "x": -2.934999965131283,
+          "z": -0.5849999263882637,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      },
+      {
+        "target": {
+          "id": "demo:sample-scout",
+          "x": -1,
+          "z": -0.6
+        },
+        "player": {
+          "x": -1.1433333307504654,
+          "z": -0.5849999263882637,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": true,
+          "hurt": 0
+        }
+      },
+      {
+        "target": {
+          "id": "test-bench",
+          "x": 1.2,
+          "z": 2
+        },
+        "player": {
+          "x": 1.149999961256981,
+          "z": 1.851666696369648,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0.8600664337149527,
+            "z": 0.5101820553457781
+          },
+          "moving": true,
+          "hurt": 0
+        }
+      },
+      {
+        "target": {
+          "id": "evidence-cabinet",
+          "x": 1.2,
+          "z": -3
+        },
+        "player": {
+          "x": 1.149999961256981,
+          "z": -2.8066665530204773,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0.815233039398025,
+            "z": 0.5791330516158252
+          },
+          "moving": true,
+          "hurt": 0
+        }
+      },
+      {
+        "target": {
+          "id": "game-only:future-alcove",
+          "x": 6,
+          "z": -0.6
+        },
+        "player": {
+          "x": 5.808333210647106,
+          "z": -0.5849999263882637,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -0.9422944809339945,
+            "z": 0.33478517171663086
+          },
+          "moving": true,
+          "hurt": 0
+        }
+      }
+    ]
+  },
+  {
+    "run": "interactions-complete",
+    "started_at": "2026-11-14T11:08:47.845Z",
+    "pass": false,
+    "failure": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /来源档案柜|Source archive/. Input:\n\n'Moss · 观测室伙伴'\n\n    at selected (file:///C:/Devungeon/first-play/scripts/first-play-interactions.mjs:118:12)\n    at async file:///C:/Devungeon/first-play/scripts/first-play-interactions.mjs:253:5",
+    "checks_passed": 23,
+    "approaches": [
+      {
+        "target": {
+          "id": "source-desk",
+          "x": -3,
+          "z": -0.8
+        },
+        "player": {
+          "x": -2.7916666343808174,
+          "z": -0.7283332571387291,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      },
+      {
+        "target": {
+          "id": "demo:sample-scout",
+          "x": -1,
+          "z": -0.6
+        },
+        "player": {
+          "x": -1.1433333307504654,
+          "z": -0.7283332571387291,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": true,
+          "hurt": 0
+        }
+      },
+      {
+        "target": {
+          "id": "test-bench",
+          "x": 1.2,
+          "z": 2
+        },
+        "player": {
+          "x": 1.0783332958817482,
+          "z": 1.9233333617448807,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0.8675051676554749,
+            "z": 0.49742816978036775
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      },
+      {
+        "target": {
+          "id": "evidence-cabinet",
+          "x": 1.2,
+          "z": -3
+        },
+        "player": {
+          "x": 1.0783332958817482,
+          "z": -2.8066665530204773,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0.8202296672989009,
+            "z": 0.5720343458943129
+          },
+          "moving": true,
+          "hurt": 0
+        }
+      }
+    ]
+  },
+  {
+    "run": "moss-after initial rear contact",
+    "issue": "Walking/dodge route slid away before the rear screenshots. The original 12 rear images and assertions are not accepted as contact evidence.",
+    "correction": "Rear-only rerun holds a measured 1.195101 distance in every screenshot and tests dodge separately. See moss-rear.json."
+  }
+]

@@ -1,0 +1,14 @@
+
+> devungeon@0.1.0 test:host
+> node --test scripts/forge-host.test.mjs
+
+Lifecycle evidence: C:\Devungeon\first-play\output\playwright\forge-host-lifecycle\run-LwDk1V
+✔ normal app stop/restart releases locks; forced death leaves no orphan and fails closed (6238.3608ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6347.8964

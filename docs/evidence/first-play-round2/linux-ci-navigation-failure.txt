@@ -1,0 +1,23 @@
+2026-11-14T11:19:28.5733662Z NAV workbench target -14.5,0.5
+2026-11-14T11:19:28.6475999Z NAV workbench target -17.5,0.5
+2026-11-14T11:19:30.1767531Z NAV workbench target -17.5,5.5
+2026-11-14T11:19:32.4011037Z NAV workbench target 0.5,5.5
+2026-11-14T11:19:43.5250476Z NAV workbench pulse 21 position 0.645,5.594 distance 0.173
+2026-11-14T11:19:50.6385710Z NAV workbench pulse 41 position 0.287,5.594 distance 0.233
+2026-11-14T11:19:57.5323867Z NAV workbench pulse 61 position 0.645,5.594 distance 0.173
+2026-11-14T11:19:59.0455911Z NAV workbench target 0.5,0.5
+2026-11-14T11:20:07.3400014Z NAV workbench pulse 21 position 0.623,0.730 distance 0.261
+2026-11-14T11:20:13.9029313Z NAV workbench pulse 41 position 0.623,0.300 distance 0.235
+2026-11-14T11:20:20.3737107Z NAV workbench pulse 61 position 0.623,0.658 distance 0.200
+2026-11-14T11:20:26.9526474Z NAV workbench pulse 81 position 0.623,0.658 distance 0.200
+2026-11-14T11:20:33.4248395Z NAV workbench pulse 101 position 0.623,0.658 distance 0.200
+2026-11-14T11:20:39.9062580Z NAV workbench pulse 121 position 0.623,0.658 distance 0.200
+2026-11-14T11:20:46.5617248Z NAV workbench pulse 141 position 0.623,0.730 distance 0.261
+2026-11-14T11:20:52.9017057Z NAV workbench pulse 161 position 0.623,0.730 distance 0.261
+2026-11-14T11:20:57.7097192Z Error: Keyboard route stuck at {"x":0.6234264076047111,"z":0.3711842541189583,"hp":84,"maxHp":100,"facing":{"x":0,"z":-1},"moving":false,"hurt":0} approaching {"x":0.5,"z":0.5}
+2026-11-14T11:20:57.7136085Z     at walkTo (file:///home/runner/work/devungeon/devungeon/scripts/forge-browser.mjs:210:9)
+2026-11-14T11:20:57.7167557Z     at async follow (file:///home/runner/work/devungeon/devungeon/scripts/forge-browser.mjs:219:23)
+2026-11-14T11:20:57.7200999Z     at async verifyProject (file:///home/runner/work/devungeon/devungeon/scripts/forge-browser.mjs:357:5)
+2026-11-14T11:20:57.7202461Z     at async file:///home/runner/work/devungeon/devungeon/scripts/forge-browser.mjs:646:130
+2026-11-14T11:20:57.7551441Z Results: /home/runner/work/devungeon/devungeon/output/playwright/forge/games-results.json
+2026-11-14T11:20:57.8171133Z ##[error]Process completed with exit code 1.

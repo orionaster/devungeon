@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "project_id": "synthetic-site",
+  "project_revision": "demo-1",
+  "seed": 1337,
+  "zones": [
+    {
+      "id": "experience",
+      "theme": "cozy starter dungeon"
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "contact",
+      "x": 18,
+      "z": 0,
+      "width": 11,
+      "depth": 11,
+      "prefab": "workshop",
+      "pinned": true
+    },
+    {
+      "room_id": "hero",
+      "x": 0,
+      "z": 0,
+      "width": 11,
+      "depth": 11,
+      "prefab": "workshop",
+      "pinned": true
+    },
+    {
+      "room_id": "launch",
+      "x": 36,
+      "z": 0,
+      "width": 9,
+      "depth": 9,
+      "prefab": "stone-chamber",
+      "pinned": true
+    }
+  ],
+  "connections": [
+    {
+      "from_room_id": "hero",
+      "to_room_id": "contact",
+      "kind": "gate"
+    },
+    {
+      "from_room_id": "contact",
+      "to_room_id": "launch",
+      "kind": "gate"
+    }
+  ]
+}

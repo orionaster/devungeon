@@ -1,0 +1,3 @@
+# Derived JSON stays human-readable locally; GitHub collapses it during review.
+examples/*.world.json linguist-generated=true
+examples/*.hero-scene.json linguist-generated=true

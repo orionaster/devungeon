@@ -1,0 +1,22 @@
+{
+  "node": "v24.13.1",
+  "platform": "win32",
+  "arch": "x64",
+  "methodology": "In-process compileWorld only; module import/Ajv schema initialization excluded. Five warm-up runs, then 25 measurements. No disk/network/rendering included.",
+  "cases": [
+    {
+      "name": "tiny-landing-page",
+      "measured_runs": 25,
+      "median_ms": 2.297699999999992,
+      "p95_ms": 3.1096000000000004,
+      "max_ms": 3.489799999999974
+    },
+    {
+      "name": "agent-workbench-synthetic",
+      "measured_runs": 25,
+      "median_ms": 5.937000000000012,
+      "p95_ms": 6.863400000000013,
+      "max_ms": 12.664099999999962
+    }
+  ]
+}

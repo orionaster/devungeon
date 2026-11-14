@@ -1,0 +1,4 @@
+src/schema/
+demo/dist/
+output/
+.playwright-cli/

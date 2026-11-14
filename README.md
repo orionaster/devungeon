@@ -4,7 +4,26 @@
 
 Devungeon is an **open-source, project-adaptive playable game world + AI-agent workspace**. The engine aims to interpret a software product's structure and design language, suggest different world forms and game mechanics, and let the creator choose. **Our first working reference is an original 2.5D top-down pixel dungeon**, but other projects need not become dungeons.
 
-> **Current main branch:** product specifications and protocols. First-wave implementation exists in **open, unmerged PRs #6–#9**, with independently reported tests; there is not yet a fully integrated multi-world application. The new world-choice sidecar is an experimental schema and two synthetic proposals, **not a city game**.
+> **FORGE integration, awaiting review:** one app combines HERO combat, BUILDER's two project maps, SCOUT's public Devungeon observations and WIZARD's bilingual in-world workspace. Real model chat/commands remain unavailable; synthetic interactions are labeled DEMO. This is the first pixel-dungeon pack, not the complete multi-world V1. See [integration and actual verification](docs/FORGE_INTEGRATION.md).
+
+> **First Play upgrade, awaiting visual review:** this branch starts in the Starlit Observatory, one playable CC0 art sample with stable camera, simpler controls and a traceable public-project feature. The desk reads real public observations; Moss's two task behaviors are DEMO. Wider art rollout awaits owner approval. See [implementation, screenshots/video and actual tests](docs/FIRST_PLAY_UPGRADE.md).
+
+## Play locally
+
+Use Node 24.13+ and npm on Windows, Linux or macOS:
+
+```powershell
+npm ci --ignore-scripts
+npm run dev
+```
+
+Open http://127.0.0.1:5173. The same command starts a loopback-only read-only bridge for the explicitly selected public `orionaster/devungeon` repository. No account, paid service, API keys or provider process is used. First startup is Chinese; switch to English in the header without reloading.
+
+Start exploring the Observatory, or open **Projects & maps** to choose Tiny landing page (3 features / 2 dependencies), Agent workbench (8 / 9), or public Devungeon. The first two are synthetic DEMO fixtures; **Extend map · DEMO** appends a sealed feature while retaining old room/corridor positions. Switching project or applying a new map restarts only the local encounter. Public facts update immediately; changed maps are staged until explicitly applied. Public Issues/PRs are observed work items, not inferred accepted capabilities. All unaccepted project rooms remain locked; separate game-only spaces remain playable.
+
+WASD moves, J attacks, Space dodges, Q/R rotate 90°, wheel zooms, E inspects a nearby companion/object, P pauses local combat. Escape closes the active panel and returns focus to the game; an explicit pause has a visible Resume button. In generated maps, click a visible Agent or its row under **Project & Agents** to open the workspace, including visual-only markers in locked rooms. DEMO supports local simulated chat/tasks/approval exercises. The sample's Moss panel instead exposes two explicitly scripted task behaviors and their evidence. Public observers support inspection only; no live model command channel is enabled. Death, restart and pause never cancel Agent work, approve actions or change project acceptance.
+
+`npm run check`, `npm test` and `npm run build` check the complete integration. `npm run preview` serves the production app with the same local bridge. Set `DEVUNGEON_PORT` / `DEVUNGEON_SCOUT_PORT` to avoid occupied ports. Ctrl+C stops the owned processes; local public journals live in ignored `.devungeon-scout/forge`. Browser reproduction, source observer opt-in, evidence and remaining limits are in [FORGE_INTEGRATION.md](docs/FORGE_INTEGRATION.md). The canonical install is the root `package-lock.json`; React and React DOM are deduplicated. The old per-package records document first-wave standalone contributions.
 
 ## The idea
 
@@ -24,7 +43,7 @@ Our goal is **fun, creative exploration, open-source collaboration, and a compel
 - [Acceptance](docs/ACCEPTANCE.md) — reproducible end-to-end cases, security and honesty checks.
 - [Roadmap](docs/ROADMAP.md) — incremental execution toward the complete V1 vision.
 - [Pixel Dungeon Art Direction](docs/VISUAL_DIRECTION.md) — original first world pack, NOT a mandatory look for all future projects.
-- [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — broad engine, map, artwork, observability and testing evaluation; **candidate packages are not installed yet**.
+- [Tool & Skill Due Diligence](docs/TOOLS_AND_SKILLS.md) — original candidate evaluation; installed choices are pinned in the root lockfile and feature dependency records.
 - [Asset Provenance Ledger](docs/ASSET_PROVENANCE.md) — verified CC0 candidates, import rules, redistribution and notices.
 - [Contribution guide](CONTRIBUTING.md), [Agent rules](AGENTS.md).
 - [Project Snapshot schema](schema/project-snapshot.schema.json) and two **synthetic** examples under `examples/`.
@@ -46,11 +65,11 @@ Suggested stack (subject to slice tests): TypeScript + React + Vite + Three.js +
 
 ## Work / game separation
 
-| Real work | Game |
-|---|---|
-| Review and acceptance evidence determines feature status | Winning a fight determines game victory only |
-| Agent events and permissions have audit records | Visual effects, damage and items are gameplay state |
-| Real operations require capability checks and approval | An in-game sword never grants GitHub access |
+| Real work                                                | Game                                                |
+| -------------------------------------------------------- | --------------------------------------------------- |
+| Review and acceptance evidence determines feature status | Winning a fight determines game victory only        |
+| Agent events and permissions have audit records          | Visual effects, damage and items are gameplay state |
+| Real operations require capability checks and approval   | An in-game sword never grants GitHub access         |
 
 ## Examples
 
@@ -71,7 +90,7 @@ The repository includes **seven project-specific, instructions-only Agent Skills
 - Codex discovers repository-local Skills from `.agents/skills/`.
 - Claude Code uses [`.claude/skills/devungeon-workflow/SKILL.md`](.claude/skills/devungeon-workflow/SKILL.md), which routes to those canonical workflows; [`CLAUDE.md`](CLAUDE.md) gives project-wide guidance.
 - `python scripts/validate_skills.py` validates local Skill metadata without running/installing any Skill.
-- The repository **has not installed game runtime libraries, third-party Skills, MCP servers, hooks or art downloads** yet. These are implementation choices for S1–S4, and every chosen package needs a tested lockfile and appropriate license review.
+- Game/workspace runtime packages are installed through the tested root lockfile. No third-party Skill, global MCP server, persistent hook or external art download was added. Dependency notices ship with the local builds.
 
 ## Visual references and copyright
 

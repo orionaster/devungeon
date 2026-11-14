@@ -2,6 +2,8 @@
 
 Status: design proposal, **not** implemented code. Refer to [PRD](PRD.md) for scope and UX.
 
+FORGE branch update, 2026-11-14: a first pixel-pack implementation now follows these domain boundaries in the unified root app; [integration notes](FORGE_INTEGRATION.md) link its actual evidence. Experience selection and a second distinct gameplay pack remain proposals.
+
 ## Four distinct domains
 
 1. **Project truth domain** — inspect source data, normalize product capabilities / dependencies, represent unknown facts; verify acceptance with attributable evidence.

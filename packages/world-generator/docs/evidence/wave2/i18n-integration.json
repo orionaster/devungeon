@@ -1,0 +1,401 @@
+{
+  "shared_catalogue": "WIZARD workspace-ui i18n",
+  "source_hashes": {
+    "core.ts": "0897c3b93821646908cbe4a3781897da3fee4e080cb296a85bdb0f6ed9ef9fe5",
+    "catalogues.ts": "ece1199638e0f67cdd4e47f3c06e8a7e98b86c8b12d1d2d64c9b4cf316beece7"
+  },
+  "checked_world_keys": 34,
+  "parity": "passed",
+  "reports": [
+    {
+      "name": "tiny-landing-page",
+      "source_geometry_unchanged": true,
+      "display": [
+        {
+          "locale": "zh-CN",
+          "rendered": [
+            {
+              "room_id": "__game_foyer__",
+              "name": "入口营地",
+              "status": "仅游戏区域",
+              "entry": "可进入",
+              "reasons": [
+                "仅供游戏出发与返回；不表示项目验收。"
+              ]
+            },
+            {
+              "room_id": "contact",
+              "name": "Contact CTA",
+              "status": "进行中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：进行中"
+              ]
+            },
+            {
+              "room_id": "hero",
+              "name": "Hero section",
+              "status": "已验收",
+              "entry": "可进入",
+              "reasons": []
+            },
+            {
+              "room_id": "launch",
+              "name": "Publish website",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：contact"
+              ]
+            }
+          ]
+        },
+        {
+          "locale": "en-US",
+          "rendered": [
+            {
+              "room_id": "__game_foyer__",
+              "name": "Entry camp",
+              "status": "Game-only area",
+              "entry": "Accessible",
+              "reasons": [
+                "Game-only entry and return area; not project acceptance."
+              ]
+            },
+            {
+              "room_id": "contact",
+              "name": "Contact CTA",
+              "status": "Active",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Active"
+              ]
+            },
+            {
+              "room_id": "hero",
+              "name": "Hero section",
+              "status": "Accepted",
+              "entry": "Accessible",
+              "reasons": []
+            },
+            {
+              "room_id": "launch",
+              "name": "Publish website",
+              "status": "Planned",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Planned",
+                "Dependencies not accepted: contact"
+              ]
+            }
+          ]
+        },
+        {
+          "locale": "zh-CN",
+          "rendered": [
+            {
+              "room_id": "__game_foyer__",
+              "name": "入口营地",
+              "status": "仅游戏区域",
+              "entry": "可进入",
+              "reasons": [
+                "仅供游戏出发与返回；不表示项目验收。"
+              ]
+            },
+            {
+              "room_id": "contact",
+              "name": "Contact CTA",
+              "status": "进行中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：进行中"
+              ]
+            },
+            {
+              "room_id": "hero",
+              "name": "Hero section",
+              "status": "已验收",
+              "entry": "可进入",
+              "reasons": []
+            },
+            {
+              "room_id": "launch",
+              "name": "Publish website",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：contact"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "agent-workbench-synthetic",
+      "source_geometry_unchanged": true,
+      "display": [
+        {
+          "locale": "zh-CN",
+          "rendered": [
+            {
+              "room_id": "__game_foyer__",
+              "name": "入口营地",
+              "status": "仅游戏区域",
+              "entry": "可进入",
+              "reasons": [
+                "仅供游戏出发与返回；不表示项目验收。"
+              ]
+            },
+            {
+              "room_id": "dispatch",
+              "name": "Agent task dispatch",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：planning"
+              ]
+            },
+            {
+              "room_id": "executor",
+              "name": "Tool execution",
+              "status": "受阻",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：受阻",
+                "前置功能尚未验收：dispatch, planning"
+              ]
+            },
+            {
+              "room_id": "goals",
+              "name": "Goal intake",
+              "status": "已验收",
+              "entry": "可进入",
+              "reasons": []
+            },
+            {
+              "room_id": "history",
+              "name": "Event journal",
+              "status": "待验收",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：待验收"
+              ]
+            },
+            {
+              "room_id": "milestone",
+              "name": "Autonomous work milestone",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：dispatch, executor, history, planning, retrieval"
+              ]
+            },
+            {
+              "room_id": "planning",
+              "name": "Supervisor planning",
+              "status": "进行中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：进行中"
+              ]
+            },
+            {
+              "room_id": "registry",
+              "name": "Tool registry",
+              "status": "已验收",
+              "entry": "可进入",
+              "reasons": []
+            },
+            {
+              "room_id": "retrieval",
+              "name": "Knowledge retrieval",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：history"
+              ]
+            }
+          ]
+        },
+        {
+          "locale": "en-US",
+          "rendered": [
+            {
+              "room_id": "__game_foyer__",
+              "name": "Entry camp",
+              "status": "Game-only area",
+              "entry": "Accessible",
+              "reasons": [
+                "Game-only entry and return area; not project acceptance."
+              ]
+            },
+            {
+              "room_id": "dispatch",
+              "name": "Agent task dispatch",
+              "status": "Planned",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Planned",
+                "Dependencies not accepted: planning"
+              ]
+            },
+            {
+              "room_id": "executor",
+              "name": "Tool execution",
+              "status": "Blocked",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Blocked",
+                "Dependencies not accepted: dispatch, planning"
+              ]
+            },
+            {
+              "room_id": "goals",
+              "name": "Goal intake",
+              "status": "Accepted",
+              "entry": "Accessible",
+              "reasons": []
+            },
+            {
+              "room_id": "history",
+              "name": "Event journal",
+              "status": "Awaiting acceptance",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Awaiting acceptance"
+              ]
+            },
+            {
+              "room_id": "milestone",
+              "name": "Autonomous work milestone",
+              "status": "Planned",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Planned",
+                "Dependencies not accepted: dispatch, executor, history, planning, retrieval"
+              ]
+            },
+            {
+              "room_id": "planning",
+              "name": "Supervisor planning",
+              "status": "Active",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Active"
+              ]
+            },
+            {
+              "room_id": "registry",
+              "name": "Tool registry",
+              "status": "Accepted",
+              "entry": "Accessible",
+              "reasons": []
+            },
+            {
+              "room_id": "retrieval",
+              "name": "Knowledge retrieval",
+              "status": "Planned",
+              "entry": "Unavailable",
+              "reasons": [
+                "Feature not accepted. Current status: Planned",
+                "Dependencies not accepted: history"
+              ]
+            }
+          ]
+        },
+        {
+          "locale": "zh-CN",
+          "rendered": [
+            {
+              "room_id": "__game_foyer__",
+              "name": "入口营地",
+              "status": "仅游戏区域",
+              "entry": "可进入",
+              "reasons": [
+                "仅供游戏出发与返回；不表示项目验收。"
+              ]
+            },
+            {
+              "room_id": "dispatch",
+              "name": "Agent task dispatch",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：planning"
+              ]
+            },
+            {
+              "room_id": "executor",
+              "name": "Tool execution",
+              "status": "受阻",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：受阻",
+                "前置功能尚未验收：dispatch, planning"
+              ]
+            },
+            {
+              "room_id": "goals",
+              "name": "Goal intake",
+              "status": "已验收",
+              "entry": "可进入",
+              "reasons": []
+            },
+            {
+              "room_id": "history",
+              "name": "Event journal",
+              "status": "待验收",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：待验收"
+              ]
+            },
+            {
+              "room_id": "milestone",
+              "name": "Autonomous work milestone",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：dispatch, executor, history, planning, retrieval"
+              ]
+            },
+            {
+              "room_id": "planning",
+              "name": "Supervisor planning",
+              "status": "进行中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：进行中"
+              ]
+            },
+            {
+              "room_id": "registry",
+              "name": "Tool registry",
+              "status": "已验收",
+              "entry": "可进入",
+              "reasons": []
+            },
+            {
+              "room_id": "retrieval",
+              "name": "Knowledge retrieval",
+              "status": "规划中",
+              "entry": "尚不可进入",
+              "reasons": [
+                "功能尚未验收，当前状态：规划中",
+                "前置功能尚未验收：history"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

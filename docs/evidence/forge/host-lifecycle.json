@@ -1,0 +1,51 @@
+{
+  "platform": "win32",
+  "node": "v24.13.1",
+  "started_at": "2026-11-13T19:14:15.316Z",
+  "checks": [
+    {
+      "name": "graceful-stop-and-restart-1",
+      "passed": true,
+      "duration_ms": 1265,
+      "type": "devungeon:host-ready",
+      "port": 63167,
+      "bridgePort": 63168,
+      "bridgePid": 42264
+    },
+    {
+      "name": "graceful-stop-and-restart-2",
+      "passed": true,
+      "duration_ms": 588,
+      "type": "devungeon:host-ready",
+      "port": 63167,
+      "bridgePort": 63168,
+      "bridgePid": 25748
+    },
+    {
+      "name": "parent-death-started",
+      "type": "devungeon:host-ready",
+      "port": 63167,
+      "bridgePort": 63168,
+      "bridgePid": 37912
+    },
+    {
+      "name": "hard-parent-death-no-orphan-preserves-stale-lock-fail-closed",
+      "passed": true,
+      "retained_stale_lock": true,
+      "graceful_cleanup_claimed": false,
+      "type": "devungeon:host-ready",
+      "port": 63167,
+      "bridgePort": 63168,
+      "bridgePid": 37912
+    },
+    {
+      "name": "external-bridge-no-process-or-journal-ownership",
+      "passed": true,
+      "type": "devungeon:host-ready",
+      "port": 63193,
+      "bridgePort": 63194,
+      "bridgePid": null
+    }
+  ],
+  "finished_at": "2026-11-13T19:14:19.427Z"
+}

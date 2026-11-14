@@ -1,0 +1,2627 @@
+{
+  "started_at": "2026-11-13T20:38:52.269Z",
+  "suite": "workbench",
+  "url": "http://127.0.0.1:5198",
+  "platform": "win32",
+  "node": "v24.13.1",
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "dpr": 1,
+  "limitations": [
+    "Automated browser input on win32 is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance.",
+    "CPU slowdown 2x is a harness stress check, not device performance acceptance."
+  ],
+  "cpu_throttle": 2,
+  "software_gl": true,
+  "trace_screenshots": false,
+  "checks": [
+    {
+      "name": "workbench: Chinese first visit",
+      "pass": true
+    },
+    {
+      "name": "workbench: BUILDER world uses selected source IDs",
+      "pass": true
+    },
+    {
+      "name": "workbench: synthetic project explicitly DEMO",
+      "pass": true
+    },
+    {
+      "name": "workbench: language preserves full paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: language preserves truth and layout",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual dodge executed",
+      "pass": true
+    },
+    {
+      "name": "workbench: full generated encounter won",
+      "pass": true,
+      "detail": {
+        "attacks": 64,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 110,
+        "blockedMoves": 9
+      }
+    },
+    {
+      "name": "workbench: actual attacks and damage loop",
+      "pass": true,
+      "detail": {
+        "attacks": 64,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 110,
+        "blockedMoves": 9
+      }
+    },
+    {
+      "name": "workbench: combat does not change project truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: at least one unaccepted area remains locked",
+      "pass": true
+    },
+    {
+      "name": "workbench: heading 0 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.439237512954904,
+          "z": 5.40507608736084,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 64,
+          "dodges": 2,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 48
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 90 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.43954409752556,
+          "z": 5.405075702888325,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 64,
+          "dodges": 3,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 87
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 180 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.43953877629534,
+          "z": 5.405099933893553,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.2246467991473532e-16,
+            "z": -1
+          },
+          "moving": true,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 64,
+          "dodges": 4,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 139
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 270 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.43953877629534,
+          "z": 5.405099901377298,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.8369701987210297e-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 64,
+          "dodges": 5,
+          "hitsTaken": 1,
+          "damageDealt": 110,
+          "blockedMoves": 184
+        }
+      }
+    },
+    {
+      "name": "workbench: locked room camera preview grants no entry",
+      "pass": true
+    },
+    {
+      "name": "workbench: locked room English preserves access and paused state",
+      "pass": true
+    },
+    {
+      "name": "workbench: mapped DEMO supervisor exists",
+      "pass": true,
+      "detail": [
+        {
+          "id": "agent-boss",
+          "name": "Demo Supervisor",
+          "role": "supervisor",
+          "status": "working",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "planning",
+          "task_id": "demo-plan",
+          "source": "DEMO supervisor",
+          "source_ref": "synthetic:supervisor",
+          "observed_at": "2026-11-13T20:39:58.233Z",
+          "capabilities": [
+            "chat",
+            "assign_task",
+            "request_review",
+            "cancel_task",
+            "publish"
+          ]
+        },
+        {
+          "id": "agent-build",
+          "name": "Demo Worker",
+          "role": "worker",
+          "status": "blocked",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "executor",
+          "task_id": "demo-gate",
+          "source": "DEMO worker",
+          "source_ref": "synthetic:worker",
+          "observed_at": "2026-11-13T20:39:58.233Z",
+          "capabilities": [
+            "chat",
+            "assign_task",
+            "cancel_task"
+          ]
+        },
+        {
+          "id": "agent-review",
+          "name": "Demo Reviewer",
+          "role": "reviewer",
+          "status": "review",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "history",
+          "task_id": "demo-review",
+          "source": "DEMO reviewer",
+          "source_ref": "synthetic:reviewer",
+          "observed_at": "2026-11-13T20:39:58.233Z",
+          "capabilities": [
+            "chat",
+            "request_review"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "workbench: clicking actual rendered NPC opens scoped workspace",
+      "pass": true
+    },
+    {
+      "name": "workbench: explicit DEMO workspace label",
+      "pass": true
+    },
+    {
+      "name": "workbench: chat completed only in DEMO",
+      "pass": true
+    },
+    {
+      "name": "workbench: task survives closing workspace",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale does not alter paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale preserves commands, source and pending approvals",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale uses no reload",
+      "pass": true
+    },
+    {
+      "name": "workbench: Chinese roundtrip preserves complete paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: explicit approval denial rejected operation",
+      "pass": true
+    },
+    {
+      "name": "workbench: workspace did not change project truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: workspace releases focus to game",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual enemy damage causes player death",
+      "pass": true
+    },
+    {
+      "name": "workbench: death never approves/cancels pending work",
+      "pass": true
+    },
+    {
+      "name": "workbench: restart retains task and pending approval",
+      "pass": true
+    },
+    {
+      "name": "workbench: restart does not change truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: incremental update pins all old room geometry",
+      "pass": true
+    },
+    {
+      "name": "workbench: incremental update pins existing corridor paths",
+      "pass": true
+    },
+    {
+      "name": "workbench: new synthetic feature is sealed",
+      "pass": true
+    },
+    {
+      "name": "project switch: second project has its own distinct map",
+      "pass": true
+    },
+    {
+      "name": "project switch: incremental layout and pending work survive return",
+      "pass": true
+    },
+    {
+      "name": "workbench: no uncaught browser error",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "cases": [
+    {
+      "selection": "workbench",
+      "result": {
+        "selected": "workbench",
+        "rooms": 8,
+        "dependencies": 9,
+        "visited": [
+          "goals",
+          "registry"
+        ],
+        "won": {
+          "time": 32.46666666666611,
+          "phase": "won",
+          "player": {
+            "x": 18.469289940789167,
+            "z": 36.60220236567989,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": 0,
+              "z": -1
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "x": 0.4436704868567176,
+              "z": 2.916310029104352,
+              "id": "[\"encounter\",\"goals\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": -0.023084962542891913,
+                "z": -0.9997335067428684
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "dead",
+              "timer": -20.13333333333347,
+              "attackDirection": {
+                "x": -0.03498687892975815,
+                "z": 0.9993877717396558
+              }
+            },
+            {
+              "x": 18.507398285277304,
+              "z": 36.48765677213669,
+              "id": "[\"encounter\",\"registry\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": -0.029504069132644608,
+                "z": 0.9995646601919339
+              },
+              "moving": false,
+              "hurt": 0.16333333333333333,
+              "state": "dead",
+              "timer": 0.36666666666666664,
+              "attackDirection": {
+                "x": -0.01652140012167666,
+                "z": 0.999863512354571
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [
+            {
+              "x": 18.507398285277304,
+              "z": 36.48765677213669,
+              "id": 8,
+              "kind": "kill",
+              "life": 0.01666666666666616,
+              "maxLife": 0.7
+            },
+            {
+              "x": -17.5,
+              "z": 0.5,
+              "id": 9,
+              "kind": "heal",
+              "life": 0.3166666666666652,
+              "maxLife": 1
+            }
+          ],
+          "attackTime": 0.21333333333333335,
+          "attackDirection": {
+            "x": 0,
+            "z": -1
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0,
+          "kills": 2,
+          "total": 2,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 64,
+            "dodges": 1,
+            "hitsTaken": 1,
+            "damageDealt": 110,
+            "blockedMoves": 9
+          }
+        },
+        "dashChecks": [
+          {
+            "heading": 0,
+            "player": {
+              "x": 36.439237512954904,
+              "z": 5.40507608736084,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 64,
+              "dodges": 2,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 48
+            }
+          },
+          {
+            "heading": 1,
+            "player": {
+              "x": 36.43954409752556,
+              "z": 5.405075702888325,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 6.123233995736766e-17,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 64,
+              "dodges": 3,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 87
+            }
+          },
+          {
+            "heading": 2,
+            "player": {
+              "x": 36.43953877629534,
+              "z": 5.405099933893553,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.2246467991473532e-16,
+                "z": -1
+              },
+              "moving": true,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 64,
+              "dodges": 4,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 139
+            }
+          },
+          {
+            "heading": 3,
+            "player": {
+              "x": 36.43953877629534,
+              "z": 5.405099901377298,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.8369701987210297e-16,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 64,
+              "dodges": 5,
+              "hitsTaken": 1,
+              "damageDealt": 110,
+              "blockedMoves": 184
+            }
+          }
+        ],
+        "metrics": {
+          "fps": 27.49661638858439,
+          "p95Ms": 72.40000000596046,
+          "worstMs": 259,
+          "frames": 2821,
+          "drawCalls": 110,
+          "triangles": 23112,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)"
+        },
+        "incremental": {
+          "added": [
+            "forge-demo-extension"
+          ],
+          "oldRoomCount": 8
+        },
+        "workspace": {
+          "pendingId": "approval:d244cfc1-b8dd-4c29-981c-185f014ff81b"
+        }
+      }
+    }
+  ],
+  "console": [
+    {
+      "selection": "workbench",
+      "type": "warning",
+      "text": "THREE.Clock: This module has been deprecated. Please use THREE.Timer instead."
+    }
+  ],
+  "navigation": [
+    {
+      "target": {
+        "x": -14.5,
+        "z": 0.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:01.851Z",
+      "pulses": [],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": -17.5,
+        "z": 0.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:01.919Z",
+      "pulses": [
+        {
+          "key": "KeyA",
+          "duration_ms": 500,
+          "from": {
+            "x": -14.405099871561106,
+            "z": 0.5001522102786566
+          },
+          "to": {
+            "x": -16.770099828943785,
+            "z": 0.5001522102786566
+          },
+          "beforeDistance": 3.0949001321818206,
+          "afterDistance": 0.7299001869268572,
+          "simulation_ms": 649.9999999999977
+        },
+        {
+          "key": "KeyA",
+          "duration_ms": 128.32663472523225,
+          "from": {
+            "x": -16.770099828943785,
+            "z": 0.5001522102786566
+          },
+          "to": {
+            "x": -17.20009982119518,
+            "z": 0.5001522102786566
+          },
+          "beforeDistance": 0.7299001869268572,
+          "afterDistance": 0.29990021743095047,
+          "simulation_ms": 249.99999999999912
+        },
+        {
+          "key": "KeyA",
+          "duration_ms": 56.94476697454852,
+          "from": {
+            "x": -17.20009982119518,
+            "z": 0.5001522102786566
+          },
+          "to": {
+            "x": -17.558433148071344,
+            "z": 0.5001522102786566
+          },
+          "beforeDistance": 0.29990021743095047,
+          "afterDistance": 0.05843334631438283,
+          "simulation_ms": 183.3333333333327
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": -17.5,
+        "z": 5.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:03.027Z",
+      "pulses": [
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": -17.558433148071344,
+            "z": 0.5001522102786566
+          },
+          "to": {
+            "x": -17.558433148071344,
+            "z": 2.578485506160405
+          },
+          "beforeDistance": 5.000189231736628,
+          "afterDistance": 2.922098795473615,
+          "simulation_ms": 599.9999999999978
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": -17.558433148071344,
+            "z": 2.578485506160405
+          },
+          "to": {
+            "x": -17.558433148071344,
+            "z": 4.800152132792618
+          },
+          "beforeDistance": 2.922098795473615,
+          "afterDistance": 0.7022830412506403,
+          "simulation_ms": 599.9999999999978
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 132.8864620040658,
+          "from": {
+            "x": -17.558433148071344,
+            "z": 4.800152132792618
+          },
+          "to": {
+            "x": -17.558433148071344,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 0.7022830412506403,
+          "afterDistance": 0.08014189045505195,
+          "simulation_ms": 199.99999999999974
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 0.5,
+        "z": 5.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:04.440Z",
+      "pulses": [
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -17.558433148071344,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -15.265099856063898,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 18.05851644109156,
+          "afterDistance": 15.765195265567698,
+          "simulation_ms": 633.3333333333311
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -15.265099856063898,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -13.18676656018215,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 15.765195265567698,
+          "afterDistance": 13.686876457495059,
+          "simulation_ms": 616.6666666666645
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -13.18676656018215,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -11.180099929675634,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 13.686876457495059,
+          "afterDistance": 11.680228707393573,
+          "simulation_ms": 549.9999999999981
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -11.180099929675634,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -8.67176664154249,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 11.680228707393573,
+          "afterDistance": 9.171930637369853,
+          "simulation_ms": 649.9999999999977
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -8.67176664154249,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -6.378433349535044,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 9.171930637369853,
+          "afterDistance": 6.87865202156702,
+          "simulation_ms": 633.3333333333311
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -6.378433349535044,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -4.228433388278063,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 6.87865202156702,
+          "afterDistance": 4.7287514839749125,
+          "simulation_ms": 566.6666666666647
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -4.228433388278063,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -1.6484334347696858,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 4.7287514839749125,
+          "afterDistance": 2.149133433141938,
+          "simulation_ms": 700.0000000000197
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 424.6903301288914,
+          "from": {
+            "x": -1.6484334347696858,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": -0.00010013113933382556,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 2.149133433141938,
+          "afterDistance": 0.5030988282412917,
+          "simulation_ms": 533.3333333333599
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 98.85700266707762,
+          "from": {
+            "x": -0.00010013113933382556,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": 0.42989986111206235,
+            "z": 5.445152121169713
+          },
+          "beforeDistance": 0.5030988282412917,
+          "afterDistance": 0.0890074114009054,
+          "simulation_ms": 266.66666666667993
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 0.5,
+        "z": 0.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:09.615Z",
+      "pulses": [
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 0.42989986111206235,
+            "z": 5.445152121169713
+          },
+          "to": {
+            "x": 0.42989986111206235,
+            "z": 3.3668188252879645
+          },
+          "beforeDistance": 4.945648949428318,
+          "afterDistance": 2.867675749888326,
+          "simulation_ms": 583.3333333333624
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 0.42989986111206235,
+            "z": 3.3668188252879645
+          },
+          "to": {
+            "x": 0.42989986111206235,
+            "z": 0.8584855371548201
+          },
+          "beforeDistance": 2.867675749888326,
+          "afterDistance": 0.3652751152505301,
+          "simulation_ms": 650.0000000000323
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 68.06890032003898,
+          "from": {
+            "x": 0.42989986111206235,
+            "z": 0.8584855371548201
+          },
+          "to": {
+            "x": 0.3876398997454089,
+            "z": 0.203143636269715
+          },
+          "beforeDistance": 0.3652751152505301,
+          "afterDistance": 0.3174090307732107,
+          "simulation_ms": 233.33333333334494
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 31.00174560980854,
+          "from": {
+            "x": 0.3876398997454089,
+            "z": 0.203143636269715
+          },
+          "to": {
+            "x": 0.3876398997454089,
+            "z": 0.203143636269715
+          },
+          "beforeDistance": 0.3174090307732107,
+          "afterDistance": 0.3174090307732107,
+          "simulation_ms": 333.3333333333499
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 41.85235657324153,
+          "from": {
+            "x": 0.3876398997454089,
+            "z": 0.203143636269715
+          },
+          "to": {
+            "x": 0.3876398997454089,
+            "z": 0.4898102977706458
+          },
+          "beforeDistance": 0.3174090307732107,
+          "afterDistance": 0.11282119552967283,
+          "simulation_ms": 216.66666666667743
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 0.5,
+        "z": 0.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:12.691Z",
+      "pulses": [],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 0.5,
+        "z": 5.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:12.871Z",
+      "pulses": [
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 0.3876398997454089,
+            "z": 0.4898102977706458
+          },
+          "to": {
+            "x": 0.3876398997454089,
+            "z": 2.6398102590276267
+          },
+          "beforeDistance": 5.011449455442436,
+          "afterDistance": 2.8623958752228584,
+          "simulation_ms": 600.0000000000298
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 0.3876398997454089,
+            "z": 2.6398102590276267
+          },
+          "to": {
+            "x": 0.4092902662305278,
+            "z": 4.997202935202267
+          },
+          "beforeDistance": 2.8623958752228584,
+          "afterDistance": 0.5109140281590866,
+          "simulation_ms": 616.6666666666973
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 95.47063894559369,
+          "from": {
+            "x": 0.4092902662305278,
+            "z": 4.997202935202267
+          },
+          "to": {
+            "x": 0.4092902662305278,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 0.5109140281590866,
+          "afterDistance": 0.0907167769538855,
+          "simulation_ms": 300.0000000000149
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 12.5,
+        "z": 5.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:14.417Z",
+      "pulses": [
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 0.4092902662305278,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 2.6309568928627414,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 12.090709786612539,
+          "afterDistance": 9.869043171876076,
+          "simulation_ms": 683.3333333333674
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 2.6309568928627414,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 4.924290184870188,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 9.869043171876076,
+          "afterDistance": 7.575709899466488,
+          "simulation_ms": 716.6666666667023
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 4.924290184870188,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 7.002623480751936,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 7.575709899466488,
+          "afterDistance": 5.497376635468988,
+          "simulation_ms": 600.0000000000227
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 7.002623480751936,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 9.009290111258451,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 5.497376635468988,
+          "afterDistance": 3.490710071773135,
+          "simulation_ms": 749.9999999999574
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 9.009290111258451,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 11.159290072515432,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 3.490710071773135,
+          "afterDistance": 1.340710404030657,
+          "simulation_ms": 616.6666666666316
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 160,
+          "from": {
+            "x": 11.159290072515432,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 11.804290060892527,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 1.340710404030657,
+          "afterDistance": 0.6957108574640021,
+          "simulation_ms": 366.6666666666458
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 137.5240577305471,
+          "from": {
+            "x": 11.804290060892527,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 12.305956718519155,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 0.6957108574640021,
+          "afterDistance": 0.19404657406980103,
+          "simulation_ms": 249.9999999999858
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 38.357392850864635,
+          "from": {
+            "x": 12.305956718519155,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 5.498869592828896
+          },
+          "beforeDistance": 0.19404657406980103,
+          "afterDistance": 0.020987179636108796,
+          "simulation_ms": 166.6666666666572
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 12.5,
+        "z": 41.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:18.574Z",
+      "pulses": [
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 5.498869592828896
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 7.863869550211575
+          },
+          "beforeDistance": 36.00113650675529,
+          "afterDistance": 33.636136978242206,
+          "simulation_ms": 566.6666666666345
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 7.863869550211575
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 10.228869507594254
+          },
+          "beforeDistance": 33.636136978242206,
+          "afterDistance": 31.271137514598937,
+          "simulation_ms": 599.9999999999659
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 10.228869507594254
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 12.593869464976933
+          },
+          "beforeDistance": 31.271137514598937,
+          "afterDistance": 28.906138131747753,
+          "simulation_ms": 649.999999999963
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 12.593869464976933
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 14.528869430108216
+          },
+          "beforeDistance": 28.906138131747753,
+          "afterDistance": 26.971138711630992,
+          "simulation_ms": 599.9999999999659
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 14.528869430108216
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 16.822202722115662
+          },
+          "beforeDistance": 26.971138711630992,
+          "afterDistance": 24.67780617624355,
+          "simulation_ms": 666.6666666666288
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 16.822202722115662
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 18.828869352622178
+          },
+          "beforeDistance": 24.67780617624355,
+          "afterDistance": 22.67114033334809,
+          "simulation_ms": 633.3333333332973
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 18.828869352622178
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 21.05053597925439
+          },
+          "beforeDistance": 22.67114033334809,
+          "afterDistance": 20.44947475901662,
+          "simulation_ms": 666.6666666666288
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 21.05053597925439
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 23.200535940511372
+          },
+          "beforeDistance": 20.44947475901662,
+          "afterDistance": 18.29947605939593,
+          "simulation_ms": 666.6666666666288
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 23.200535940511372
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 25.27886923639312
+          },
+          "beforeDistance": 18.29947605939593,
+          "afterDistance": 16.22114430100177,
+          "simulation_ms": 533.333333333303
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 25.27886923639312
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 27.4288691976501
+          },
+          "beforeDistance": 16.22114430100177,
+          "afterDistance": 14.071146408190373,
+          "simulation_ms": 716.6666666666259
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 27.4288691976501
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 29.435535828156617
+          },
+          "beforeDistance": 14.071146408190373,
+          "afterDistance": 12.064482373379363,
+          "simulation_ms": 633.3333333332973
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 29.435535828156617
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 31.3705357932879
+          },
+          "beforeDistance": 12.064482373379363,
+          "afterDistance": 10.129485885223906,
+          "simulation_ms": 649.999999999963
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 31.3705357932879
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 33.663869085295346
+          },
+          "beforeDistance": 10.129485885223906,
+          "afterDistance": 7.836158937660639,
+          "simulation_ms": 683.3333333332945
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 33.663869085295346
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 35.88553571192756
+          },
+          "beforeDistance": 7.836158937660639,
+          "afterDistance": 5.614503399761148,
+          "simulation_ms": 666.6666666666288
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 35.88553571192756
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 37.892202342434075
+          },
+          "beforeDistance": 5.614503399761148,
+          "afterDistance": 3.6078585229782614,
+          "simulation_ms": 583.3333333333002
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 37.892202342434075
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 40.042202303691056
+          },
+          "beforeDistance": 3.6078585229782614,
+          "afterDistance": 1.4579483211871296,
+          "simulation_ms": 599.9999999999659
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 160,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 40.042202303691056
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 40.830535622818616
+          },
+          "beforeDistance": 1.4579483211871296,
+          "afterDistance": 0.6697923082594818,
+          "simulation_ms": 349.9999999999801
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 132.33598153585507,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 40.830535622818616
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 41.332202280445244
+          },
+          "beforeDistance": 0.6697923082594818,
+          "afterDistance": 0.16910132635932282,
+          "simulation_ms": 249.9999999999858
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 33.169316656172604,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 41.332202280445244
+          },
+          "to": {
+            "x": 12.520956714644853,
+            "z": 41.47553561119571
+          },
+          "beforeDistance": 0.16910132635932282,
+          "afterDistance": 0.03221319928652373,
+          "simulation_ms": 149.99999999999147
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 18.5,
+        "z": 41.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:29.490Z",
+      "pulses": [
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.520956714644853,
+            "z": 41.47553561119571
+          },
+          "to": {
+            "x": 14.885956672027532,
+            "z": 41.47553561119571
+          },
+          "beforeDistance": 5.979093335487416,
+          "afterDistance": 3.6141261298939025,
+          "simulation_ms": 633.3333333332973
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 14.885956672027532,
+            "z": 41.47553561119571
+          },
+          "to": {
+            "x": 16.96428996790928,
+            "z": 41.47553561119571
+          },
+          "beforeDistance": 3.6141261298939025,
+          "afterDistance": 1.5359048827917847,
+          "simulation_ms": 566.6666666666345
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 160,
+          "from": {
+            "x": 16.96428996790928,
+            "z": 41.47553561119571
+          },
+          "to": {
+            "x": 17.609289956286375,
+            "z": 41.47553561119571
+          },
+          "beforeDistance": 1.5359048827917847,
+          "afterDistance": 0.8910459518408101,
+          "simulation_ms": 233.33333333332007
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 160,
+          "from": {
+            "x": 17.609289956286375,
+            "z": 41.47553561119571
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 41.47553561119571
+          },
+          "beforeDistance": 0.8910459518408101,
+          "afterDistance": 0.03926339333654603,
+          "simulation_ms": 266.6666666666515
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 18.5,
+        "z": 36.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:31.237Z",
+      "pulses": [
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 41.47553561119571
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 39.182202319188264
+          },
+          "beforeDistance": 4.9756303847867756,
+          "afterDistance": 2.682378121890281,
+          "simulation_ms": 583.3333333333002
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 471.5685937921691,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 39.182202319188264
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 37.67720234630838
+          },
+          "beforeDistance": 2.682378121890281,
+          "afterDistance": 1.177602849814266,
+          "simulation_ms": 483.33333333330586
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 160,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 37.67720234630838
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 36.74553569643035
+          },
+          "beforeDistance": 1.177602849814266,
+          "afterDistance": 0.24744875420634224,
+          "simulation_ms": 299.99999999998647
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 48.53612603855793,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 36.74553569643035
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 36.60220236567989
+          },
+          "beforeDistance": 0.24744875420634224,
+          "afterDistance": 0.10671659330815471,
+          "simulation_ms": 183.3333333333229
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 18.5,
+        "z": 36.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:33.706Z",
+      "pulses": [],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 18.5,
+        "z": 41.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:33.721Z",
+      "pulses": [
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 36.60220236567989
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 39.182202319188264
+          },
+          "beforeDistance": 4.897893912130849,
+          "afterDistance": 2.318001120990453,
+          "simulation_ms": 649.999999999963
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 407.5011736496914,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 39.182202319188264
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 40.90220228819385
+          },
+          "beforeDistance": 2.318001120990453,
+          "afterDistance": 0.5985860105092699,
+          "simulation_ms": 499.9999999999716
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 113.5092734268574,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 40.90220228819385
+          },
+          "to": {
+            "x": 18.469289940789167,
+            "z": 41.40386894582048
+          },
+          "beforeDistance": 0.5985860105092699,
+          "afterDistance": 0.10091723001747128,
+          "simulation_ms": 166.6666666666572
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 12.5,
+        "z": 41.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:35.047Z",
+      "pulses": [
+        {
+          "key": "KeyA",
+          "duration_ms": 500,
+          "from": {
+            "x": 18.469289940789167,
+            "z": 41.40386894582048
+          },
+          "to": {
+            "x": 16.46280888189358,
+            "z": 41.40611969916358
+          },
+          "beforeDistance": 5.9700639508119515,
+          "afterDistance": 3.9639207541649695,
+          "simulation_ms": 583.3333333333002
+        },
+        {
+          "key": "KeyA",
+          "duration_ms": 500,
+          "from": {
+            "x": 16.46280888189358,
+            "z": 41.40611969916358
+          },
+          "to": {
+            "x": 14.312808920636598,
+            "z": 41.40611969916358
+          },
+          "beforeDistance": 3.9639207541649695,
+          "afterDistance": 1.8152381919805358,
+          "simulation_ms": 533.333333333303
+        },
+        {
+          "key": "KeyA",
+          "duration_ms": 160,
+          "from": {
+            "x": 14.312808920636598,
+            "z": 41.40611969916358
+          },
+          "to": {
+            "x": 13.381142270758573,
+            "z": 41.40611969916358
+          },
+          "beforeDistance": 1.8152381919805358,
+          "afterDistance": 0.886129342817803,
+          "simulation_ms": 266.6666666666515
+        },
+        {
+          "key": "KeyA",
+          "duration_ms": 160,
+          "from": {
+            "x": 13.381142270758573,
+            "z": 41.40611969916358
+          },
+          "to": {
+            "x": 12.664475617006246,
+            "z": 41.40611969916358
+          },
+          "beforeDistance": 0.886129342817803,
+          "afterDistance": 0.18938252156606675,
+          "simulation_ms": 216.66666666665435
+        },
+        {
+          "key": "KeyA",
+          "duration_ms": 32.51262196635104,
+          "from": {
+            "x": 12.664475617006246,
+            "z": 41.40611969916358
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 41.40611969916358
+          },
+          "beforeDistance": 0.18938252156606675,
+          "afterDistance": 0.09623152889390069,
+          "simulation_ms": 83.3333333333286
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 12.5,
+        "z": 23.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:36.731Z",
+      "pulses": [
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 41.40611969916358
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 38.96945307640567
+          },
+          "beforeDistance": 17.906132180821245,
+          "afterDistance": 15.469467524106475,
+          "simulation_ms": 599.9999999999659
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 38.96945307640567
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 36.81945311514869
+          },
+          "beforeDistance": 15.469467524106475,
+          "afterDistance": 13.31946989496625,
+          "simulation_ms": 549.9999999999687
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 36.81945311514869
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 34.66945315389171
+          },
+          "beforeDistance": 13.31946989496625,
+          "afterDistance": 11.169473163638898,
+          "simulation_ms": 566.6666666666345
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 34.66945315389171
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 32.447786527259495
+          },
+          "beforeDistance": 11.169473163638898,
+          "afterDistance": 8.947811505260638,
+          "simulation_ms": 583.3333333333002
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 32.447786527259495
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 30.15445323525205
+          },
+          "beforeDistance": 8.947811505260638,
+          "afterDistance": 6.654486821417906,
+          "simulation_ms": 616.6666666666316
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 30.15445323525205
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 28.219453270120766
+          },
+          "beforeDistance": 6.654486821417906,
+          "afterDistance": 4.71950062666822,
+          "simulation_ms": 633.3333333332973
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 28.219453270120766
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 26.069453308863785
+          },
+          "beforeDistance": 4.71950062666822,
+          "afterDistance": 2.569540290149033,
+          "simulation_ms": 633.3333333332973
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 26.069453308863785
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 23.77612001685634
+          },
+          "beforeDistance": 2.569540290149033,
+          "afterDistance": 0.2769282578157498,
+          "simulation_ms": 633.3333333332973
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 54.58186379718332,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 23.77612001685634
+          },
+          "to": {
+            "x": 12.521142286255781,
+            "z": 23.632786686105874
+          },
+          "beforeDistance": 0.2769282578157498,
+          "afterDistance": 0.13445928854155534,
+          "simulation_ms": 116.66666666666003
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 13.5,
+        "z": 23.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:41.649Z",
+      "pulses": [
+        {
+          "key": "KeyD",
+          "duration_ms": 159.34893014440772,
+          "from": {
+            "x": 12.521142286255781,
+            "z": 23.632786686105874
+          },
+          "to": {
+            "x": 13.290911530151789,
+            "z": 23.591543906873312
+          },
+          "beforeDistance": 0.9878232269811936,
+          "afterDistance": 0.22825046573686555,
+          "simulation_ms": 249.9999999999858
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 36.76067051284833,
+          "from": {
+            "x": 13.290911530151789,
+            "z": 23.591543906873312
+          },
+          "to": {
+            "x": 13.290911530151789,
+            "z": 23.591543906873312
+          },
+          "beforeDistance": 0.22825046573686555,
+          "afterDistance": 0.22825046573686555,
+          "simulation_ms": 66.66666666666288
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 48.62522554609567,
+          "from": {
+            "x": 13.290911530151789,
+            "z": 23.591543906873312
+          },
+          "to": {
+            "x": 13.649244857027952,
+            "z": 23.591543906873312
+          },
+          "beforeDistance": 0.22825046573686555,
+          "afterDistance": 0.17508373492396007,
+          "simulation_ms": 133.33333333332575
+        },
+        {
+          "key": "KeyA",
+          "duration_ms": 19.08945845706364,
+          "from": {
+            "x": 13.649244857027952,
+            "z": 23.591543906873312
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 23.591543906873312
+          },
+          "beforeDistance": 0.17508373492396007,
+          "afterDistance": 0.1199944278111934,
+          "simulation_ms": 133.33333333332575
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 13.5,
+        "z": 6.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:42.249Z",
+      "pulses": [
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 23.591543906873312
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 21.584877276366797
+          },
+          "beforeDistance": 17.091719968932278,
+          "afterDistance": 15.085076758799323,
+          "simulation_ms": 599.9999999999659
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 21.584877276366797
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 19.50654398048505
+          },
+          "beforeDistance": 15.085076758799323,
+          "afterDistance": 13.006775337957981,
+          "simulation_ms": 549.9999999999687
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 19.50654398048505
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 17.284877353852835
+          },
+          "beforeDistance": 13.006775337957981,
+          "afterDistance": 10.785156369449071,
+          "simulation_ms": 666.6666666666288
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 17.284877353852835
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 15.134877392595854
+          },
+          "beforeDistance": 10.785156369449071,
+          "afterDistance": 8.63522587782063,
+          "simulation_ms": 583.3333333333002
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 15.134877392595854
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 12.554877439087477
+          },
+          "beforeDistance": 8.63522587782063,
+          "afterDistance": 6.055374404460109,
+          "simulation_ms": 699.9999999999602
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 12.554877439087477
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 10.476544143205729
+          },
+          "beforeDistance": 6.055374404460109,
+          "afterDistance": 3.977300805657511,
+          "simulation_ms": 649.999999999963
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 10.476544143205729
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 8.39821084732398
+          },
+          "beforeDistance": 3.977300805657511,
+          "afterDistance": 1.8997954618112263,
+          "simulation_ms": 633.3333333332973
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 160,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 8.39821084732398
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 7.968210855072584
+          },
+          "beforeDistance": 1.8997954618112263,
+          "afterDistance": 1.470258987652541,
+          "simulation_ms": 199.99999999998863
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 160,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 7.968210855072584
+          },
+          "to": {
+            "x": 13.57757819165272,
+            "z": 7.251544201320257
+          },
+          "beforeDistance": 1.470258987652541,
+          "afterDistance": 0.7555375982426086,
+          "simulation_ms": 233.33333333332007
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 148.5610630516788,
+          "from": {
+            "x": 13.57757819165272,
+            "z": 7.251544201320257
+          },
+          "to": {
+            "x": 13.57757855710571,
+            "z": 6.405099795704928
+          },
+          "beforeDistance": 0.7555375982426086,
+          "afterDistance": 0.12257439087285066,
+          "simulation_ms": 299.99999999998295
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 36.5,
+        "z": 6.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:47.376Z",
+      "pulses": [
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 13.57757855710571,
+            "z": 6.405099795704928
+          },
+          "to": {
+            "x": 15.655772594185521,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 22.92261788833106,
+          "afterDistance": 20.844430864927258,
+          "simulation_ms": 616.6666666666316
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 15.655772594185521,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 17.949105886192967,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 20.844430864927258,
+          "afterDistance": 18.551122725029476,
+          "simulation_ms": 649.999999999963
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 17.949105886192967,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 19.812439185949017,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 18.551122725029476,
+          "afterDistance": 16.687814951636852,
+          "simulation_ms": 616.6666666666316
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 19.812439185949017,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 22.177439143331696,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 16.687814951636852,
+          "afterDistance": 14.322856957688007,
+          "simulation_ms": 599.9999999999659
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 22.177439143331696,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 24.327439104588677,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 14.322856957688007,
+          "afterDistance": 12.172909294409514,
+          "simulation_ms": 566.6666666666345
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 24.327439104588677,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 26.477439065845658,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 12.172909294409514,
+          "afterDistance": 10.022984067445254,
+          "simulation_ms": 549.9999999999687
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 26.477439065845658,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 28.699105692477872,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 10.022984067445254,
+          "afterDistance": 7.8014379401848615,
+          "simulation_ms": 566.6666666666345
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 28.699105692477872,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 30.920772319110085,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 7.8014379401848615,
+          "afterDistance": 5.579987764559428,
+          "simulation_ms": 566.6666666666345
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 30.920772319110085,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 33.1424389457423,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 5.579987764559428,
+          "afterDistance": 3.3588239266881432,
+          "simulation_ms": 616.6666666666316
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": 33.1424389457423,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 35.57910556850021,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 3.3588239266881432,
+          "afterDistance": 0.9254882448696974,
+          "simulation_ms": 699.9999999999602
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 160,
+          "from": {
+            "x": 35.57910556850021,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 36.29577222225254,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 0.9254882448696974,
+          "afterDistance": 0.2240333069620219,
+          "simulation_ms": 299.99999999998295
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 40.370607229149535,
+          "from": {
+            "x": 36.29577222225254,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 36.36743888762777,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 0.2240333069620219,
+          "afterDistance": 0.16141371050203746,
+          "simulation_ms": 83.3333333333286
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 26.20394081776633,
+          "from": {
+            "x": 36.36743888762777,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 36.439105553003,
+            "z": 6.407902565591257
+          },
+          "beforeDistance": 0.16141371050203746,
+          "afterDistance": 0.11040865500377553,
+          "simulation_ms": 166.6666666666572
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 36.5,
+        "z": 5.5
+      },
+      "allow_death": false,
+      "started_at": "2026-11-13T20:39:54.005Z",
+      "pulses": [
+        {
+          "key": "KeyW",
+          "duration_ms": 147.79809207299536,
+          "from": {
+            "x": 36.439105553003,
+            "z": 6.407902565591257
+          },
+          "to": {
+            "x": 36.439105553003,
+            "z": 5.619569246463698
+          },
+          "beforeDistance": 0.909942417014537,
+          "afterDistance": 0.13418248162471344,
+          "simulation_ms": 249.9999999999858
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": -17.5,
+        "z": 0.5
+      },
+      "allow_death": true,
+      "started_at": "2026-11-13T20:40:12.747Z",
+      "pulses": [],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": -17.5,
+        "z": 5.5
+      },
+      "allow_death": true,
+      "started_at": "2026-11-13T20:40:12.749Z",
+      "pulses": [
+        {
+          "key": "KeyS",
+          "duration_ms": 500,
+          "from": {
+            "x": -17.5,
+            "z": 0.5
+          },
+          "to": {
+            "x": -17.5,
+            "z": 2.7933332920074463
+          },
+          "beforeDistance": 5,
+          "afterDistance": 2.7066667079925537,
+          "simulation_ms": 550.0000000000006
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 475.8697747075281,
+          "from": {
+            "x": -17.5,
+            "z": 2.7933332920074463
+          },
+          "to": {
+            "x": -17.5,
+            "z": 5.01499991863966
+          },
+          "beforeDistance": 2.7066667079925537,
+          "afterDistance": 0.4850000813603401,
+          "simulation_ms": 566.6666666666663
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 92.09136428583501,
+          "from": {
+            "x": -17.5,
+            "z": 5.01499991863966
+          },
+          "to": {
+            "x": -17.5,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 0.4850000813603401,
+          "afterDistance": 0.05500008910894394,
+          "simulation_ms": 133.33333333333286
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 0.5,
+        "z": 5.5
+      },
+      "allow_death": true,
+      "started_at": "2026-11-13T20:40:13.998Z",
+      "pulses": [
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -17.5,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -15.206666707992554,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 18.000084027853926,
+          "afterDistance": 15.706763004698443,
+          "simulation_ms": 583.3333333333312
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -15.206666707992554,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -13.128333412110806,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 15.706763004698443,
+          "afterDistance": 13.62844439404064,
+          "simulation_ms": 516.6666666666648
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -13.128333412110806,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -11.050000116229057,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 13.62844439404064,
+          "afterDistance": 11.550131068290664,
+          "simulation_ms": 566.6666666666647
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -11.050000116229057,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -8.756666824221611,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 11.550131068290664,
+          "afterDistance": 9.256830219057006,
+          "simulation_ms": 599.9999999999978
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -8.756666824221611,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -6.678333528339863,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 9.256830219057006,
+          "afterDistance": 7.17854422943052,
+          "simulation_ms": 566.6666666666652
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -6.678333528339863,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -4.671666897833347,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 7.17854422943052,
+          "afterDistance": 5.171959349409776,
+          "simulation_ms": 566.6666666666647
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -4.671666897833347,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -2.593333601951599,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 5.171959349409776,
+          "afterDistance": 3.0938225195968894,
+          "simulation_ms": 533.3333333333314
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 500,
+          "from": {
+            "x": -2.593333601951599,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": -0.4433336406946182,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 3.0938225195968894,
+          "afterDistance": 0.9449356419715339,
+          "simulation_ms": 533.3333333333314
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 160,
+          "from": {
+            "x": -0.4433336406946182,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": 0.20166634768247604,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 0.9449356419715339,
+          "afterDistance": 0.303361134470296,
+          "simulation_ms": 199.9999999999993
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 58.972931272068685,
+          "from": {
+            "x": 0.20166634768247604,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": 0.34499967843294144,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 0.303361134470296,
+          "afterDistance": 0.16446917488661314,
+          "simulation_ms": 99.99999999999964
+        },
+        {
+          "key": "KeyD",
+          "duration_ms": 30.639598449302273,
+          "from": {
+            "x": 0.34499967843294144,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": 0.48833300918340683,
+            "z": 5.444999910891056
+          },
+          "beforeDistance": 0.16446917488661314,
+          "afterDistance": 0.056223913744119974,
+          "simulation_ms": 83.33333333333303
+        }
+      ],
+      "outcome": "arrived"
+    },
+    {
+      "target": {
+        "x": 0.5,
+        "z": 0.5
+      },
+      "allow_death": true,
+      "started_at": "2026-11-13T20:40:18.856Z",
+      "pulses": [
+        {
+          "key": "KeyW",
+          "duration_ms": 500,
+          "from": {
+            "x": 0.48833300918340683,
+            "z": 5.444999910891056
+          },
+          "to": {
+            "x": 0.48833300918340683,
+            "z": 3.294999949634075
+          },
+          "beforeDistance": 4.945013674135519,
+          "afterDistance": 2.79502429991748,
+          "simulation_ms": 549.9999999999981
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 491.39999114496766,
+          "from": {
+            "x": 0.48833300918340683,
+            "z": 3.294999949634075
+          },
+          "to": {
+            "x": 0.48833300918340683,
+            "z": 1.0016666576266289
+          },
+          "beforeDistance": 2.79502429991748,
+          "afterDistance": 0.5018023057429964,
+          "simulation_ms": 549.9999999999981
+        },
+        {
+          "key": "KeyW",
+          "duration_ms": 95.25599828348605,
+          "from": {
+            "x": 0.48833300918340683,
+            "z": 1.0016666576266289
+          },
+          "to": {
+            "x": 0.4838252025656402,
+            "z": 0.27170053869485855
+          },
+          "beforeDistance": 0.5018023057429964,
+          "afterDistance": 0.22887172849493742,
+          "simulation_ms": 166.66666666666606
+        },
+        {
+          "key": "KeyS",
+          "duration_ms": 23.842109137565597,
+          "from": {
+            "x": 0.4838252025656402,
+            "z": 0.27170053869485855
+          },
+          "to": {
+            "x": 0.4838252025656402,
+            "z": 0.41503386944532394
+          },
+          "beforeDistance": 0.22887172849493742,
+          "afterDistance": 0.08649200780116523,
+          "simulation_ms": 66.66666666666643
+        }
+      ],
+      "outcome": "arrived"
+    }
+  ],
+  "browser": "157.0.8103.78",
+  "executable": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  "current_case": "workbench",
+  "pass": true,
+  "finished_at": "2026-11-13T20:40:38.050Z"
+}

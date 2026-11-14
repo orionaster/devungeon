@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Devungeon · SCOUT event inspector</title><link rel="stylesheet" href="/style.css">
+<body><main>
+  <header><p>DEVUNGEON / SCOUT</p><h1>Observed work, with evidence.</h1><p>Read-only adapter inspector. Dungeon rendering and Agent commands are separate integrations.</p></header>
+  <nav aria-label="Observation controls"><button id="live">Connect live</button><button id="disconnect">Disconnect viewer</button><button id="replay">Replay recorded history</button></nav>
+  <p id="transport" role="status">DISCONNECTED</p>
+  <section aria-label="Sources"><h2>Source connections</h2><pre id="connections">No source status yet.</pre><p id="capabilities">Commands unavailable.</p></section>
+  <section aria-label="Project snapshot"><h2 id="project">Waiting for public project</h2><p id="revision"></p><p id="warnings"></p><ul id="rooms"></ul></section>
+  <section aria-label="Agent observation"><h2>Agent activity</h2><p id="activity" role="status">No live Agent action observed.</p><p>A completed action never grants product acceptance. Silent streams expire; historical events do not animate live work.</p></section>
+  <section aria-label="Event history"><h2>Evidence timeline</h2><p id="count">0 events</p><ol id="events"></ol></section>
+</main><script type="module" src="/client.js"></script></body></html>

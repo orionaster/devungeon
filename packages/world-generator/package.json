@@ -1,0 +1,30 @@
+{
+  "name": "@devungeon/world-generator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": { "node": ">=24.0.0" },
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "scripts": {
+    "sync-schema": "node scripts/sync-schema.mjs",
+    "build": "npm run sync-schema && tsc -p tsconfig.json",
+    "test": "npm run sync-schema && vitest run",
+    "examples": "npm run build && node scripts/generate-examples.mjs",
+    "dev": "npm run sync-schema && vite demo --host 127.0.0.1 --port 4274 --strictPort",
+    "demo:build": "npm run sync-schema && vite build demo",
+    "licenses": "node scripts/licenses.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "rot-js": "2.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "fast-check": "4.10.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "vitest": "5.1.0"
+  }
+}

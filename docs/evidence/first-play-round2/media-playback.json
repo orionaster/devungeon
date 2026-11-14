@@ -1,0 +1,47 @@
+{
+  "observed_at": "2026-11-14T11:15:22.980Z",
+  "browser": "157.0.8103.78",
+  "videos": [
+    {
+      "file": "before-motion.webm",
+      "duration": 125,
+      "width": 1440,
+      "height": 960,
+      "error": null,
+      "quality": 10
+    },
+    {
+      "file": "after-motion.webm",
+      "duration": 124.44,
+      "width": 1440,
+      "height": 960,
+      "error": null,
+      "quality": 11
+    },
+    {
+      "file": "low-budget-motion.webm",
+      "duration": 65.28,
+      "width": 1440,
+      "height": 960,
+      "error": null,
+      "quality": 11
+    },
+    {
+      "file": "moss-before.webm",
+      "duration": 21.28,
+      "width": 1440,
+      "height": 960,
+      "error": null,
+      "quality": 10
+    },
+    {
+      "file": "moss-after-rear.webm",
+      "duration": 36.04,
+      "width": 1440,
+      "height": 960,
+      "error": null,
+      "quality": 11
+    }
+  ],
+  "pass": true
+}

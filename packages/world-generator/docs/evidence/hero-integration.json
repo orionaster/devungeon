@@ -1,0 +1,64 @@
+{
+  "renderer": "Headless actual HERO engine + Rapier, not a browser rendering test.",
+  "engine_sources": {
+    "packages/dungeon-engine/src/types.ts": "35d8c60f68c6ba8bfc001292b78d795344dbbed20a1f5a8ce9ee7f4f8a0816cd",
+    "packages/dungeon-engine/src/scene.ts": "78f49456f9c07048d1a66a35c08a42a2500144f680da349d465edb27fb0a99f5",
+    "packages/dungeon-engine/src/engine.ts": "d77d3221e22f3ae21401b0cf3db5ecb02f91690c5b6499e8502adeb8d3398a4a"
+  },
+  "rapier_version": "0.21.0",
+  "reports": [
+    {
+      "name": "tiny-landing-page",
+      "scene_validated": true,
+      "exact_floor_raster": true,
+      "physics_steps": 1011,
+      "visited_accepted_rooms": [
+        "hero"
+      ],
+      "locked_doors_tested": [
+        "contact",
+        "launch"
+      ],
+      "combat_phase": "won",
+      "combat_stats": {
+        "attacks": 2,
+        "dodges": 0,
+        "hitsTaken": 0,
+        "damageDealt": 55,
+        "blockedMoves": 0
+      },
+      "source_unchanged": true
+    },
+    {
+      "name": "agent-workbench-synthetic",
+      "scene_validated": true,
+      "exact_floor_raster": true,
+      "physics_steps": 6200,
+      "visited_accepted_rooms": [
+        "goals",
+        "registry"
+      ],
+      "locked_doors_tested": [
+        "dispatch",
+        "executor",
+        "history",
+        "milestone",
+        "planning",
+        "retrieval"
+      ],
+      "combat_phase": "won",
+      "combat_stats": {
+        "attacks": 2,
+        "dodges": 0,
+        "hitsTaken": 0,
+        "damageDealt": 55,
+        "blockedMoves": 0
+      },
+      "source_unchanged": true
+    },
+    {
+      "name": "32-root-long-run-regression",
+      "tile_seams_walkable": true
+    }
+  ]
+}

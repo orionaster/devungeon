@@ -1,0 +1,300 @@
+{
+  "tool": "Playwright CLI with actual keyboard input",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "dpr": 1.0000000298023224,
+  "visited_accepted_room": "hero",
+  "locked_door_attempts": [
+    {
+      "degrees": 0,
+      "player": {
+        "x": 18.003000000000018,
+        "z": 5.757800000000009
+      },
+      "blockedSteps": 58
+    },
+    {
+      "degrees": 90,
+      "player": {
+        "x": 18.003000000000018,
+        "z": 5.757800000000009
+      },
+      "blockedSteps": 118
+    },
+    {
+      "degrees": 180,
+      "player": {
+        "x": 18.003000000000018,
+        "z": 5.757800000000009
+      },
+      "blockedSteps": 177
+    },
+    {
+      "degrees": 270,
+      "player": {
+        "x": 18.003000000000018,
+        "z": 5.757800000000009
+      },
+      "blockedSteps": 236
+    }
+  ],
+  "incremental_old_geometry_unchanged": true,
+  "regression_relocked": true,
+  "complex_loaded": true,
+  "final_state": {
+    "player": {
+      "x": -18,
+      "z": 0
+    },
+    "rotation": 1,
+    "blockedSteps": 0,
+    "room_positions": [
+      {
+        "room_id": "dispatch",
+        "x": 36,
+        "z": 0,
+        "width": 9,
+        "depth": 9,
+        "prefab": "archive",
+        "pinned": true
+      },
+      {
+        "room_id": "executor",
+        "x": 54,
+        "z": 36,
+        "width": 11,
+        "depth": 11,
+        "prefab": "boss-arena",
+        "pinned": true
+      },
+      {
+        "room_id": "goals",
+        "x": 0,
+        "z": 0,
+        "width": 9,
+        "depth": 9,
+        "prefab": "stone-chamber",
+        "pinned": true
+      },
+      {
+        "room_id": "history",
+        "x": 18,
+        "z": 18,
+        "width": 9,
+        "depth": 9,
+        "prefab": "workshop",
+        "pinned": true
+      },
+      {
+        "room_id": "milestone",
+        "x": 72,
+        "z": 18,
+        "width": 9,
+        "depth": 11,
+        "prefab": "boss-arena",
+        "pinned": true
+      },
+      {
+        "room_id": "planning",
+        "x": 18,
+        "z": 0,
+        "width": 11,
+        "depth": 11,
+        "prefab": "archive",
+        "pinned": true
+      },
+      {
+        "room_id": "registry",
+        "x": 18,
+        "z": 36,
+        "width": 11,
+        "depth": 9,
+        "prefab": "archive",
+        "pinned": true
+      },
+      {
+        "room_id": "retrieval",
+        "x": 36,
+        "z": 18,
+        "width": 9,
+        "depth": 9,
+        "prefab": "archive",
+        "pinned": true
+      }
+    ],
+    "doors": [
+      {
+        "id": "[\"door\",\"dispatch\"]",
+        "room_id": "dispatch",
+        "position": {
+          "x": 36,
+          "z": 4
+        },
+        "outside": {
+          "x": 36,
+          "z": 5
+        },
+        "locked": true,
+        "reasons": [
+          "Project status is planned; player entry requires accepted.",
+          "Unmet dependencies: planning."
+        ]
+      },
+      {
+        "id": "[\"door\",\"executor\"]",
+        "room_id": "executor",
+        "position": {
+          "x": 54,
+          "z": 41
+        },
+        "outside": {
+          "x": 54,
+          "z": 42
+        },
+        "locked": true,
+        "reasons": [
+          "Project status is blocked; player entry requires accepted.",
+          "Unmet dependencies: dispatch, planning."
+        ]
+      },
+      {
+        "id": "[\"door\",\"goals\"]",
+        "room_id": "goals",
+        "position": {
+          "x": 0,
+          "z": 4
+        },
+        "outside": {
+          "x": 0,
+          "z": 5
+        },
+        "locked": false,
+        "reasons": []
+      },
+      {
+        "id": "[\"door\",\"history\"]",
+        "room_id": "history",
+        "position": {
+          "x": 18,
+          "z": 22
+        },
+        "outside": {
+          "x": 18,
+          "z": 23
+        },
+        "locked": true,
+        "reasons": [
+          "Project status is review; player entry requires accepted."
+        ]
+      },
+      {
+        "id": "[\"door\",\"milestone\"]",
+        "room_id": "milestone",
+        "position": {
+          "x": 72,
+          "z": 23
+        },
+        "outside": {
+          "x": 72,
+          "z": 24
+        },
+        "locked": true,
+        "reasons": [
+          "Project status is planned; player entry requires accepted.",
+          "Unmet dependencies: dispatch, executor, history, planning, retrieval."
+        ]
+      },
+      {
+        "id": "[\"door\",\"planning\"]",
+        "room_id": "planning",
+        "position": {
+          "x": 18,
+          "z": 5
+        },
+        "outside": {
+          "x": 18,
+          "z": 6
+        },
+        "locked": true,
+        "reasons": [
+          "Project status is active; player entry requires accepted."
+        ]
+      },
+      {
+        "id": "[\"door\",\"registry\"]",
+        "room_id": "registry",
+        "position": {
+          "x": 18,
+          "z": 40
+        },
+        "outside": {
+          "x": 18,
+          "z": 41
+        },
+        "locked": false,
+        "reasons": []
+      },
+      {
+        "id": "[\"door\",\"retrieval\"]",
+        "room_id": "retrieval",
+        "position": {
+          "x": 36,
+          "z": 22
+        },
+        "outside": {
+          "x": 36,
+          "z": 23
+        },
+        "locked": true,
+        "reasons": [
+          "Project status is planned; player entry requires accepted.",
+          "Unmet dependencies: history."
+        ]
+      }
+    ],
+    "statuses": [
+      {
+        "id": "goals",
+        "status": "accepted"
+      },
+      {
+        "id": "planning",
+        "status": "active"
+      },
+      {
+        "id": "dispatch",
+        "status": "planned"
+      },
+      {
+        "id": "registry",
+        "status": "accepted"
+      },
+      {
+        "id": "executor",
+        "status": "blocked"
+      },
+      {
+        "id": "history",
+        "status": "review"
+      },
+      {
+        "id": "retrieval",
+        "status": "planned"
+      },
+      {
+        "id": "milestone",
+        "status": "planned"
+      }
+    ],
+    "metrics": {
+      "frames": 2229,
+      "totalMs": 15484.60000000298,
+      "worstMs": 13.799999999999997,
+      "compileMs": 7.9000000059604645
+    }
+  },
+  "limitation": "2D compiler navigation harness; headless actual HERO engine checks are separate. No human gameplay or HERO browser rendering claimed."
+}

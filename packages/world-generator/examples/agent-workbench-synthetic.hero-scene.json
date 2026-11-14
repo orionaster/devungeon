@@ -1,0 +1,420 @@
+{
+  "worldId": "[\"synthetic-agents\",\"demo-1\"]",
+  "project_context": {
+    "project_id": "synthetic-agents",
+    "project_revision": "demo-1",
+    "observed_at": "2026-11-13T00:00:00Z",
+    "source": {
+      "kind": "synthetic",
+      "is_demo": true
+    }
+  },
+  "doors": [
+    {
+      "room_id": "dispatch",
+      "x": 36.5,
+      "z": 4.5,
+      "axis": "x",
+      "locked": true
+    },
+    {
+      "room_id": "executor",
+      "x": 54.5,
+      "z": 41.5,
+      "axis": "x",
+      "locked": true
+    },
+    {
+      "room_id": "goals",
+      "x": 0.5,
+      "z": 4.5,
+      "axis": "x",
+      "locked": false
+    },
+    {
+      "room_id": "history",
+      "x": 18.5,
+      "z": 22.5,
+      "axis": "x",
+      "locked": true
+    },
+    {
+      "room_id": "milestone",
+      "x": 72.5,
+      "z": 23.5,
+      "axis": "x",
+      "locked": true
+    },
+    {
+      "room_id": "planning",
+      "x": 18.5,
+      "z": 5.5,
+      "axis": "x",
+      "locked": true
+    },
+    {
+      "room_id": "registry",
+      "x": 18.5,
+      "z": 40.5,
+      "axis": "x",
+      "locked": false
+    },
+    {
+      "room_id": "retrieval",
+      "x": 36.5,
+      "z": 22.5,
+      "axis": "x",
+      "locked": true
+    }
+  ],
+  "rooms": [
+    {
+      "room_id": "__game_foyer__",
+      "x": -17.5,
+      "z": 0.5,
+      "width": 7,
+      "depth": 7,
+      "name": "Game-only foyer",
+      "enterable": true,
+      "status": "game-only",
+      "reason": "Safe spawn; not a project capability."
+    },
+    {
+      "room_id": "dispatch",
+      "x": 36.5,
+      "z": 0.5,
+      "width": 7,
+      "depth": 7,
+      "name": "Agent task dispatch",
+      "enterable": false,
+      "status": "planned",
+      "reason": "Project status is planned; player entry requires accepted. Unmet dependencies: planning."
+    },
+    {
+      "room_id": "executor",
+      "x": 54.5,
+      "z": 36.5,
+      "width": 9,
+      "depth": 9,
+      "name": "Tool execution",
+      "enterable": false,
+      "status": "blocked",
+      "reason": "Project status is blocked; player entry requires accepted. Unmet dependencies: dispatch, planning."
+    },
+    {
+      "room_id": "goals",
+      "x": 0.5,
+      "z": 0.5,
+      "width": 7,
+      "depth": 7,
+      "name": "Goal intake",
+      "enterable": true,
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "room_id": "history",
+      "x": 18.5,
+      "z": 18.5,
+      "width": 7,
+      "depth": 7,
+      "name": "Event journal",
+      "enterable": false,
+      "status": "review",
+      "reason": "Project status is review; player entry requires accepted."
+    },
+    {
+      "room_id": "milestone",
+      "x": 72.5,
+      "z": 18.5,
+      "width": 7,
+      "depth": 9,
+      "name": "Autonomous work milestone",
+      "enterable": false,
+      "status": "planned",
+      "reason": "Project status is planned; player entry requires accepted. Unmet dependencies: dispatch, executor, history, planning, retrieval."
+    },
+    {
+      "room_id": "planning",
+      "x": 18.5,
+      "z": 0.5,
+      "width": 9,
+      "depth": 9,
+      "name": "Supervisor planning",
+      "enterable": false,
+      "status": "active",
+      "reason": "Project status is active; player entry requires accepted."
+    },
+    {
+      "room_id": "registry",
+      "x": 18.5,
+      "z": 36.5,
+      "width": 9,
+      "depth": 7,
+      "name": "Tool registry",
+      "enterable": true,
+      "status": "accepted",
+      "reason": ""
+    },
+    {
+      "room_id": "retrieval",
+      "x": 36.5,
+      "z": 18.5,
+      "width": 7,
+      "depth": 7,
+      "name": "Knowledge retrieval",
+      "enterable": false,
+      "status": "planned",
+      "reason": "Project status is planned; player entry requires accepted. Unmet dependencies: history."
+    }
+  ],
+  "corridors": [
+    {
+      "x": -2.5,
+      "z": 5.5,
+      "width": 31,
+      "depth": 1
+    },
+    {
+      "x": 42.5,
+      "z": 5.5,
+      "width": 13,
+      "depth": 1
+    },
+    {
+      "x": 24.5,
+      "z": 6.5,
+      "width": 25,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 7.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 8.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 9.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 10.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 11.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 12.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 13.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 14.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 15.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 16.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 17.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 18.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 19.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 20.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 21.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 13,
+      "z": 22.5,
+      "width": 2,
+      "depth": 1
+    },
+    {
+      "x": 40,
+      "z": 23.5,
+      "width": 56,
+      "depth": 1
+    },
+    {
+      "x": 70,
+      "z": 24.5,
+      "width": 6,
+      "depth": 1
+    },
+    {
+      "x": 30.5,
+      "z": 41.5,
+      "width": 37,
+      "depth": 1
+    },
+    {
+      "x": 60.5,
+      "z": 42.5,
+      "width": 25,
+      "depth": 1
+    },
+    {
+      "x": -17.5,
+      "z": 4.5,
+      "width": 1,
+      "depth": 3
+    },
+    {
+      "x": 0.5,
+      "z": 4.5,
+      "width": 1,
+      "depth": 3
+    },
+    {
+      "x": 12.5,
+      "z": 23.5,
+      "width": 1,
+      "depth": 37
+    },
+    {
+      "x": 13.5,
+      "z": 15,
+      "width": 1,
+      "depth": 18
+    },
+    {
+      "x": 18.5,
+      "z": 40.5,
+      "width": 1,
+      "depth": 3
+    },
+    {
+      "x": 36.5,
+      "z": 6,
+      "width": 1,
+      "depth": 2
+    },
+    {
+      "x": 48.5,
+      "z": 24,
+      "width": 1,
+      "depth": 38
+    },
+    {
+      "x": 67.5,
+      "z": 24,
+      "width": 1,
+      "depth": 2
+    },
+    {
+      "x": 72.5,
+      "z": 33.5,
+      "width": 1,
+      "depth": 19
+    }
+  ],
+  "spawn": {
+    "x": -17.5,
+    "z": 0.5
+  },
+  "obstacles": [],
+  "enemies": [
+    {
+      "x": 0.5,
+      "z": 0.5,
+      "id": "[\"encounter\",\"goals\"]",
+      "kind": "slime"
+    },
+    {
+      "x": 18.5,
+      "z": 36.5,
+      "id": "[\"encounter\",\"registry\"]",
+      "kind": "slime"
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": "agent-boss",
+      "name": "Demo Supervisor",
+      "room_id": "planning",
+      "x": 18.5,
+      "z": 1.75,
+      "role": "wizard",
+      "source_role": "supervisor",
+      "visual_only": true,
+      "is_demo": true
+    },
+    {
+      "agent_id": "agent-build",
+      "name": "Demo Worker",
+      "room_id": "executor",
+      "x": 53.25,
+      "z": 35.25,
+      "role": "builder",
+      "source_role": "worker",
+      "visual_only": true,
+      "is_demo": true
+    },
+    {
+      "agent_id": "agent-review",
+      "name": "Demo Reviewer",
+      "room_id": "history",
+      "x": 19.75,
+      "z": 19.75,
+      "role": "scout",
+      "source_role": "reviewer",
+      "visual_only": true,
+      "is_demo": true
+    }
+  ],
+  "agent_ids_without_room": []
+}

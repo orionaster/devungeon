@@ -1,0 +1,406 @@
+{
+  "observed_at": "2026-11-14T09:39:31.716Z",
+  "source": "Actual production keyboard input, four screenshots, read-only snapshots",
+  "contact": [
+    {
+      "game": {
+        "time": 3.1166666666666605,
+        "phase": "playing",
+        "player": {
+          "x": -1,
+          "z": -0.8049000626415364,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -3.1166666666666605,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -3.1166666666666605,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 60
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -1,
+          "z": -0.8049000626415364
+        }
+      },
+      "label": {
+        "x": 679.5729370117188,
+        "y": 363,
+        "width": 80.85417175292969,
+        "height": 22,
+        "top": 363,
+        "right": 760.4271087646484,
+        "bottom": 385,
+        "left": 679.5729370117188
+      }
+    },
+    {
+      "game": {
+        "time": 4.19999999999999,
+        "phase": "playing",
+        "player": {
+          "x": -1,
+          "z": -0.8049000626415364,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -4.19999999999999,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -4.19999999999999,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 60
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -1,
+          "z": -0.8049000626415364
+        }
+      },
+      "label": {
+        "x": 732.15625,
+        "y": 363,
+        "width": 80.85417175292969,
+        "height": 22,
+        "top": 363,
+        "right": 813.0104217529297,
+        "bottom": 385,
+        "left": 732.15625
+      }
+    },
+    {
+      "game": {
+        "time": 5.28333333333332,
+        "phase": "playing",
+        "player": {
+          "x": -1,
+          "z": -0.8049000626415364,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -5.28333333333332,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -5.28333333333332,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 60
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -1,
+          "z": -0.8049000626415364
+        }
+      },
+      "label": {
+        "x": 679.5729370117188,
+        "y": 363,
+        "width": 80.85417175292969,
+        "height": 22,
+        "top": 363,
+        "right": 760.4271087646484,
+        "bottom": 385,
+        "left": 679.5729370117188
+      }
+    },
+    {
+      "game": {
+        "time": 6.366666666666649,
+        "phase": "playing",
+        "player": {
+          "x": -1,
+          "z": -0.8049000626415364,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.366666666666649,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.366666666666649,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 60
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -1,
+          "z": -0.8049000626415364
+        }
+      },
+      "label": {
+        "x": 626.9791870117188,
+        "y": 363,
+        "width": 80.85417175292969,
+        "height": 22,
+        "top": 363,
+        "right": 707.8333587646484,
+        "bottom": 385,
+        "left": 626.9791870117188
+      }
+    }
+  ]
+}

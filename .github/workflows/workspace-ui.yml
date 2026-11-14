@@ -1,0 +1,32 @@
+name: Validate workspace UI
+permissions:
+  contents: read
+on:
+  push:
+    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', 'vitest.config.ts', '.github/workflows/workspace-ui.yml']
+  pull_request:
+    paths: ['packages/workspace-ui/**', 'apps/web/**', 'packages/dungeon-engine/**', 'package.json', 'package-lock.json', 'vitest.config.ts', '.github/workflows/workspace-ui.yml']
+jobs:
+  workspace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - run: npm run build
+      - run: npm test --workspace @devungeon/workspace-ui
+      - run: npm run build --workspace @devungeon/workspace-ui
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser --workspace @devungeon/workspace-ui
+      - uses: actions/upload-artifact@v7.0.2
+        if: failure()
+        with:
+          name: workspace-browser-failure
+          path: packages/workspace-ui/test-results
+          retention-days: 7
+          if-no-files-found: ignore

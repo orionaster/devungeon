@@ -1,5 +1,7 @@
 # Devungeon — acceptance checklist (not yet executed)
 
+FORGE branch update, 2026-11-14: the combined first-pack engineering checks have now been executed; see [actual integration evidence and remaining gates](FORGE_INTEGRATION.md). The original checklist below is the full V1/human acceptance target, including real provider commands, new-user playtests and the future second world; it is not marked complete by automated integration checks.
+
 ## A. Game is truly playable
 
 - [ ] The user can start a run, move their character, dodge, attack, hit and be hit, finish a dungeon encounter and see a result.

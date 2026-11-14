@@ -1,0 +1,103 @@
+
+> devungeon@0.1.0 test
+> npm run test:engine && npm run test:integration && npm test --workspace @devungeon/world-generator && npm test --workspace @devungeon/workspace-ui && npm test --workspace @devungeon/scout-bridge
+
+
+> devungeon@0.1.0 test:engine
+> tsx --test packages/dungeon-engine/test/*.test.ts
+
+✔ swept wall and locked-room collisions survive walking, repeated dodges, corners and restart (404.3159ms)
+✔ attack hits, defeats encounter and returns only a game result; source facts survive win/restart (10.5679ms)
+✔ enemy tells lead to damage, defeat and restart without source mutation (38.2147ms)
+✔ dodge grants brief protection and actual displacement without tunneling (4.6395ms)
+✔ spawn and blueprint access fail closed, invalid rectangles are rejected (1.2937ms)
+✔ scene ownership and tile-grid validation prevent mutable respawn and missing walls (3.8327ms)
+✔ event projection rejects malformed/cross-project/duplicate, keeps chronology and bounds history (3.1574ms)
+✔ explicit compiler doors override guessed positions and independently block dashes (19.8674ms)
+✔ visual-only NPC in a known locked room grants no player access (10.1565ms)
+✔ furniture and NPC ground footprints stop walking and dodges, independently of task events (13.9158ms)
+✔ locked chests and partner placements share deterministic occupied slots (0.4642ms)
+✔ render interpolation is continuous between physics ticks without mutating exact game state (2.679ms)
+✔ sample practice enemies only engage within their explicit activation radius (7.4017ms)
+✔ sample-only partner clearance gives pleasant contact while old maps keep their radius (8.5907ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1192.8588
+
+> devungeon@0.1.0 test:integration
+> npm run sync-schema --workspace @devungeon/world-generator && vitest run
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+ RUN  v5.1.0 C:/Devungeon/first-play
+
+
+ Test Files  5 passed (5)
+      Tests  27 passed (27)
+   Start at  19:00:11
+   Duration  666ms (import 65%, transform 17%, tests 16%, worker 2%)
+
+
+> @devungeon/world-generator@0.1.0 test
+> npm run sync-schema && vitest run
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+ RUN  v5.1.0 C:/Devungeon/first-play/packages/world-generator
+
+
+ Test Files  2 passed (2)
+      Tests  55 passed (55)
+   Start at  19:00:13
+   Duration  7.14s (tests 93%, import 6%, transform 1%)
+
+
+> @devungeon/workspace-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Devungeon/first-play/packages/workspace-ui
+
+
+ Test Files  5 passed (5)
+      Tests  77 passed (77)
+   Start at  19:00:22
+   Duration  1.09s (transform 37%, tests 32%, import 29%, worker 2%)
+
+
+> @devungeon/scout-bridge@0.1.0 test
+> node --test test/*.test.ts
+
+✔ public GitHub pagination, ETag and repeat import have stable IDs; closed stays review (28.4041ms)
+✔ GitHub denies unauthorized, unavailable, rate limited and private responses without leaking bodies (4.7668ms)
+✔ malformed pages cannot publish a partial snapshot; empty repo has honest overview (1.0832ms)
+✔ metadata enforces scope, rejects sensitive extra fields and future times (0.9272ms)
+✔ provider mappers discard transcripts, commands, messages and paths; lifecycle is idle (0.8852ms)
+✔ selected file handles partial writes, duplicate metadata, denied/missing files and rejects unsafe payload (11.1574ms)
+✔ durable journal serializes concurrent writes, deduplicates across restart and rejects corruption (12.9859ms)
+✔ HTTP snapshot, live SSE, resume replay and consumer all use actual normalized records (84.2932ms)
+✔ event delivery keeps future observations in replay; source silence expires without inventing work (8.6212ms)
+✔ source failure retains honest cached snapshot, missing permission is visible; no command routes (28.6666ms)
+✔ mixed real/demo observer fails closed and old real observations cannot label demo as LIVE (9.0847ms)
+✔ freshness expires work, replay/demo/project events never start live Agent animation, late events cannot rewind (0.9109ms)
+✔ same-origin host forwards only four read routes/cursors and strips ambient credentials (67.5693ms)
+✔ host validates explicit loopback configuration and unavailable bridge is recoverable (13.0027ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 493.1082

@@ -1,0 +1,50 @@
+{
+  "name": "devungeon",
+  "license": "Apache-2.0",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "apps/web",
+    "apps/bridge",
+    "packages/dungeon-engine",
+    "packages/workspace-ui",
+    "packages/world-generator"
+  ],
+  "scripts": {
+    "predev": "npm run sync-schema --workspace @devungeon/world-generator",
+    "dev": "node scripts/forge-host.mjs",
+    "build": "npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && vite build --config apps/web/vite.config.ts",
+    "preview": "node scripts/forge-host.mjs --preview",
+    "test": "npm run test:engine && npm run test:integration && npm test --workspace @devungeon/world-generator && npm test --workspace @devungeon/workspace-ui && npm test --workspace @devungeon/scout-bridge",
+    "test:integration": "npm run sync-schema --workspace @devungeon/world-generator && vitest run",
+    "test:browser": "node scripts/forge-browser.mjs",
+    "test:browser:ci": "node scripts/forge-verify.mjs",
+    "test:host": "node --test scripts/forge-host.test.mjs",
+    "test:engine": "tsx --test packages/dungeon-engine/test/*.test.ts",
+    "test:i18n": "npm test --workspace @devungeon/workspace-ui -- tests/i18n.test.ts",
+    "check": "npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && npm run check --workspace @devungeon/scout-bridge"
+  },
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "0.21.0",
+    "@react-three/fiber": "9.8.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@playwright/cli": "0.1.24",
+    "@types/node": "24.10.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.187.0",
+    "prettier": "3.6.2",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "vitest": "5.1.0"
+  },
+  "engines": {
+    "node": ">=24.13.0"
+  }
+}

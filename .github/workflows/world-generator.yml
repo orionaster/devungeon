@@ -1,0 +1,30 @@
+name: World generator
+on:
+  push:
+    paths: ['packages/world-generator/**', 'schema/**', 'examples/**', '.github/workflows/world-generator.yml']
+  pull_request:
+    paths: ['packages/world-generator/**', 'schema/**', 'examples/**', '.github/workflows/world-generator.yml']
+permissions:
+  contents: read
+jobs:
+  compiler:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: packages/world-generator
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: packages/world-generator/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm test
+      - run: npm run demo:build
+      - run: npm run examples
+      - run: git diff --exit-code -- examples

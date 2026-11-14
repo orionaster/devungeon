@@ -1,0 +1,61 @@
+.dw-locale-switcher {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 100%;
+  padding: 3px;
+  color: #ecf3f4;
+  background: #1b2633;
+  border: 1px solid #526b7a;
+  border-radius: 3px;
+  font:
+    14px/1.5 system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    sans-serif;
+}
+.dw-locale-switcher > button {
+  min-height: 36px;
+  min-width: 64px;
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #d0dde2;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+.dw-locale-switcher > button:hover {
+  color: #fff;
+  background: #344b5c;
+}
+.dw-locale-switcher > button[aria-pressed="true"] {
+  color: #15292b;
+  background: #88d2bb;
+  border-color: #88d2bb;
+  font-weight: 650;
+}
+.dw-locale-switcher > button:focus-visible {
+  outline: 2px solid #f4b45b;
+  outline-offset: 2px;
+}
+.dw-locale-switcher > button:active {
+  border-color: #f4b45b;
+}
+@media (max-width: 420px) {
+  .dw-locale-switcher {
+    gap: 2px;
+    font-size: 13px;
+  }
+  .dw-locale-switcher > button {
+    min-width: 56px;
+    padding-inline: 8px;
+  }
+}

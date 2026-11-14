@@ -1,0 +1,951 @@
+{
+  "source": "Actual installed Chrome 6x CPU-throttled primary production games; no simulated renderer or input",
+  "browser": "157.0.8103.78",
+  "platform": "win32",
+  "node": "v24.13.1",
+  "cpu_throttle": 6,
+  "started_at": "2026-11-13T19:31:59.938Z",
+  "finished_at": "2026-11-13T19:37:50.574Z",
+  "pass": true,
+  "checks": [
+    {
+      "name": "tiny: Chinese first visit",
+      "pass": true
+    },
+    {
+      "name": "tiny: BUILDER world uses selected source IDs",
+      "pass": true
+    },
+    {
+      "name": "tiny: synthetic project explicitly DEMO",
+      "pass": true
+    },
+    {
+      "name": "tiny: language preserves full paused game",
+      "pass": true
+    },
+    {
+      "name": "tiny: language preserves truth and layout",
+      "pass": true
+    },
+    {
+      "name": "tiny: actual keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "tiny: actual dodge executed",
+      "pass": true
+    },
+    {
+      "name": "tiny: full generated encounter won",
+      "pass": true,
+      "detail": {
+        "attacks": 2,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 55,
+        "blockedMoves": 8
+      }
+    },
+    {
+      "name": "tiny: actual attacks and damage loop",
+      "pass": true,
+      "detail": {
+        "attacks": 2,
+        "dodges": 1,
+        "hitsTaken": 1,
+        "damageDealt": 55,
+        "blockedMoves": 8
+      }
+    },
+    {
+      "name": "tiny: combat does not change project truth",
+      "pass": true
+    },
+    {
+      "name": "tiny: at least one unaccepted area remains locked",
+      "pass": true
+    },
+    {
+      "name": "tiny: heading 0 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.467538891380173,
+          "z": 6.40509977095553,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 2,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 52
+        }
+      }
+    },
+    {
+      "name": "tiny: heading 90 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.467538891380173,
+          "z": 6.405099826180049,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766E-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 3,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 94
+        }
+      }
+    },
+    {
+      "name": "tiny: heading 180 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.467538891380173,
+          "z": 6.4050999989112825,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.2246467991473532E-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 4,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 137
+        }
+      }
+    },
+    {
+      "name": "tiny: heading 270 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 18.467538891380173,
+          "z": 6.4051000361569095,
+          "hp": 84,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.8369701987210297E-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 2,
+          "dodges": 5,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 183
+        }
+      }
+    },
+    {
+      "name": "tiny: locked room camera preview grants no entry",
+      "pass": true
+    },
+    {
+      "name": "tiny: locked room English preserves access and paused state",
+      "pass": true
+    },
+    {
+      "name": "tiny: incremental update pins all old room geometry",
+      "pass": true
+    },
+    {
+      "name": "tiny: incremental update pins existing corridor paths",
+      "pass": true
+    },
+    {
+      "name": "tiny: new synthetic feature is sealed",
+      "pass": true
+    },
+    {
+      "name": "tiny: no uncaught browser error",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "workbench: Chinese first visit",
+      "pass": true
+    },
+    {
+      "name": "workbench: BUILDER world uses selected source IDs",
+      "pass": true
+    },
+    {
+      "name": "workbench: synthetic project explicitly DEMO",
+      "pass": true
+    },
+    {
+      "name": "workbench: language preserves full paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: language preserves truth and layout",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual dodge executed",
+      "pass": true
+    },
+    {
+      "name": "workbench: full generated encounter won",
+      "pass": true,
+      "detail": {
+        "attacks": 4,
+        "dodges": 1,
+        "hitsTaken": 3,
+        "damageDealt": 110,
+        "blockedMoves": 10
+      }
+    },
+    {
+      "name": "workbench: actual attacks and damage loop",
+      "pass": true,
+      "detail": {
+        "attacks": 4,
+        "dodges": 1,
+        "hitsTaken": 3,
+        "damageDealt": 110,
+        "blockedMoves": 10
+      }
+    },
+    {
+      "name": "workbench: combat does not change project truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: at least one unaccepted area remains locked",
+      "pass": true
+    },
+    {
+      "name": "workbench: heading 0 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.50001057298174,
+          "z": 5.405100136881089,
+          "hp": 52,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 4,
+          "dodges": 2,
+          "hitsTaken": 3,
+          "damageDealt": 110,
+          "blockedMoves": 57
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 90 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.50033022493088,
+          "z": 5.405099874946615,
+          "hp": 52,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766E-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 4,
+          "dodges": 3,
+          "hitsTaken": 3,
+          "damageDealt": 110,
+          "blockedMoves": 106
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 180 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.50033022493088,
+          "z": 5.405100150436198,
+          "hp": 52,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.2246467991473532E-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 4,
+          "dodges": 4,
+          "hitsTaken": 3,
+          "damageDealt": 110,
+          "blockedMoves": 154
+        }
+      }
+    },
+    {
+      "name": "workbench: heading 270 dash blocked",
+      "pass": true,
+      "detail": {
+        "player": {
+          "x": 36.50033022493088,
+          "z": 5.405099739053554,
+          "hp": 52,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.8369701987210297E-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "stats": {
+          "attacks": 4,
+          "dodges": 5,
+          "hitsTaken": 3,
+          "damageDealt": 110,
+          "blockedMoves": 205
+        }
+      }
+    },
+    {
+      "name": "workbench: locked room camera preview grants no entry",
+      "pass": true
+    },
+    {
+      "name": "workbench: locked room English preserves access and paused state",
+      "pass": true
+    },
+    {
+      "name": "workbench: mapped DEMO supervisor exists",
+      "pass": true,
+      "detail": [
+        {
+          "id": "agent-boss",
+          "name": "Demo Supervisor",
+          "role": "supervisor",
+          "status": "working",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "planning",
+          "task_id": "demo-plan",
+          "source": "DEMO supervisor",
+          "source_ref": "synthetic:supervisor",
+          "observed_at": "2026-11-13T19:36:20.329Z",
+          "capabilities": [
+            "chat",
+            "assign_task",
+            "request_review",
+            "cancel_task",
+            "publish"
+          ]
+        },
+        {
+          "id": "agent-build",
+          "name": "Demo Worker",
+          "role": "worker",
+          "status": "blocked",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "executor",
+          "task_id": "demo-gate",
+          "source": "DEMO worker",
+          "source_ref": "synthetic:worker",
+          "observed_at": "2026-11-13T19:36:20.329Z",
+          "capabilities": [
+            "chat",
+            "assign_task",
+            "cancel_task"
+          ]
+        },
+        {
+          "id": "agent-review",
+          "name": "Demo Reviewer",
+          "role": "reviewer",
+          "status": "review",
+          "is_demo": true,
+          "mode": "demo",
+          "room_id": "history",
+          "task_id": "demo-review",
+          "source": "DEMO reviewer",
+          "source_ref": "synthetic:reviewer",
+          "observed_at": "2026-11-13T19:36:20.329Z",
+          "capabilities": [
+            "chat",
+            "request_review"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "workbench: clicking actual rendered NPC opens scoped workspace",
+      "pass": true
+    },
+    {
+      "name": "workbench: explicit DEMO workspace label",
+      "pass": true
+    },
+    {
+      "name": "workbench: chat completed only in DEMO",
+      "pass": true
+    },
+    {
+      "name": "workbench: task survives closing workspace",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale does not alter paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale preserves commands, source and pending approvals",
+      "pass": true
+    },
+    {
+      "name": "workbench: locale uses no reload",
+      "pass": true
+    },
+    {
+      "name": "workbench: Chinese roundtrip preserves complete paused game",
+      "pass": true
+    },
+    {
+      "name": "workbench: explicit approval denial rejected operation",
+      "pass": true
+    },
+    {
+      "name": "workbench: workspace did not change project truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: workspace releases focus to game",
+      "pass": true
+    },
+    {
+      "name": "workbench: actual enemy damage causes player death",
+      "pass": true
+    },
+    {
+      "name": "workbench: death never approves/cancels pending work",
+      "pass": true
+    },
+    {
+      "name": "workbench: restart retains task and pending approval",
+      "pass": true
+    },
+    {
+      "name": "workbench: restart does not change truth",
+      "pass": true
+    },
+    {
+      "name": "workbench: incremental update pins all old room geometry",
+      "pass": true
+    },
+    {
+      "name": "workbench: incremental update pins existing corridor paths",
+      "pass": true
+    },
+    {
+      "name": "workbench: new synthetic feature is sealed",
+      "pass": true
+    },
+    {
+      "name": "project switch: second project has its own distinct map",
+      "pass": true
+    },
+    {
+      "name": "project switch: incremental layout and pending work survive return",
+      "pass": true
+    },
+    {
+      "name": "workbench: no uncaught browser error",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "two projects generate distinct functional graphs",
+      "pass": true,
+      "detail": {
+        "tiny": {
+          "rooms": 3,
+          "dependencies": 2
+        },
+        "workbench": {
+          "rooms": 8,
+          "dependencies": 9
+        }
+      }
+    }
+  ],
+  "cases": [
+    {
+      "selection": "tiny",
+      "result": {
+        "selected": "tiny",
+        "rooms": 3,
+        "dependencies": 2,
+        "visited": [
+          "hero"
+        ],
+        "won": {
+          "time": 27.516666666666385,
+          "phase": "won",
+          "player": {
+            "x": 0.3835856011719443,
+            "z": 0.537195999792857,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": 0.008749626388604414,
+              "z": 0.9999617212863999
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "x": 0.40440330177079886,
+              "z": 2.916372301056981,
+              "id": "[\"encounter\",\"hero\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": -0.008749626388604414,
+                "z": -0.9999617212863999
+              },
+              "moving": false,
+              "hurt": 0.16333333333333333,
+              "state": "dead",
+              "timer": 0.21333333333333335,
+              "attackDirection": {
+                "x": -0.008749626403269348,
+                "z": -0.9999617212862716
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [
+            {
+              "x": 0.4013409324688837,
+              "z": 2.5663856882601976,
+              "id": 4,
+              "kind": "hit",
+              "life": 0.13333333333333341,
+              "maxLife": 0.45,
+              "value": 25
+            },
+            {
+              "x": 0.40440330177079886,
+              "z": 2.916372301056981,
+              "id": 5,
+              "kind": "kill",
+              "life": 0.38333333333333275,
+              "maxLife": 0.7
+            },
+            {
+              "x": -17.5,
+              "z": 0.5,
+              "id": 6,
+              "kind": "heal",
+              "life": 0.6833333333333323,
+              "maxLife": 1
+            }
+          ],
+          "attackTime": 0,
+          "attackDirection": {
+            "x": 0.008749626388604414,
+            "z": 0.9999617212863999
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0,
+          "kills": 1,
+          "total": 1,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 2,
+            "dodges": 1,
+            "hitsTaken": 1,
+            "damageDealt": 55,
+            "blockedMoves": 8
+          }
+        },
+        "dashChecks": [
+          {
+            "heading": 0,
+            "player": {
+              "x": 18.467538891380173,
+              "z": 6.40509977095553,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 2,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 52
+            }
+          },
+          {
+            "heading": 1,
+            "player": {
+              "x": 18.467538891380173,
+              "z": 6.405099826180049,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 6.123233995736766E-17,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 3,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 94
+            }
+          },
+          {
+            "heading": 2,
+            "player": {
+              "x": 18.467538891380173,
+              "z": 6.4050999989112825,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.2246467991473532E-16,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 4,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 137
+            }
+          },
+          {
+            "heading": 3,
+            "player": {
+              "x": 18.467538891380173,
+              "z": 6.4051000361569095,
+              "hp": 84,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.8369701987210297E-16,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 2,
+              "dodges": 5,
+              "hitsTaken": 1,
+              "damageDealt": 55,
+              "blockedMoves": 183
+            }
+          }
+        ],
+        "metrics": {
+          "fps": 39.17011581299607,
+          "p95Ms": 39.19999998807907,
+          "worstMs": 892.9000000059605,
+          "frames": 2711,
+          "drawCalls": 55,
+          "triangles": 9238,
+          "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        "incremental": {
+          "added": [
+            "forge-demo-extension"
+          ],
+          "oldRoomCount": 3
+        }
+      }
+    },
+    {
+      "selection": "workbench",
+      "result": {
+        "selected": "workbench",
+        "rooms": 8,
+        "dependencies": 9,
+        "visited": [
+          "goals",
+          "registry"
+        ],
+        "won": {
+          "time": 90.04999999999617,
+          "phase": "won",
+          "player": {
+            "x": 18.613885547025802,
+            "z": 36.57304996383246,
+            "hp": 52,
+            "maxHp": 100,
+            "facing": {
+              "x": -0.0033896153369809127,
+              "z": 0.9999942552374326
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "x": 0.48224814232526114,
+              "z": 2.4374773986637592,
+              "id": "[\"encounter\",\"goals\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": 0.0009699724729150387,
+                "z": -0.9999995295765902
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "dead",
+              "timer": -58.41666666666463,
+              "attackDirection": {
+                "x": 0.0009699724840618261,
+                "z": -0.9999995295765794
+              }
+            },
+            {
+              "x": 18.608314879937097,
+              "z": 38.21649163775146,
+              "id": "[\"encounter\",\"registry\"]",
+              "kind": "slime",
+              "hp": 0,
+              "maxHp": 55,
+              "facing": {
+                "x": 0.0033896153369809127,
+                "z": -0.9999942552374326
+              },
+              "moving": false,
+              "hurt": 0.16333333333333333,
+              "state": "dead",
+              "timer": 0.4333333333333323,
+              "attackDirection": {
+                "x": 0.020612527680542742,
+                "z": -0.999787539281531
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [
+            {
+              "x": 18.609501245315187,
+              "z": 37.866493640467525,
+              "id": 9,
+              "kind": "hit",
+              "life": 0.06666666666666676,
+              "maxLife": 0.45,
+              "value": 25
+            },
+            {
+              "x": 18.608314879937097,
+              "z": 38.21649163775146,
+              "id": 10,
+              "kind": "kill",
+              "life": 0.3166666666666661,
+              "maxLife": 0.7
+            },
+            {
+              "x": -17.5,
+              "z": 0.5,
+              "id": 11,
+              "kind": "heal",
+              "life": 0.6166666666666655,
+              "maxLife": 1
+            }
+          ],
+          "attackTime": 0,
+          "attackDirection": {
+            "x": -0.0033896153369809127,
+            "z": 0.9999942552374326
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0,
+          "kills": 2,
+          "total": 2,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 4,
+            "dodges": 1,
+            "hitsTaken": 3,
+            "damageDealt": 110,
+            "blockedMoves": 10
+          }
+        },
+        "dashChecks": [
+          {
+            "heading": 0,
+            "player": {
+              "x": 36.50001057298174,
+              "z": 5.405100136881089,
+              "hp": 52,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 4,
+              "dodges": 2,
+              "hitsTaken": 3,
+              "damageDealt": 110,
+              "blockedMoves": 57
+            }
+          },
+          {
+            "heading": 1,
+            "player": {
+              "x": 36.50033022493088,
+              "z": 5.405099874946615,
+              "hp": 52,
+              "maxHp": 100,
+              "facing": {
+                "x": 6.123233995736766E-17,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 4,
+              "dodges": 3,
+              "hitsTaken": 3,
+              "damageDealt": 110,
+              "blockedMoves": 106
+            }
+          },
+          {
+            "heading": 2,
+            "player": {
+              "x": 36.50033022493088,
+              "z": 5.405100150436198,
+              "hp": 52,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.2246467991473532E-16,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 4,
+              "dodges": 4,
+              "hitsTaken": 3,
+              "damageDealt": 110,
+              "blockedMoves": 154
+            }
+          },
+          {
+            "heading": 3,
+            "player": {
+              "x": 36.50033022493088,
+              "z": 5.405099739053554,
+              "hp": 52,
+              "maxHp": 100,
+              "facing": {
+                "x": 1.8369701987210297E-16,
+                "z": -1
+              },
+              "moving": false,
+              "hurt": 0
+            },
+            "stats": {
+              "attacks": 4,
+              "dodges": 5,
+              "hitsTaken": 3,
+              "damageDealt": 110,
+              "blockedMoves": 205
+            }
+          }
+        ],
+        "metrics": {
+          "fps": 33.0937103564928,
+          "p95Ms": 43.099999994039536,
+          "worstMs": 974.6999999880791,
+          "frames": 7735,
+          "drawCalls": 110,
+          "triangles": 23112,
+          "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        "incremental": {
+          "added": [
+            "forge-demo-extension"
+          ],
+          "oldRoomCount": 8
+        },
+        "workspace": {
+          "pendingId": "approval:fd61b5df-15bc-46b3-bd72-a03b6c84b974"
+        }
+      }
+    }
+  ],
+  "navigation_summary": {
+    "targets": 33,
+    "arrival_tolerance": 0.16,
+    "max_pulses": 50.0
+  },
+  "raw_local_report": "output/playwright/forge-harness-cpu6/games-results.json"
+}

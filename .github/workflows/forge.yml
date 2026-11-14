@@ -1,0 +1,54 @@
+name: FORGE unified product
+on:
+  pull_request:
+    paths: ['apps/**', 'packages/**', 'scripts/forge*', 'scripts/first-play*', 'package*.json', 'tsconfig.json', 'vitest.config.ts', '.github/workflows/forge.yml']
+permissions:
+  contents: read
+concurrency:
+  group: forge-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  integrated:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.1'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+      - run: npm run test:host
+      - if: runner.os == 'Linux'
+        run: npx playwright install --with-deps chromium
+      - if: runner.os == 'Linux'
+        run: npm run test:browser:ci
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: forge-${{ runner.os }}
+          path: |
+            output/playwright/forge/*-results.json
+            output/playwright/forge/navigation-progress.json
+            output/playwright/forge-host-lifecycle/**/report.json
+            output/playwright/first-play-render/report.json
+            output/playwright/first-play-render/*.png
+          retention-days: 7
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v7.0.2
+        if: failure()
+        with:
+          name: forge-${{ runner.os }}-browser-failure
+          path: |
+            output/playwright/forge/*-trace.zip
+            output/playwright/forge/*-failure.png
+            output/playwright/first-play-render/trace.zip
+            output/playwright/first-play-render/*.webm
+          retention-days: 7
+          if-no-files-found: ignore

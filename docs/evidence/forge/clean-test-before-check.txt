@@ -1,0 +1,107 @@
+42841695853914e144e6d97974f27531f2992547
+False
+
+added 124 packages, and audited 130 packages in 4s
+
+21 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> devungeon@0.1.0 test
+> npm run test:engine && npm run test:integration && npm test --workspace @devungeon/world-generator && npm test --workspace @devungeon/workspace-ui && npm test --workspace @devungeon/scout-bridge
+
+
+> devungeon@0.1.0 test:engine
+> tsx --test packages/dungeon-engine/test/*.test.ts
+
+✔ swept wall and locked-room collisions survive walking, repeated dodges, corners and restart (235.2223ms)
+✔ attack hits, defeats encounter and returns only a game result; source facts survive win/restart (7.066ms)
+✔ enemy tells lead to damage, defeat and restart without source mutation (24.439ms)
+✔ dodge grants brief protection and actual displacement without tunneling (3.1547ms)
+✔ spawn and blueprint access fail closed, invalid rectangles are rejected (0.8311ms)
+✔ scene ownership and tile-grid validation prevent mutable respawn and missing walls (2.0434ms)
+✔ event projection rejects malformed/cross-project/duplicate, keeps chronology and bounds history (2.0615ms)
+✔ explicit compiler doors override guessed positions and independently block dashes (13.2672ms)
+✔ visual-only NPC in a known locked room grants no player access (6.5122ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1028.2372
+
+> devungeon@0.1.0 test:integration
+> npm run sync-schema --workspace @devungeon/world-generator && vitest run
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+ RUN  v5.1.0 C:/Devungeon/forge/output/clean-checkout/forge-tests-first
+
+
+ Test Files  2 passed (2)
+      Tests  11 passed (11)
+   Start at  03:22:06
+   Duration  554ms (import 46%, transform 39%, tests 14%, worker 1%)
+
+
+> @devungeon/world-generator@0.1.0 test
+> npm run sync-schema && vitest run
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+ RUN  v5.1.0 C:/Devungeon/forge/output/clean-checkout/forge-tests-first/packages/world-generator
+
+
+ Test Files  2 passed (2)
+      Tests  55 passed (55)
+   Start at  03:22:08
+   Duration  4.47s (tests 88%, import 6%, transform 6%)
+
+
+> @devungeon/workspace-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Devungeon/forge/output/clean-checkout/forge-tests-first/packages/workspace-ui
+
+
+ Test Files  5 passed (5)
+      Tests  77 passed (77)
+   Start at  03:22:13
+   Duration  913ms (tests 40%, transform 31%, import 28%, worker 1%)
+
+
+> @devungeon/scout-bridge@0.1.0 test
+> node --test test/*.test.ts
+
+✔ public GitHub pagination, ETag and repeat import have stable IDs; closed stays review (22.9791ms)
+✔ GitHub denies unauthorized, unavailable, rate limited and private responses without leaking bodies (1.7443ms)
+✔ malformed pages cannot publish a partial snapshot; empty repo has honest overview (0.813ms)
+✔ metadata enforces scope, rejects sensitive extra fields and future times (0.6105ms)
+✔ provider mappers discard transcripts, commands, messages and paths; lifecycle is idle (0.5585ms)
+✔ selected file handles partial writes, duplicate metadata, denied/missing files and rejects unsafe payload (9.5284ms)
+✔ durable journal serializes concurrent writes, deduplicates across restart and rejects corruption (9.6762ms)
+✔ HTTP snapshot, live SSE, resume replay and consumer all use actual normalized records (59.498ms)
+✔ event delivery keeps future observations in replay; source silence expires without inventing work (7.1099ms)
+✔ source failure retains honest cached snapshot, missing permission is visible; no command routes (18.2193ms)
+✔ mixed real/demo observer fails closed and old real observations cannot label demo as LIVE (5.0162ms)
+✔ freshness expires work, replay/demo/project events never start live Agent animation, late events cannot rewind (0.5639ms)
+✔ same-origin host forwards only four read routes/cursors and strips ambient credentials (37.0941ms)
+✔ host validates explicit loopback configuration and unavailable bridge is recoverable (6.7773ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 324.2985

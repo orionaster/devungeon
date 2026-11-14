@@ -1,0 +1,173 @@
+{
+  "observed_at": "2026-11-13T19:42:01.146Z",
+  "url": "http://127.0.0.1:5183",
+  "mode": "retained-real-public-cache",
+  "fresh_import": false,
+  "checks": [
+    {
+      "name": "real cached public facts retained after anonymous rate limit",
+      "pass": true
+    },
+    {
+      "name": "cache never grants product acceptance",
+      "pass": true
+    },
+    {
+      "name": "gameplay remains usable with disconnected source",
+      "pass": true
+    },
+    {
+      "name": "journal no longer implies a live working forge",
+      "pass": true
+    },
+    {
+      "name": "empty Agent projection is not falsely scripted",
+      "pass": true
+    },
+    {
+      "name": "English final copy describes read-only observations",
+      "pass": true
+    },
+    {
+      "name": "language preserves paused game and cached source facts",
+      "pass": true
+    },
+    {
+      "name": "DISCONNECTED status is visibly rendered",
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "room_count": 15,
+  "source_status": {
+    "schema_version": "1.0",
+    "project_id": "github:orionaster/devungeon",
+    "epoch": "7a8023f5-6bab-4ac2-b95c-aae535988fdf",
+    "cursor": 17,
+    "connections": {
+      "project": {
+        "mode": "DISCONNECTED",
+        "reason": "rate_limited",
+        "last_success_at": "2026-11-13T19:33:04.967Z",
+        "checked_at": "2026-11-13T19:36:03.751Z",
+        "retry_at": "2026-11-13T20:03:13.000Z"
+      },
+      "agent": {
+        "mode": "DISCONNECTED",
+        "reason": "not_connected",
+        "last_success_at": null,
+        "checked_at": "2026-11-13T19:24:03.430Z",
+        "retry_at": null
+      }
+    },
+    "capabilities": {
+      "commands": [],
+      "agent": [],
+      "project": [
+        "read_project"
+      ]
+    },
+    "warnings": [
+      "Issue/PR projection only; capabilities, dependencies, CI and acceptance are unknown. REST pagination is not an atomic repository revision. GitHub observations never imply an Agent is working."
+    ]
+  },
+  "project_sha256": "40ee8e1715b6f81986a1108ba468fbd71890b49eebb911292cb66b16ec20ade5",
+  "source_record_count": 17,
+  "agent_count": 0,
+  "browser": "157.0.8103.78",
+  "game": {
+    "time": 0.19999999999999998,
+    "phase": "playing",
+    "player": {
+      "x": -16.75,
+      "z": 0.5,
+      "hp": 100,
+      "maxHp": 100,
+      "facing": {
+        "x": 1,
+        "z": 0
+      },
+      "moving": false,
+      "hurt": 0
+    },
+    "enemies": [
+      {
+        "id": "game-only:foyer-slime-a",
+        "kind": "slime",
+        "x": -19.519999995827675,
+        "z": 0.5,
+        "hp": 25,
+        "maxHp": 55,
+        "facing": {
+          "x": 1,
+          "z": 0
+        },
+        "moving": true,
+        "hurt": 0.06333333333333335,
+        "state": "chase",
+        "timer": -0.19999999999999998,
+        "attackDirection": {
+          "x": 0,
+          "z": 0
+        }
+      },
+      {
+        "id": "game-only:foyer-slime-b",
+        "kind": "slime",
+        "x": -15.747499998658895,
+        "z": 0.5,
+        "hp": 55,
+        "maxHp": 55,
+        "facing": {
+          "x": -1,
+          "z": 0
+        },
+        "moving": false,
+        "hurt": 0,
+        "state": "windup",
+        "timer": 0.5166666666666666,
+        "attackDirection": {
+          "x": -1,
+          "z": 0
+        }
+      }
+    ],
+    "projectiles": [],
+    "effects": [
+      {
+        "x": -19.362500000745058,
+        "z": 0.5,
+        "id": 1,
+        "kind": "hit",
+        "life": 0.35000000000000003,
+        "maxLife": 0.45,
+        "value": 30
+      },
+      {
+        "x": -17.5,
+        "z": 0.5,
+        "id": 2,
+        "kind": "dash",
+        "life": 0.21666666666666667,
+        "maxLife": 0.25
+      }
+    ],
+    "attackTime": 0.13000000000000003,
+    "attackDirection": {
+      "x": -1,
+      "z": 0
+    },
+    "dodgeTime": 0.16666666666666669,
+    "dodgeCooldown": 0.8166666666666665,
+    "kills": 0,
+    "total": 2,
+    "rewardClaimed": false,
+    "stats": {
+      "attacks": 1,
+      "dodges": 1,
+      "hitsTaken": 0,
+      "damageDealt": 30,
+      "blockedMoves": 0
+    }
+  }
+}
