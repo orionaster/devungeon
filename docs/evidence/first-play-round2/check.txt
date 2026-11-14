@@ -1,0 +1,12 @@
+
+> devungeon@0.1.0 check
+> npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && npm run check --workspace @devungeon/scout-bridge
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+> @devungeon/scout-bridge@0.1.0 check
+> tsc --noEmit
+

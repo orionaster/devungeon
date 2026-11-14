@@ -1,0 +1,150 @@
+{
+  "observed_at": "2026-11-14T11:12:01.351Z",
+  "baseline_commit": "6dc35796c7d393bb6e3cdd332afc4e278401abb9",
+  "browser": "Chrome 157.0.8103.78",
+  "node": "v24.13.1",
+  "platform": "win32",
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "dpr": 1,
+  "automated_tests": {
+    "engine": 14,
+    "integration": 27,
+    "world": 55,
+    "workspace": 77,
+    "bridge": 14,
+    "total": 187,
+    "host": 1
+  },
+  "browser_suites": {
+    "product": {
+      "report": "product.json",
+      "pass": true,
+      "checks": 22
+    },
+    "render": {
+      "report": "render.json",
+      "pass": true,
+      "checks": 15
+    },
+    "interactions": {
+      "report": "interactions.json",
+      "pass": true,
+      "checks": 28
+    },
+    "moss_overview_front_original": {
+      "report": "moss-overview-front.json",
+      "checks": 113,
+      "note": "Original raw113 assertions passed, but visual review rejected the rear12 contact captures. Only overview/front24 images are accepted here; corrected rear12 are a separate run.",
+      "raw_driver_report_pass": true,
+      "accepted_images": 24,
+      "invalidated_rear_images": 12
+    },
+    "moss_rear_corrected": {
+      "report": "moss-rear.json",
+      "pass": true,
+      "checks": 51
+    },
+    "legacy": {
+      "report": "legacy.json",
+      "pass": true,
+      "checks": 61
+    }
+  },
+  "movement": {
+    "before": {
+      "report": "before-motion.json",
+      "pass": true,
+      "elapsed_ms": 122810,
+      "cpu_throttle": 1,
+      "headings": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "attacks": 22,
+      "dodges": 22,
+      "final_phase": "playing",
+      "final_metrics": {
+        "fps": 142.41858404265454,
+        "p95Ms": 9.599999994039536,
+        "worstMs": 116.39999997615814,
+        "frames": 17446,
+        "drawCalls": 207,
+        "triangles": 2400,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "metrics_definition": "FPS and p95 are the last900 rendered-frame window; worstMs is whole-page worst frame, including startup. Not full-session mean."
+    },
+    "after": {
+      "report": "after-motion.json",
+      "pass": true,
+      "elapsed_ms": 122163,
+      "cpu_throttle": 1,
+      "headings": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "attacks": 22,
+      "dodges": 22,
+      "final_phase": "playing",
+      "final_metrics": {
+        "fps": 142.41858404265454,
+        "p95Ms": 9,
+        "worstMs": 189.7999999821186,
+        "frames": 16513,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "metrics_definition": "FPS and p95 are the last900 rendered-frame window; worstMs is whole-page worst frame, including startup. Not full-session mean."
+    },
+    "low_budget": {
+      "report": "low-budget-motion.json",
+      "pass": true,
+      "elapsed_ms": 62684,
+      "cpu_throttle": 6,
+      "headings": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "attacks": 9,
+      "dodges": 9,
+      "final_phase": "playing",
+      "final_metrics": {
+        "fps": 35.181124154178946,
+        "p95Ms": 56.79999998211861,
+        "worstMs": 266.90000000596046,
+        "frames": 2638,
+        "drawCalls": 198,
+        "triangles": 2272,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "metrics_definition": "FPS and p95 are the last900 rendered-frame window; worstMs is whole-page worst frame, including startup. Not full-session mean."
+    }
+  },
+  "limits": [
+    "Automated real browser input and Agent visual inspection; independent owner motion/art/comfort approval remains pending.",
+    "CPU6 is a synthetic browser budget, not a physical low-end computer.",
+    "Native video is 25fps and cannot prove 142fps subjective motion quality.",
+    "No new private data/model/command calls. No changed dependencies, source PNG bytes, room layout, physics/speed or permissions."
+  ],
+  "media_playback": {
+    "report": "media-playback.json",
+    "pass": true,
+    "videos": 5
+  },
+  "environment": {
+    "os": "Windows11 Home Chinese 10.0.26200",
+    "cpu": "Intel Core Ultra7 255H",
+    "gpu": "Intel Arc140T / ANGLE D3D11",
+    "npm": "11.8.0"
+  }
+}

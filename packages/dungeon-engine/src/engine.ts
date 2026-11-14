@@ -1,5 +1,13 @@
 import type RAPIER from "@dimforge/rapier3d-compat";
-import { doorRect, geometry, inside, isWalkable, validateScene } from "./scene";
+import {
+  doorRect,
+  geometry,
+  inside,
+  isWalkable,
+  validateScene,
+  scenePlacements,
+  agentClearanceRadius,
+} from "./scene";
 import type {
   Actor,
   GameSnapshot,
@@ -44,6 +52,7 @@ export class Dungeon {
   private id = 0;
   private attackQueued = false;
   private dodgeQueued = false;
+  private previousActors!: { time: number; player: Vec2; enemies: Vec2[] };
   private constructor(scene: SceneDefinition) {
     validateScene(scene);
     this.scene = freezeTree(structuredClone(scene));
@@ -52,6 +61,7 @@ export class Dungeon {
     for (const w of [
       ...geometry(scene).walls,
       ...scene.obstacles,
+      ...(scene.props ?? []),
       ...scene.rooms.filter((r) => !r.enterable),
       ...(scene.doors ?? []).filter((d) => d.locked).map(doorRect),
     ])
@@ -60,6 +70,14 @@ export class Dungeon {
           w.x,
           1,
           w.z,
+        ),
+      );
+    for (const a of scenePlacements(scene).agents)
+      this.world.createCollider(
+        rapier.ColliderDesc.cylinder(1, agentClearanceRadius(a)).setTranslation(
+          a.x,
+          0.8,
+          a.z,
         ),
       );
     this.controller = this.world.createCharacterController(0.015);
@@ -95,6 +113,20 @@ export class Dungeon {
   snapshot(): GameSnapshot {
     return structuredClone(this.state);
   }
+  /** Fixed-step interpolation is presentation-only. Inspectors still read exact snapshots. */
+  renderSnapshot(): GameSnapshot {
+    const s = this.snapshot();
+    const alpha = Math.min(1, Math.max(0, this.accumulator * 60));
+    const blend = (current: Vec2, previous: Vec2) => {
+      current.x = previous.x + (current.x - previous.x) * alpha;
+      current.z = previous.z + (current.z - previous.z) * alpha;
+    };
+    blend(s.player, this.previousActors.player);
+    s.enemies.forEach((e, i) => blend(e, this.previousActors.enemies[i] ?? e));
+    s.time =
+      this.previousActors.time + (s.time - this.previousActors.time) * alpha;
+    return s;
+  }
   start() {
     if (this.state.phase === "ready") this.state.phase = "playing";
   }
@@ -129,6 +161,11 @@ export class Dungeon {
       },
     };
     this.attackCooldown = this.invincible = this.accumulator = 0;
+    this.previousActors = {
+      time: 0,
+      player: { ...this.state.player },
+      enemies: this.state.enemies.map((e) => ({ ...e })),
+    };
     this.attackQueued = this.dodgeQueued = false;
     this.playerCollider.setTranslation({
       x: this.state.player.x,
@@ -204,6 +241,11 @@ export class Dungeon {
   private tick(input: Input, dt: number) {
     const s = this.state,
       p = s.player;
+    this.previousActors = {
+      time: s.time,
+      player: { x: p.x, z: p.z },
+      enemies: s.enemies.map((e) => ({ x: e.x, z: e.z })),
+    };
     s.time += dt;
     this.world.step();
     s.attackTime = Math.max(0, s.attackTime - dt);
@@ -301,7 +343,11 @@ export class Dungeon {
         (r) => r.enterable && inside(origin, r),
       );
       const d = distance(e, p);
-      if (!encounterRoom || !inside(p, encounterRoom) || d > 14) {
+      if (
+        !encounterRoom ||
+        !inside(p, encounterRoom) ||
+        d > (origin.activationRadius ?? 14)
+      ) {
         e.state = "idle";
         continue;
       }

@@ -23,11 +23,15 @@ try {
     });
     host.once('error', error => { clearTimeout(timer); reject(error); });
   });
-  browser = fork(resolve(root, 'scripts/forge-browser.mjs'), [], {
-    cwd: root, stdio: ['ignore', 'inherit', 'inherit', 'ipc'], windowsHide: true,
-    env: {...process.env, FORGE_URL: `http://127.0.0.1:${port}`, FORGE_SUITE: process.env.FORGE_SUITE ?? 'games'},
-  });
-  process.exitCode = await new Promise((done, reject) => { browser.once('exit', code => done(code ?? 1)); browser.once('error', reject); });
+  for (const script of ['scripts/forge-browser.mjs', 'scripts/first-play-render.mjs']) {
+    browser = fork(resolve(root, script), [], {
+      cwd: root, stdio: ['ignore', 'inherit', 'inherit', 'ipc'], windowsHide: true,
+      env: {...process.env, FORGE_URL: `http://127.0.0.1:${port}`, FIRST_PLAY_URL: `http://127.0.0.1:${port}`,
+        HEADLESS: '1', FORGE_SUITE: process.env.FORGE_SUITE ?? 'games'},
+    });
+    process.exitCode = await new Promise((done, reject) => { browser.once('exit', code => done(code ?? 1)); browser.once('error', reject); });
+    if (process.exitCode) break;
+  }
 } catch (error) {
   console.error(error.message); process.exitCode = 1;
 } finally {

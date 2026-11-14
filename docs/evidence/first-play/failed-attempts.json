@@ -1,0 +1,839 @@
+[
+  {
+    "source": "firstplay-regression-initial/games-results.json",
+    "started_at": "2026-11-14T08:51:37.122Z",
+    "finished_at": "2026-11-14T08:51:39.222Z",
+    "checks": [
+      {
+        "name": "tiny: Chinese first visit",
+        "pass": true
+      },
+      {
+        "name": "tiny: BUILDER world uses selected source IDs",
+        "pass": true
+      },
+      {
+        "name": "tiny: synthetic project explicitly DEMO",
+        "pass": false
+      }
+    ],
+    "failure": "Error: tiny: synthetic project explicitly DEMO: undefined\n    at check (file:///C:/Devungeon/first-play/scripts/forge-browser.mjs:48:20)\n    at verifyProject (file:///C:/Devungeon/first-play/scripts/forge-browser.mjs:332:3)\n    at async file:///C:/Devungeon/first-play/scripts/forge-browser.mjs:643:130"
+  },
+  {
+    "source": "firstplay-regression-final/games-results.json",
+    "started_at": "2026-11-14T08:58:17.064Z",
+    "finished_at": "2026-11-14T08:58:59.979Z",
+    "checks": [
+      {
+        "name": "tiny: Chinese first visit",
+        "pass": true
+      },
+      {
+        "name": "tiny: BUILDER world uses selected source IDs",
+        "pass": true
+      },
+      {
+        "name": "tiny: synthetic project explicitly DEMO",
+        "pass": true
+      },
+      {
+        "name": "tiny: language preserves full paused game",
+        "pass": true
+      },
+      {
+        "name": "tiny: language preserves truth and layout",
+        "pass": true
+      },
+      {
+        "name": "tiny: actual keyboard movement",
+        "pass": true
+      },
+      {
+        "name": "tiny: actual dodge executed",
+        "pass": true
+      },
+      {
+        "name": "tiny: full generated encounter won",
+        "pass": true,
+        "detail": {
+          "attacks": 5,
+          "dodges": 1,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 6
+        }
+      },
+      {
+        "name": "tiny: actual attacks and damage loop",
+        "pass": true,
+        "detail": {
+          "attacks": 5,
+          "dodges": 1,
+          "hitsTaken": 1,
+          "damageDealt": 55,
+          "blockedMoves": 6
+        }
+      },
+      {
+        "name": "tiny: combat does not change project truth",
+        "pass": true
+      },
+      {
+        "name": "tiny: at least one unaccepted area remains locked",
+        "pass": true
+      },
+      {
+        "name": "tiny: heading 0 dash blocked",
+        "pass": true,
+        "detail": {
+          "player": {
+            "x": 18.50089839535971,
+            "z": 6.405100116880163,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": 0,
+              "z": -1
+            },
+            "moving": true,
+            "hurt": 0
+          },
+          "stats": {
+            "attacks": 5,
+            "dodges": 2,
+            "hitsTaken": 1,
+            "damageDealt": 55,
+            "blockedMoves": 40
+          }
+        }
+      },
+      {
+        "name": "tiny: heading 90 dash blocked",
+        "pass": true,
+        "detail": {
+          "player": {
+            "x": 18.50084706124517,
+            "z": 6.405100033344894,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": 6.123233995736766e-17,
+              "z": -1
+            },
+            "moving": true,
+            "hurt": 0
+          },
+          "stats": {
+            "attacks": 5,
+            "dodges": 3,
+            "hitsTaken": 1,
+            "damageDealt": 55,
+            "blockedMoves": 75
+          }
+        }
+      },
+      {
+        "name": "tiny: heading 180 dash blocked",
+        "pass": true,
+        "detail": {
+          "player": {
+            "x": 18.50080201950964,
+            "z": 6.405100061888476,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": 1.2246467991473532e-16,
+              "z": -1
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "stats": {
+            "attacks": 5,
+            "dodges": 4,
+            "hitsTaken": 1,
+            "damageDealt": 55,
+            "blockedMoves": 109
+          }
+        }
+      },
+      {
+        "name": "tiny: heading 270 dash blocked",
+        "pass": true,
+        "detail": {
+          "player": {
+            "x": 18.501140841478158,
+            "z": 6.404977940040368,
+            "hp": 84,
+            "maxHp": 100,
+            "facing": {
+              "x": 1.8369701987210297e-16,
+              "z": -1
+            },
+            "moving": true,
+            "hurt": 0
+          },
+          "stats": {
+            "attacks": 5,
+            "dodges": 5,
+            "hitsTaken": 1,
+            "damageDealt": 55,
+            "blockedMoves": 143
+          }
+        }
+      },
+      {
+        "name": "tiny: locked room camera preview grants no entry",
+        "pass": true
+      },
+      {
+        "name": "tiny: locked room English preserves access and paused state",
+        "pass": true
+      }
+    ],
+    "failure": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('forge-add-feature')\u001b[22m\n\u001b[2m    - locator resolved to <button data-testid=\"forge-add-feature\">增量扩建 · DEMO</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    37 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at verifyProject (C:\\Devungeon\\first-play\\scripts\\forge-browser.mjs:895:47)\n    at async file:///C:/Devungeon/first-play/scripts/forge-browser.mjs:1488:15"
+  },
+  {
+    "source": "firstplay-product-final/report.json",
+    "started_at": "2026-11-14T08:58:12.492Z",
+    "finished_at": "2026-11-14T08:58:16.218Z",
+    "checks": [
+      {
+        "name": "fresh visit defaults to Chinese and the art sample",
+        "pass": true
+      },
+      {
+        "name": "one clear entry and no expanded work dashboard",
+        "pass": true
+      },
+      {
+        "name": "sample title fits a readable product scale",
+        "pass": true
+      },
+      {
+        "name": "one click starts actual gameplay",
+        "pass": true
+      },
+      {
+        "name": "three named objects and explicit DEMO guide remain in the world",
+        "pass": true
+      },
+      {
+        "name": "real movement, attack and dodge inputs change the game",
+        "pass": false
+      }
+    ],
+    "failure": "AssertionError [ERR_ASSERTION]: real movement, attack and dodge inputs change the game\n    at check (file:///C:/Devungeon/first-play/scripts/first-play-browser.mjs:42:10)\n    at file:///C:/Devungeon/first-play/scripts/first-play-browser.mjs:128:3",
+    "errors": []
+  },
+  {
+    "source": "firstplay-product-final-2/report.json",
+    "started_at": "2026-11-14T09:00:22.573Z",
+    "finished_at": "2026-11-14T09:00:27.404Z",
+    "checks": [
+      {
+        "name": "fresh visit defaults to Chinese and the art sample",
+        "pass": true
+      },
+      {
+        "name": "one clear entry and no expanded work dashboard",
+        "pass": true
+      },
+      {
+        "name": "sample title fits a readable product scale",
+        "pass": true
+      },
+      {
+        "name": "one click starts actual gameplay",
+        "pass": true
+      },
+      {
+        "name": "three named objects and explicit DEMO guide remain in the world",
+        "pass": true
+      },
+      {
+        "name": "real movement, attack and dodge inputs change the game",
+        "pass": true,
+        "detail": {
+          "time": 2.199999999999997,
+          "phase": "playing",
+          "player": {
+            "x": -5.468333311378956,
+            "z": 3.5,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": -1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "id": "game-only:training-a",
+              "kind": "slime",
+              "x": 4.7,
+              "z": 4,
+              "activationRadius": 3.2,
+              "hp": 55,
+              "maxHp": 55,
+              "facing": {
+                "x": 1,
+                "z": 0
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "idle",
+              "timer": -2.199999999999997,
+              "attackDirection": {
+                "x": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "game-only:training-b",
+              "kind": "slime",
+              "x": 5,
+              "z": 0,
+              "activationRadius": 3.2,
+              "hp": 55,
+              "maxHp": 55,
+              "facing": {
+                "x": 1,
+                "z": 0
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "idle",
+              "timer": -2.199999999999997,
+              "attackDirection": {
+                "x": 0,
+                "z": 0
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [],
+          "attackTime": 0,
+          "attackDirection": {
+            "x": -1,
+            "z": 0
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0.4666666666666656,
+          "kills": 0,
+          "total": 2,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 1,
+            "dodges": 1,
+            "hitsTaken": 0,
+            "damageDealt": 0,
+            "blockedMoves": 0
+          }
+        }
+      },
+      {
+        "name": "one Escape closes help and immediately restores movement",
+        "pass": true
+      },
+      {
+        "name": "one Escape closes the map without leaving a hidden pause",
+        "pass": true
+      },
+      {
+        "name": "closing settings preserves an explicit visible pause",
+        "pass": true
+      },
+      {
+        "name": "feature purpose, implemented and missing work are one click away",
+        "pass": false
+      }
+    ],
+    "failure": "AssertionError [ERR_ASSERTION]: feature purpose, implemented and missing work are one click away\n    at check (file:///C:/Devungeon/first-play/scripts/first-play-browser.mjs:42:10)\n    at file:///C:/Devungeon/first-play/scripts/first-play-browser.mjs:168:3",
+    "errors": []
+  },
+  {
+    "source": "firstplay-product-final-3/report.json",
+    "started_at": "2026-11-14T09:01:14.300Z",
+    "finished_at": "2026-11-14T09:01:55.334Z",
+    "checks": [
+      {
+        "name": "fresh visit defaults to Chinese and the art sample",
+        "pass": true
+      },
+      {
+        "name": "one clear entry and no expanded work dashboard",
+        "pass": true
+      },
+      {
+        "name": "sample title fits a readable product scale",
+        "pass": true
+      },
+      {
+        "name": "one click starts actual gameplay",
+        "pass": true
+      },
+      {
+        "name": "three named objects and explicit DEMO guide remain in the world",
+        "pass": true
+      },
+      {
+        "name": "real movement, attack and dodge inputs change the game",
+        "pass": true,
+        "detail": {
+          "time": 2.1499999999999972,
+          "phase": "playing",
+          "player": {
+            "x": -5.468333311378956,
+            "z": 3.5,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": -1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "id": "game-only:training-a",
+              "kind": "slime",
+              "x": 4.7,
+              "z": 4,
+              "activationRadius": 3.2,
+              "hp": 55,
+              "maxHp": 55,
+              "facing": {
+                "x": 1,
+                "z": 0
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "idle",
+              "timer": -2.1499999999999972,
+              "attackDirection": {
+                "x": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "game-only:training-b",
+              "kind": "slime",
+              "x": 5,
+              "z": 0,
+              "activationRadius": 3.2,
+              "hp": 55,
+              "maxHp": 55,
+              "facing": {
+                "x": 1,
+                "z": 0
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "idle",
+              "timer": -2.1499999999999972,
+              "attackDirection": {
+                "x": 0,
+                "z": 0
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [],
+          "attackTime": 0,
+          "attackDirection": {
+            "x": -1,
+            "z": 0
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0.5166666666666656,
+          "kills": 0,
+          "total": 2,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 1,
+            "dodges": 1,
+            "hitsTaken": 0,
+            "damageDealt": 0,
+            "blockedMoves": 0
+          }
+        }
+      },
+      {
+        "name": "one Escape closes help and immediately restores movement",
+        "pass": true
+      },
+      {
+        "name": "one Escape closes the map without leaving a hidden pause",
+        "pass": true
+      },
+      {
+        "name": "closing settings preserves an explicit visible pause",
+        "pass": true
+      },
+      {
+        "name": "feature purpose, implemented and missing work are one click away",
+        "pass": true
+      },
+      {
+        "name": "real public bridge observation reaches the feature desk",
+        "pass": true,
+        "detail": {
+          "mode": "LIVE",
+          "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
+          "items": 17
+        }
+      },
+      {
+        "name": "closed issues and local reads never grant project acceptance",
+        "pass": true
+      },
+      {
+        "name": "locale preserves the paused game and original observation",
+        "pass": true
+      },
+      {
+        "name": "one Escape leaves the feature panel and restores focus",
+        "pass": true
+      },
+      {
+        "name": "guide scan is an explicit bounded DEMO task",
+        "pass": true
+      },
+      {
+        "name": "bench work has a different typed task and station",
+        "pass": true
+      },
+      {
+        "name": "task finishes while the game remains paused",
+        "pass": true
+      },
+      {
+        "name": "replay stays historical and never becomes running work",
+        "pass": true
+      }
+    ],
+    "failure": "page.waitForFunction: Timeout 20000ms exceeded.\n    at C:\\Devungeon\\first-play\\scripts\\first-play-browser.mjs:270:16",
+    "errors": []
+  },
+  {
+    "source": "firstplay-product-final-5/report.json",
+    "started_at": "2026-11-14T09:04:33.150Z",
+    "finished_at": "2026-11-14T09:05:07.804Z",
+    "checks": [
+      {
+        "name": "fresh visit defaults to Chinese and the art sample",
+        "pass": true
+      },
+      {
+        "name": "one clear entry and no expanded work dashboard",
+        "pass": true
+      },
+      {
+        "name": "sample title fits a readable product scale",
+        "pass": true
+      },
+      {
+        "name": "one click starts actual gameplay",
+        "pass": true
+      },
+      {
+        "name": "three named objects and explicit DEMO guide remain in the world",
+        "pass": true
+      },
+      {
+        "name": "real movement, attack and dodge inputs change the game",
+        "pass": true,
+        "detail": {
+          "time": 2.1833333333333305,
+          "phase": "playing",
+          "player": {
+            "x": -5.468333311378956,
+            "z": 3.5,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": -1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "enemies": [
+            {
+              "id": "game-only:training-a",
+              "kind": "slime",
+              "x": 4.7,
+              "z": 4,
+              "activationRadius": 3.2,
+              "hp": 55,
+              "maxHp": 55,
+              "facing": {
+                "x": 1,
+                "z": 0
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "idle",
+              "timer": -2.1833333333333305,
+              "attackDirection": {
+                "x": 0,
+                "z": 0
+              }
+            },
+            {
+              "id": "game-only:training-b",
+              "kind": "slime",
+              "x": 5,
+              "z": 0,
+              "activationRadius": 3.2,
+              "hp": 55,
+              "maxHp": 55,
+              "facing": {
+                "x": 1,
+                "z": 0
+              },
+              "moving": false,
+              "hurt": 0,
+              "state": "idle",
+              "timer": -2.1833333333333305,
+              "attackDirection": {
+                "x": 0,
+                "z": 0
+              }
+            }
+          ],
+          "projectiles": [],
+          "effects": [],
+          "attackTime": 0,
+          "attackDirection": {
+            "x": -1,
+            "z": 0
+          },
+          "dodgeTime": 0,
+          "dodgeCooldown": 0.4833333333333323,
+          "kills": 0,
+          "total": 2,
+          "rewardClaimed": false,
+          "stats": {
+            "attacks": 1,
+            "dodges": 1,
+            "hitsTaken": 0,
+            "damageDealt": 0,
+            "blockedMoves": 0
+          }
+        }
+      },
+      {
+        "name": "one Escape closes help and immediately restores movement",
+        "pass": true
+      },
+      {
+        "name": "one Escape closes the map without leaving a hidden pause",
+        "pass": true
+      },
+      {
+        "name": "closing settings preserves an explicit visible pause",
+        "pass": true
+      },
+      {
+        "name": "feature purpose, implemented and missing work are one click away",
+        "pass": true
+      },
+      {
+        "name": "real public bridge observation reaches the feature desk",
+        "pass": true,
+        "detail": {
+          "mode": "LIVE",
+          "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
+          "items": 17
+        }
+      },
+      {
+        "name": "closed issues and local reads never grant project acceptance",
+        "pass": true
+      },
+      {
+        "name": "locale preserves the paused game and original observation",
+        "pass": true
+      },
+      {
+        "name": "one Escape leaves the feature panel and restores focus",
+        "pass": true
+      },
+      {
+        "name": "guide scan is an explicit bounded DEMO task",
+        "pass": true
+      },
+      {
+        "name": "bench work has a different typed task and station",
+        "pass": true
+      },
+      {
+        "name": "task finishes while the game remains paused",
+        "pass": true
+      },
+      {
+        "name": "replay stays historical and never becomes running work",
+        "pass": true
+      }
+    ],
+    "failure": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.pause-banner') to be visible\u001b[22m\n\n    at C:\\Devungeon\\first-play\\scripts\\first-play-browser.mjs:284:39",
+    "errors": []
+  },
+  {
+    "source": "first-play-render-frozen/report.json",
+    "started_at": "2026-11-14T09:10:07.734Z",
+    "checks": [
+      {
+        "name": "sample enters follow camera through visible Start",
+        "pass": true,
+        "detail": {
+          "heading": 0,
+          "zoom": 44,
+          "mode": "follow",
+          "target": {
+            "x": -1,
+            "z": 3.5
+          }
+        }
+      },
+      {
+        "name": "moving/attacking/dodging never tilts follow camera",
+        "pass": true,
+        "detail": {
+          "samples": 139,
+          "maxQuaternionChange": 0
+        }
+      },
+      {
+        "name": "camera and focus use exactly the same translating anchor",
+        "pass": true,
+        "detail": {
+          "maxOffsetChange": 0
+        }
+      },
+      {
+        "name": "input exercised actual attacks and dodge",
+        "pass": true,
+        "detail": {
+          "attacks": 6,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 11
+        }
+      },
+      {
+        "name": "west wall blocks walking and dodge at 0 degrees",
+        "pass": true,
+        "detail": {
+          "heading": 0,
+          "player": {
+            "x": -6.594900163132067,
+            "z": 5.593087305959017,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": -1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "blockedMoves": 119
+        }
+      },
+      {
+        "name": "west wall blocks walking and dodge at 90 degrees",
+        "pass": true,
+        "detail": {
+          "heading": 1,
+          "player": {
+            "x": -6.595080460514097,
+            "z": 5.593143999852188,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": -1,
+              "z": -6.123233995736766e-17
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "blockedMoves": 240
+        }
+      },
+      {
+        "name": "west wall blocks walking and dodge at 180 degrees",
+        "pass": true,
+        "detail": {
+          "heading": 2,
+          "player": {
+            "x": -6.5949000646810845,
+            "z": 5.593102740950272,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": -1,
+              "z": -1.2246467991473532e-16
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "blockedMoves": 362
+        }
+      },
+      {
+        "name": "west wall blocks walking and dodge at 270 degrees",
+        "pass": true,
+        "detail": {
+          "heading": 3,
+          "player": {
+            "x": -6.594900123416252,
+            "z": 5.5931564768103925,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": -1,
+              "z": -1.8369701987210297e-16
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "blockedMoves": 483
+        }
+      },
+      {
+        "name": "real corridor traversal and combat reach the sealed annex",
+        "pass": false,
+        "detail": {
+          "player": {
+            "x": 6.594900070124325,
+            "z": 5.590610845428074,
+            "hp": 100,
+            "maxHp": 100,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0
+          },
+          "kills": 1,
+          "stats": {
+            "attacks": 21,
+            "dodges": 5,
+            "hitsTaken": 0,
+            "damageDealt": 55,
+            "blockedMoves": 534
+          }
+        }
+      }
+    ],
+    "failure": "AssertionError [ERR_ASSERTION]: real corridor traversal and combat reach the sealed annex\n    at check (file:///C:/Devungeon/first-play/scripts/first-play-render.mjs:47:10)\n    at file:///C:/Devungeon/first-play/scripts/first-play-render.mjs:157:3"
+  }
+]

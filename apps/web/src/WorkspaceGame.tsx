@@ -30,10 +30,17 @@ import {
   type ProjectWorldResult,
 } from "./project-worlds";
 import { useScoutSource } from "./scout-source";
+import { FIRST_PLAY_SCENE } from "./first-play-scene";
+import { useFeatureSample, SAMPLE_OBJECT_IDS } from "./feature-sample";
+import { FeaturePanel } from "./FeaturePanel";
+import { firstPlayVisuals, loadFirstPlayArt } from "./first-play-art";
+import { FirstPlayEnvironment } from "./FirstPlayEnvironment";
 import "../../../packages/workspace-ui/src/workspace.css";
+import "./style.css";
 import "./forge.css";
+import "./first-play.css";
 
-type Selection = DemoProjectSelection | "public";
+type Selection = DemoProjectSelection | "public" | "sample";
 function demoBinding(project: ProjectWorld) {
   const fixture: DemoIdentityFixture = {
     project_id: project.snapshot.project.id,
@@ -93,7 +100,7 @@ declare global {
 export default function WorkspaceGame() {
   const { t, formatDateTime } = useI18n();
   const [worlds] = useState(() => createProjectWorldStore());
-  const [selected, setSelected] = useState<Selection>("tiny");
+  const [selected, setSelected] = useState<Selection>("sample");
   const [demoWorld, setDemoWorld] = useState<ProjectWorldResult>(() =>
     worlds.getBySelection("tiny"),
   );
@@ -106,7 +113,39 @@ export default function WorkspaceGame() {
         }),
       ),
   );
-  const source = useScoutSource(selected === "public");
+  const [sampleProjection] = useState(
+    () =>
+      new AgentProjection("github:orionaster/devungeon", ["demo:sample-scout"]),
+  );
+  const source = useScoutSource(selected === "public" || selected === "sample");
+  const sample = useFeatureSample(source);
+  const [artReady, setArtReady] = useState(false);
+  const [artError, setArtError] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    void loadFirstPlayArt()
+      .then(() => {
+        if (alive) setArtReady(true);
+      })
+      .catch(() => {
+        if (alive) setArtError(true);
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
+  const sampleVisuals = useMemo(
+    () => ({
+      ...firstPlayVisuals,
+      environment: (
+        <FirstPlayEnvironment
+          scene={FIRST_PLAY_SCENE}
+          activities={sample.activities}
+        />
+      ),
+    }),
+    [sample.activities],
+  );
   const publicWorld = useMemo(
     () => (source.snapshot ? worlds.compile(source.snapshot) : null),
     [worlds, source.snapshot],
@@ -126,12 +165,13 @@ export default function WorkspaceGame() {
     !!publicSceneWorld &&
     world !== publicSceneWorld;
   const controller =
-    selected === "public"
+    selected === "sample" || selected === "public"
       ? source.controller
       : bindings.get(selected)!.controller;
   // Independent entertainment occupies only BUILDER's safe game-only foyer,
   // even when no public work item has real acceptance evidence.
   const gameScene = useMemo<SceneDefinition | undefined>(() => {
+    if (selected === "sample") return FIRST_PLAY_SCENE;
     if (!sceneWorld) return;
     if (sceneWorld.scene.enemies.length) return sceneWorld.scene;
     return {
@@ -151,7 +191,7 @@ export default function WorkspaceGame() {
         },
       ],
     };
-  }, [sceneWorld]);
+  }, [sceneWorld, selected]);
   const rosterKey = JSON.stringify(
     source.work.agents.map((a) => [a.id, a.name, a.room_id, a.role, a.is_demo]),
   );
@@ -181,9 +221,11 @@ export default function WorkspaceGame() {
     });
   }, [selected, gameScene, rosterKey]);
   const events =
-    selected === "public"
-      ? source.projectionFor((roster ?? []).map((a) => a.agent_id))
-      : bindings.get(selected)!.projection;
+    selected === "sample"
+      ? sampleProjection
+      : selected === "public"
+        ? source.projectionFor((roster ?? []).map((a) => a.agent_id))
+        : bindings.get(selected)!.projection;
   useEffect(
     () => () => {
       for (const binding of bindings.values()) binding.dispose();
@@ -200,8 +242,11 @@ export default function WorkspaceGame() {
       snapshot: () =>
         structuredClone({
           selected,
-          project: world?.snapshot ?? source.snapshot,
-          world: world?.world ?? null,
+          project:
+            selected === "sample"
+              ? source.snapshot
+              : (world?.snapshot ?? source.snapshot),
+          world: selected === "sample" ? null : (world?.world ?? null),
           renderedRevision: sceneWorld?.snapshot.revision,
           pendingMap,
           diagnostics: result && !result.ok ? result.diagnostics : [],
@@ -232,7 +277,8 @@ export default function WorkspaceGame() {
   ]);
   const choose = (value: Selection) => {
     setSelected(value);
-    if (value !== "public") setDemoWorld(worlds.getBySelection(value));
+    if (value !== "public" && value !== "sample")
+      setDemoWorld(worlds.getBySelection(value));
   };
   const roomDisplay = (room: Room) => {
     const display = sceneWorld?.roomDisplay.find(
@@ -297,8 +343,14 @@ export default function WorkspaceGame() {
       aria-label={t("forge.source")}
     >
       <h3>{t("forge.source")}</h3>
-      <p>{t(selected === "public" ? "forge.publicNotice" : "forge.demo")}</p>
-      {world && (
+      <p>
+        {t(
+          selected === "public" || selected === "sample"
+            ? "forge.publicNotice"
+            : "forge.demo",
+        )}
+      </p>
+      {world && selected !== "sample" && (
         <>
           <b>{world.snapshot.project.name}</b>
           <small>{t("forge.original")}</small>
@@ -313,7 +365,7 @@ export default function WorkspaceGame() {
           </code>
         </>
       )}
-      {selected === "public" && (
+      {(selected === "public" || selected === "sample") && (
         <>
           <p>
             {t("forge.transport")}:{" "}
@@ -409,63 +461,127 @@ export default function WorkspaceGame() {
         </>
       )}
       <p>{t("forge.acceptance")}</p>
-      {world
+      {world && selected !== "sample"
         ? facts(world.snapshot)
         : source.snapshot && facts(source.snapshot)}
     </section>
   );
   return (
     <>
-      <div className="forge-toolbar">
-        <label>
-          {t("forge.project")}
-          <select
-            data-testid="forge-project-select"
-            value={selected}
-            onChange={(e) => choose(e.target.value as Selection)}
-          >
-            <option value="tiny">{t("forge.tiny")}</option>
-            <option value="workbench">{t("forge.workbench")}</option>
-            <option value="public">{t("forge.public")}</option>
-          </select>
-        </label>
-        {selected === "public" ? (
-          <button onClick={() => void source.refresh()}>
-            {t("forge.refresh")}
-          </button>
-        ) : (
-          <button
-            data-testid="forge-add-feature"
-            onClick={() =>
-              world &&
-              setDemoWorld(worlds.addDemoFeature(world.snapshot.project.id))
-            }
-          >
-            {t("forge.add")}
-          </button>
-        )}
-        <details>
-          <summary>{t("forge.pack")}</summary>
-          <p>{t("forge.switchNotice")}</p>
-        </details>
-      </div>
       {gameScene && world ? (
         <App
           scene={gameScene}
+          firstPlay={selected === "sample"}
+          assetsReady={selected !== "sample" || artReady}
+          assetsError={selected === "sample" && artError}
+          objective={{
+            text: t(
+              sample.state.receipt
+                ? "play.objective.evidence"
+                : "play.objective",
+            ),
+            objectId: sample.state.receipt ? "evidence-cabinet" : "source-desk",
+          }}
+          projectName={
+            selected === "sample" ? "Devungeon" : world.snapshot.project.name
+          }
+          sceneVisuals={selected === "sample" ? sampleVisuals : undefined}
+          sampleActivities={
+            selected === "sample" ? sample.activities : undefined
+          }
+          projectTools={
+            <details className="forge-toolbar">
+              <summary>{t("play.worlds")}</summary>
+              <div className="forge-project-options">
+                <label>
+                  {t("forge.project")}
+                  <select
+                    data-testid="forge-project-select"
+                    value={selected}
+                    onChange={(e) => choose(e.target.value as Selection)}
+                  >
+                    <option value="sample">{t("play.sample")}</option>
+                    <option value="tiny">{t("forge.tiny")}</option>
+                    <option value="workbench">{t("forge.workbench")}</option>
+                    <option value="public">{t("forge.public")}</option>
+                  </select>
+                </label>
+                {selected === "public" || selected === "sample" ? (
+                  <button onClick={() => void source.refresh()}>
+                    {t("forge.refresh")}
+                  </button>
+                ) : (
+                  <button
+                    data-testid="forge-add-feature"
+                    onClick={() =>
+                      world &&
+                      setDemoWorld(
+                        worlds.addDemoFeature(world.snapshot.project.id),
+                      )
+                    }
+                  >
+                    {t("forge.add")}
+                  </button>
+                )}
+                <p>{t("play.sampleNotice")}</p>
+              </div>
+            </details>
+          }
           agentRoster={roster}
           agentEvents={events}
           demoEvents={false}
           agentActivityEnabled={selected !== "public" || source.activityEnabled}
-          roomDisplay={roomDisplay}
+          roomDisplay={
+            selected === "sample"
+              ? (room) => ({
+                  name: t(room.enterable ? "play.entry.title" : "play.annex"),
+                  reason: t(
+                    room.enterable
+                      ? "play.entry.description"
+                      : "play.annexReason",
+                  ),
+                  status: t(
+                    room.enterable
+                      ? "world.status.gameOnly"
+                      : "world.status.planned",
+                  ),
+                })
+              : roomDisplay
+          }
           sourcePanel={panel}
-          renderAgentInspector={({ agentId, onClose, restoreFocus }) => (
-            <AgentWorkspace
-              adapter={controller}
-              selectedAgentId={agentId}
-              onClose={onClose}
-              onRestoreFocus={restoreFocus}
-            />
-          )}
+          renderObjectInspector={
+            selected === "sample"
+              ? ({ objectId, onClose, restoreFocus }) => {
+                  const id = SAMPLE_OBJECT_IDS.find((id) => id === objectId);
+                  return id ? (
+                    <FeaturePanel
+                      objectId={id}
+                      sample={sample}
+                      onClose={onClose}
+                      restoreFocus={restoreFocus}
+                    />
+                  ) : null;
+                }
+              : undefined
+          }
+          renderAgentInspector={({ agentId, onClose, restoreFocus }) =>
+            selected === "sample" ? (
+              <FeaturePanel
+                objectId="test-bench"
+                asAgent
+                sample={sample}
+                onClose={onClose}
+                restoreFocus={restoreFocus}
+              />
+            ) : (
+              <AgentWorkspace
+                adapter={controller}
+                selectedAgentId={agentId}
+                onClose={onClose}
+                onRestoreFocus={restoreFocus}
+              />
+            )
+          }
         />
       ) : (
         <main className="forge-fallback">

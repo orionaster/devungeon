@@ -1,0 +1,41 @@
+{
+  "started_at": "2026-11-14T09:24:13.019Z",
+  "finished_at": "2026-11-14T09:24:33.393Z",
+  "pass": false,
+  "failure": "page.waitForFunction: Timeout 15000ms exceeded.\n    at C:\\Devungeon\\first-play\\output\\clean-checkout\\first-play-20261114-1730\\scripts\\first-play-browser.mjs:193:14",
+  "source": {
+    "status": {
+      "schema_version": "1.0",
+      "project_id": "github:orionaster/devungeon",
+      "epoch": "c5a1fe03-ea1e-469c-a76e-f7d2905dc41d",
+      "cursor": 0,
+      "connections": {
+        "project": {
+          "mode": "DISCONNECTED",
+          "reason": "rate_limited",
+          "last_success_at": null,
+          "checked_at": "2026-11-14T09:23:35.565Z",
+          "retry_at": "2026-11-14T09:42:08.000Z"
+        },
+        "agent": {
+          "mode": "DISCONNECTED",
+          "reason": "not_connected",
+          "last_success_at": null,
+          "checked_at": "2026-11-14T09:23:35.225Z",
+          "retry_at": null
+        }
+      },
+      "capabilities": {
+        "commands": [],
+        "agent": [],
+        "project": [
+          "read_project"
+        ]
+      },
+      "warnings": []
+    },
+    "records": [],
+    "transportConnected": true,
+    "error": "snapshot_http_503"
+  }
+}

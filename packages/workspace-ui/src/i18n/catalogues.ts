@@ -2,6 +2,8 @@
 import { zhGame, enGame } from "./game-catalogue.ts";
 import { zhForge, enForge } from "./forge-catalogue.ts";
 import { zhScout, enScout } from "./scout-catalogue.ts";
+import { zhPlay, enPlay } from "./play-catalogue.ts";
+import { zhSample, enSample } from "./first-play-catalogue.ts";
 const sharedZh = {
   "common.language": "界面语言",
   "common.unknownTime": "尚无来源观测",
@@ -575,7 +577,21 @@ const sharedEn: Record<
   "world.error.compatibility": "Scene interface incompatible ({code})",
   "world.error.generic": "World generation error ({code})",
 };
-export const zhCN = { ...sharedZh, ...zhGame, ...zhForge, ...zhScout } as const;
-export const enUS = { ...sharedEn, ...enGame, ...enForge, ...enScout } as const;
+export const zhCN = {
+  ...sharedZh,
+  ...zhGame,
+  ...zhForge,
+  ...zhScout,
+  ...zhPlay,
+  ...zhSample,
+} as const;
+export const enUS = {
+  ...sharedEn,
+  ...enGame,
+  ...enForge,
+  ...enScout,
+  ...enPlay,
+  ...enSample,
+} as const;
 export const catalogues = { "zh-CN": zhCN, "en-US": enUS } as const;
 export type TranslationKey = keyof (typeof catalogues)["zh-CN"];

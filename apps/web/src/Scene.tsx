@@ -13,6 +13,7 @@ import {
   DEMO_SCENE,
   geometry,
   visibleDoorSeals,
+  scenePlacements,
   type Actor,
   type Enemy,
   type GameSnapshot,
@@ -20,7 +21,19 @@ import {
   type AgentProjection,
   type SceneDoor,
 } from "../../../packages/dungeon-engine/src";
-import { spriteTexture, tileTexture, type SpriteKind } from "./art";
+import {
+  spriteTexture,
+  tileTexture,
+  type SpriteKind,
+  type SpriteFacing,
+  type TileKind,
+} from "./art";
+import type { SampleActivity } from "./feature-sample";
+import {
+  CharacterAnimator,
+  cameraFacing,
+  type CharacterAnimationFrame,
+} from "./character-animation";
 import {
   cameraControl,
   pointer,
@@ -29,6 +42,28 @@ import {
   runtime,
 } from "./runtime";
 const SceneContext = createContext<SceneDefinition>(DEMO_SCENE);
+/** An optional local art pack applies only to the hand-authored sample room. */
+export interface DungeonVisuals {
+  sprite: (
+    kind: SpriteKind,
+    frame?: number,
+    facing?: SpriteFacing,
+    state?: "idle" | "move" | "attack" | "dodge" | "hurt" | "dead",
+  ) => THREE.Texture;
+  tile: (kind: TileKind) => THREE.Texture;
+  size?: (kind: SpriteKind) => [number, number];
+  anchor?: (kind: SpriteKind) => [number, number];
+  environment?: React.ReactNode;
+  hideLegacyDecorations?: boolean;
+  hideBaseEnvironment?: boolean;
+}
+export interface SampleActivityReader {
+  activity: (id: string, now?: number) => SampleActivity | undefined;
+}
+const VisualsContext = createContext<DungeonVisuals | undefined>(undefined);
+const ActivitiesContext = createContext<SampleActivityReader | undefined>(
+  undefined,
+);
 /** Read-only event port: the host owns source scope, provenance and command permissions. */
 type AgentEventReader = Pick<AgentProjection, "actor">;
 const AgentEventsContext = createContext<AgentEventReader>(projection);
@@ -69,6 +104,9 @@ const EMPTY: GameSnapshot = {
   },
   time: 0,
 };
+const RenderFrameContext = createContext<{ current: GameSnapshot }>({
+  current: EMPTY,
+});
 function Instanced({
   positions,
   size,
@@ -104,6 +142,9 @@ function Instanced({
 }
 function Environment() {
   const scene = useContext(SceneContext),
+    visuals = useContext(VisualsContext),
+    tile = visuals?.tile ?? tileTexture,
+    placements = useMemo(() => scenePlacements(scene), [scene]),
     worldGeometry = useMemo(() => geometry(scene), [scene]);
   const floors = useMemo(
     () =>
@@ -133,117 +174,131 @@ function Environment() {
   );
   return (
     <>
-      <Instanced
-        positions={floors}
-        size={[1, 0.3, 1]}
-        texture={tileTexture("floor")}
-        color="#ffffff"
-      />
-      <Instanced
-        positions={locked}
-        size={[1, 0.3, 1]}
-        texture={tileTexture("locked")}
-        color="#9b8aba"
-      />
-      <Instanced
-        positions={walls}
-        size={[0.22, 1, 1.22]}
-        texture={tileTexture("wall")}
-        color="#adc0cf"
-      />
-      <Instanced
-        positions={others}
-        size={[1.22, 1, 0.22]}
-        texture={tileTexture("wall")}
-        color="#adc0cf"
-      />
-      {/* Low outer walls retain solid collision height: all camera headings remain readable. */}
-      {scene.rooms.map((r) => (
-        <mesh key={r.room_id} position={[r.x, -0.44, r.z]}>
-          <boxGeometry args={[r.width + 0.5, 0.35, r.depth + 0.5]} />
-          <meshLambertMaterial color={r.enterable ? "#182a36" : "#2b253b"} />
-        </mesh>
-      ))}
-      {scene.obstacles.map((p, i) => (
-        <group key={i} position={[p.x, 0, p.z]}>
-          <mesh position={[0, p.kind === "pillar" ? 0.65 : 0.36, 0]}>
-            <boxGeometry
-              args={[p.width, p.kind === "pillar" ? 1.3 : 0.72, p.depth]}
-            />
-            <meshLambertMaterial
-              color={p.kind === "pillar" ? "#64808b" : "#9a6b44"}
-              map={tileTexture("wall")}
-            />
-          </mesh>
-          <mesh position={[0, p.kind === "pillar" ? 1.35 : 0.75, 0]}>
-            <boxGeometry args={[1.18, 0.14, 1.18]} />
-            <meshLambertMaterial
-              color={p.kind === "pillar" ? "#73928d" : "#d49a58"}
-            />
-          </mesh>
-        </group>
-      ))}
-      {visibleDoorSeals(scene).map((door, i) => (
-        <Gate key={`${door.room_id}:${i}`} door={door} />
-      ))}
-      {scene.rooms
-        .filter((r) => !r.enterable)
-        .map((room) => (
-          <group key={room.room_id}>
-            <mesh
-              rotation={[-Math.PI / 2, 0, 0]}
-              position={[room.x, 0.015, room.z]}
-            >
-              <ringGeometry args={[2, 2.1, 4]} />
-              <meshBasicMaterial color="#b89ae1" />
-            </mesh>
-            <Pixel kind="chest" position={[room.x, 0.1, room.z]} scale={1.5} />
-          </group>
-        ))}
-      {scene.rooms
-        .flatMap((r) => [
-          [r.x - r.width / 2 + 1, r.z - r.depth / 2 + 1],
-          [r.x + r.width / 2 - 1, r.z + r.depth / 2 - 1],
-        ])
-        .map(([x, z], i) => (
-          <group key={i} position={[x, 0, z]}>
-            <mesh position={[0, 0.45, 0]}>
-              <boxGeometry args={[0.32, 0.9, 0.32]} />
-              <meshLambertMaterial color="#b07846" />
-            </mesh>
-            <Pixel kind="flame" position={[0, 0.9, 0]} scale={0.7} animate />
-            <pointLight
-              position={[0, 1.1, 0]}
-              intensity={2}
-              distance={4}
-              color="#ffb35e"
-            />
-          </group>
-        ))}
-      {/* Original rune inlay and room edges, built from world geometry. */}
-      <mesh
-        rotation={[-Math.PI / 2, 0, 0]}
-        position={[
-          (scene.reward ?? scene.spawn).x,
-          0.012,
-          (scene.reward ?? scene.spawn).z,
-        ]}
-      >
-        <ringGeometry args={[2.7, 2.75, 32]} />
-        <meshBasicMaterial color="#977749" transparent opacity={0.5} />
-      </mesh>
-      {scene.worldId === DEMO_SCENE.worldId && (
+      {!visuals?.hideBaseEnvironment && (
         <>
-          <mesh position={[-12, 0.3, -3.5]}>
-            <boxGeometry args={[2.2, 0.6, 0.9]} />
-            <meshLambertMaterial color="#6a4e46" />
-          </mesh>
-          <mesh position={[-12, 0.68, -3.5]}>
-            <boxGeometry args={[2.35, 0.16, 1]} />
-            <meshLambertMaterial color="#b58554" />
-          </mesh>
+          <Instanced
+            positions={floors}
+            size={[1, 0.3, 1]}
+            texture={tile("floor")}
+            color="#ffffff"
+          />
+          <Instanced
+            positions={locked}
+            size={[1, 0.3, 1]}
+            texture={tile("locked")}
+            color="#9b8aba"
+          />
+          <Instanced
+            positions={walls}
+            size={[0.22, 1, 1.22]}
+            texture={tile("wall")}
+            color="#adc0cf"
+          />
+          <Instanced
+            positions={others}
+            size={[1.22, 1, 0.22]}
+            texture={tile("wall")}
+            color="#adc0cf"
+          />
+          {/* Low outer walls retain solid collision height: all camera headings remain readable. */}
+          {scene.rooms.map((r) => (
+            <mesh key={r.room_id} position={[r.x, -0.44, r.z]}>
+              <boxGeometry args={[r.width + 0.5, 0.35, r.depth + 0.5]} />
+              <meshLambertMaterial
+                color={r.enterable ? "#182a36" : "#2b253b"}
+              />
+            </mesh>
+          ))}
+          {scene.obstacles.map((p, i) => (
+            <group key={i} position={[p.x, 0, p.z]}>
+              <mesh position={[0, p.kind === "pillar" ? 0.65 : 0.36, 0]}>
+                <boxGeometry
+                  args={[p.width, p.kind === "pillar" ? 1.3 : 0.72, p.depth]}
+                />
+                <meshLambertMaterial
+                  color={p.kind === "pillar" ? "#64808b" : "#9a6b44"}
+                  map={tile("wall")}
+                />
+              </mesh>
+              <mesh position={[0, p.kind === "pillar" ? 1.35 : 0.75, 0]}>
+                <boxGeometry args={[1.18, 0.14, 1.18]} />
+                <meshLambertMaterial
+                  color={p.kind === "pillar" ? "#73928d" : "#d49a58"}
+                />
+              </mesh>
+            </group>
+          ))}
         </>
       )}
+      {!visuals?.hideBaseEnvironment &&
+        visibleDoorSeals(scene).map((door, i) => (
+          <Gate key={`${door.room_id}:${i}`} door={door} />
+        ))}
+      {!visuals?.hideLegacyDecorations && (
+        <>
+          {scene.rooms
+            .filter((r) => !r.enterable)
+            .map((room) => (
+              <group key={room.room_id}>
+                <mesh
+                  rotation={[-Math.PI / 2, 0, 0]}
+                  position={[room.x, 0.015, room.z]}
+                >
+                  <ringGeometry args={[2, 2.1, 4]} />
+                  <meshBasicMaterial color="#b89ae1" />
+                </mesh>
+              </group>
+            ))}
+          {placements.chests.map((p) => (
+            <Pixel
+              key={p.room_id}
+              kind="chest"
+              position={[p.x, 0.02, p.z]}
+              scale={1.2}
+            />
+          ))}
+          {placements.torches.map(({ x, z }, i) => (
+            <group key={i} position={[x, 0, z]}>
+              <mesh position={[0, 0.45, 0]}>
+                <boxGeometry args={[0.32, 0.9, 0.32]} />
+                <meshLambertMaterial color="#b07846" />
+              </mesh>
+              <Pixel kind="flame" position={[0, 0.9, 0]} scale={0.7} animate />
+              <pointLight
+                position={[0, 1.1, 0]}
+                intensity={2}
+                distance={4}
+                color="#ffb35e"
+              />
+            </group>
+          ))}
+          {/* Original rune inlay and room edges, built from world geometry. */}
+          <mesh
+            rotation={[-Math.PI / 2, 0, 0]}
+            position={[
+              (scene.reward ?? scene.spawn).x,
+              0.012,
+              (scene.reward ?? scene.spawn).z,
+            ]}
+          >
+            <ringGeometry args={[2.7, 2.75, 32]} />
+            <meshBasicMaterial color="#977749" transparent opacity={0.5} />
+          </mesh>
+          {scene.worldId === DEMO_SCENE.worldId && (
+            <>
+              <mesh position={[-12, 0.3, -3.5]}>
+                <boxGeometry args={[2.2, 0.6, 0.9]} />
+                <meshLambertMaterial color="#6a4e46" />
+              </mesh>
+              <mesh position={[-12, 0.68, -3.5]}>
+                <boxGeometry args={[2.35, 0.16, 1]} />
+                <meshLambertMaterial color="#b58554" />
+              </mesh>
+            </>
+          )}
+        </>
+      )}
+      {visuals?.environment}
     </>
   );
 }
@@ -303,14 +358,17 @@ function Pixel({
   animate?: boolean;
   onClick?: () => void;
 }) {
+  const visuals = useContext(VisualsContext),
+    sprite = visuals?.sprite ?? spriteTexture,
+    dimensions = visuals?.size?.(kind) ?? [1, 1.5];
   const ref = useRef<THREE.Sprite>(null!);
   useFrame(({ clock }) => {
     if (
       animate &&
       (ref.current.material as THREE.SpriteMaterial).map !==
-        spriteTexture(kind, Math.floor(clock.elapsedTime * 6) % 4)
+        sprite(kind, Math.floor(clock.elapsedTime * 6) % 4)
     )
-      (ref.current.material as THREE.SpriteMaterial).map = spriteTexture(
+      (ref.current.material as THREE.SpriteMaterial).map = sprite(
         kind,
         Math.floor(clock.elapsedTime * 6) % 4,
       );
@@ -319,7 +377,7 @@ function Pixel({
     <sprite
       ref={ref}
       position={position}
-      scale={[scale, scale * 1.5, 1]}
+      scale={[scale * dimensions[0], scale * dimensions[1], 1]}
       center={[0.5, 0]}
       onPointerDown={onClick ? (e) => e.stopPropagation() : undefined}
       onClick={
@@ -332,29 +390,38 @@ function Pixel({
       }
     >
       <spriteMaterial
-        map={spriteTexture(kind)}
+        map={sprite(kind)}
         transparent
         alphaTest={0.1}
-        depthWrite={false}
+        depthWrite
       />
     </sprite>
   );
 }
 function Character({ enemyIndex }: { enemyIndex?: number }) {
-  const scene = useContext(SceneContext);
+  const scene = useContext(SceneContext),
+    visuals = useContext(VisualsContext),
+    renderFrame = useContext(RenderFrameContext),
+    texture = visuals?.sprite ?? spriteTexture,
+    kind = enemyIndex === undefined ? "hero" : scene.enemies[enemyIndex].kind,
+    dimensions = visuals?.size?.(kind) ?? [
+      enemyIndex === undefined ? 1.1 : 1.15,
+      enemyIndex === undefined ? 1.65 : 1.725,
+    ];
   const ref = useRef<THREE.Group>(null!);
   const sprite = useRef<THREE.Sprite>(null!);
   const shadow = useRef<THREE.Mesh>(null!);
   const bar = useRef<THREE.Mesh>(null!);
   const windup = useRef<THREE.Mesh>(null!);
+  const animator = useMemo(() => new CharacterAnimator(), []);
+  const cameraDirection = useMemo(() => new THREE.Vector3(), []);
   useFrame(({ camera }) => {
-    const s = runtime.frame ?? EMPTY;
+    const s = renderFrame.current;
     const a: Actor | Enemy | undefined =
       enemyIndex === undefined ? s.player : s.enemies[enemyIndex];
     if (!a) return;
-    ref.current.visible = a.hp > 0;
+    ref.current.visible = enemyIndex === undefined || a.hp > 0;
     ref.current.position.set(a.x, 0.02, a.z);
-    const kind = enemyIndex === undefined ? "hero" : (a as Enemy).kind;
     const heading = (cameraControl.heading * Math.PI) / 2;
     const dx = a.facing.x * Math.cos(heading) - a.facing.z * Math.sin(heading),
       dz = a.facing.x * Math.sin(heading) + a.facing.z * Math.cos(heading);
@@ -366,9 +433,46 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
         : dz > 0
           ? "front"
           : "back";
-    const frame = Math.floor(s.time * (a.moving ? 10 : 4)) % 4;
+    let frame = Math.floor(s.time * (a.moving ? 10 : 4)) % 4;
     const mat = sprite.current.material as THREE.SpriteMaterial;
-    mat.map = spriteTexture(kind, frame, facing);
+    const state =
+      a.hp <= 0
+        ? "dead"
+        : a.hurt > 0
+          ? "hurt"
+          : enemyIndex === undefined && s.dodgeTime > 0
+            ? "dodge"
+            : (
+                  enemyIndex === undefined
+                    ? s.attackTime > 0
+                    : (a as Enemy).state === "strike"
+                )
+              ? "attack"
+              : a.moving
+                ? "move"
+                : "idle";
+    if (enemyIndex === undefined && state === "attack")
+      frame = Math.min(3, Math.floor((1 - s.attackTime / 0.23) * 4));
+    else if (enemyIndex === undefined && state === "dodge")
+      frame = Math.min(3, Math.floor((1 - s.dodgeTime / 0.2) * 4));
+    else if (state === "dead") frame = 1;
+    const animation: CharacterAnimationFrame =
+      enemyIndex === undefined && visuals
+        ? animator.update(
+            {
+              time: s.time,
+              actor: a,
+              attackTime: s.attackTime,
+              dodgeTime: s.dodgeTime,
+              attackDirection: s.attackDirection,
+            },
+            (() => {
+              camera.getWorldDirection(cameraDirection);
+              return Math.atan2(-cameraDirection.x, -cameraDirection.z);
+            })(),
+          )
+        : { pose: state, frame, facing };
+    mat.map = texture(kind, animation.frame, animation.facing, animation.pose);
     mat.color.set(
       a.hurt > 0
         ? "#ffffff"
@@ -377,11 +481,9 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
           : "#ffffff",
     );
     mat.opacity = a.hurt > 0 ? 0.6 : 1;
+    // Feet stay grounded; sprite animation carries the walk, never world-space bob.
     sprite.current.position.y =
-      (runtime.reducedEffects
-        ? 0
-        : Math.sin(s.time * (a.moving ? 20 : 5)) * (a.moving ? 0.055 : 0.018)) +
-      (enemyIndex === undefined && s.dodgeTime > 0 ? 0.16 : 0);
+      !visuals && enemyIndex === undefined && s.dodgeTime > 0 ? 0.1 : 0;
     shadow.current.scale.set(
       enemyIndex === undefined && s.dodgeTime > 0 ? 1.3 : 1,
       1,
@@ -419,16 +521,16 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
       </mesh>
       <sprite
         ref={sprite}
-        scale={enemyIndex === undefined ? [1.1, 1.65, 1] : [1.15, 1.725, 1]}
-        center={[0.5, 0]}
+        scale={[dimensions[0], dimensions[1], 1]}
+        center={visuals?.anchor?.(kind) ?? [0.5, 0]}
       >
         <spriteMaterial
-          map={spriteTexture(
+          map={texture(
             enemyIndex === undefined ? "hero" : scene.enemies[enemyIndex].kind,
           )}
           transparent
           alphaTest={0.15}
-          depthWrite={false}
+          depthWrite
         />
       </sprite>
       {enemyIndex !== undefined && (
@@ -457,30 +559,91 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
 }
 function Agent({ index }: { index: number }) {
   const agentEvents = useContext(AgentEventsContext),
-    selectAgent = useContext(SelectAgentContext);
-  const a = useContext(SceneContext).agents[index],
+    selectAgent = useContext(SelectAgentContext),
+    activities = useContext(ActivitiesContext),
+    scene = useContext(SceneContext),
+    visuals = useContext(VisualsContext),
+    placements = useMemo(() => scenePlacements(scene), [scene]),
+    a = placements.agents[index],
+    texture = visuals?.sprite ?? spriteTexture,
+    dimensions = visuals?.size?.(a.role) ?? [1.1, 1.65],
     g = useRef<THREE.Group>(null!),
-    spark = useRef<THREE.Mesh>(null!);
-  useFrame(({ clock }) => {
+    sprite = useRef<THREE.Sprite>(null!),
+    scan = useRef<THREE.Group>(null!),
+    tool = useRef<THREE.Group>(null!),
+    spark = useRef<THREE.Mesh>(null!),
+    direction = useMemo(() => new THREE.Vector3(), []),
+    lastFacing = useRef<SpriteFacing>("front");
+  useFrame(({ clock, camera }) => {
     const event = agentEvents.actor(a.agent_id);
     const age = event.event
       ? (Date.now() - Date.parse(event.event.observed_at)) / 1000
       : 99;
     const working =
+      !activities &&
       age < 3 &&
       !event.stale &&
       !!event.event &&
       ["started", "progress", "tool_call", "tested", "completed"].includes(
         event.event.event_type,
       );
-    g.current.position.set(
-      a.x +
-        (working && !runtime.reducedEffects
-          ? Math.sin(clock.elapsedTime * 3) * 0.15
-          : 0),
-      0.03,
-      a.z,
+    const action = activities?.activity(a.agent_id);
+    const justified =
+      action?.actor_kind === "demo-agent" &&
+      action.phase === "running" &&
+      action.mode === "DEMO" &&
+      Date.parse(action.expires_at) > Date.now();
+    const scanning = justified && action.kind === "scan";
+    const testing = justified && action.kind === "test";
+    // Work motion stays inside the reserved footprint. It never moves an NPC into furniture.
+    g.current.position.set(a.x, 0.03, a.z);
+    const mat = sprite.current.material as THREE.SpriteMaterial;
+    const station = justified
+      ? scene.props?.find((p) => p.id === action.station_id)
+      : undefined;
+    const angle = (cameraControl.heading * Math.PI) / 2,
+      dx = station
+        ? (station.x - a.x) * Math.cos(angle) -
+          (station.z - a.z) * Math.sin(angle)
+        : 0,
+      dz = station
+        ? (station.x - a.x) * Math.sin(angle) +
+          (station.z - a.z) * Math.cos(angle)
+        : 1,
+      facing =
+        Math.abs(dx) > Math.abs(dz)
+          ? dx > 0
+            ? "right"
+            : "left"
+          : dz > 0
+            ? "front"
+            : "back";
+    let spriteFacing: SpriteFacing = facing;
+    if (visuals) {
+      camera.getWorldDirection(direction);
+      spriteFacing = cameraFacing(
+        station ? { x: station.x - a.x, z: station.z - a.z } : { x: 0, z: 1 },
+        Math.atan2(-direction.x, -direction.z),
+        lastFacing.current,
+      );
+      lastFacing.current = spriteFacing;
+    }
+    mat.map = texture(
+      a.role,
+      working || scanning || testing
+        ? Math.floor(clock.elapsedTime * 6) % 4
+        : 0,
+      spriteFacing,
+      testing ? "attack" : "idle",
     );
+    scan.current.visible = !!scanning;
+    scan.current.rotation.y = runtime.reducedEffects
+      ? 0
+      : clock.elapsedTime * 1.7;
+    tool.current.visible = !!testing;
+    tool.current.rotation.z = runtime.reducedEffects
+      ? -0.4
+      : -0.4 + Math.sin(clock.elapsedTime * 11) * 0.5;
     spark.current.visible = working;
     spark.current.rotation.z = clock.elapsedTime;
     spark.current.position.y =
@@ -497,12 +660,44 @@ function Agent({ index }: { index: number }) {
           opacity={0.5}
         />
       </mesh>
-      <Pixel
-        kind={a.role}
-        scale={1.1}
-        animate
-        onClick={() => selectAgent(a.agent_id)}
-      />
+      <sprite
+        ref={sprite}
+        center={[0.5, 0]}
+        scale={[dimensions[0], dimensions[1], 1]}
+        onPointerDown={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          selectAgent(a.agent_id);
+        }}
+      >
+        <spriteMaterial
+          map={texture(a.role)}
+          transparent
+          alphaTest={0.15}
+          depthWrite
+        />
+      </sprite>
+      <group ref={scan} position={[0, 0.045, 0]}>
+        <mesh rotation={[-Math.PI / 2, 0, 0]}>
+          <ringGeometry args={[0.58, 0.64, 20, 1, 0, 1.7]} />
+          <meshBasicMaterial
+            color="#83d6bd"
+            transparent
+            opacity={0.8}
+            depthWrite={false}
+          />
+        </mesh>
+      </group>
+      <group ref={tool} position={[0.4, 0.8, 0]}>
+        <mesh position={[0, 0.14, 0]}>
+          <boxGeometry args={[0.07, 0.4, 0.07]} />
+          <meshLambertMaterial color="#9b643e" />
+        </mesh>
+        <mesh position={[0, 0.35, 0]}>
+          <boxGeometry args={[0.3, 0.12, 0.12]} />
+          <meshLambertMaterial color="#b9d2cc" />
+        </mesh>
+      </group>
       <mesh ref={spark} position={[0, 1.8, 0]}>
         <octahedronGeometry args={[0.12, 0]} />
         <meshBasicMaterial
@@ -513,12 +708,13 @@ function Agent({ index }: { index: number }) {
   );
 }
 function Effects() {
-  const slash = useRef<THREE.Mesh>(null!),
+  const renderFrame = useContext(RenderFrameContext),
+    slash = useRef<THREE.Mesh>(null!),
     particles = useRef<THREE.InstancedMesh>(null!),
     bolts = useRef<THREE.InstancedMesh>(null!);
   const color = new THREE.Color();
   useFrame(() => {
-    const s = runtime.frame ?? EMPTY;
+    const s = renderFrame.current;
     slash.current.visible = s.attackTime > 0;
     slash.current.position.set(s.player.x, 0.4, s.player.z);
     slash.current.rotation.set(
@@ -604,12 +800,22 @@ function Effects() {
   );
 }
 function CameraAndLoop() {
-  const scene = useContext(SceneContext);
+  const scene = useContext(SceneContext),
+    renderFrame = useContext(RenderFrameContext),
+    visuals = useContext(VisualsContext),
+    placements = useMemo(() => scenePlacements(scene), [scene]);
   const { camera, gl, size } = useThree();
   const notify = useRef(0),
     samples = useRef<number[]>([]),
-    cameraPos = useMemo(() => new THREE.Vector3(), []),
-    target = useMemo(() => new THREE.Vector3(), []);
+    anchor = useMemo(() => new THREE.Vector3(), []),
+    target = useMemo(() => new THREE.Vector3(), []),
+    markerPoint = useMemo(() => new THREE.Vector3(), []),
+    heading = useRef((cameraControl.heading * Math.PI) / 2),
+    previousGame = useRef(runtime.game),
+    initialized = useRef(false);
+  useLayoutEffect(() => {
+    initialized.current = false;
+  }, [scene.worldId]);
   const bounds = useMemo(() => {
     const minX = Math.min(...scene.rooms.map((r) => r.x - r.width / 2)),
       maxX = Math.max(...scene.rooms.map((r) => r.x + r.width / 2)),
@@ -623,16 +829,21 @@ function CameraAndLoop() {
     };
   }, [scene]);
   useFrame((_, dt) => {
+    if (previousGame.current !== runtime.game) {
+      previousGame.current = runtime.game;
+      initialized.current = false;
+    }
     if (runtime.game) {
       if (!runtime.paused) runtime.game.step(readInput(), dt);
       runtime.frame = runtime.game.snapshot();
+      renderFrame.current = runtime.game.renderSnapshot();
       notify.current += dt;
       if (notify.current >= 0.1) {
         notify.current = 0;
         runtime.onFrame?.(runtime.frame);
       }
     }
-    const s = runtime.frame ?? EMPTY;
+    const s = renderFrame.current;
     const control = cameraControl;
     let tx = control.target.x,
       tz = control.target.z;
@@ -652,11 +863,29 @@ function CameraAndLoop() {
     }
     control.target = { x: tx, z: tz };
     target.set(tx, 0, tz);
-    const h = (control.heading * Math.PI) / 2;
-    cameraPos.set(tx + Math.sin(h) * 21, 26, tz + Math.cos(h) * 21);
-    const smoothing = runtime.reducedEffects ? 1 : 1 - Math.exp(-dt * 9);
-    camera.position.lerp(cameraPos, smoothing);
-    camera.lookAt(target);
+    const desiredHeading = (control.heading * Math.PI) / 2;
+    const smoothing = runtime.reducedEffects
+      ? 1
+      : 1 - Math.exp(-Math.min(dt, 0.1) * 9);
+    if (!initialized.current) {
+      anchor.copy(target);
+      heading.current = desiredHeading;
+      initialized.current = true;
+    } else {
+      anchor.lerp(target, smoothing);
+      const difference = Math.atan2(
+        Math.sin(desiredHeading - heading.current),
+        Math.cos(desiredHeading - heading.current),
+      );
+      heading.current += difference * smoothing;
+    }
+    // Position and focus share one anchor: walking never changes camera pitch/yaw.
+    camera.position.set(
+      anchor.x + Math.sin(heading.current) * 21,
+      26,
+      anchor.z + Math.cos(heading.current) * 21,
+    );
+    camera.lookAt(anchor);
     const cam = camera as THREE.OrthographicCamera;
     const fit = Math.min(
       size.width / ((control.heading % 2 ? bounds.depth : bounds.width) + 12),
@@ -666,6 +895,38 @@ function CameraAndLoop() {
       control.mode === "overview" ? Math.min(control.zoom, fit) : control.zoom;
     cam.zoom = THREE.MathUtils.lerp(cam.zoom, zoom, smoothing);
     cam.updateProjectionMatrix();
+    camera.updateMatrixWorld();
+    runtime.presentation = {
+      camera: camera.position.toArray(),
+      focus: anchor.toArray(),
+      rotation: camera.quaternion.toArray(),
+      player: [s.player.x, 0, s.player.z],
+      screenPlayer: target
+        .set(s.player.x, 0, s.player.z)
+        .project(camera)
+        .toArray(),
+      markers: visuals
+        ? [
+            ...placements.agents.map((a) => ({
+              id: a.agent_id,
+              point: markerPoint
+                .set(a.x, (visuals.size?.(a.role)[1] ?? 1.65) + 0.2, a.z)
+                .project(camera)
+                .toArray(),
+            })),
+            ...(scene.props ?? []).map((p) => ({
+              id: p.id,
+              point: markerPoint.set(p.x, 2, p.z).project(camera).toArray(),
+            })),
+            ...scene.rooms
+              .filter((r) => !r.enterable)
+              .map((r) => ({
+                id: r.room_id,
+                point: markerPoint.set(r.x, 1.9, r.z).project(camera).toArray(),
+              })),
+          ]
+        : [],
+    };
     if (document.visibilityState === "visible" && dt > 0) {
       samples.current.push(dt * 1000);
       if (samples.current.length > 900) samples.current.shift();
@@ -679,7 +940,7 @@ function CameraAndLoop() {
       runtime.metrics.drawCalls = gl.info.render.calls;
       runtime.metrics.triangles = gl.info.render.triangles;
     }
-  });
+  }, -1);
   useEffect(() => {
     const ctx = gl.getContext(),
       ext = ctx.getExtension("WEBGL_debug_renderer_info");
@@ -694,6 +955,9 @@ export function DungeonScene({
   agentEvents = projection,
   agentActivityEnabled = true,
   onSelectAgent,
+  onSelectObject,
+  visuals,
+  activities,
   fallback,
 }: {
   scene?: SceneDefinition;
@@ -701,72 +965,112 @@ export function DungeonScene({
   /** A source disconnect/stale state must suppress even a still-fresh cached animation. */
   agentActivityEnabled?: boolean;
   onSelectAgent?: (id: string) => void;
+  onSelectObject?: (id: string) => void;
+  visuals?: DungeonVisuals;
+  activities?: SampleActivityReader;
   fallback?: React.ReactNode;
 }) {
+  const renderFrame = useRef<GameSnapshot>(EMPTY);
   return (
     <SceneContext.Provider value={scene}>
-      <AgentEventsContext.Provider
-        value={agentActivityEnabled ? agentEvents : INACTIVE_EVENTS}
-      >
-        <SelectAgentContext.Provider
-          value={onSelectAgent ?? ((id) => runtime.selectAgent?.(id))}
-        >
-          <Canvas
-            orthographic
-            camera={{ position: [3, 26, 21], zoom: 27, near: 0.1, far: 150 }}
-            dpr={0.75}
-            gl={{ antialias: false, powerPreference: "high-performance" }}
-            fallback={
-              fallback ?? (
-                <div className="webgl-fallback">
-                  WebGL 不可用，请通过探索手记查看房间和 Agent。 / WebGL
-                  unavailable. Use the field notes to inspect rooms and agents.
-                </div>
-              )
-            }
-          >
-            <color attach="background" args={["#101820"]} />
-            <ambientLight intensity={1.6} color="#c3daea" />
-            <directionalLight
-              position={[-10, 20, 5]}
-              intensity={2.0}
-              color="#ffe2b1"
-            />
-            <Suspense fallback={null}>
-              <Environment />
-              <Character />
-              {scene.enemies.map((_, i) => (
-                <Character key={i} enemyIndex={i} />
-              ))}
-              {scene.agents.map((_, i) => (
-                <Agent key={i} index={i} />
-              ))}
-              <Effects />
-              <Reward />
-              <CameraAndLoop />
-              <mesh
-                rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, 0.03, 0]}
-                onPointerMove={(e) => {
-                  pointer.aim = { x: e.point.x, z: e.point.z };
-                }}
+      <VisualsContext.Provider value={visuals}>
+        <ActivitiesContext.Provider value={activities}>
+          <RenderFrameContext.Provider value={renderFrame}>
+            <AgentEventsContext.Provider
+              value={agentActivityEnabled ? agentEvents : INACTIVE_EVENTS}
+            >
+              <SelectAgentContext.Provider
+                value={onSelectAgent ?? ((id) => runtime.selectAgent?.(id))}
               >
-                <planeGeometry args={[200, 200]} />
-                <meshBasicMaterial transparent opacity={0} depthWrite={false} />
-              </mesh>
-            </Suspense>
-          </Canvas>
-        </SelectAgentContext.Provider>
-      </AgentEventsContext.Provider>
+                <Canvas
+                  orthographic
+                  camera={{
+                    position: [3, 26, 21],
+                    zoom: 27,
+                    near: 0.1,
+                    far: 150,
+                  }}
+                  dpr={0.75}
+                  gl={{ antialias: false, powerPreference: "high-performance" }}
+                  fallback={
+                    fallback ?? (
+                      <div className="webgl-fallback">
+                        WebGL 不可用，请通过探索手记查看房间和 Agent。 / WebGL
+                        unavailable. Use the field notes to inspect rooms and
+                        agents.
+                      </div>
+                    )
+                  }
+                >
+                  <color attach="background" args={["#101820"]} />
+                  <ambientLight intensity={1.6} color="#c3daea" />
+                  <directionalLight
+                    position={[-10, 20, 5]}
+                    intensity={2.0}
+                    color="#ffe2b1"
+                  />
+                  <Suspense fallback={null}>
+                    <Environment />
+                    <Character />
+                    {scene.enemies.map((_, i) => (
+                      <Character key={i} enemyIndex={i} />
+                    ))}
+                    {scene.agents.map((_, i) => (
+                      <Agent key={i} index={i} />
+                    ))}
+                    <Effects />
+                    <Reward />
+                    <CameraAndLoop />
+                    {onSelectObject &&
+                      scene.props?.map((p) => (
+                        <mesh
+                          key={p.id}
+                          position={[p.x, 0.55, p.z]}
+                          onPointerDown={(e) => e.stopPropagation()}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onSelectObject(p.id);
+                          }}
+                        >
+                          <boxGeometry args={[p.width, 1.1, p.depth]} />
+                          <meshBasicMaterial
+                            transparent
+                            opacity={0}
+                            depthWrite={false}
+                          />
+                        </mesh>
+                      ))}
+                    <mesh
+                      rotation={[-Math.PI / 2, 0, 0]}
+                      position={[0, 0.03, 0]}
+                      onPointerMove={(e) => {
+                        pointer.aim = { x: e.point.x, z: e.point.z };
+                      }}
+                    >
+                      <planeGeometry args={[200, 200]} />
+                      <meshBasicMaterial
+                        transparent
+                        opacity={0}
+                        depthWrite={false}
+                      />
+                    </mesh>
+                  </Suspense>
+                </Canvas>
+              </SelectAgentContext.Provider>
+            </AgentEventsContext.Provider>
+          </RenderFrameContext.Provider>
+        </ActivitiesContext.Provider>
+      </VisualsContext.Provider>
     </SceneContext.Provider>
   );
 }
 function Reward() {
   const scene = useContext(SceneContext),
+    renderFrame = useContext(RenderFrameContext),
     p = scene.reward ?? scene.spawn;
   const ref = useRef<THREE.Group>(null!);
   useFrame(() => {
-    ref.current.visible = runtime.frame?.phase === "won";
+    ref.current.visible = renderFrame.current.phase === "won";
   });
   return (
     <group ref={ref} position={[p.x, 0.05, p.z]}>

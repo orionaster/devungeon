@@ -1,0 +1,250 @@
+{
+  "recorded_at": "2026-11-14T09:36:43.820Z",
+  "application_commit": "7a67f1ade68f323cea1ebd2834e820c880051abc",
+  "automated_tests": 178,
+  "host_lifecycle_tests": 1,
+  "groups": [
+    {
+      "name": "product",
+      "started_at": "2026-11-14T09:32:37.764Z",
+      "finished_at": "2026-11-14T09:33:01.823Z",
+      "url": "http://127.0.0.1:5196",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 22,
+      "pass": true,
+      "metrics": {
+        "fps": 60.00240009597999,
+        "p95Ms": 17.099999994039536,
+        "worstMs": 143.40000000596046,
+        "frames": 1215,
+        "drawCalls": 207,
+        "triangles": 2400,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "limits": [
+        "Trusted automated browser inputs, not independent owner approval or physical mobile/Safari testing.",
+        "Browser target activation did not emit a real blur/hidden transition; automatic tab-loss pause was not exercised. No synthetic visibility event was injected."
+      ],
+      "tabFocus": {
+        "before": {
+          "visibility": "visible",
+          "focused": true
+        },
+        "away": {
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "source_file": "product-results.json"
+    },
+    {
+      "name": "render",
+      "started_at": "2026-11-14T09:33:02.709Z",
+      "url": "http://127.0.0.1:5196",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 15,
+      "pass": true,
+      "metrics": {
+        "fps": 59.22829021892956,
+        "p95Ms": 17,
+        "worstMs": 64.09999999403954,
+        "frames": 136,
+        "drawCalls": 207,
+        "triangles": 2400,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "limits": [
+        "Trusted automated input on Windows Chromium; independent human visual approval remains required.",
+        "Camera orientation is measured from the actual rendered camera; pixel polish is reviewed from screenshots/video."
+      ],
+      "source_file": "render-results.json"
+    },
+    {
+      "name": "legacy-games",
+      "started_at": "2026-11-14T09:00:28.210Z",
+      "finished_at": "2026-11-14T09:02:03.315Z",
+      "url": "http://127.0.0.1:5194",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 61,
+      "pass": true,
+      "metrics": null,
+      "limits": [
+        "Automated browser input on win32 is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance."
+      ],
+      "source_file": "legacy-games-results.json"
+    },
+    {
+      "name": "public-source",
+      "started_at": "2026-11-14T09:02:08.025Z",
+      "finished_at": "2026-11-14T09:02:50.195Z",
+      "url": "http://127.0.0.1:5195",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 26,
+      "pass": true,
+      "metrics": null,
+      "limits": [
+        "Automated browser input on win32 is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance."
+      ],
+      "source_file": "public-source-results.json"
+    }
+  ],
+  "art": {
+    "pack": "Ninja Adventure",
+    "license": "CC0-1.0",
+    "png_count": 20,
+    "png_bytes": 65690
+  },
+  "owner_visual_acceptance": "pending",
+  "unchanged_limits": [
+    "Real model execution, independent human/new-user playtest, physical mobile/Safari and low-end hardware acceptance are not performed."
+  ],
+  "clean_source": {
+    "mode": "DISCONNECTED",
+    "notes": "Cold anonymous GitHub import hit rate limit. Final isolated app used the existing real public bridge cache with original time and DISCONNECTED mode; earlier online and public lifecycle proofs are retained separately."
+  },
+  "assets_verified": {
+    "files": 20,
+    "bytes": 65690
+  },
+  "evidence": [
+    {
+      "file": "application-ci.json",
+      "bytes": 8843,
+      "sha256": "ac7614ca3552ae3f1aaadbce2b19d2b8baf3292c35df5bb330208c68c1103d03"
+    },
+    {
+      "file": "art-directions-provenance.json",
+      "bytes": 4213,
+      "sha256": "318db50bde3858fa7315628b4e8a23a827616dab4fe0be0758688994d3f58764"
+    },
+    {
+      "file": "art-directions.png",
+      "bytes": 62821,
+      "sha256": "21e5e8475e240ae1df290a0200371101426c31c15b9c033d8615304575d66578"
+    },
+    {
+      "file": "clean-validation.txt",
+      "bytes": 15909,
+      "sha256": "6ddbbd7899d1e105edf8b8d4ea79bf9129d2856eae8daa9898eb78de44cfd8cb"
+    },
+    {
+      "file": "cold-source-rate-limit.json",
+      "bytes": 1218,
+      "sha256": "52e3019b42a08d23758fe415654bbedf2ec1c1dab1c1d02d105c232958e41d14"
+    },
+    {
+      "file": "combat-victory.png",
+      "bytes": 80397,
+      "sha256": "7911e0c0029777b66fddbabba2397bd17a5cebe9d4f1dc10e24a09e9de33d9bd"
+    },
+    {
+      "file": "contact-review.json",
+      "bytes": 9227,
+      "sha256": "1aa6b56d73eac32cf79d0731e202da6d1582bc4ba990119716f741a0a0dc1147"
+    },
+    {
+      "file": "demo-scan.png",
+      "bytes": 88485,
+      "sha256": "2c50eae96c9ab98431738101bf64199a4e7a6193147b1d5ea0878f06b1fcda49"
+    },
+    {
+      "file": "demo-test.png",
+      "bytes": 87453,
+      "sha256": "f3bed69962622b2c09084555feb87d9cea49cb84e16b263d53e434edde9ca2ef"
+    },
+    {
+      "file": "entry-zh.png",
+      "bytes": 82946,
+      "sha256": "99875b800248d81e4bf7be83a2491af079af9d10fe54fc32e3b2fb4eb14da1a9"
+    },
+    {
+      "file": "failed-attempts.json",
+      "bytes": 23807,
+      "sha256": "a5e32328b73838e9b7a41aba73fffae8e38401af781bfb53205d123075d20992"
+    },
+    {
+      "file": "feature-cached-en.png",
+      "bytes": 121356,
+      "sha256": "29a2cb8cdce4bd79e89197b13ff8445aea992dbffbc0f4524764802a29aeaa5e"
+    },
+    {
+      "file": "feature-cached-zh.png",
+      "bytes": 123581,
+      "sha256": "5e182428d77ca9841741cb2271b7f2340590c15332683b9f973796844a42d143"
+    },
+    {
+      "file": "feature-live-en.png",
+      "bytes": 120613,
+      "sha256": "9ad751c80c1dba9c739e8320a802abca51aa8b0d476665f2a8f039b9ae1963e6"
+    },
+    {
+      "file": "feature-live-zh.png",
+      "bytes": 122518,
+      "sha256": "e99deaa55c4334c860cffb8454de425c027958117a104f6346edab44c1a10fec"
+    },
+    {
+      "file": "first-play.webm",
+      "bytes": 6419820,
+      "sha256": "2872c58fe41970bf878027e7a6d3624bad7e721dcea603c34c1fc86e0a5733a3"
+    },
+    {
+      "file": "legacy-games-results.json",
+      "bytes": 97073,
+      "sha256": "5e66610d820ea3abe0c18a025399b6dddffac24f01f4fda6ad209a5a2d9dd098"
+    },
+    {
+      "file": "media-playback.json",
+      "bytes": 621,
+      "sha256": "47a7d1c22176c814e353ef75c1c25d5a02d251bb0db63d93e4b2b5337cd8c1be"
+    },
+    {
+      "file": "product-results.json",
+      "bytes": 61093,
+      "sha256": "952cd21fba5c3e2a38e7e74f8da1a8ca65e7a752740419bc9a528c465bc321b6"
+    },
+    {
+      "file": "public-source-results.json",
+      "bytes": 50415,
+      "sha256": "30db1a42035202a5af7ffe75d8647c6120d704b23231da4cfd6b2737ac91a711"
+    },
+    {
+      "file": "reference-art-CC0.txt",
+      "bytes": 6722,
+      "sha256": "9bc2cd77030dd73fd2497c5729556a11524fa04099d8351bc527fd4d4c31b916"
+    },
+    {
+      "file": "render-input.webm",
+      "bytes": 16200962,
+      "sha256": "f4c7e35376a0c5bdc06035a461915e3558b43dac9be6c4096b6331c334e2f4cb"
+    },
+    {
+      "file": "render-results.json",
+      "bytes": 244439,
+      "sha256": "e7e444265f463812ddea5abf25cbe0ae341e3401ff92dbda257e9b863618a48d"
+    },
+    {
+      "file": "render-trace.zip",
+      "bytes": 177464,
+      "sha256": "1b65c9f300462210335ce9ac50b82070432bc460d48138ab416482f5781cc9d7"
+    },
+    {
+      "file": "room-zh.png",
+      "bytes": 84657,
+      "sha256": "f858d7cf300c17b60fcff41275ae427ee8f99647573e3fe9d969f78404eb1bb7"
+    },
+    {
+      "file": "wizard-ci-failure.txt",
+      "bytes": 51910,
+      "sha256": "072b57329294ef285f2026bfdfaab7a72c25394c878914cca52f6d0877b8915c"
+    },
+    {
+      "file": "wizard-local-recovery.txt",
+      "bytes": 1311,
+      "sha256": "40539016169ccdcb2e919b15c74e7f8613b570ea5343f92a2397936d8dd5591b"
+    }
+  ]
+}

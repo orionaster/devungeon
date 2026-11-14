@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-14",
+  "artifact": "art-directions.png",
+  "kind": "asset-reference-comparison-not-runtime",
+  "modification": "Selected native PNG tiles/frames composited into clearly labeled reference vignettes. Nearest-neighbor integer3x/2x enlargement. No source recoloring.",
+  "sources": [
+    {
+      "author": "Robert / 0x72",
+      "page": "https://0x72.itch.io/dungeontileset-ii",
+      "license": "CC0-1.0",
+      "archive": "0x72_DungeonTilesetII_v1.7.zip",
+      "sha256": "a5b23341ebc831d7798bfb9666d864a08c079bb7aed18e3cf023a27d517c1512",
+      "reference_files": [
+        {
+          "upstream_path": "floor_1.png",
+          "sha256": "c3bb5fc5345452ec79a332ac9113c9cdf78b0473238b734bf5f4cc0839fb2e3e"
+        },
+        {
+          "upstream_path": "wall_mid.png",
+          "sha256": "c70ac4cf5e7370cb1f9dee536882de26a0ec87295a1c962d77514ceda91d11f1"
+        },
+        {
+          "upstream_path": "column.png",
+          "sha256": "3fb915b96de71b6d939f434124d9c3c27831c54458a5daa5df3f447dd34c8e0e"
+        },
+        {
+          "upstream_path": "knight_m_run_anim_f0.png",
+          "sha256": "7e4bf2334f9c1fdbc5039789dda79a601f5f29e1e40b42ffbc4f58a4ac19d077"
+        },
+        {
+          "upstream_path": "knight_m_run_anim_f1.png",
+          "sha256": "a41f1ffa99c94c18900559dde54806fbcf717e7f4fc0a8e25e869b0f0baa4fe7"
+        },
+        {
+          "upstream_path": "knight_m_run_anim_f2.png",
+          "sha256": "27a3b65f9485d32d209da4b0137cde5beadb76de5b8c828bfad2d83591e96cd3"
+        },
+        {
+          "upstream_path": "knight_m_run_anim_f3.png",
+          "sha256": "e2b1b9762f3bf876f7738dfca1f026ef637e2564d5c457af258af288c64e8480"
+        },
+        {
+          "upstream_path": "wizzard_m_idle_anim_f1.png",
+          "sha256": "7175a45aa136b0e62087d971accd2e9e6d259ca682d650b792e86f4cff36a867"
+        },
+        {
+          "upstream_path": "chest_full_open_anim_f0.png",
+          "sha256": "5b79317a3c5914d3dfcbd7592d3b763a7db060fff5496f06eda7261b258f4d96"
+        },
+        {
+          "upstream_path": "orc_warrior_run_anim_f0.png",
+          "sha256": "0faa979ccece1f57aae4cbe275b2699f6bb2b3cd301adab6cd3242336de2d229"
+        }
+      ]
+    },
+    {
+      "authors": [
+        "Pixel-Boy",
+        "AAA"
+      ],
+      "page": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+      "license": "CC0-1.0",
+      "archive": "Ninja Adventure - Asset Pack.zip",
+      "release_date": "2026-03-29",
+      "sha256": "95a06f4fdcfd1882f061a45ff313b7c905dbe2de1e8512b281d7937df62a7b15",
+      "reference_files": [
+        {
+          "upstream_path": "Backgrounds/Tilesets/Interior/TilesetInteriorFloor.png",
+          "sha256": "e281598e2d90f43b31fd557b94c2d2abb00d307758a053b7df301575bf535e3a"
+        },
+        {
+          "upstream_path": "Backgrounds/Tilesets/TilesetElement.png",
+          "sha256": "63d64985697d77033372256b9304ea85db7061f0fc19aafd0714492a9b57140e"
+        },
+        {
+          "upstream_path": "Actor/CharacterAnimated/NinjaGreen/Separate/Walk.png",
+          "sha256": "d03702e8b5bd7e98c177c27f80acb00e09f339596269209df1b6594a39bb6c36"
+        },
+        {
+          "upstream_path": "Actor/Character/Inspector/SeparateAnim/Idle.png",
+          "sha256": "67f216f335bf57b679345ee4b26d2cf30928c0635e99ce19ffe3b956705bf012"
+        },
+        {
+          "upstream_path": "Actor/Monster/Slime/Slime.png",
+          "sha256": "ed2f8eba4550cf54476ab3eb9d36eaf4feb2462e5dc01c7223567c40a261b971"
+        }
+      ]
+    },
+    {
+      "author": "Kenney",
+      "page": "https://kenney-assets.itch.io/tiny-dungeon",
+      "canonical_page": "https://kenney.nl/assets/tiny-dungeon",
+      "license": "CC0-1.0",
+      "archive": "kenney_tinyDungeon.zip",
+      "sha256": "c109438ab06f65fd80f9b2686a4cf9c7c11dc64444b47333ec71d602f8bb5fc7",
+      "reference_files": [
+        {
+          "upstream_path": "Tilemap/tilemap_packed.png",
+          "sha256": "d24e60a41e4ac7a745c0304dfde121143688557f40215f23221c29cfe683825f"
+        }
+      ]
+    }
+  ],
+  "artifact_sha256": "21e5e8475e240ae1df290a0200371101426c31c15b9c033d8615304575d66578"
+}

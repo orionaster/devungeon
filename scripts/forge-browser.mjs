@@ -108,9 +108,10 @@ async function movementPulse(page, key, ms, previousTime, allowDeath = false) {
   // Queue release by a Node timer, independently of keydown's browser round
   // trip. Waiting for its acknowledgement before starting the timer holds the
   // key too long on software-rendered CI and repeatedly overshoots the target.
-  const down = page.keyboard.down(key);
+  const codes = Array.isArray(key) ? key : [key];
+  const down = Promise.all(codes.map(code => page.keyboard.down(code)));
   try { await new Promise((done) => setTimeout(done, ms)); }
-  finally { await Promise.all([down, page.keyboard.up(key)]); }
+  finally { await Promise.all([down, ...codes.map(code => page.keyboard.up(code))]); }
   // Observe an actual neutral simulation frame after keyup. We neither mutate
   // GameState nor infer the position from a wall-clock delay or input duration.
   return poll(() => game(page), (state) => state &&
@@ -125,7 +126,10 @@ async function restoredGameFocus(page) {
     { timeout: 10000, polling: "raf" });
 }
 async function selectProject(page, selected) {
+  const menu = page.locator("details.forge-toolbar");
+  if (await menu.getAttribute("open") === null) await menu.locator(":scope > summary").click();
   await page.getByTestId("forge-project-select").selectOption(selected);
+  if (await menu.getAttribute("open") !== null) await menu.locator(":scope > summary").click();
   const chosen = await poll(() => forge(page), (s) => s?.selected === selected && !!s.world);
   await poll(() => scene(page), (s) => s?.project_context?.project_id === chosen.project.project.id);
   await poll(() => game(page), (s) => !!s);
@@ -136,10 +140,12 @@ async function enter(page) {
   await poll(() => game(page), (s) => s?.phase === "playing");
   await focusGame(page);
 }
-function mapRoute(world, from, to) {
-  const floors = new Set(world.scene.navigation.walkable.map((p) => `${p.x},${p.z}`));
+function mapRoute(world, from, to, agents = []) {
+  const walkable = world.scene.navigation.walkable.filter(p => !agents.some(a => Math.hypot(p.x + .5 - a.x, p.z + .5 - a.z) < .8));
+  const floors = new Set(walkable.map((p) => `${p.x},${p.z}`));
   const start = { x: Math.round(from.x - .5), z: Math.round(from.z - .5) };
-  const goal = { x: Math.round(to.x), z: Math.round(to.z) };
+  const requested = { x: Math.round(to.x), z: Math.round(to.z) };
+  const goal = floors.has(`${requested.x},${requested.z}`) ? requested : [...walkable].sort((a,b)=>Math.hypot(a.x-requested.x,a.z-requested.z)-Math.hypot(b.x-requested.x,b.z-requested.z))[0];
   const queue = [start], previous = new Map([[`${start.x},${start.z}`, null]]);
   for (let i = 0; i < queue.length; i++) {
     const p = queue[i];
@@ -166,6 +172,7 @@ async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath
   const heading = initial.camera.heading * Math.PI / 2; // This route issues no Q/R input.
   let state = initial.game;
   let gain = .7;
+  let overshoots = 0;
   progress({ phase: "navigation-start", target, player: state.player, allow_death: allowDeath }, true);
   console.log(`NAV ${report.current_case} target ${target.x},${target.z}`);
   for (let i = 0; i < 170; i++) {
@@ -184,7 +191,17 @@ async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath
     const sx = dx * Math.cos(heading) - dz * Math.sin(heading);
     const sz = dx * Math.sin(heading) + dz * Math.cos(heading);
     const horizontal = Math.abs(sx) >= Math.abs(sz), amount = horizontal ? sx : sz;
-    const key = horizontal ? amount > 0 ? "KeyD" : "KeyA" : amount > 0 ? "KeyS" : "KeyW";
+    // At very low software-renderer FPS, even a 4ms press can span several
+    // simulation ticks. Repeating the same axis then oscillates around the
+    // waypoint forever. A real normalized diagonal changes that step length;
+    // use it only near a waypoint after repeated observed overshoots. Keep the
+    // exact arrival tolerance, swept physics and all gameplay assertions.
+    const diagonalCorrection = overshoots >= 2 && gain <= .08 && Math.hypot(dx, dz) < .5 &&
+      Math.abs(sx) > .04 && Math.abs(sz) > .04;
+    const key = diagonalCorrection
+      ? [sx > 0 ? "KeyD" : "KeyA", sz > 0 ? "KeyS" : "KeyW"]
+      : horizontal ? amount > 0 ? "KeyD" : "KeyA" : amount > 0 ? "KeyS" : "KeyW";
+    if (diagonalCorrection) overshoots = 0;
     const duration = Math.min(Math.abs(amount) > 2 ? 500 : 160,
       Math.max(4, Math.abs(amount) * 1000 / 4.3 * gain));
     const next = await movementPulse(page, key, duration, state.time, allowDeath);
@@ -197,9 +214,15 @@ async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath
     // Reduce the next pulse after an observed overshoot; increase it only if
     // a short press fell entirely between simulation frames. Arrival tolerance,
     // keyboard routing and all swept-collision assertions are unchanged.
-    if (afterDistance > beforeDistance + .03 || moved > Math.abs(amount) * 1.4) gain = Math.max(.04, gain * .55);
+    if (afterDistance > beforeDistance + .03 || moved > Math.abs(amount) * 1.4) {
+      gain = Math.max(.04, gain * .55);
+      overshoots++;
+    }
     else if (moved < .02) gain = Math.min(1, gain * 1.35);
-    else if (afterDistance < beforeDistance) gain = Math.min(.85, gain * 1.08);
+    else if (afterDistance < beforeDistance) {
+      gain = Math.min(.85, gain * 1.08);
+      overshoots = 0;
+    }
     state = next;
   }
   throw new Error(`Keyboard route stuck at ${JSON.stringify((await game(page)).player)} approaching ${JSON.stringify(target)}`);
@@ -209,7 +232,8 @@ async function follow(page, world, to, { fightAfterHit = false, allowDeath = fal
   await poll(() => game(page), (state) => state && state.dodgeTime <= 0 && !state.player.moving, 10000, 20);
   let attacking = false;
   try {
-    for (const point of mapRoute(world, (await game(page)).player, to)) {
+    const agents = (await page.evaluate(() => window.__DEVUNGEON__.placements())).agents;
+    for (const point of mapRoute(world, (await game(page)).player, to, agents)) {
       const arrived = await walkTo(page, point, { allowDeath, onObservation: async (state) => {
         if (fightAfterHit && state.stats.hitsTaken > 0 && !attacking) {
           // The real player may fight while navigating. Waiting for exact
@@ -231,12 +255,14 @@ async function language(page, name, panel) {
   await page.waitForFunction((locale) => document.documentElement.lang === locale, name === "English" ? "en-US" : "zh-CN");
 }
 async function openAgent(page, agent) {
+  const journal = page.locator(".journal-toggle");
+  if (await journal.getAttribute("aria-expanded") === "false") await journal.click();
   const rows = page.locator(".agent-row").filter({ hasText: agent.name });
   await rows.first().click();
   await page.getByRole("dialog").waitFor();
 }
 async function clickRenderedAgent(page, agentId) {
-  const currentScene = await scene(page), actor = currentScene.agents.find((a) => a.agent_id === agentId);
+  const currentScene = await scene(page), actor = (await page.evaluate(() => window.__DEVUNGEON__.placements())).agents.find((a) => a.agent_id === agentId);
   assert.ok(actor, "Agent must have an actual world marker");
   const journal = page.locator(".journal-toggle");
   if (await journal.getAttribute("aria-expanded") === "true") await journal.click();
@@ -385,6 +411,7 @@ async function verifyProject(page, selected) {
     await screenshot(page, `${selected}-lock-${turn * 90}`);
     await page.keyboard.press("KeyR");
   }
+  if (await page.locator(".journal-toggle").getAttribute("aria-expanded") === "false") await page.locator(".journal-toggle").click();
   await page.locator(".vault-link").click();
   const roomPanel = page.getByRole("dialog"), roomPaused = await game(page);
   check(`${selected}: locked room camera preview grants no entry`, (await camera(page)).mode === "preview" && same((await forge(page)).project, initial.project));
@@ -419,7 +446,9 @@ async function verifyProject(page, selected) {
     await page.keyboard.press("KeyP");
   }
   const beforeUpdate = await forge(page);
+  await page.locator(".forge-toolbar > summary").click();
   await page.getByTestId("forge-add-feature").click();
+  await page.locator(".forge-toolbar > summary").click();
   const updated = await poll(() => forge(page), (s) => s.world?.layout.rooms.length > beforeUpdate.world.layout.rooms.length);
   await poll(() => scene(page), (s) => s.project_context?.project_revision === updated.project.revision);
   const oldRooms = beforeUpdate.world.layout.rooms;
@@ -482,6 +511,7 @@ async function publicChecks(page) {
   await screenshot(page, "public-project-zh");
   await enter(page);
   const projectEvents = await poll(() => forge(page), (s) => s.source.records.length > 0);
+  if (await page.locator(".journal-toggle").getAttribute("aria-expanded") === "false") await page.locator(".journal-toggle").click();
   check("public: project events never create Agent actors", !(await scene(page)).agents.some((a) => a.agent_id === "source:github"));
   if (!managed) return { managed: false, imported: imported.project, source: projectEvents.source, limitation: "Lifecycle not exercised; external bridge owned by caller." };
   const task = imported.project.rooms.find((r) => /^github:issue:\d+$/.test(r.id));

@@ -5,6 +5,7 @@ import type {
   Tile,
   Vec2,
   Wall,
+  SceneAgent,
 } from "./types";
 export function doorRect(door: SceneDoor): Rect {
   return {
@@ -46,12 +47,14 @@ export function visibleDoorSeals(s: SceneDefinition): readonly SceneDoor[] {
 export const inside = (p: Vec2, r: Rect, margin = 0) =>
   Math.abs(p.x - r.x) < r.width / 2 - margin &&
   Math.abs(p.z - r.z) < r.depth / 2 - margin;
+export const agentClearanceRadius = (agent: SceneAgent) =>
+  agent.clearanceRadius ?? 0.42;
 export function validateScene(s: SceneDefinition) {
   if (!s.worldId || !s.rooms.length || s.rooms.length > 128)
     throw Error("Scene needs 1–128 rooms");
   if (
     s.corridors.length > 512 ||
-    s.obstacles.length > 256 ||
+    s.obstacles.length + (s.props?.length ?? 0) > 256 ||
     s.enemies.length > 64 ||
     s.agents.length > 64
   )
@@ -64,7 +67,17 @@ export function validateScene(s: SceneDefinition) {
       throw Error("Room access must be an explicit boolean");
     ids.add(r.room_id);
   }
-  for (const r of [...s.rooms, ...s.corridors, ...s.obstacles])
+  if (
+    new Set(s.props?.map((p) => p.id)).size !== (s.props?.length ?? 0) ||
+    s.props?.some((p) => typeof p.id !== "string" || !p.id)
+  )
+    throw Error("Prop IDs must be unique");
+  for (const r of [
+    ...s.rooms,
+    ...s.corridors,
+    ...s.obstacles,
+    ...(s.props ?? []),
+  ])
     if (
       ![r.x, r.z, r.width, r.depth].every(Number.isFinite) ||
       r.width <= 0 ||
@@ -124,7 +137,14 @@ export function validateScene(s: SceneDefinition) {
   if (!s.rooms.some((r) => r.enterable && inside(s.spawn, r, 0.4)))
     throw Error("Spawn must be in an enterable room");
   for (const a of s.enemies)
-    if (![a.x, a.z].every(Number.isFinite) || !isWalkable(s, a, 0.35))
+    if (
+      ![a.x, a.z].every(Number.isFinite) ||
+      !isWalkable(s, a, 0.35) ||
+      (a.activationRadius !== undefined &&
+        (!Number.isFinite(a.activationRadius) ||
+          a.activationRadius < 0.5 ||
+          a.activationRadius > 14))
+    )
       throw Error("Actor outside walkable scene");
   for (const a of s.agents) {
     const room = s.rooms.find((r) => r.room_id === a.room_id);
@@ -133,7 +153,11 @@ export function validateScene(s: SceneDefinition) {
       ![a.x, a.z].every(Number.isFinite) ||
       !["builder", "scout", "wizard"].includes(a.role) ||
       (a.visual_only !== undefined && typeof a.visual_only !== "boolean") ||
-      (a.is_demo !== undefined && typeof a.is_demo !== "boolean")
+      (a.is_demo !== undefined && typeof a.is_demo !== "boolean") ||
+      (a.clearanceRadius !== undefined &&
+        (!Number.isFinite(a.clearanceRadius) ||
+          a.clearanceRadius < 0.25 ||
+          a.clearanceRadius > 1.5))
     )
       throw Error("Invalid scene agent");
     if (a.visual_only ? !inside(a, room, 0.15) : !isWalkable(s, a, 0.35))
@@ -183,7 +207,7 @@ export function isWalkable(s: SceneDefinition, p: Vec2, margin = 0) {
   )
     return false;
   if (
-    s.obstacles.some((r) =>
+    [...s.obstacles, ...(s.props ?? [])].some((r) =>
       inside(p, {
         ...r,
         width: r.width + margin * 2,
@@ -195,6 +219,102 @@ export function isWalkable(s: SceneDefinition, p: Vec2, margin = 0) {
   return [...s.rooms.filter((r) => r.enterable), ...s.corridors].some((r) =>
     inside(p, r, margin),
   );
+}
+/** A shared deterministic ground plan keeps NPC feet and decorative rewards apart.
+ * It only changes presentation/game occupancy; room IDs, access and evidence remain intact.
+ */
+export function scenePlacements(s: SceneDefinition): {
+  agents: SceneAgent[];
+  chests: (Vec2 & { room_id: string })[];
+  torches: Vec2[];
+} {
+  const occupied: Rect[] = [
+    ...s.obstacles,
+    ...(s.props ?? []),
+    { ...s.spawn, width: 1.2, depth: 1.2 },
+    ...(s.reward ? [{ ...s.reward, width: 1.2, depth: 1.2 }] : []),
+    ...s.enemies.map((e) => ({ ...e, width: 1, depth: 1 })),
+  ];
+  const free = (p: Vec2, radius: number) =>
+    !occupied.some(
+      (r) =>
+        Math.abs(p.x - r.x) < r.width / 2 + radius &&
+        Math.abs(p.z - r.z) < r.depth / 2 + radius,
+    );
+  const reserve = (p: Vec2, radius: number) =>
+    occupied.push({
+      ...p,
+      width: radius * 2,
+      depth: radius * 2,
+    });
+  const candidates = (room: Rect) => {
+    const result: Vec2[] = [];
+    for (
+      let z = room.z - room.depth / 2 + 1;
+      z <= room.z + room.depth / 2 - 1;
+      z++
+    )
+      for (
+        let x = room.x - room.width / 2 + 1;
+        x <= room.x + room.width / 2 - 1;
+        x++
+      )
+        result.push({ x, z });
+    return result;
+  };
+  const placed = new Map<string, SceneAgent>();
+  for (const a of [...s.agents].sort((a, b) =>
+    a.agent_id.localeCompare(b.agent_id),
+  )) {
+    const room = s.rooms.find((r) => r.room_id === a.room_id);
+    if (!room) continue; // validateScene remains the authority for invalid contracts.
+    const radius = Math.max(0.6, agentClearanceRadius(a));
+    const suitable = (p: Vec2) =>
+      inside(p, room, Math.max(0.7, radius + 0.1)) &&
+      free(p, radius) &&
+      ![...s.obstacles, ...(s.props ?? [])].some((r) =>
+        inside(p, {
+          ...r,
+          width: r.width + radius * 2,
+          depth: r.depth + radius * 2,
+        }),
+      );
+    const p = suitable(a)
+      ? a
+      : (candidates(room)
+          .sort(
+            (p, q) =>
+              Math.hypot(p.x - a.x, p.z - a.z) -
+              Math.hypot(q.x - a.x, q.z - a.z),
+          )
+          .find(suitable) ?? a);
+    reserve(p, radius);
+    placed.set(a.agent_id, { ...a, x: p.x, z: p.z });
+  }
+  const chests: (Vec2 & { room_id: string })[] = [];
+  for (const room of s.rooms.filter((r) => !r.enterable)) {
+    const p = candidates(room).find((p) => free(p, 0.7));
+    if (p) {
+      reserve(p, 0.7);
+      chests.push({ ...p, room_id: room.room_id });
+    }
+  }
+  const torches: Vec2[] = [];
+  for (const room of s.rooms) {
+    for (const p of [
+      { x: room.x - room.width / 2 + 0.8, z: room.z - room.depth / 2 + 0.8 },
+      { x: room.x + room.width / 2 - 0.8, z: room.z + room.depth / 2 - 0.8 },
+    ]) {
+      if (!free(p, 0.4)) continue;
+      reserve(p, 0.4);
+      torches.push(p);
+    }
+  }
+  return {
+    agents: s.agents.map((a) => placed.get(a.agent_id) ?? a),
+    chests,
+    torches,
+  };
 }
 /** Geometry is derived from the union of room/corridor tiles, never from combat. */
 export function geometry(s: SceneDefinition): { tiles: Tile[]; walls: Wall[] } {

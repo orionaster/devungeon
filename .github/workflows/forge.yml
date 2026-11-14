@@ -1,7 +1,7 @@
 name: FORGE unified product
 on:
   pull_request:
-    paths: ['apps/**', 'packages/**', 'scripts/forge*', 'package*.json', 'tsconfig.json', 'vitest.config.ts', '.github/workflows/forge.yml']
+    paths: ['apps/**', 'packages/**', 'scripts/forge*', 'scripts/first-play*', 'package*.json', 'tsconfig.json', 'vitest.config.ts', '.github/workflows/forge.yml']
 permissions:
   contents: read
 concurrency:
@@ -37,6 +37,8 @@ jobs:
             output/playwright/forge/*-results.json
             output/playwright/forge/navigation-progress.json
             output/playwright/forge-host-lifecycle/**/report.json
+            output/playwright/first-play-render/report.json
+            output/playwright/first-play-render/*.png
           retention-days: 7
           if-no-files-found: ignore
       - uses: actions/upload-artifact@v7.0.2
@@ -46,5 +48,7 @@ jobs:
           path: |
             output/playwright/forge/*-trace.zip
             output/playwright/forge/*-failure.png
+            output/playwright/first-play-render/trace.zip
+            output/playwright/first-play-render/*.webm
           retention-days: 7
           if-no-files-found: ignore

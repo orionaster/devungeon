@@ -4,11 +4,18 @@ import {
   Dungeon,
   AgentProjection,
   inside,
+  scenePlacements,
   type GameSnapshot,
   type SceneDefinition,
   type Room,
 } from "../../../packages/dungeon-engine/src";
-import { DungeonScene } from "./Scene";
+import { DungeonScene, type SampleActivityReader } from "./Scene";
+import { InteractionCues } from "./InteractionCues";
+import {
+  interactionTargets,
+  nearestInteraction,
+  type InteractionTarget,
+} from "./interaction-targets";
 import {
   LocaleSwitcher,
   useI18n,
@@ -58,6 +65,19 @@ export interface GameHostProps {
     status: string;
   };
   sourcePanel?: ReactNode;
+  projectTools?: ReactNode;
+  projectName?: string;
+  firstPlay?: boolean;
+  assetsReady?: boolean;
+  assetsError?: boolean;
+  objective?: { text: string; objectId: string };
+  sceneVisuals?: React.ComponentProps<typeof DungeonScene>["visuals"];
+  sampleActivities?: SampleActivityReader;
+  renderObjectInspector?: (context: {
+    objectId: string;
+    onClose: () => void;
+    restoreFocus: () => void;
+  }) => ReactNode;
 }
 export default function App({
   scene: gameScene = DEMO_SCENE,
@@ -68,12 +88,22 @@ export default function App({
   renderAgentInspector,
   roomDisplay,
   sourcePanel,
+  projectTools,
+  projectName,
+  firstPlay = false,
+  assetsReady = true,
+  assetsError = false,
+  objective,
+  sceneVisuals,
+  sampleActivities,
+  renderObjectInspector,
 }: GameHostProps) {
   const scene = useMemo(
     () => (agentRoster ? { ...gameScene, agents: agentRoster } : gameScene),
     [gameScene, agentRoster],
   );
   const { t, locale, formatDateTime } = useI18n();
+  const targets = useMemo(() => interactionTargets(scene), [scene]);
   // An explicitly imported source context must retain its original labels,
   // even if its caller happens to reuse the reference pack's world ID.
   const builtin =
@@ -163,7 +193,7 @@ export default function App({
     [paused, setPaused] = useState(false),
     [started, setStarted] = useState(false),
     [help, setHelp] = useState(false),
-    [journal, setJournal] = useState(true),
+    [journal, setJournal] = useState(false),
     [selected, setSelected] = useState<string | null>(null),
     [atlas, setAtlas] = useState(false),
     [cameraMode, setCameraMode] = useState("overview"),
@@ -171,7 +201,17 @@ export default function App({
     [resultDismissed, setResultDismissed] = useState(false);
   const surface = useRef<HTMLDivElement>(null!);
   const drag = useRef<{ x: number; y: number } | null>(null);
+  const nearestId = useRef<string | undefined>(undefined);
   const focus = () => surface.current?.focus({ preventScroll: true });
+  const closeOverlay = () => {
+    setSelected(null);
+    setHelp(false);
+    setAtlas(false);
+    clearInput();
+    // Restore after any dialog focus cleanup. Closing an overlay never toggles
+    // the user's explicit pause state or the Agent controller's lifetime.
+    requestAnimationFrame(() => requestAnimationFrame(focus));
+  };
   const pause = (value: boolean) => {
     runtime.paused = value;
     setPaused(value);
@@ -186,6 +226,35 @@ export default function App({
     cameraControl.heading = (((cameraControl.heading + d) % 4) + 4) % 4;
     focus();
   };
+  const selectTarget = (id: string) => {
+    setSelected(id);
+    if (scene.rooms.some((room) => room.room_id === id && !room.enterable)) {
+      cameraControl.previewRoomId = id;
+      cameraControl.mode = "preview";
+      setCameraMode("preview");
+    }
+    clearInput();
+  };
+  const selectTargetRef = useRef(selectTarget);
+  selectTargetRef.current = selectTarget;
+  const renderedVisuals = useMemo(
+    () =>
+      firstPlay && sceneVisuals
+        ? {
+            ...sceneVisuals,
+            environment: (
+              <>
+                {sceneVisuals.environment}
+                <InteractionCues
+                  scene={scene}
+                  onSelect={(id) => selectTargetRef.current(id)}
+                />
+              </>
+            ),
+          }
+        : sceneVisuals,
+    [firstPlay, sceneVisuals, scene],
+  );
   const start = () => {
     runtime.game?.start();
     setStarted(true);
@@ -198,6 +267,9 @@ export default function App({
     runtime.game?.restart();
     start();
     setSelected(null);
+    setHelp(false);
+    setAtlas(false);
+    setJournal(false);
   };
   useEffect(() => {
     let alive = true;
@@ -210,6 +282,9 @@ export default function App({
     setStarted(false);
     setGame(undefined);
     setSelected(null);
+    setHelp(false);
+    setAtlas(false);
+    setJournal(false);
     setResultDismissed(false);
     cameraControl.mode = "overview";
     cameraControl.previewRoomId = undefined;
@@ -276,12 +351,25 @@ export default function App({
       )
         e.preventDefault();
       if (e.code === "Escape") {
-        if (selected) {
-          setSelected(null);
+        e.preventDefault();
+        if (e.repeat) return;
+        if (selected || help || atlas) closeOverlay();
+        else if (
+          document.querySelector(
+            ".forge-toolbar[open], .camera-disclosure[open]",
+          )
+        ) {
+          document
+            .querySelectorAll(".forge-toolbar[open], .camera-disclosure[open]")
+            .forEach((el) => el.removeAttribute("open"));
           focus();
-        } else if (help) setHelp(false);
-        else if (atlas) setAtlas(false);
-        else if (started) pause(!runtime.paused);
+        } else if (journal) {
+          setJournal(false);
+          focus();
+        } else if (started) {
+          pause(!paused);
+          focus();
+        }
         return;
       }
       if (help || selected || atlas) return;
@@ -302,11 +390,26 @@ export default function App({
         if (e.code === "KeyE") {
           const p = runtime.game?.snapshot().player;
           if (p) {
-            const near = scene.agents.find(
-              (a) => Math.hypot(p.x - a.x, p.z - a.z) < 3,
-            );
+            if (firstPlay) {
+              const target = nearestInteraction(targets, p, nearestId.current);
+              if (target) selectTarget(target.id);
+              return;
+            }
+            const near = [
+              ...scenePlacements(scene).agents.map((a) => ({
+                ...a,
+                id: a.agent_id,
+              })),
+              ...(scene.props ?? []),
+            ]
+              .filter((a) => Math.hypot(p.x - a.x, p.z - a.z) < 3)
+              .sort(
+                (a, b) =>
+                  Math.hypot(p.x - a.x, p.z - a.z) -
+                  Math.hypot(p.x - b.x, p.z - b.z),
+              )[0];
             if (near) {
-              setSelected(near.agent_id);
+              setSelected(near.id);
               clearInput();
             }
           }
@@ -323,6 +426,9 @@ export default function App({
       clearInput();
       if (started && runtime.game?.snapshot().phase === "playing") pause(true);
     };
+    const visibility = () => {
+      if (document.visibilityState === "hidden") blur();
+    };
     const release = () => {
       pointer.down = false;
       drag.current = null;
@@ -330,16 +436,29 @@ export default function App({
     window.addEventListener("keydown", down);
     window.addEventListener("keyup", up);
     window.addEventListener("blur", blur);
+    document.addEventListener("visibilitychange", visibility);
     window.addEventListener("pointerup", release);
     window.addEventListener("pointercancel", release);
     return () => {
       window.removeEventListener("keydown", down);
       window.removeEventListener("keyup", up);
       window.removeEventListener("blur", blur);
+      document.removeEventListener("visibilitychange", visibility);
       window.removeEventListener("pointerup", release);
       window.removeEventListener("pointercancel", release);
     };
-  }, [started, selected, help, atlas, game?.phase, scene]);
+  }, [
+    started,
+    selected,
+    help,
+    atlas,
+    journal,
+    paused,
+    game?.phase,
+    scene,
+    targets,
+    firstPlay,
+  ]);
   useEffect(() => {
     runtime.paused = paused || !!selected || help || atlas;
     clearInput();
@@ -358,8 +477,28 @@ export default function App({
   const chosenEvent = chosenAgent
     ? eventProjection.actor(chosenAgent.agent_id).event
     : undefined;
+  const nearest =
+    firstPlay && game
+      ? nearestInteraction(targets, game.player, nearestId.current)
+      : undefined;
+  nearestId.current = nearest?.id;
+  const targetLabel = (target: InteractionTarget) => {
+    if (target.kind === "agent") {
+      const agent = scene.agents.find((a) => a.agent_id === target.id);
+      return `${agent?.name ?? target.id}${agent?.is_demo ? " · DEMO" : ""}`;
+    }
+    if (target.kind === "room") {
+      const room = scene.rooms.find((r) => r.room_id === target.id);
+      return room ? roomName(room) : target.id;
+    }
+    return target.id === "source-desk"
+      ? t("sample.object.source-desk")
+      : target.id === "test-bench"
+        ? t("sample.object.test-bench")
+        : t("sample.object.evidence-cabinet");
+  };
   return (
-    <main className="app">
+    <main className={`app${firstPlay ? " first-play" : ""}`}>
       <div
         ref={surface}
         className="game-surface"
@@ -406,6 +545,12 @@ export default function App({
       >
         <DungeonScene
           scene={scene}
+          visuals={renderedVisuals}
+          activities={sampleActivities}
+          onSelectObject={(id) => {
+            setSelected(id);
+            clearInput();
+          }}
           agentEvents={eventProjection}
           agentActivityEnabled={agentActivityEnabled}
           fallback={
@@ -414,6 +559,26 @@ export default function App({
         />
       </div>
       <div className="vignette" />
+      {firstPlay &&
+        started &&
+        nearest &&
+        !selected &&
+        !help &&
+        !atlas &&
+        !paused &&
+        !results && (
+          <button
+            className="interaction-prompt"
+            data-testid="interaction-prompt"
+            aria-label={t("play.interactWith", {
+              target: targetLabel(nearest),
+            })}
+            onClick={() => selectTarget(nearest.id)}
+          >
+            <kbd>E</kbd>
+            {t("play.interact")}
+          </button>
+        )}
       <header className="topbar">
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">
@@ -425,24 +590,27 @@ export default function App({
           </div>
         </div>
         <div className="chapter">
-          <span>{t("game.location.archive")}</span>
-          <small>{t("game.chapter.description")}</small>
+          <span>{t("play.project")}</span>
+          <small>{projectName ?? t("game.location.archive")}</small>
         </div>
+        {projectTools}
         <div className="top-actions">
           <LocaleSwitcher
             onPointerLocaleChange={() => {
               if (started && !selected && !help && !atlas && !results) focus();
             }}
           />
-          <span className="demo-badge">
-            {!scene.project_context || scene.project_context.source.is_demo
-              ? t("game.label.demoWorld")
-              : t("game.label.readOnly")}
-          </span>
+          {!firstPlay && (
+            <span className="demo-badge">
+              {!scene.project_context || scene.project_context.source.is_demo
+                ? t("game.label.demoWorld")
+                : t("game.label.readOnly")}
+            </span>
+          )}
           <button
             onClick={() => {
+              closeOverlay();
               setAtlas(!atlas);
-              clearInput();
             }}
             aria-label={t("game.aria.openAtlas")}
           >
@@ -451,8 +619,8 @@ export default function App({
           </button>
           <button
             onClick={() => {
+              closeOverlay();
               setHelp(!help);
-              clearInput();
             }}
             aria-label={t("game.aria.controlsSettings")}
           >
@@ -480,11 +648,19 @@ export default function App({
               <i style={{ width: `${game.player.hp}%` }} />
             </div>
             <small>
-              {t("game.hud.weapon")}
-              <span>·</span>{" "}
-              {game.rewardClaimed
-                ? t("game.hud.sigilAcquired")
-                : t("game.hud.courage")}
+              {firstPlay ? (
+                <>
+                  {t("game.hud.attackKey")} · {t("game.hud.strike")}
+                </>
+              ) : (
+                <>
+                  {t("game.hud.weapon")}
+                  <span>·</span>{" "}
+                  {game.rewardClaimed
+                    ? t("game.hud.sigilAcquired")
+                    : t("game.hud.courage")}
+                </>
+              )}
             </small>
           </div>
         </section>
@@ -496,40 +672,76 @@ export default function App({
             <b>
               {remaining === 0
                 ? t("game.encounter.quiet")
-                : t("game.encounter.remaining", { count: remaining })}
+                : t(firstPlay ? "play.practice" : "game.encounter.remaining", {
+                    count: remaining,
+                  })}
             </b>
             <small>
               {phase === "lost"
                 ? t("game.encounter.defeatHint")
                 : remaining === 0
                   ? t("game.encounter.victoryHint")
-                  : t("game.encounter.instructions")}
+                  : t(
+                      firstPlay
+                        ? "play.practiceHint"
+                        : "game.encounter.instructions",
+                    )}
             </small>
           </div>
         </section>
       )}
+      {firstPlay && started && (
+        <section className="feature-objective">
+          <small>{t("play.objective.label")}</small>
+          <b>{objective?.text ?? t("play.objective")}</b>
+          <button
+            onClick={() => {
+              setSelected(objective?.objectId ?? "source-desk");
+              clearInput();
+            }}
+          >
+            {t("play.feature")} <span aria-hidden="true">↗</span>
+          </button>
+        </section>
+      )}
       {!started && (
         <section className="entry-panel">
-          <div className="entry-kicker">{t("game.entry.kicker")}</div>
-          <h1>
-            {t("game.entry.titleLead")}
-            <br />
-            <em>{t("game.entry.titleEmphasis")}</em>
-            {locale === "en-US" ? " " : ""}
-            {t("game.entry.titleEnd")}
-          </h1>
+          <div className="entry-kicker">
+            {t(firstPlay ? "play.entry.kicker" : "game.entry.kicker")}
+          </div>
+          {firstPlay ? (
+            <h1>{t("play.entry.title")}</h1>
+          ) : (
+            <h1>
+              {t("game.entry.titleLead")}
+              <br />
+              <em>{t("game.entry.titleEmphasis")}</em>
+              {locale === "en-US" ? " " : ""}
+              {t("game.entry.titleEnd")}
+            </h1>
+          )}
           <p>
-            {t("game.entry.descriptionLead")}
-            <br />
-            {t("game.entry.descriptionAction")}
-            <br />
-            {t("game.entry.descriptionCompanions")}
+            {firstPlay ? (
+              t("play.entry.description")
+            ) : (
+              <>
+                {t("game.entry.descriptionLead")}
+                <br />
+                {t("game.entry.descriptionAction")}
+                <br />
+                {t("game.entry.descriptionCompanions")}
+              </>
+            )}
           </p>
-          <button className="primary start" disabled={!game} onClick={start}>
-            {error
+          <button
+            className="primary start"
+            disabled={!game || !assetsReady}
+            onClick={start}
+          >
+            {error || assetsError
               ? t("game.entry.unavailable")
-              : game
-                ? t("game.entry.start")
+              : game && assetsReady
+                ? t(firstPlay ? "play.enter" : "game.entry.start")
                 : t("game.entry.loading")}
             <span>→</span>
           </button>
@@ -542,9 +754,19 @@ export default function App({
             {t("game.entry.dodge")}
           </div>
           <small className="entry-note">
-            {t("game.entry.encounterNote")}
-            <br />
-            {t(demoWorld ? "game.entry.simulationNote" : "forge.publicNotice")}
+            {firstPlay ? (
+              t("play.entry.note")
+            ) : (
+              <>
+                {t("game.entry.encounterNote")}
+                <br />
+                {t(
+                  demoWorld
+                    ? "game.entry.simulationNote"
+                    : "forge.publicNotice",
+                )}
+              </>
+            )}
           </small>
           {error && (
             <div role="alert">
@@ -561,26 +783,27 @@ export default function App({
         <>
           <button
             className="journal-toggle"
-            onClick={() => setJournal(!journal)}
+            onClick={() => {
+              setJournal(!journal);
+              focus();
+            }}
             aria-expanded={journal}
           >
             <Glyph>≡</Glyph>
-            {journal ? t("game.journal.close") : t("game.journal.open")}
+            {journal
+              ? t("play.closeDetails")
+              : t(firstPlay ? "play.sampleDetails" : "play.projectDetails")}
           </button>
           {journal && (
             <aside className="journal">
               <div className="section-label">
-                <span>{t("game.journal.companions")}</span>
+                <span>{t("play.team")}</span>
                 <span className="tiny-badge">
                   {t(demoWorld ? "game.label.demo" : "game.label.readOnly")}
                 </span>
               </div>
-              <h2>{t(demoWorld ? "game.journal.title" : "game.host.observations")}</h2>
-              <p className="muted">
-                {builtin
-                  ? t("game.journal.description")
-                  : t("game.label.sourceEvidence")}
-              </p>
+              <h2>{projectName ?? t("play.projectDetails")}</h2>
+              <p className="muted">{t("play.teamHelp")}</p>
               <div className="agent-list">
                 {eventScopeMismatch && (
                   <p role="status">{t("game.host.eventScopeMismatch")}</p>
@@ -590,6 +813,9 @@ export default function App({
                 )}
                 {scene.agents.map((a) => {
                   const e = eventProjection.actor(a.agent_id);
+                  const activity = firstPlay
+                    ? sampleActivities?.activity(a.agent_id)
+                    : undefined;
                   return (
                     <button
                       key={a.agent_id}
@@ -616,9 +842,11 @@ export default function App({
                         )}
                         <small>
                           {roleName(a.source_role ?? a.role)} ·{" "}
-                          {e.stale
-                            ? t("game.agentStatus.stale")
-                            : eventStatus(e.event?.event_type ?? "idle")}
+                          {activity
+                            ? `${t(`sample.action.${activity.kind}`)} · DEMO`
+                            : e.stale
+                              ? t("game.agentStatus.stale")
+                              : eventStatus(e.event?.event_type ?? "idle")}
                         </small>
                       </span>
                       <span className="row-arrow">↗</span>
@@ -726,58 +954,68 @@ export default function App({
             </div>
             <div>
               <kbd>E</kbd>
-              <span>{t("game.hud.inspect")}</span>
+              <span>{t(firstPlay ? "play.interact" : "game.hud.inspect")}</span>
             </div>
           </nav>
         </>
       )}
-      <nav className="camera-tools" aria-label={t("game.aria.cameraControls")}>
-        <button onClick={() => rotate(-1)} title={t("game.camera.rotateLeft")}>
-          ↶
-        </button>
-        <button
-          onClick={() => {
-            cameraControl.zoom = Math.max(20, cameraControl.zoom - 6);
-            focus();
-          }}
-          aria-label={t("game.camera.zoomOut")}
+      <details className="camera-disclosure">
+        <summary>{t("play.camera")}</summary>
+        <nav
+          className="camera-tools"
+          aria-label={t("game.aria.cameraControls")}
         >
-          −
-        </button>
-        <button
-          onClick={() =>
-            setMode(cameraMode === "overview" ? "follow" : "overview")
-          }
-          className={cameraMode === "overview" ? "active" : ""}
-        >
-          {cameraMode === "overview"
-            ? t("game.camera.follow")
-            : t("game.camera.overview")}
-        </button>
-        <button
-          onClick={() => {
-            cameraControl.zoom = Math.min(72, cameraControl.zoom + 6);
-            focus();
-          }}
-          aria-label={t("game.camera.zoomIn")}
-        >
-          +
-        </button>
-        <button onClick={() => rotate(1)} title={t("game.camera.rotateRight")}>
-          ↷
-        </button>
-        <span>{cameraControl.heading * 90}°</span>
-      </nav>
-      <div className="performance" title={runtime.metrics.renderer}>
-        {Math.round(runtime.metrics.fps)} FPS <span>·</span>
-        {t("game.hud.localAdventure")}
-      </div>
-      {paused && started && !results && (
+          <button
+            onClick={() => rotate(-1)}
+            title={t("game.camera.rotateLeft")}
+          >
+            ↶
+          </button>
+          <button
+            onClick={() => {
+              cameraControl.zoom = Math.max(20, cameraControl.zoom - 6);
+              focus();
+            }}
+            aria-label={t("game.camera.zoomOut")}
+          >
+            −
+          </button>
+          <button
+            onClick={() =>
+              setMode(cameraMode === "overview" ? "follow" : "overview")
+            }
+            className={cameraMode === "overview" ? "active" : ""}
+          >
+            {cameraMode === "overview"
+              ? t("game.camera.follow")
+              : t("game.camera.overview")}
+          </button>
+          <button
+            onClick={() => {
+              cameraControl.zoom = Math.min(72, cameraControl.zoom + 6);
+              focus();
+            }}
+            aria-label={t("game.camera.zoomIn")}
+          >
+            +
+          </button>
+          <button
+            onClick={() => rotate(1)}
+            title={t("game.camera.rotateRight")}
+          >
+            ↷
+          </button>
+          <span>{cameraControl.heading * 90}°</span>
+        </nav>
+        <div className="performance" title={runtime.metrics.renderer}>
+          {Math.round(runtime.metrics.fps)} FPS <span>·</span>
+          {t("game.hud.localAdventure")}
+        </div>
+      </details>
+      {paused && started && !results && !selected && !help && !atlas && (
         <div className="pause-banner">
           <b>{t("game.pause.title")}</b>
-          <span>
-            {t(builtin ? "game.pause.description" : "game.host.pause")}
-          </span>
+          <span>{t("play.pauseReason")}</span>
           <button
             onClick={() => {
               pause(false);
@@ -860,15 +1098,17 @@ export default function App({
         </div>
       )}
       {selected &&
-        (chosenAgent && renderAgentInspector ? (
+        (!chosenAgent && !chosenRoom && renderObjectInspector ? (
+          renderObjectInspector({
+            objectId: selected,
+            onClose: closeOverlay,
+            restoreFocus: focus,
+          })
+        ) : chosenAgent && renderAgentInspector ? (
           renderAgentInspector({
             agentId: chosenAgent.agent_id,
             restoreFocus: focus,
-            onClose: () => {
-              clearInput();
-              setSelected(null);
-              requestAnimationFrame(focus);
-            },
+            onClose: closeOverlay,
           })
         ) : (
           <div className="inspect-wrap">
@@ -894,10 +1134,7 @@ export default function App({
             >
               <button
                 className="close"
-                onClick={() => {
-                  setSelected(null);
-                  focus();
-                }}
+                onClick={closeOverlay}
                 aria-label={t("game.aria.closeInspector")}
               >
                 ×
@@ -1030,10 +1267,7 @@ export default function App({
           >
             <button
               className="close"
-              onClick={() => {
-                setAtlas(false);
-                focus();
-              }}
+              onClick={closeOverlay}
               aria-label={t("game.aria.closeAtlas")}
             >
               ×
@@ -1076,6 +1310,29 @@ export default function App({
                 </button>
               ))}
             </div>
+            {firstPlay && (
+              <section
+                className="atlas-interactions"
+                aria-label={t("play.interactions")}
+              >
+                <h3>{t("play.interactions")}</h3>
+                <p>{t("play.interactionHelp")}</p>
+                <div>
+                  {targets.map((target) => (
+                    <button
+                      key={target.id}
+                      data-testid={`interaction-target-${target.id}`}
+                      onClick={() => {
+                        setAtlas(false);
+                        selectTarget(target.id);
+                      }}
+                    >
+                      {targetLabel(target)}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
             <p>{t("game.atlas.description")}</p>
             <p className="truth-note">
               {builtin
@@ -1095,10 +1352,7 @@ export default function App({
           >
             <button
               className="close"
-              onClick={() => {
-                setHelp(false);
-                focus();
-              }}
+              onClick={closeOverlay}
               aria-label={t("game.aria.closeControls")}
             >
               ×

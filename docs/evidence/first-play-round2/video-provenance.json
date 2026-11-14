@@ -1,0 +1,49 @@
+{
+  "videos": [
+    {
+      "file": "before-motion.webm",
+      "original_path": "output/playwright/firstplay-round2/before-motion/motion.webm",
+      "original_bytes": 42497692,
+      "original_sha256": "5c0a94e8be991490226e33dd4a3a7ef4cb2216b09d63b70ea90a5cd13063a611",
+      "committed_bytes": 21813272,
+      "committed_sha256": "18dbc290e5ad87221cd5e98757db1267aab72c10abdbbfe52f57cc5b9c4ec9e9",
+      "processing": "Untrimmed native video transcoded to VP9 CRF40, cpu-used8, six threads; resolution/timing preserved. Original raw file retained locally."
+    },
+    {
+      "file": "after-motion.webm",
+      "original_path": "output/playwright/firstplay-round2/final-motion/motion.webm",
+      "original_bytes": 42488778,
+      "original_sha256": "a4fa97eec107373e11f12d93e1de4592f310d3fe720b39982eb1aa65ac9664b9",
+      "committed_bytes": 19835133,
+      "committed_sha256": "41381889b5f0d4dd6a0ad1eaf7a1ea0979aeafe4c1f6b0e5887f42ef87efcbcf",
+      "processing": "Untrimmed native video transcoded to VP9 CRF40, cpu-used8, six threads; resolution/timing preserved. Original raw file retained locally."
+    },
+    {
+      "file": "low-budget-motion.webm",
+      "original_path": "output/playwright/firstplay-round2/low-budget-motion/motion.webm",
+      "original_bytes": 22229222,
+      "original_sha256": "eaa7cbf07c5d2218b267c0953800966cb83cc6dd23ea9c41d364b19f6bbe307e",
+      "committed_bytes": 22229222,
+      "committed_sha256": "eaa7cbf07c5d2218b267c0953800966cb83cc6dd23ea9c41d364b19f6bbe307e",
+      "processing": "Unmodified native Playwright recording."
+    },
+    {
+      "file": "moss-before.webm",
+      "original_path": "output/playwright/firstplay-round2/moss-before/moss-4heading-actions.webm",
+      "original_bytes": 7562251,
+      "original_sha256": "a7748069c3faaf00159ceb7714ca21a302e68ce4bdca096f065e8c82e974eb06",
+      "committed_bytes": 7562251,
+      "committed_sha256": "a7748069c3faaf00159ceb7714ca21a302e68ce4bdca096f065e8c82e974eb06",
+      "processing": "Unmodified native Playwright recording."
+    },
+    {
+      "file": "moss-after-rear.webm",
+      "original_path": "output/playwright/firstplay-round2/moss-after-behind-corrected/moss-4heading-actions-contact.webm",
+      "original_bytes": 10007955,
+      "original_sha256": "7fdd73a9c350ec36bddf2bc7266bbf6875794c0cd0a2069ede0c1de3e594e513",
+      "committed_bytes": 10007955,
+      "committed_sha256": "7fdd73a9c350ec36bddf2bc7266bbf6875794c0cd0a2069ede0c1de3e594e513",
+      "processing": "Unmodified native Playwright recording."
+    }
+  ]
+}

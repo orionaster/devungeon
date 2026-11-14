@@ -1,0 +1,139 @@
+{
+  "pack": "Ninja Adventure Asset Pack",
+  "authors": [
+    "Pixel-Boy",
+    "AAA"
+  ],
+  "source_page": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+  "download": {
+    "archive": "Ninja Adventure - Asset Pack.zip",
+    "upload_id": "16981275",
+    "release_date": "2026-03-29",
+    "download_date": "2026-11-14",
+    "sha256": "95a06f4fdcfd1882f061a45ff313b7c905dbe2de1e8512b281d7937df62a7b15"
+  },
+  "license": "CC0-1.0",
+  "modifications": "Selected PNG files renamed only. Runtime uses nearest-neighbor crops, frame selection and drawImage composition. No source-pixel recoloring, fonts, music or other packs.",
+  "files": [
+    {
+      "path": "hero-idle.png",
+      "upstream_path": "Actor/CharacterAnimated/NinjaGreen/Separate/Idle.png",
+      "bytes": 1560,
+      "sha256": "58375e9f65d40403aded184328456204c8008df05bafab7a74b846e68b6a657b"
+    },
+    {
+      "path": "hero-walk.png",
+      "upstream_path": "Actor/CharacterAnimated/NinjaGreen/Separate/Walk.png",
+      "bytes": 1847,
+      "sha256": "d03702e8b5bd7e98c177c27f80acb00e09f339596269209df1b6594a39bb6c36"
+    },
+    {
+      "path": "hero-attack.png",
+      "upstream_path": "Actor/CharacterAnimated/NinjaGreen/Separate/Attack.png",
+      "bytes": 2411,
+      "sha256": "f4a1d75b7bfdb8a1f038d65d1a0b07ee7d38e1f97c9edf827341c0a94b6898b9"
+    },
+    {
+      "path": "hero-roll.png",
+      "upstream_path": "Actor/CharacterAnimated/NinjaGreen/Separate/Roll.png",
+      "bytes": 1749,
+      "sha256": "35ac017bb7b8838a1fae633add9cc2b4b6c8076b4f69a22763fb00f6be207d0a"
+    },
+    {
+      "path": "hero-hit.png",
+      "upstream_path": "Actor/CharacterAnimated/NinjaGreen/Separate/Hit.png",
+      "bytes": 1406,
+      "sha256": "e296cec728ad53665a10a805e2e52324a542ee57675e6a9e68881e64af333f65"
+    },
+    {
+      "path": "hero-dead.png",
+      "upstream_path": "Actor/CharacterAnimated/NinjaGreen/Separate/Dead.png",
+      "bytes": 566,
+      "sha256": "3d14bec49e3c1ef58df5681a6f495d56c121fe9be7824607c543aa2e76040b4e"
+    },
+    {
+      "path": "guide-idle.png",
+      "upstream_path": "Actor/Character/Inspector/SeparateAnim/Idle.png",
+      "bytes": 3353,
+      "sha256": "67f216f335bf57b679345ee4b26d2cf30928c0635e99ce19ffe3b956705bf012"
+    },
+    {
+      "path": "guide-attack.png",
+      "upstream_path": "Actor/Character/Inspector/SeparateAnim/Attack.png",
+      "bytes": 3489,
+      "sha256": "5dbba756472ea8378743aca6ef5c83aeaf00dd3cbf28201dfe278ea08378d6b7"
+    },
+    {
+      "path": "guide-walk.png",
+      "upstream_path": "Actor/Character/Inspector/SeparateAnim/Walk.png",
+      "bytes": 4236,
+      "sha256": "b44c8c5b5fedf181172bccbabf274c3a699316d9782d70057a49efe4c09d313b"
+    },
+    {
+      "path": "slime.png",
+      "upstream_path": "Actor/Monster/Slime/Slime.png",
+      "bytes": 3593,
+      "sha256": "ed2f8eba4550cf54476ab3eb9d36eaf4feb2462e5dc01c7223567c40a261b971"
+    },
+    {
+      "path": "slime-red.png",
+      "upstream_path": "Actor/Monster/Slime2/Slime2.png",
+      "bytes": 3617,
+      "sha256": "56ebbd12194b042e0813de880074de3d8600173e9c4f9a63a11615c8b632a69e"
+    },
+    {
+      "path": "interior-floor.png",
+      "upstream_path": "Backgrounds/Tilesets/Interior/TilesetInteriorFloor.png",
+      "bytes": 13012,
+      "sha256": "e281598e2d90f43b31fd557b94c2d2abb00d307758a053b7df301575bf535e3a"
+    },
+    {
+      "path": "interior-wall.png",
+      "upstream_path": "Backgrounds/Tilesets/Interior/TilesetWallSimple.png",
+      "bytes": 5149,
+      "sha256": "ad5eb80ab4d5e65dbcda9dc012f9981323b277717349cdab012fc65ce06e43b2"
+    },
+    {
+      "path": "furniture.png",
+      "upstream_path": "Backgrounds/Tilesets/TilesetElement.png",
+      "bytes": 13884,
+      "sha256": "63d64985697d77033372256b9304ea85db7061f0fc19aafd0714492a9b57140e"
+    },
+    {
+      "path": "dungeon.png",
+      "upstream_path": "Backgrounds/Tilesets/TilesetDungeon.png",
+      "bytes": 1437,
+      "sha256": "03a4a4aa9002520a50cc3ab9c6ea63905826b2eca5d428c952e635dc3b24a798"
+    },
+    {
+      "path": "chest.png",
+      "upstream_path": "Items/Treasure/BigTreasureChest.png",
+      "bytes": 3010,
+      "sha256": "f6e27751ab4b40c4669d17f4ef1fb8bd61a8d2068d85bafe67beb0a0064c3d71"
+    },
+    {
+      "path": "book.png",
+      "upstream_path": "Items/Object/Book.png",
+      "bytes": 307,
+      "sha256": "28b0cf86c3281cd7e3efa216c0dd7e342960ee4f1cc1e88e58333686ee68dc35"
+    },
+    {
+      "path": "scroll.png",
+      "upstream_path": "Items/Scroll/Scroll.png",
+      "bytes": 316,
+      "sha256": "526a293d206cf37ea2ce56890918b849a4f4070c5538fb216372de7ddc07e8d6"
+    },
+    {
+      "path": "gem.png",
+      "upstream_path": "Items/Resource/GemGreen.png",
+      "bytes": 302,
+      "sha256": "5a2d46af4249646dedf54b6c864029af17c283a0fabdc2efa2348a90fd20f3b8"
+    },
+    {
+      "path": "flame.png",
+      "upstream_path": "FX/Particle/Fire.png",
+      "bytes": 446,
+      "sha256": "e447e560e6981d23efc27a7d7ac85dcfef23c91d1ca13450baa728c56974b29d"
+    }
+  ]
+}

@@ -1,0 +1,1591 @@
+{
+  "started_at": "2026-11-14T09:32:37.764Z",
+  "url": "http://127.0.0.1:5196",
+  "node": "v24.13.1",
+  "platform": "win32",
+  "browser": "157.0.8103.78",
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "dpr": 1,
+  "checks": [
+    {
+      "name": "fresh visit defaults to Chinese and the art sample",
+      "pass": true
+    },
+    {
+      "name": "one clear entry and no expanded work dashboard",
+      "pass": true
+    },
+    {
+      "name": "sample title fits a readable product scale",
+      "pass": true
+    },
+    {
+      "name": "one click starts actual gameplay",
+      "pass": true
+    },
+    {
+      "name": "three named objects and explicit DEMO guide remain in the world",
+      "pass": true
+    },
+    {
+      "name": "real movement, attack and dodge inputs change the game",
+      "pass": true,
+      "detail": {
+        "time": 2.1833333333333305,
+        "phase": "playing",
+        "player": {
+          "x": -5.396666646003723,
+          "z": 3.5,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -2.1833333333333305,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -2.1833333333333305,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": -1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0.49999999999999895,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 1,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 0
+        }
+      }
+    },
+    {
+      "name": "one Escape closes help and immediately restores movement",
+      "pass": true
+    },
+    {
+      "name": "one Escape closes the map without leaving a hidden pause",
+      "pass": true
+    },
+    {
+      "name": "closing settings preserves an explicit visible pause",
+      "pass": true
+    },
+    {
+      "name": "feature purpose, implemented and missing work are one click away",
+      "pass": true
+    },
+    {
+      "name": "real public bridge observation reaches the feature desk",
+      "pass": true,
+      "detail": {
+        "mode": "DISCONNECTED",
+        "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
+        "items": 17
+      }
+    },
+    {
+      "name": "closed issues and local reads never grant project acceptance",
+      "pass": true
+    },
+    {
+      "name": "locale preserves the paused game and original observation",
+      "pass": true
+    },
+    {
+      "name": "one Escape leaves the feature panel and restores focus",
+      "pass": true
+    },
+    {
+      "name": "guide scan is an explicit bounded DEMO task",
+      "pass": true
+    },
+    {
+      "name": "bench work has a different typed task and station",
+      "pass": true
+    },
+    {
+      "name": "task finishes while the game remains paused",
+      "pass": true
+    },
+    {
+      "name": "replay stays historical and never becomes running work",
+      "pass": true
+    },
+    {
+      "name": "sample combat defeats real enemies",
+      "pass": true
+    },
+    {
+      "name": "restarting combat preserves feature evidence and Agent history",
+      "pass": true
+    },
+    {
+      "name": "sample has no external command or permission bypass",
+      "pass": true
+    },
+    {
+      "name": "no uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Trusted automated browser inputs, not independent owner approval or physical mobile/Safari testing.",
+    "Browser target activation did not emit a real blur/hidden transition; automatic tab-loss pause was not exercised. No synthetic visibility event was injected."
+  ],
+  "tabFocus": {
+    "before": {
+      "visibility": "visible",
+      "focused": true
+    },
+    "away": {
+      "visibility": "visible",
+      "focused": true
+    }
+  },
+  "metrics": {
+    "fps": 60.00240009597999,
+    "p95Ms": 17.099999994039536,
+    "worstMs": 143.40000000596046,
+    "frames": 1215,
+    "drawCalls": 207,
+    "triangles": 2400,
+    "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+  },
+  "final": {
+    "game": {
+      "time": 0.11666666666666665,
+      "phase": "playing",
+      "player": {
+        "x": -1,
+        "z": 3.5,
+        "hp": 100,
+        "maxHp": 100,
+        "facing": {
+          "x": 1,
+          "z": 0
+        },
+        "moving": false,
+        "hurt": 0
+      },
+      "enemies": [
+        {
+          "id": "game-only:training-a",
+          "kind": "slime",
+          "x": 4.7,
+          "z": 4,
+          "activationRadius": 3.2,
+          "hp": 55,
+          "maxHp": 55,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -0.11666666666666665,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "game-only:training-b",
+          "kind": "slime",
+          "x": 5,
+          "z": 0,
+          "activationRadius": 3.2,
+          "hp": 55,
+          "maxHp": 55,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -0.11666666666666665,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        }
+      ],
+      "projectiles": [],
+      "effects": [],
+      "attackTime": 0,
+      "attackDirection": {
+        "x": 1,
+        "z": 0
+      },
+      "dodgeTime": 0,
+      "dodgeCooldown": 0,
+      "kills": 0,
+      "total": 2,
+      "rewardClaimed": false,
+      "stats": {
+        "attacks": 0,
+        "dodges": 0,
+        "hitsTaken": 0,
+        "damageDealt": 0,
+        "blockedMoves": 0
+      }
+    },
+    "scene": {
+      "worldId": "pixel-dungeon:first-play-observatory:v1",
+      "project_context": {
+        "project_id": "github:orionaster/devungeon",
+        "project_revision": "d945eacd8b81e745228296e6d8178c4014e79d5d",
+        "observed_at": "2026-11-14T08:00:00.000Z",
+        "source": {
+          "kind": "manual",
+          "is_demo": false,
+          "reference": "https://github.com/orionaster/devungeon/pull/15"
+        }
+      },
+      "rooms": [
+        {
+          "room_id": "game-only:observatory",
+          "name": "Starlit Observatory",
+          "x": 0,
+          "z": 0,
+          "width": 14,
+          "depth": 12,
+          "enterable": true,
+          "status": "gameOnly",
+          "reason": "Playable art sample for public project observation. Feature acceptance remains unknown."
+        },
+        {
+          "room_id": "game-only:future-alcove",
+          "name": "Uncharted annex",
+          "x": 10,
+          "z": 0,
+          "width": 4,
+          "depth": 6,
+          "enterable": false,
+          "status": "planned · DEMO",
+          "reason": "Game-only sealed annex. Combat cannot provide software acceptance or unlock project work."
+        }
+      ],
+      "corridors": [
+        {
+          "x": 7.5,
+          "z": 0,
+          "width": 1,
+          "depth": 2
+        }
+      ],
+      "doors": [
+        {
+          "room_id": "game-only:future-alcove",
+          "x": 8,
+          "z": 0,
+          "axis": "z",
+          "width": 2,
+          "locked": true
+        }
+      ],
+      "spawn": {
+        "x": -1,
+        "z": 3.5
+      },
+      "reward": {
+        "x": -4,
+        "z": 2
+      },
+      "obstacles": [],
+      "props": [
+        {
+          "id": "source-desk",
+          "kind": "desk",
+          "x": -3,
+          "z": -2,
+          "width": 2,
+          "depth": 1
+        },
+        {
+          "id": "evidence-cabinet",
+          "kind": "cabinet",
+          "x": 3,
+          "z": -3,
+          "width": 1.5,
+          "depth": 1
+        },
+        {
+          "id": "test-bench",
+          "kind": "bench",
+          "x": 3,
+          "z": 2,
+          "width": 2,
+          "depth": 1
+        }
+      ],
+      "enemies": [
+        {
+          "id": "game-only:training-a",
+          "kind": "slime",
+          "x": 4.7,
+          "z": 4,
+          "activationRadius": 3.2
+        },
+        {
+          "id": "game-only:training-b",
+          "kind": "slime",
+          "x": 5,
+          "z": 0,
+          "activationRadius": 3.2
+        }
+      ],
+      "agents": [
+        {
+          "agent_id": "demo:sample-scout",
+          "name": "Moss",
+          "role": "scout",
+          "source_role": "worker",
+          "x": -1,
+          "z": -2,
+          "room_id": "game-only:observatory",
+          "is_demo": true,
+          "clearanceRadius": 0.9
+        }
+      ]
+    },
+    "feature": {
+      "actions": [
+        {
+          "event_id": "local:public-read:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:1",
+          "project_id": "github:orionaster/devungeon",
+          "room_id": "game-only:observatory",
+          "agent_id": "local-public-observer",
+          "actor_kind": "local-program",
+          "task_id": "local:public-read:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:1",
+          "station_id": "source-desk",
+          "kind": "read",
+          "phase": "completed",
+          "mode": "DISCONNECTED",
+          "is_demo": false,
+          "source_ref": "/scout-read/v1/snapshot",
+          "started_at": "2026-11-14T09:32:41.593Z",
+          "observed_at": "2026-11-14T09:32:41.593Z",
+          "expires_at": "2026-11-14T09:32:53.593Z",
+          "confidence": "explicit",
+          "ended_at": "2026-11-14T09:32:41.607Z"
+        },
+        {
+          "event_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:2",
+          "project_id": "github:orionaster/devungeon",
+          "room_id": "game-only:observatory",
+          "agent_id": "demo:sample-scout",
+          "actor_kind": "demo-agent",
+          "task_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:2:scan",
+          "station_id": "source-desk",
+          "kind": "scan",
+          "phase": "completed",
+          "mode": "DEMO",
+          "is_demo": true,
+          "source_ref": "demo://devungeon/observatory/scan/2",
+          "started_at": "2026-11-14T09:32:42.195Z",
+          "observed_at": "2026-11-14T09:32:42.195Z",
+          "expires_at": "2026-11-14T09:32:48.695Z",
+          "confidence": "explicit",
+          "ended_at": "2026-11-14T09:32:48.201Z"
+        },
+        {
+          "event_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:3",
+          "project_id": "github:orionaster/devungeon",
+          "room_id": "game-only:observatory",
+          "agent_id": "demo:sample-scout",
+          "actor_kind": "demo-agent",
+          "task_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:3:test",
+          "station_id": "test-bench",
+          "kind": "test",
+          "phase": "completed",
+          "mode": "DEMO",
+          "is_demo": true,
+          "source_ref": "demo://devungeon/observatory/test/3",
+          "started_at": "2026-11-14T09:32:48.330Z",
+          "observed_at": "2026-11-14T09:32:48.330Z",
+          "expires_at": "2026-11-14T09:32:54.830Z",
+          "confidence": "explicit",
+          "ended_at": "2026-11-14T09:32:54.334Z"
+        },
+        {
+          "event_id": "replay:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:4",
+          "project_id": "github:orionaster/devungeon",
+          "room_id": "game-only:observatory",
+          "agent_id": "demo:sample-scout",
+          "actor_kind": "demo-agent",
+          "task_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:3:test",
+          "station_id": "test-bench",
+          "kind": "test",
+          "phase": "completed",
+          "mode": "REPLAY",
+          "is_demo": true,
+          "source_ref": "demo://devungeon/observatory/test/3",
+          "started_at": "2026-11-14T09:32:48.330Z",
+          "observed_at": "2026-11-14T09:32:54.561Z",
+          "ended_at": "2026-11-14T09:32:54.334Z",
+          "expires_at": "2026-11-14T09:32:54.830Z",
+          "confidence": "explicit"
+        }
+      ],
+      "receipt": {
+        "request_id": "local:public-read:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:1",
+        "endpoint": "/scout-read/v1/snapshot",
+        "received_at": "2026-11-14T09:32:41.607Z",
+        "mode": "DISCONNECTED",
+        "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
+        "observed_at": "2026-11-14T09:09:11.021Z",
+        "item_count": 17,
+        "source_ref": "https://github.com/orionaster/devungeon",
+        "snapshot": {
+          "schema_version": "1.0",
+          "project": {
+            "id": "github:orionaster/devungeon",
+            "name": "orionaster/devungeon",
+            "source": {
+              "kind": "github",
+              "is_demo": false,
+              "reference": "https://github.com/orionaster/devungeon"
+            }
+          },
+          "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
+          "observed_at": "2026-11-14T09:09:11.021Z",
+          "zones": [
+            {
+              "id": "github:1456354784:work",
+              "name": "Observed repository work items"
+            }
+          ],
+          "rooms": [
+            {
+              "id": "github:issue:6367956382",
+              "zone_id": "github:1456354784:work",
+              "name": "S1 · Playable 2.5D pixel-art dungeon vertical slice (DEMO Agent)",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #1: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/1",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6367956879",
+              "zone_id": "github:1456354784:work",
+              "name": "S2 · Project graph → deterministic procedural world with incremental updates",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #2: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/2",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6367957313",
+              "zone_id": "github:1456354784:work",
+              "name": "S3 · Real project and Agent observation adapters with provenance",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #3: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/3",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6367957869",
+              "zone_id": "github:1456354784:work",
+              "name": "S4 · In-world supervisor/worker workspace: inspect, chat, scoped commands, approvals",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #4: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/4",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6368183029",
+              "zone_id": "github:1456354784:work",
+              "name": "docs: pixel-art dungeon direction + vetted tooling and Agent Skills",
+              "status": "review",
+              "depends_on": [],
+              "summary": "Pull request #5: closed. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/5",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6368793058",
+              "zone_id": "github:1456354784:work",
+              "name": "SCOUT: reconcile main and add safe same-origin game host integration",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #6: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/6",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6368947926",
+              "zone_id": "github:1456354784:work",
+              "name": "feat(s4): shared bilingual workspace integrated with HERO host ports",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #7: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/7",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6369013629",
+              "zone_id": "github:1456354784:work",
+              "name": "S2: integrate deterministic dungeon worlds with HERO and shared i18n",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #8: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/8",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6369015781",
+              "zone_id": "github:1456354784:work",
+              "name": "feat(hero): playable pixel world, Chinese-first UI and integration host ports",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #9: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/9",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374027510",
+              "zone_id": "github:1456354784:work",
+              "name": "UX · Chinese / English language switching across dungeon + Agent workspace",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #10: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/10",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374070334",
+              "zone_id": "github:1456354784:work",
+              "name": "docs: make Chinese-first bilingual UI a V1 requirement",
+              "status": "review",
+              "depends_on": [],
+              "summary": "Pull request #11: closed. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/11",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374094819",
+              "zone_id": "github:1456354784:work",
+              "name": "Integration wave 2 · Unified playable world + real observability + bilingual UI",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #12: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/12",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374421453",
+              "zone_id": "github:1456354784:work",
+              "name": "product: make Devungeon a project-adaptive multi-world game platform",
+              "status": "review",
+              "depends_on": [],
+              "summary": "Pull request #13: closed. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/13",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6374431515",
+              "zone_id": "github:1456354784:work",
+              "name": "World Experience v2 · project-aware genre selection and a second genuinely playable world",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #14: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/14",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6378344103",
+              "zone_id": "github:1456354784:work",
+              "name": "FORGE: integrate wave-2 gameplay, project worlds, observations and bilingual workspace",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Pull request #15: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "pull_request",
+                  "ref": "https://github.com/orionaster/devungeon/pull/15",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6387432322",
+              "zone_id": "github:1456354784:work",
+              "name": "Playtest blockers · camera, clipping, Esc/focus, onboarding and art direction",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #16: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/16",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            },
+            {
+              "id": "github:issue:6387439514",
+              "zone_id": "github:1456354784:work",
+              "name": "Core product gap · feature-specific playable world contents and task-bound Agent actions",
+              "status": "ready",
+              "depends_on": [],
+              "summary": "Issue #17: open. Product acceptance unknown.",
+              "acceptance_criteria": [],
+              "evidence": [
+                {
+                  "type": "issue",
+                  "ref": "https://github.com/orionaster/devungeon/issues/17",
+                  "verification": "unverified",
+                  "description": "Source existence/state observed; product acceptance is not verified."
+                }
+              ]
+            }
+          ],
+          "agents": []
+        }
+      },
+      "error": null,
+      "reading": false,
+      "now": 1794648778619
+    },
+    "forge": {
+      "selected": "sample",
+      "project": {
+        "schema_version": "1.0",
+        "project": {
+          "id": "github:orionaster/devungeon",
+          "name": "orionaster/devungeon",
+          "source": {
+            "kind": "github",
+            "is_demo": false,
+            "reference": "https://github.com/orionaster/devungeon"
+          }
+        },
+        "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
+        "observed_at": "2026-11-14T09:09:11.021Z",
+        "zones": [
+          {
+            "id": "github:1456354784:work",
+            "name": "Observed repository work items"
+          }
+        ],
+        "rooms": [
+          {
+            "id": "github:issue:6367956382",
+            "zone_id": "github:1456354784:work",
+            "name": "S1 · Playable 2.5D pixel-art dungeon vertical slice (DEMO Agent)",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #1: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/1",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6367956879",
+            "zone_id": "github:1456354784:work",
+            "name": "S2 · Project graph → deterministic procedural world with incremental updates",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #2: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/2",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6367957313",
+            "zone_id": "github:1456354784:work",
+            "name": "S3 · Real project and Agent observation adapters with provenance",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #3: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/3",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6367957869",
+            "zone_id": "github:1456354784:work",
+            "name": "S4 · In-world supervisor/worker workspace: inspect, chat, scoped commands, approvals",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #4: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/4",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6368183029",
+            "zone_id": "github:1456354784:work",
+            "name": "docs: pixel-art dungeon direction + vetted tooling and Agent Skills",
+            "status": "review",
+            "depends_on": [],
+            "summary": "Pull request #5: closed. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/5",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6368793058",
+            "zone_id": "github:1456354784:work",
+            "name": "SCOUT: reconcile main and add safe same-origin game host integration",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Pull request #6: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/6",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6368947926",
+            "zone_id": "github:1456354784:work",
+            "name": "feat(s4): shared bilingual workspace integrated with HERO host ports",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Pull request #7: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/7",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6369013629",
+            "zone_id": "github:1456354784:work",
+            "name": "S2: integrate deterministic dungeon worlds with HERO and shared i18n",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Pull request #8: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/8",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6369015781",
+            "zone_id": "github:1456354784:work",
+            "name": "feat(hero): playable pixel world, Chinese-first UI and integration host ports",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Pull request #9: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/9",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6374027510",
+            "zone_id": "github:1456354784:work",
+            "name": "UX · Chinese / English language switching across dungeon + Agent workspace",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #10: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/10",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6374070334",
+            "zone_id": "github:1456354784:work",
+            "name": "docs: make Chinese-first bilingual UI a V1 requirement",
+            "status": "review",
+            "depends_on": [],
+            "summary": "Pull request #11: closed. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/11",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6374094819",
+            "zone_id": "github:1456354784:work",
+            "name": "Integration wave 2 · Unified playable world + real observability + bilingual UI",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #12: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/12",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6374421453",
+            "zone_id": "github:1456354784:work",
+            "name": "product: make Devungeon a project-adaptive multi-world game platform",
+            "status": "review",
+            "depends_on": [],
+            "summary": "Pull request #13: closed. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/13",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6374431515",
+            "zone_id": "github:1456354784:work",
+            "name": "World Experience v2 · project-aware genre selection and a second genuinely playable world",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #14: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/14",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6378344103",
+            "zone_id": "github:1456354784:work",
+            "name": "FORGE: integrate wave-2 gameplay, project worlds, observations and bilingual workspace",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Pull request #15: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "pull_request",
+                "ref": "https://github.com/orionaster/devungeon/pull/15",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6387432322",
+            "zone_id": "github:1456354784:work",
+            "name": "Playtest blockers · camera, clipping, Esc/focus, onboarding and art direction",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #16: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/16",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          },
+          {
+            "id": "github:issue:6387439514",
+            "zone_id": "github:1456354784:work",
+            "name": "Core product gap · feature-specific playable world contents and task-bound Agent actions",
+            "status": "ready",
+            "depends_on": [],
+            "summary": "Issue #17: open. Product acceptance unknown.",
+            "acceptance_criteria": [],
+            "evidence": [
+              {
+                "type": "issue",
+                "ref": "https://github.com/orionaster/devungeon/issues/17",
+                "verification": "unverified",
+                "description": "Source existence/state observed; product acceptance is not verified."
+              }
+            ]
+          }
+        ],
+        "agents": []
+      },
+      "world": null,
+      "renderedRevision": "demo-1",
+      "pendingMap": false,
+      "diagnostics": [],
+      "source": {
+        "status": {
+          "schema_version": "1.0",
+          "project_id": "github:orionaster/devungeon",
+          "epoch": "9c7be828-69f7-486c-a311-511226543d83",
+          "cursor": 17,
+          "connections": {
+            "project": {
+              "mode": "DISCONNECTED",
+              "reason": "rate_limited",
+              "last_success_at": "2026-11-14T09:09:11.023Z",
+              "checked_at": "2026-11-14T09:12:10.189Z",
+              "retry_at": "2026-11-14T09:42:08.001Z"
+            },
+            "agent": {
+              "mode": "DISCONNECTED",
+              "reason": "not_connected",
+              "last_success_at": null,
+              "checked_at": "2026-11-14T08:51:09.589Z",
+              "retry_at": null
+            }
+          },
+          "capabilities": {
+            "commands": [],
+            "agent": [],
+            "project": [
+              "read_project"
+            ]
+          },
+          "warnings": [
+            "Issue/PR projection only; capabilities, dependencies, CI and acceptance are unknown. REST pagination is not an atomic repository revision. GitHub observations never imply an Agent is working."
+          ]
+        },
+        "records": [
+          {
+            "schema_version": "1.0",
+            "cursor": 1,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6367956382:e3d23d686837503cd190883caea912fdadb7f3c7e6ef49a50f3a50e9a7c0bea4",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6367956382",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T09:58:07Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/1",
+              "is_demo": false,
+              "message": "Issue #1 observed open; acceptance unknown.",
+              "idempotency_key": "github:6367956382:e3d23d686837503cd190883caea912fdadb7f3c7e6ef49a50f3a50e9a7c0bea4",
+              "task_id": "github:issue:6367956382",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 2,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6367956879:3d7f80e12a745ff00eda99276869a0a2d210f91220c1bf16293f46c93386f4fd",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6367956879",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T09:00:54Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/2",
+              "is_demo": false,
+              "message": "Issue #2 observed open; acceptance unknown.",
+              "idempotency_key": "github:6367956879:3d7f80e12a745ff00eda99276869a0a2d210f91220c1bf16293f46c93386f4fd",
+              "task_id": "github:issue:6367956879",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 3,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6367957313:e7a8b31c888a57e7765822f09d88755bf09d293eda35f19fbd15a51d762f0799",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6367957313",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T08:44:38Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/3",
+              "is_demo": false,
+              "message": "Issue #3 observed open; acceptance unknown.",
+              "idempotency_key": "github:6367957313:e7a8b31c888a57e7765822f09d88755bf09d293eda35f19fbd15a51d762f0799",
+              "task_id": "github:issue:6367957313",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 4,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6367957869:79b3d601c17382cf7602d5e4c23b77a2bb226970292c0a2b684e80e20f7e947f",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6367957869",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T08:44:40Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/4",
+              "is_demo": false,
+              "message": "Issue #4 observed open; acceptance unknown.",
+              "idempotency_key": "github:6367957869:79b3d601c17382cf7602d5e4c23b77a2bb226970292c0a2b684e80e20f7e947f",
+              "task_id": "github:issue:6367957869",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 5,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6368183029:8527b2ea67b9d03e9600e5251139161f6020c8fa1ab1061e762b02ae73372634",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6368183029",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T09:01:14Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/5",
+              "is_demo": false,
+              "message": "Pull request #5 observed closed; acceptance unknown.",
+              "idempotency_key": "github:6368183029:8527b2ea67b9d03e9600e5251139161f6020c8fa1ab1061e762b02ae73372634",
+              "task_id": "github:issue:6368183029",
+              "status": "review",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 6,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6368793058:d6894cf70de3ac621ac30941826d63111e5f2a28e0c0c2e07abd14daf262a2af",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6368793058",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T16:31:38Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/6",
+              "is_demo": false,
+              "message": "Pull request #6 observed open; acceptance unknown.",
+              "idempotency_key": "github:6368793058:d6894cf70de3ac621ac30941826d63111e5f2a28e0c0c2e07abd14daf262a2af",
+              "task_id": "github:issue:6368793058",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 7,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6368947926:9b7e06fd2a60a57f2226227d7f26602bed9ce6f036cb2b9758c20fec57e269b9",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6368947926",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T17:53:17Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/7",
+              "is_demo": false,
+              "message": "Pull request #7 observed open; acceptance unknown.",
+              "idempotency_key": "github:6368947926:9b7e06fd2a60a57f2226227d7f26602bed9ce6f036cb2b9758c20fec57e269b9",
+              "task_id": "github:issue:6368947926",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 8,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6369013629:879327f4c765120f8684e158a68226c1b3a71e77d344564ff09d6c5cd98fc4ce",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6369013629",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T17:29:15Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/8",
+              "is_demo": false,
+              "message": "Pull request #8 observed open; acceptance unknown.",
+              "idempotency_key": "github:6369013629:879327f4c765120f8684e158a68226c1b3a71e77d344564ff09d6c5cd98fc4ce",
+              "task_id": "github:issue:6369013629",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 9,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6369015781:c7154f6095e6519db1e1a664c6fa051c990f1e0d7e1d9dc87bc3b86b02f2574b",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6369015781",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T16:58:16Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/9",
+              "is_demo": false,
+              "message": "Pull request #9 observed open; acceptance unknown.",
+              "idempotency_key": "github:6369015781:c7154f6095e6519db1e1a664c6fa051c990f1e0d7e1d9dc87bc3b86b02f2574b",
+              "task_id": "github:issue:6369015781",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 10,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6374027510:98a0c00ea4c575d772d7129c1e54d2515000aebe0cfb7ea2293345bffa361c17",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6374027510",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T15:05:42Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/10",
+              "is_demo": false,
+              "message": "Issue #10 observed open; acceptance unknown.",
+              "idempotency_key": "github:6374027510:98a0c00ea4c575d772d7129c1e54d2515000aebe0cfb7ea2293345bffa361c17",
+              "task_id": "github:issue:6374027510",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 11,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6374070334:45852c0524a0f00ad2e6fffc68285057aaec94cbc88cc9763064f7266bdc8336",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6374070334",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T15:08:07Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/11",
+              "is_demo": false,
+              "message": "Pull request #11 observed closed; acceptance unknown.",
+              "idempotency_key": "github:6374070334:45852c0524a0f00ad2e6fffc68285057aaec94cbc88cc9763064f7266bdc8336",
+              "task_id": "github:issue:6374070334",
+              "status": "review",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 12,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6374094819:98c74815398615d3e8a3109bb611d27f451bcb09530995ab5f8a8769a54732fa",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6374094819",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T16:59:47Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/12",
+              "is_demo": false,
+              "message": "Issue #12 observed open; acceptance unknown.",
+              "idempotency_key": "github:6374094819:98c74815398615d3e8a3109bb611d27f451bcb09530995ab5f8a8769a54732fa",
+              "task_id": "github:issue:6374094819",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 13,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6374421453:78313128d842e1b6eff623d88318f0c6703f61041acade16e8cebc5c5ee5668e",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6374421453",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T15:27:47Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/13",
+              "is_demo": false,
+              "message": "Pull request #13 observed closed; acceptance unknown.",
+              "idempotency_key": "github:6374421453:78313128d842e1b6eff623d88318f0c6703f61041acade16e8cebc5c5ee5668e",
+              "task_id": "github:issue:6374421453",
+              "status": "review",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 14,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6374431515:ec57d24bd823dca87fc1327028f682c18093310c1d8222d52fc21b8a6c3b33da",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6374431515",
+              "event_type": "progress",
+              "occurred_at": "2026-11-13T15:27:10Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/14",
+              "is_demo": false,
+              "message": "Issue #14 observed open; acceptance unknown.",
+              "idempotency_key": "github:6374431515:ec57d24bd823dca87fc1327028f682c18093310c1d8222d52fc21b8a6c3b33da",
+              "task_id": "github:issue:6374431515",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 15,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6378344103:a92c2ae87df13092b8c18f0ba5c277daface615b219788189178ae8b09acafeb",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6378344103",
+              "event_type": "progress",
+              "occurred_at": "2026-11-14T08:17:11Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/pull/15",
+              "is_demo": false,
+              "message": "Pull request #15 observed open; acceptance unknown.",
+              "idempotency_key": "github:6378344103:a92c2ae87df13092b8c18f0ba5c277daface615b219788189178ae8b09acafeb",
+              "task_id": "github:issue:6378344103",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 16,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6387432322:802a8572d730ae9fd57570ae7d618e711acc456a89ef060d8ab86309f8c83ae8",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6387432322",
+              "event_type": "progress",
+              "occurred_at": "2026-11-14T08:20:21Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/16",
+              "is_demo": false,
+              "message": "Issue #16 observed open; acceptance unknown.",
+              "idempotency_key": "github:6387432322:802a8572d730ae9fd57570ae7d618e711acc456a89ef060d8ab86309f8c83ae8",
+              "task_id": "github:issue:6387432322",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          },
+          {
+            "schema_version": "1.0",
+            "cursor": 17,
+            "mode": "REPLAY",
+            "event": {
+              "schema_version": "1.0",
+              "event_id": "github:6387439514:a97bed2650d02827d562b4bcd5ca538371e62c7e422b834b17a04233dce14a61",
+              "project_id": "github:orionaster/devungeon",
+              "agent_id": "source:github",
+              "room_id": "github:issue:6387439514",
+              "event_type": "progress",
+              "occurred_at": "2026-11-14T08:16:51Z",
+              "observed_at": "2026-11-14T08:51:11.612Z",
+              "source": "github-public-rest-v1",
+              "source_ref": "https://github.com/orionaster/devungeon/issues/17",
+              "is_demo": false,
+              "message": "Issue #17 observed open; acceptance unknown.",
+              "idempotency_key": "github:6387439514:a97bed2650d02827d562b4bcd5ca538371e62c7e422b834b17a04233dce14a61",
+              "task_id": "github:issue:6387439514",
+              "status": "unknown",
+              "source_kind": "project"
+            }
+          }
+        ],
+        "transportConnected": true,
+        "error": ""
+      },
+      "workspace": {
+        "project_id": "github:orionaster/devungeon",
+        "revision": 6,
+        "mode": "replay",
+        "connected": false,
+        "stale": false,
+        "observed_at": "1970-01-01T00:00:00.000Z",
+        "source": "SCOUT · observe_events · DISCONNECTED · not_connected",
+        "agents": [],
+        "tasks": [],
+        "events": [],
+        "receipts": [],
+        "approvals": [],
+        "event_modes": {}
+      }
+    },
+    "metrics": {
+      "fps": 60.00240009597999,
+      "p95Ms": 17.099999994039536,
+      "worstMs": 143.40000000596046,
+      "frames": 1215,
+      "drawCalls": 207,
+      "triangles": 2400,
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    }
+  },
+  "pass": true,
+  "video": "first-play.webm",
+  "finished_at": "2026-11-14T09:33:01.823Z"
+}
