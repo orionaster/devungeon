@@ -108,9 +108,10 @@ async function movementPulse(page, key, ms, previousTime, allowDeath = false) {
   // Queue release by a Node timer, independently of keydown's browser round
   // trip. Waiting for its acknowledgement before starting the timer holds the
   // key too long on software-rendered CI and repeatedly overshoots the target.
-  const down = page.keyboard.down(key);
+  const codes = Array.isArray(key) ? key : [key];
+  const down = Promise.all(codes.map(code => page.keyboard.down(code)));
   try { await new Promise((done) => setTimeout(done, ms)); }
-  finally { await Promise.all([down, page.keyboard.up(key)]); }
+  finally { await Promise.all([down, ...codes.map(code => page.keyboard.up(code))]); }
   // Observe an actual neutral simulation frame after keyup. We neither mutate
   // GameState nor infer the position from a wall-clock delay or input duration.
   return poll(() => game(page), (state) => state &&
@@ -171,6 +172,7 @@ async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath
   const heading = initial.camera.heading * Math.PI / 2; // This route issues no Q/R input.
   let state = initial.game;
   let gain = .7;
+  let overshoots = 0;
   progress({ phase: "navigation-start", target, player: state.player, allow_death: allowDeath }, true);
   console.log(`NAV ${report.current_case} target ${target.x},${target.z}`);
   for (let i = 0; i < 170; i++) {
@@ -189,7 +191,17 @@ async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath
     const sx = dx * Math.cos(heading) - dz * Math.sin(heading);
     const sz = dx * Math.sin(heading) + dz * Math.cos(heading);
     const horizontal = Math.abs(sx) >= Math.abs(sz), amount = horizontal ? sx : sz;
-    const key = horizontal ? amount > 0 ? "KeyD" : "KeyA" : amount > 0 ? "KeyS" : "KeyW";
+    // At very low software-renderer FPS, even a 4ms press can span several
+    // simulation ticks. Repeating the same axis then oscillates around the
+    // waypoint forever. A real normalized diagonal changes that step length;
+    // use it only near a waypoint after repeated observed overshoots. Keep the
+    // exact arrival tolerance, swept physics and all gameplay assertions.
+    const diagonalCorrection = overshoots >= 2 && gain <= .08 && Math.hypot(dx, dz) < .5 &&
+      Math.abs(sx) > .04 && Math.abs(sz) > .04;
+    const key = diagonalCorrection
+      ? [sx > 0 ? "KeyD" : "KeyA", sz > 0 ? "KeyS" : "KeyW"]
+      : horizontal ? amount > 0 ? "KeyD" : "KeyA" : amount > 0 ? "KeyS" : "KeyW";
+    if (diagonalCorrection) overshoots = 0;
     const duration = Math.min(Math.abs(amount) > 2 ? 500 : 160,
       Math.max(4, Math.abs(amount) * 1000 / 4.3 * gain));
     const next = await movementPulse(page, key, duration, state.time, allowDeath);
@@ -202,9 +214,15 @@ async function walkTo(page, target, { tolerance = .16, onObservation, allowDeath
     // Reduce the next pulse after an observed overshoot; increase it only if
     // a short press fell entirely between simulation frames. Arrival tolerance,
     // keyboard routing and all swept-collision assertions are unchanged.
-    if (afterDistance > beforeDistance + .03 || moved > Math.abs(amount) * 1.4) gain = Math.max(.04, gain * .55);
+    if (afterDistance > beforeDistance + .03 || moved > Math.abs(amount) * 1.4) {
+      gain = Math.max(.04, gain * .55);
+      overshoots++;
+    }
     else if (moved < .02) gain = Math.min(1, gain * 1.35);
-    else if (afterDistance < beforeDistance) gain = Math.min(.85, gain * 1.08);
+    else if (afterDistance < beforeDistance) {
+      gain = Math.min(.85, gain * 1.08);
+      overshoots = 0;
+    }
     state = next;
   }
   throw new Error(`Keyboard route stuck at ${JSON.stringify((await game(page)).player)} approaching ${JSON.stringify(target)}`);
