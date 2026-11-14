@@ -10,7 +10,9 @@ test("the actual product App connects its NPC to the workbench and resumes the s
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto(process.env.PRIMARY_APP_URL ?? "/?source=game");
+  await page.locator(".forge-toolbar > summary").click();
   await page.getByTestId("forge-project-select").selectOption("workbench");
+  await page.locator(".forge-toolbar > summary").click();
   await page.waitForFunction(() => {
     const scene = window.__DEVUNGEON__?.scene();
     const work = window.__DEVUNGEON_WORKSPACE__?.snapshot();

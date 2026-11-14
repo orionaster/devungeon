@@ -36,7 +36,9 @@ import { FeaturePanel } from "./FeaturePanel";
 import { firstPlayVisuals, loadFirstPlayArt } from "./first-play-art";
 import { FirstPlayEnvironment } from "./FirstPlayEnvironment";
 import "../../../packages/workspace-ui/src/workspace.css";
+import "./style.css";
 import "./forge.css";
+import "./first-play.css";
 
 type Selection = DemoProjectSelection | "public" | "sample";
 function demoBinding(project: ProjectWorld) {

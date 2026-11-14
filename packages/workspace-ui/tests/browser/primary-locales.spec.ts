@@ -5,7 +5,9 @@ test("primary entry shares Chinese/English menus, HUD, room and workspace withou
   page,
 }) => {
   await page.goto(process.env.PRIMARY_APP_URL ?? "/?source=game");
+  await page.locator(".forge-toolbar > summary").click();
   await page.getByTestId("forge-project-select").selectOption("workbench");
+  await page.locator(".forge-toolbar > summary").click();
   await page.waitForFunction(() => {
     const scene = window.__DEVUNGEON__?.scene();
     const work = window.__DEVUNGEON_WORKSPACE__?.snapshot();
