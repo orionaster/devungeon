@@ -1,5 +1,15 @@
 Devungeon third-party notices. Generated from the exact npm lockfile and installed packages.
-Source game code/art: Apache-2.0. See repository LICENSE and NOTICE.
+Source game code and original S1 art: Apache-2.0. See repository LICENSE and NOTICE.
+
+First Play sample artwork: Ninja Adventure Asset Pack, Pixel-Boy and AAA.
+License: CC0 1.0 Universal. Source: https://pixel-boy.itch.io/ninja-adventure-asset-pack
+Official archive dated 2026-03-29; selected 20 unmodified PNGs (65,690 bytes).
+Runtime crops, native animation-frame selection and authored room composition by Devungeon contributors.
+Full license: assets/first-play/LICENSE-CC0.txt
+Upstream credit: assets/first-play/UPSTREAM-README.md
+Exact source paths and hashes: assets/first-play/manifest.json
+Source/research record: docs/ASSET_PROVENANCE.md and docs/FIRST_PLAY_ART_DIRECTION.md
+No external sound, music or fonts are included.
 
 @types/node@24.13.2 — MIT
     MIT License

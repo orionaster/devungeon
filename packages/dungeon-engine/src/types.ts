@@ -29,6 +29,13 @@ export interface SceneAgent extends Vec2 {
   visual_only?: boolean;
   source_role?: "supervisor" | "worker" | "reviewer" | "unknown";
   is_demo?: boolean;
+  /** Optional pack-specific personal space; legacy/generated partners retain 0.42. */
+  clearanceRadius?: number;
+}
+/** Game-only furniture footprint. IDs link to inspectable world objects, never commands. */
+export interface SceneProp extends Rect {
+  id: string;
+  kind?: string;
 }
 export interface SceneDefinition {
   worldId: string;
@@ -48,7 +55,12 @@ export interface SceneDefinition {
     };
   };
   obstacles: readonly (Rect & { kind: "pillar" | "crate" })[];
-  enemies: readonly (Vec2 & { id: string; kind: "slime" | "sentinel" })[];
+  props?: readonly SceneProp[];
+  enemies: readonly (Vec2 & {
+    id: string;
+    kind: "slime" | "sentinel";
+    activationRadius?: number;
+  })[];
   agents: readonly SceneAgent[];
 }
 export interface Input {

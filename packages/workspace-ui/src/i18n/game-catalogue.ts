@@ -310,7 +310,7 @@ export const gameZhCN = {
   "game.chapter.name": "余烬档案馆",
   "game.chapter.description": "第一章 · 原创像素地牢",
   "game.label.demo": "演示",
-  "game.label.demoWorld": "演示世界",
+  "game.label.demoWorld": "DEMO · 演示世界",
   "game.label.scripted": "预设演示",
   "game.label.demoReadOnly": "演示 · 只读",
   "game.label.demoGameSpace": "演示 · 游戏区域",

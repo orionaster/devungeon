@@ -1,0 +1,387 @@
+/* First-play composition: readable UI around an uninterrupted playable room. */
+.topbar {
+  gap: 22px;
+}
+.brand {
+  min-width: 185px;
+}
+.chapter {
+  padding-left: 20px;
+}
+.chapter small {
+  color: #e0dbca;
+  font-size: 14px;
+}
+.forge-toolbar {
+  position: relative;
+  inset: auto;
+  transform: none;
+  display: block;
+  padding: 0;
+  background: none;
+  border: 0;
+  max-width: none;
+  pointer-events: auto;
+}
+.forge-toolbar > summary {
+  border: 1px solid #455159;
+  border-radius: 3px;
+  padding: 9px 12px;
+  color: #d9dfd6;
+  background: #17252df2;
+  font-size: 12px;
+}
+.forge-project-options {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 320px;
+  background: #172129;
+  border: 1px solid #5c6966;
+  padding: 18px;
+  box-shadow: 0 8px 24px #0005;
+  line-height: 1.6;
+}
+.forge-project-options label {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.forge-project-options select {
+  width: 100%;
+  max-width: none;
+  font-size: 13px;
+}
+.forge-project-options > p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.top-actions {
+  gap: 8px;
+}
+.top-actions .demo-badge {
+  margin-right: 0;
+}
+.top-actions button {
+  min-height: 34px;
+}
+.journal {
+  width: 340px;
+  padding: 22px;
+}
+.journal-toggle {
+  font-size: 12px;
+  min-height: 36px;
+}
+.journal h2 {
+  font-family: inherit;
+  font-size: 21px;
+  font-weight: 600;
+}
+.journal .section-label,
+.journal .tiny-badge,
+.journal .truth-note {
+  font-size: 11px;
+}
+.journal .muted,
+.journal p,
+.agent-row small {
+  font-size: 12px;
+}
+.journal-feed {
+  margin-top: 12px;
+}
+.journal-feed .feed-event p {
+  font-size: 12px;
+}
+.quickbar {
+  bottom: 22px;
+  padding: 10px 18px;
+  gap: 22px;
+}
+.quickbar > div {
+  flex-direction: row;
+  min-width: unset;
+}
+.quickbar span,
+.quickbar kbd {
+  font-size: 12px;
+}
+.location {
+  bottom: 100px;
+}
+.location p {
+  font-family: inherit;
+  font-style: normal;
+  font-size: 12px;
+}
+.camera-disclosure {
+  position: absolute;
+  left: 30px;
+  bottom: 25px;
+  z-index: 4;
+}
+.camera-disclosure > summary {
+  cursor: pointer;
+  color: #c0c5b7;
+  font-size: 12px;
+  padding: 9px 12px;
+  background: #17252ded;
+  border: 1px solid #455159;
+}
+.camera-disclosure .camera-tools {
+  position: static;
+  margin-top: 8px;
+  padding: 10px;
+  background: #172129;
+  border: 1px solid #5c6966;
+}
+.camera-disclosure .performance {
+  position: static;
+  padding: 8px 12px;
+  background: #172129;
+  font-size: 11px;
+}
+.health-label,
+.health-label > b,
+.health-hud small,
+.encounter-hud b,
+.encounter-hud small {
+  font-size: 12px;
+}
+.health-hud {
+  top: 108px;
+  width: 240px;
+}
+.encounter-hud {
+  top: 188px;
+  max-width: 260px;
+}
+.pause-banner {
+  top: 110px;
+  max-width: calc(100vw - 48px);
+}
+.pause-banner > span,
+.pause-banner button {
+  font-size: 12px;
+}
+.pause-banner b {
+  white-space: nowrap;
+}
+.first-play .entry-panel {
+  left: 32px;
+  top: auto;
+  bottom: 120px;
+  width: 350px;
+  padding: 24px;
+  border: 1px solid #666458;
+  border-top: 3px solid #c9b06d;
+  background: #172129f5;
+  box-shadow: 5px 5px #060d124d;
+}
+.first-play .entry-kicker {
+  font-size: 11px;
+  margin-bottom: 14px;
+  letter-spacing: 0.08em;
+}
+html .app.first-play .entry-panel h1 {
+  font-family: inherit;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+.first-play .entry-panel p {
+  font-size: 14px;
+  line-height: 1.75;
+  margin-top: 14px;
+}
+.first-play .entry-panel .start {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 15px;
+}
+.first-play .entry-note {
+  font-size: 12px;
+  margin-top: 16px;
+}
+.first-play .entry-controls {
+  font-size: 11px;
+  gap: 6px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.first-play .entry-controls kbd {
+  font-size: 10px;
+}
+.feature-objective {
+  position: absolute;
+  left: 32px;
+  top: 260px;
+  z-index: 2;
+  width: 240px;
+  display: grid;
+  gap: 9px;
+  padding: 14px 16px;
+  border-left: 2px solid #c9b06d;
+  background: #14212bdb;
+}
+.feature-objective small {
+  color: var(--gold);
+  font-size: 11px;
+}
+.feature-objective b {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.feature-objective button {
+  font-size: 12px;
+  text-align: left;
+  padding: 7px 9px;
+  background: #24343a;
+}
+.feature-objective button span {
+  float: right;
+}
+.first-play .vignette {
+  box-shadow: inset 0 0 100px 15px #070c1440;
+}
+.world-labels {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.world-labels button {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  pointer-events: auto;
+  font-size: 11px;
+  padding: 3px 7px;
+  background: #172129df;
+  border-color: #7c79614d;
+  white-space: nowrap;
+}
+.world-labels button:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+@media (max-width: 1100px) {
+  .topbar {
+    left: 18px;
+    right: 18px;
+    gap: 12px;
+  }
+  .brand {
+    min-width: unset;
+  }
+  .brand small,
+  .chapter {
+    display: none;
+  }
+  .top-actions {
+    gap: 4px;
+  }
+  .top-actions .demo-badge {
+    display: none;
+  }
+  .feature-objective {
+    left: 18px;
+    width: 220px;
+    top: 250px;
+  }
+}
+@media (max-width: 760px) {
+  .topbar {
+    top: 14px;
+    left: 12px;
+    right: 12px;
+    flex-wrap: wrap;
+  }
+  .brand b {
+    font-size: 13px;
+  }
+  .brand-mark {
+    font-size: 25px;
+  }
+  .forge-toolbar {
+    left: auto;
+    top: auto;
+    max-width: none;
+    font-size: 12px;
+  }
+  .forge-project-options {
+    left: -120px;
+    width: min(320px, 90vw);
+  }
+  .top-actions {
+    margin-left: 0;
+  }
+  .top-actions button {
+    padding: 7px;
+  }
+  .first-play .entry-panel {
+    left: 16px;
+    bottom: 95px;
+    width: min(330px, calc(100vw - 32px));
+    padding: 20px;
+  }
+  .health-hud {
+    top: 120px;
+    left: 16px;
+    width: 210px;
+  }
+  .encounter-hud {
+    top: 195px;
+    left: 16px;
+  }
+  .feature-objective {
+    left: 16px;
+    top: 245px;
+    width: 210px;
+    padding: 10px;
+  }
+  .journal-toggle {
+    right: 16px;
+    top: 120px;
+  }
+  .journal {
+    right: 16px;
+    top: 165px;
+    width: min(340px, calc(100vw - 32px));
+    max-height: calc(100dvh - 250px);
+  }
+  .quickbar {
+    gap: 10px;
+    padding: 8px 10px;
+    bottom: 16px;
+  }
+  .quickbar > div {
+    flex-direction: column;
+    gap: 3px;
+  }
+  .quickbar span,
+  .quickbar kbd {
+    font-size: 10px;
+  }
+  .location {
+    display: none;
+  }
+  .camera-disclosure {
+    left: 12px;
+    bottom: 90px;
+  }
+  .pause-banner {
+    top: 170px;
+    display: grid;
+    width: 320px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .health-track i {
+    transition: none;
+  }
+}

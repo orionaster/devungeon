@@ -1,0 +1,201 @@
+{
+  "recorded_at": "2026-11-14T09:20:54.549Z",
+  "application_commit": "to-be-verified-in-clean-checkout",
+  "automated_tests": 178,
+  "host_lifecycle_tests": 1,
+  "groups": [
+    {
+      "name": "product",
+      "started_at": "2026-11-14T09:09:01.594Z",
+      "finished_at": "2026-11-14T09:09:25.431Z",
+      "url": "http://127.0.0.1:5194",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 22,
+      "pass": true,
+      "metrics": {
+        "fps": 60.00080001073833,
+        "p95Ms": 17.099999994039536,
+        "worstMs": 133.5,
+        "frames": 1209,
+        "drawCalls": 207,
+        "triangles": 2400,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "limits": [
+        "Trusted automated browser inputs, not independent owner approval or physical mobile/Safari testing.",
+        "Browser target activation did not emit a real blur/hidden transition; automatic tab-loss pause was not exercised. No synthetic visibility event was injected."
+      ],
+      "tabFocus": {
+        "before": {
+          "visibility": "visible",
+          "focused": true
+        },
+        "away": {
+          "visibility": "visible",
+          "focused": true
+        }
+      },
+      "source_file": "product-results.json"
+    },
+    {
+      "name": "render",
+      "started_at": "2026-11-14T09:18:31.756Z",
+      "url": "http://127.0.0.1:5194",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 15,
+      "pass": true,
+      "metrics": {
+        "fps": 59.23266771370877,
+        "p95Ms": 17.30000001192093,
+        "worstMs": 61.19999998807907,
+        "frames": 132,
+        "drawCalls": 207,
+        "triangles": 2400,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "limits": [
+        "Trusted automated input on Windows Chromium; independent human visual approval remains required.",
+        "Camera orientation is measured from the actual rendered camera; pixel polish is reviewed from screenshots/video."
+      ],
+      "source_file": "render-results.json"
+    },
+    {
+      "name": "legacy-games",
+      "started_at": "2026-11-14T09:00:28.210Z",
+      "finished_at": "2026-11-14T09:02:03.315Z",
+      "url": "http://127.0.0.1:5194",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 61,
+      "pass": true,
+      "metrics": null,
+      "limits": [
+        "Automated browser input on win32 is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance."
+      ],
+      "source_file": "legacy-games-results.json"
+    },
+    {
+      "name": "public-source",
+      "started_at": "2026-11-14T09:02:08.025Z",
+      "finished_at": "2026-11-14T09:02:50.195Z",
+      "url": "http://127.0.0.1:5195",
+      "platform": "win32",
+      "browser": "157.0.8103.78",
+      "checks": 26,
+      "pass": true,
+      "metrics": null,
+      "limits": [
+        "Automated browser input on win32 is not independent human playtesting, physical mobile, Safari or low-end hardware acceptance."
+      ],
+      "source_file": "public-source-results.json"
+    }
+  ],
+  "art": {
+    "pack": "Ninja Adventure",
+    "license": "CC0-1.0",
+    "png_count": 20,
+    "png_bytes": 65690
+  },
+  "owner_visual_acceptance": "pending",
+  "unchanged_limits": [
+    "Real model execution, independent human/new-user playtest, physical mobile/Safari and low-end hardware acceptance are not performed."
+  ],
+  "assets_verified": {
+    "files": 20,
+    "bytes": 65690
+  },
+  "evidence": [
+    {
+      "file": "art-directions-provenance.json",
+      "bytes": 4213,
+      "sha256": "318db50bde3858fa7315628b4e8a23a827616dab4fe0be0758688994d3f58764"
+    },
+    {
+      "file": "art-directions.png",
+      "bytes": 62821,
+      "sha256": "21e5e8475e240ae1df290a0200371101426c31c15b9c033d8615304575d66578"
+    },
+    {
+      "file": "combat-victory.png",
+      "bytes": 81131,
+      "sha256": "3be3eaa03d7f48d34c5e260d7008731166be052834fe92f9537f8548287b98c0"
+    },
+    {
+      "file": "demo-scan.png",
+      "bytes": 88283,
+      "sha256": "b1f8065e4d0727006c40664cbc0e4b533fe5f8691350b7de4a3410dfdc2c766a"
+    },
+    {
+      "file": "demo-test.png",
+      "bytes": 88739,
+      "sha256": "508a85545499fc3fc9a69a5a8eacf8554c4e6e0a75b81f0e78619eb5a0c3444f"
+    },
+    {
+      "file": "entry-zh.png",
+      "bytes": 83379,
+      "sha256": "8d3b0aa7fe1edb97a76c737edf7288f90d073e5ac810a87fca8a4a1094700cca"
+    },
+    {
+      "file": "failed-attempts.json",
+      "bytes": 23807,
+      "sha256": "a5e32328b73838e9b7a41aba73fffae8e38401af781bfb53205d123075d20992"
+    },
+    {
+      "file": "feature-live-en.png",
+      "bytes": 120613,
+      "sha256": "9ad751c80c1dba9c739e8320a802abca51aa8b0d476665f2a8f039b9ae1963e6"
+    },
+    {
+      "file": "feature-live-zh.png",
+      "bytes": 122518,
+      "sha256": "e99deaa55c4334c860cffb8454de425c027958117a104f6346edab44c1a10fec"
+    },
+    {
+      "file": "first-play.webm",
+      "bytes": 6485790,
+      "sha256": "69ef5f52779b17fd6ee610d115941c66dffecde5852f18140bc9c7be29febfe1"
+    },
+    {
+      "file": "legacy-games-results.json",
+      "bytes": 97073,
+      "sha256": "5e66610d820ea3abe0c18a025399b6dddffac24f01f4fda6ad209a5a2d9dd098"
+    },
+    {
+      "file": "product-results.json",
+      "bytes": 60922,
+      "sha256": "05e1284842ead5b6463c39d1ca74e8c399d50493cb6996127cbe7a17358a74f2"
+    },
+    {
+      "file": "public-source-results.json",
+      "bytes": 50415,
+      "sha256": "30db1a42035202a5af7ffe75d8647c6120d704b23231da4cfd6b2737ac91a711"
+    },
+    {
+      "file": "reference-art-CC0.txt",
+      "bytes": 6722,
+      "sha256": "9bc2cd77030dd73fd2497c5729556a11524fa04099d8351bc527fd4d4c31b916"
+    },
+    {
+      "file": "render-input.webm",
+      "bytes": 15915443,
+      "sha256": "6734a236cee5c8f5b83309e0923647a8f6c558fb32fd40e2dd918fb4bee91125"
+    },
+    {
+      "file": "render-results.json",
+      "bytes": 244316,
+      "sha256": "697e87303092a7cae159719c18d6671582354e7cb44f15d06b14cd1297e18eb9"
+    },
+    {
+      "file": "render-trace.zip",
+      "bytes": 177486,
+      "sha256": "cb1aef7532036f4cb921ff14bd29ffb020e19475a507fa8c9af11cd5f65a22bd"
+    },
+    {
+      "file": "room-zh.png",
+      "bytes": 84990,
+      "sha256": "b2b132805b2a2ff3be0bf36270ebf073f2366d6c2aa04564328ec25af821504d"
+    }
+  ]
+}

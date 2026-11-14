@@ -2,6 +2,7 @@ import {
   AgentProjection,
   DEMO_SCENE,
   Dungeon,
+  scenePlacements,
   type GameSnapshot,
   type Input,
   type Vec2,
@@ -37,6 +38,14 @@ export const runtime: {
   selectRoom?: (id: string) => void;
   agentEvents?: AgentProjection;
   displayScene?: SceneDefinition;
+  presentation?: {
+    camera: [number, number, number];
+    focus: [number, number, number];
+    rotation: [number, number, number, number];
+    player: [number, number, number];
+    screenPlayer: [number, number, number];
+    markers?: { id: string; point: [number, number, number] }[];
+  };
   metrics: {
     fps: number;
     p95Ms: number;
@@ -130,6 +139,8 @@ declare global {
       events: () => ReturnType<AgentProjection["snapshot"]>;
       camera: () => CameraControl;
       scene: () => SceneDefinition;
+      presentation: () => typeof runtime.presentation;
+      placements: () => ReturnType<typeof scenePlacements>;
     };
   }
 }
@@ -147,4 +158,11 @@ window.__DEVUNGEON__ = {
   camera: () => structuredClone(cameraControl),
   scene: () =>
     structuredClone(runtime.displayScene ?? runtime.game?.scene ?? DEMO_SCENE),
+  presentation: () => structuredClone(runtime.presentation),
+  placements: () =>
+    structuredClone(
+      scenePlacements(
+        runtime.displayScene ?? runtime.game?.scene ?? DEMO_SCENE,
+      ),
+    ),
 };

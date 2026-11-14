@@ -6,6 +6,7 @@ import {
   AgentProjection,
   sceneFromBlueprint,
   visibleDoorSeals,
+  scenePlacements,
   type Input,
   type SceneDefinition,
 } from "../src/index";
@@ -238,4 +239,140 @@ test("visual-only NPC in a known locked room grants no player access", async () 
     Dungeon.create(scene({ agents: [{ ...marker, x: 3 }] })),
     /Agent outside/,
   );
+});
+test("furniture and NPC ground footprints stop walking and dodges, independently of task events", async () => {
+  const definition = scene({
+    enemies: [],
+    agents: [],
+    spawn: { x: 1, z: 0 },
+    reward: { x: 1, z: 2 },
+    props: [{ id: "desk", x: 3, z: 0, width: 2, depth: 1 }],
+  });
+  const g = await Dungeon.create(definition);
+  g.start();
+  tick(g, input(1, 0, false, true), 120);
+  assert.ok(
+    g.snapshot().player.x < 1.75,
+    "desk art footprint cannot be entered",
+  );
+  g.dispose();
+  const npc = await Dungeon.create(
+    scene({ enemies: [], spawn: { x: -10, z: -2 } }),
+  );
+  npc.start();
+  tick(npc, input(-1, 0, false, true), 120);
+  assert.ok(
+    npc.snapshot().player.x > -11.32,
+    "NPC is solid at its rendered ground point",
+  );
+  npc.dispose();
+  await assert.rejects(
+    Dungeon.create(
+      scene({ props: [{ id: "desk", x: 0, z: 0, width: NaN, depth: 1 }] }),
+    ),
+    /rectangle/,
+  );
+});
+test("locked chests and partner placements share deterministic occupied slots", () => {
+  const definition = scene({
+    agents: [
+      {
+        ...DEMO_SCENE.agents[0],
+        x: 17,
+        z: 0,
+        room_id: "vault",
+        visual_only: true,
+      },
+    ],
+  });
+  const a = scenePlacements(definition),
+    b = scenePlacements(structuredClone(definition));
+  assert.deepEqual(a, b);
+  assert.equal(a.chests.length, 1);
+  assert.ok(
+    Math.hypot(a.chests[0].x - a.agents[0].x, a.chests[0].z - a.agents[0].z) >
+      1.2,
+  );
+  assert.equal(
+    JSON.stringify(definition),
+    JSON.stringify(scene({ agents: definition.agents })),
+    "presentation leaves source unchanged",
+  );
+});
+test("render interpolation is continuous between physics ticks without mutating exact game state", async () => {
+  const g = await Dungeon.create(
+    scene({ enemies: [], agents: [], spawn: { x: 1, z: 0 } }),
+  );
+  g.start();
+  g.step(input(1), 1 / 60);
+  const first = g.renderSnapshot();
+  g.step(input(1), 1 / 120);
+  const half = g.renderSnapshot();
+  const exact = g.snapshot();
+  assert.ok(first.player.x < half.player.x && half.player.x < exact.player.x);
+  half.player.x = 1000;
+  assert.equal(g.snapshot().player.x, exact.player.x);
+  g.step(input(1), 1 / 120);
+  assert.ok(g.renderSnapshot().player.x > first.player.x);
+  g.restart();
+  assert.equal(g.renderSnapshot().player.x, 1);
+  g.dispose();
+});
+test("sample practice enemies only engage within their explicit activation radius", async () => {
+  const g = await Dungeon.create(
+    scene({
+      spawn: { x: -1, z: 0 },
+      agents: [],
+      enemies: [
+        { id: "practice", kind: "slime", x: 5, z: 0, activationRadius: 3.2 },
+      ],
+    }),
+  );
+  g.start();
+  tick(g, input(), 180);
+  assert.equal(g.snapshot().enemies[0].state, "idle");
+  tick(g, input(1), 60);
+  assert.notEqual(g.snapshot().enemies[0].state, "idle");
+  g.dispose();
+  await assert.rejects(
+    Dungeon.create(
+      scene({
+        enemies: [
+          { id: "bad", kind: "slime", x: 1, z: 0, activationRadius: 99 },
+        ],
+      }),
+    ),
+    /Actor/,
+  );
+});
+test("sample-only partner clearance gives pleasant contact while old maps keep their radius", async () => {
+  const guide = { ...DEMO_SCENE.agents[0], clearanceRadius: 0.9 };
+  const definition = scene({
+    enemies: [],
+    agents: [guide],
+    spawn: { x: -10, z: -2 },
+  });
+  const g = await Dungeon.create(definition);
+  g.start();
+  tick(g, input(-1, 0, false, true), 180);
+  const p = g.snapshot().player;
+  assert.ok(
+    Math.hypot(p.x - guide.x, p.z - guide.z) >= 1.18,
+    "sample guide preserves at least .9 + .28 ground clearance",
+  );
+  assert.ok(
+    p.x < -10.75,
+    "collision remains local instead of stopping across the room",
+  );
+  g.dispose();
+  assert.equal(
+    DEMO_SCENE.agents[0].clearanceRadius,
+    undefined,
+    "generated/reference map contract retains its default",
+  );
+  for (const clearanceRadius of [NaN, -1, 0, 2])
+    await assert.rejects(
+      Dungeon.create(scene({ agents: [{ ...guide, clearanceRadius }] })),
+      /Invalid scene agent/,
+    );
 });

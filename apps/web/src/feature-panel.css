@@ -1,0 +1,198 @@
+.sample-panel {
+  position: fixed;
+  z-index: 35;
+  right: 18px;
+  top: 18px;
+  bottom: 18px;
+  width: min(440px, calc(100vw - 36px));
+  background: var(--panel);
+  color: #e5e9e5;
+  border: 2px solid #74664d;
+  box-shadow: 5px 5px 0 #080d12;
+  display: flex;
+  flex-direction: column;
+  font:
+    14px/1.6 "Segoe UI",
+    "Microsoft YaHei",
+    sans-serif;
+}
+.sample-panel header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 19px 20px 15px;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.sample-panel header h2 {
+  font-family: inherit;
+  font-weight: 650;
+  font-size: 22px;
+  margin: 4px 0 0;
+}
+.sample-panel header button {
+  font-size: 22px;
+  line-height: 1;
+  padding: 7px 10px;
+}
+.sample-panel-body {
+  padding: 18px 20px 24px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.sample-panel p {
+  margin: 0 0 10px;
+}
+.sample-panel h3 {
+  font: inherit;
+  font-weight: 650;
+  margin: 0 0 9px;
+}
+.sample-panel section {
+  border-top: 1px solid var(--line);
+  padding: 18px 0 4px;
+  margin-top: 18px;
+}
+.sample-feature-name {
+  color: var(--gold);
+  font-size: 17px;
+  font-weight: 650;
+}
+.sample-acceptance {
+  color: var(--gold);
+  font-size: 12px;
+}
+.sample-capability {
+  margin: 18px 0 0;
+}
+.sample-capability div {
+  margin-bottom: 14px;
+}
+.sample-capability dt {
+  color: var(--mint);
+  font-weight: 650;
+  margin-bottom: 3px;
+}
+.sample-capability div + div dt {
+  color: var(--gold);
+}
+.sample-capability dd {
+  margin: 0;
+  color: #c0cdcd;
+}
+.sample-panel small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+.sample-panel a {
+  color: #b9dece;
+  display: block;
+  overflow-wrap: anywhere;
+}
+.sample-panel code {
+  font: 11px/1.6 var(--mono);
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+.sample-panel pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 11px/1.6 var(--mono);
+  color: var(--muted);
+}
+.sample-panel details {
+  margin: 14px 0;
+}
+.sample-panel summary {
+  cursor: pointer;
+  color: #d9c39f;
+  margin-bottom: 8px;
+}
+.sample-source-heading {
+  margin-bottom: 10px;
+}
+.sample-mode {
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding-left: 9px;
+  border-left: 3px solid #768389;
+}
+.sample-mode.mode-live {
+  color: var(--mint);
+  border-color: var(--mint);
+}
+.sample-mode.mode-demo {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.sample-mode.mode-stale,
+.sample-mode.mode-disconnected {
+  color: #e4a5a5;
+  border-color: #e4a5a5;
+}
+.sample-read {
+  margin: 15px 0 8px;
+}
+.sample-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 13px 0;
+}
+.sample-actions button {
+  flex: 1;
+  white-space: nowrap;
+  padding: 9px 11px;
+}
+.sample-activity-list,
+.sample-source-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sample-activity-list li,
+.sample-source-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.sample-activity-list strong,
+.sample-activity-list span,
+.sample-source-list strong {
+  display: block;
+}
+.sample-activity-list span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.sample-source-list p {
+  color: #c0cdcd;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.sample-panel .sample-warning {
+  margin-top: 12px;
+  color: #e4a5a5;
+}
+.sample-panel .sample-game-only {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.sample-panel footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--line);
+}
+.sample-panel footer button {
+  width: 100%;
+}
+@media (max-height: 600px) {
+  .sample-panel {
+    top: 8px;
+    bottom: 8px;
+  }
+  .sample-panel header {
+    padding: 10px 16px;
+  }
+}
