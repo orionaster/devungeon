@@ -1,23 +1,23 @@
 {
-  "recorded_at": "2026-11-14T09:20:54.549Z",
-  "application_commit": "to-be-verified-in-clean-checkout",
+  "recorded_at": "2026-11-14T09:36:43.820Z",
+  "application_commit": "7a67f1ade68f323cea1ebd2834e820c880051abc",
   "automated_tests": 178,
   "host_lifecycle_tests": 1,
   "groups": [
     {
       "name": "product",
-      "started_at": "2026-11-14T09:09:01.594Z",
-      "finished_at": "2026-11-14T09:09:25.431Z",
-      "url": "http://127.0.0.1:5194",
+      "started_at": "2026-11-14T09:32:37.764Z",
+      "finished_at": "2026-11-14T09:33:01.823Z",
+      "url": "http://127.0.0.1:5196",
       "platform": "win32",
       "browser": "157.0.8103.78",
       "checks": 22,
       "pass": true,
       "metrics": {
-        "fps": 60.00080001073833,
+        "fps": 60.00240009597999,
         "p95Ms": 17.099999994039536,
-        "worstMs": 133.5,
-        "frames": 1209,
+        "worstMs": 143.40000000596046,
+        "frames": 1215,
         "drawCalls": 207,
         "triangles": 2400,
         "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
@@ -40,17 +40,17 @@
     },
     {
       "name": "render",
-      "started_at": "2026-11-14T09:18:31.756Z",
-      "url": "http://127.0.0.1:5194",
+      "started_at": "2026-11-14T09:33:02.709Z",
+      "url": "http://127.0.0.1:5196",
       "platform": "win32",
       "browser": "157.0.8103.78",
       "checks": 15,
       "pass": true,
       "metrics": {
-        "fps": 59.23266771370877,
-        "p95Ms": 17.30000001192093,
-        "worstMs": 61.19999998807907,
-        "frames": 132,
+        "fps": 59.22829021892956,
+        "p95Ms": 17,
+        "worstMs": 64.09999999403954,
+        "frames": 136,
         "drawCalls": 207,
         "triangles": 2400,
         "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
@@ -102,11 +102,20 @@
   "unchanged_limits": [
     "Real model execution, independent human/new-user playtest, physical mobile/Safari and low-end hardware acceptance are not performed."
   ],
+  "clean_source": {
+    "mode": "DISCONNECTED",
+    "notes": "Cold anonymous GitHub import hit rate limit. Final isolated app used the existing real public bridge cache with original time and DISCONNECTED mode; earlier online and public lifecycle proofs are retained separately."
+  },
   "assets_verified": {
     "files": 20,
     "bytes": 65690
   },
   "evidence": [
+    {
+      "file": "application-ci.json",
+      "bytes": 8843,
+      "sha256": "ac7614ca3552ae3f1aaadbce2b19d2b8baf3292c35df5bb330208c68c1103d03"
+    },
     {
       "file": "art-directions-provenance.json",
       "bytes": 4213,
@@ -118,29 +127,54 @@
       "sha256": "21e5e8475e240ae1df290a0200371101426c31c15b9c033d8615304575d66578"
     },
     {
+      "file": "clean-validation.txt",
+      "bytes": 15909,
+      "sha256": "6ddbbd7899d1e105edf8b8d4ea79bf9129d2856eae8daa9898eb78de44cfd8cb"
+    },
+    {
+      "file": "cold-source-rate-limit.json",
+      "bytes": 1218,
+      "sha256": "52e3019b42a08d23758fe415654bbedf2ec1c1dab1c1d02d105c232958e41d14"
+    },
+    {
       "file": "combat-victory.png",
-      "bytes": 81131,
-      "sha256": "3be3eaa03d7f48d34c5e260d7008731166be052834fe92f9537f8548287b98c0"
+      "bytes": 80397,
+      "sha256": "7911e0c0029777b66fddbabba2397bd17a5cebe9d4f1dc10e24a09e9de33d9bd"
+    },
+    {
+      "file": "contact-review.json",
+      "bytes": 9227,
+      "sha256": "1aa6b56d73eac32cf79d0731e202da6d1582bc4ba990119716f741a0a0dc1147"
     },
     {
       "file": "demo-scan.png",
-      "bytes": 88283,
-      "sha256": "b1f8065e4d0727006c40664cbc0e4b533fe5f8691350b7de4a3410dfdc2c766a"
+      "bytes": 88485,
+      "sha256": "2c50eae96c9ab98431738101bf64199a4e7a6193147b1d5ea0878f06b1fcda49"
     },
     {
       "file": "demo-test.png",
-      "bytes": 88739,
-      "sha256": "508a85545499fc3fc9a69a5a8eacf8554c4e6e0a75b81f0e78619eb5a0c3444f"
+      "bytes": 87453,
+      "sha256": "f3bed69962622b2c09084555feb87d9cea49cb84e16b263d53e434edde9ca2ef"
     },
     {
       "file": "entry-zh.png",
-      "bytes": 83379,
-      "sha256": "8d3b0aa7fe1edb97a76c737edf7288f90d073e5ac810a87fca8a4a1094700cca"
+      "bytes": 82946,
+      "sha256": "99875b800248d81e4bf7be83a2491af079af9d10fe54fc32e3b2fb4eb14da1a9"
     },
     {
       "file": "failed-attempts.json",
       "bytes": 23807,
       "sha256": "a5e32328b73838e9b7a41aba73fffae8e38401af781bfb53205d123075d20992"
+    },
+    {
+      "file": "feature-cached-en.png",
+      "bytes": 121356,
+      "sha256": "29a2cb8cdce4bd79e89197b13ff8445aea992dbffbc0f4524764802a29aeaa5e"
+    },
+    {
+      "file": "feature-cached-zh.png",
+      "bytes": 123581,
+      "sha256": "5e182428d77ca9841741cb2271b7f2340590c15332683b9f973796844a42d143"
     },
     {
       "file": "feature-live-en.png",
@@ -154,8 +188,8 @@
     },
     {
       "file": "first-play.webm",
-      "bytes": 6485790,
-      "sha256": "69ef5f52779b17fd6ee610d115941c66dffecde5852f18140bc9c7be29febfe1"
+      "bytes": 6419820,
+      "sha256": "2872c58fe41970bf878027e7a6d3624bad7e721dcea603c34c1fc86e0a5733a3"
     },
     {
       "file": "legacy-games-results.json",
@@ -163,9 +197,14 @@
       "sha256": "5e66610d820ea3abe0c18a025399b6dddffac24f01f4fda6ad209a5a2d9dd098"
     },
     {
+      "file": "media-playback.json",
+      "bytes": 621,
+      "sha256": "47a7d1c22176c814e353ef75c1c25d5a02d251bb0db63d93e4b2b5337cd8c1be"
+    },
+    {
       "file": "product-results.json",
-      "bytes": 60922,
-      "sha256": "05e1284842ead5b6463c39d1ca74e8c399d50493cb6996127cbe7a17358a74f2"
+      "bytes": 61093,
+      "sha256": "952cd21fba5c3e2a38e7e74f8da1a8ca65e7a752740419bc9a528c465bc321b6"
     },
     {
       "file": "public-source-results.json",
@@ -179,23 +218,33 @@
     },
     {
       "file": "render-input.webm",
-      "bytes": 15915443,
-      "sha256": "6734a236cee5c8f5b83309e0923647a8f6c558fb32fd40e2dd918fb4bee91125"
+      "bytes": 16200962,
+      "sha256": "f4c7e35376a0c5bdc06035a461915e3558b43dac9be6c4096b6331c334e2f4cb"
     },
     {
       "file": "render-results.json",
-      "bytes": 244316,
-      "sha256": "697e87303092a7cae159719c18d6671582354e7cb44f15d06b14cd1297e18eb9"
+      "bytes": 244439,
+      "sha256": "e7e444265f463812ddea5abf25cbe0ae341e3401ff92dbda257e9b863618a48d"
     },
     {
       "file": "render-trace.zip",
-      "bytes": 177486,
-      "sha256": "cb1aef7532036f4cb921ff14bd29ffb020e19475a507fa8c9af11cd5f65a22bd"
+      "bytes": 177464,
+      "sha256": "1b65c9f300462210335ce9ac50b82070432bc460d48138ab416482f5781cc9d7"
     },
     {
       "file": "room-zh.png",
-      "bytes": 84990,
-      "sha256": "b2b132805b2a2ff3be0bf36270ebf073f2366d6c2aa04564328ec25af821504d"
+      "bytes": 84657,
+      "sha256": "f858d7cf300c17b60fcff41275ae427ee8f99647573e3fe9d969f78404eb1bb7"
+    },
+    {
+      "file": "wizard-ci-failure.txt",
+      "bytes": 51910,
+      "sha256": "072b57329294ef285f2026bfdfaab7a72c25394c878914cca52f6d0877b8915c"
+    },
+    {
+      "file": "wizard-local-recovery.txt",
+      "bytes": 1311,
+      "sha256": "40539016169ccdcb2e919b15c74e7f8613b570ea5343f92a2397936d8dd5591b"
     }
   ]
 }

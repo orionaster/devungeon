@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-11-14T09:09:01.594Z",
-  "url": "http://127.0.0.1:5194",
+  "started_at": "2026-11-14T09:32:37.764Z",
+  "url": "http://127.0.0.1:5196",
   "node": "v24.13.1",
   "platform": "win32",
   "browser": "157.0.8103.78",
@@ -34,10 +34,10 @@
       "name": "real movement, attack and dodge inputs change the game",
       "pass": true,
       "detail": {
-        "time": 2.166666666666664,
+        "time": 2.1833333333333305,
         "phase": "playing",
         "player": {
-          "x": -5.3249999806284904,
+          "x": -5.396666646003723,
           "z": 3.5,
           "hp": 100,
           "maxHp": 100,
@@ -64,7 +64,7 @@
             "moving": false,
             "hurt": 0,
             "state": "idle",
-            "timer": -2.166666666666664,
+            "timer": -2.1833333333333305,
             "attackDirection": {
               "x": 0,
               "z": 0
@@ -85,7 +85,7 @@
             "moving": false,
             "hurt": 0,
             "state": "idle",
-            "timer": -2.166666666666664,
+            "timer": -2.1833333333333305,
             "attackDirection": {
               "x": 0,
               "z": 0
@@ -133,7 +133,7 @@
       "name": "real public bridge observation reaches the feature desk",
       "pass": true,
       "detail": {
-        "mode": "LIVE",
+        "mode": "DISCONNECTED",
         "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
         "items": 17
       }
@@ -200,17 +200,17 @@
     }
   },
   "metrics": {
-    "fps": 60.00080001073833,
+    "fps": 60.00240009597999,
     "p95Ms": 17.099999994039536,
-    "worstMs": 133.5,
-    "frames": 1209,
+    "worstMs": 143.40000000596046,
+    "frames": 1215,
     "drawCalls": 207,
     "triangles": 2400,
     "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
   },
   "final": {
     "game": {
-      "time": 0.15,
+      "time": 0.11666666666666665,
       "phase": "playing",
       "player": {
         "x": -1,
@@ -240,7 +240,7 @@
           "moving": false,
           "hurt": 0,
           "state": "idle",
-          "timer": -0.15,
+          "timer": -0.11666666666666665,
           "attackDirection": {
             "x": 0,
             "z": 0
@@ -261,7 +261,7 @@
           "moving": false,
           "hurt": 0,
           "state": "idle",
-          "timer": -0.15,
+          "timer": -0.11666666666666665,
           "attackDirection": {
             "x": 0,
             "z": 0
@@ -402,96 +402,97 @@
           "x": -1,
           "z": -2,
           "room_id": "game-only:observatory",
-          "is_demo": true
+          "is_demo": true,
+          "clearanceRadius": 0.9
         }
       ]
     },
     "feature": {
       "actions": [
         {
-          "event_id": "local:public-read:fc64e59e-f050-4987-821f-a84c7bc7b03c:1",
+          "event_id": "local:public-read:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:1",
           "project_id": "github:orionaster/devungeon",
           "room_id": "game-only:observatory",
           "agent_id": "local-public-observer",
           "actor_kind": "local-program",
-          "task_id": "local:public-read:fc64e59e-f050-4987-821f-a84c7bc7b03c:1",
+          "task_id": "local:public-read:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:1",
           "station_id": "source-desk",
           "kind": "read",
           "phase": "completed",
-          "mode": "LIVE",
+          "mode": "DISCONNECTED",
           "is_demo": false,
           "source_ref": "/scout-read/v1/snapshot",
-          "started_at": "2026-11-14T09:09:05.371Z",
-          "observed_at": "2026-11-14T09:09:05.371Z",
-          "expires_at": "2026-11-14T09:09:17.371Z",
+          "started_at": "2026-11-14T09:32:41.593Z",
+          "observed_at": "2026-11-14T09:32:41.593Z",
+          "expires_at": "2026-11-14T09:32:53.593Z",
           "confidence": "explicit",
-          "ended_at": "2026-11-14T09:09:05.383Z"
+          "ended_at": "2026-11-14T09:32:41.607Z"
         },
         {
-          "event_id": "demo:observatory:fc64e59e-f050-4987-821f-a84c7bc7b03c:2",
+          "event_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:2",
           "project_id": "github:orionaster/devungeon",
           "room_id": "game-only:observatory",
           "agent_id": "demo:sample-scout",
           "actor_kind": "demo-agent",
-          "task_id": "demo:observatory:fc64e59e-f050-4987-821f-a84c7bc7b03c:2:scan",
+          "task_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:2:scan",
           "station_id": "source-desk",
           "kind": "scan",
           "phase": "completed",
           "mode": "DEMO",
           "is_demo": true,
           "source_ref": "demo://devungeon/observatory/scan/2",
-          "started_at": "2026-11-14T09:09:05.937Z",
-          "observed_at": "2026-11-14T09:09:05.937Z",
-          "expires_at": "2026-11-14T09:09:12.437Z",
+          "started_at": "2026-11-14T09:32:42.195Z",
+          "observed_at": "2026-11-14T09:32:42.195Z",
+          "expires_at": "2026-11-14T09:32:48.695Z",
           "confidence": "explicit",
-          "ended_at": "2026-11-14T09:09:11.941Z"
+          "ended_at": "2026-11-14T09:32:48.201Z"
         },
         {
-          "event_id": "demo:observatory:fc64e59e-f050-4987-821f-a84c7bc7b03c:3",
+          "event_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:3",
           "project_id": "github:orionaster/devungeon",
           "room_id": "game-only:observatory",
           "agent_id": "demo:sample-scout",
           "actor_kind": "demo-agent",
-          "task_id": "demo:observatory:fc64e59e-f050-4987-821f-a84c7bc7b03c:3:test",
+          "task_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:3:test",
           "station_id": "test-bench",
           "kind": "test",
           "phase": "completed",
           "mode": "DEMO",
           "is_demo": true,
           "source_ref": "demo://devungeon/observatory/test/3",
-          "started_at": "2026-11-14T09:09:12.041Z",
-          "observed_at": "2026-11-14T09:09:12.041Z",
-          "expires_at": "2026-11-14T09:09:18.541Z",
+          "started_at": "2026-11-14T09:32:48.330Z",
+          "observed_at": "2026-11-14T09:32:48.330Z",
+          "expires_at": "2026-11-14T09:32:54.830Z",
           "confidence": "explicit",
-          "ended_at": "2026-11-14T09:09:18.046Z"
+          "ended_at": "2026-11-14T09:32:54.334Z"
         },
         {
-          "event_id": "replay:observatory:fc64e59e-f050-4987-821f-a84c7bc7b03c:4",
+          "event_id": "replay:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:4",
           "project_id": "github:orionaster/devungeon",
           "room_id": "game-only:observatory",
           "agent_id": "demo:sample-scout",
           "actor_kind": "demo-agent",
-          "task_id": "demo:observatory:fc64e59e-f050-4987-821f-a84c7bc7b03c:3:test",
+          "task_id": "demo:observatory:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:3:test",
           "station_id": "test-bench",
           "kind": "test",
           "phase": "completed",
           "mode": "REPLAY",
           "is_demo": true,
           "source_ref": "demo://devungeon/observatory/test/3",
-          "started_at": "2026-11-14T09:09:12.041Z",
-          "observed_at": "2026-11-14T09:09:18.256Z",
-          "ended_at": "2026-11-14T09:09:18.046Z",
-          "expires_at": "2026-11-14T09:09:18.541Z",
+          "started_at": "2026-11-14T09:32:48.330Z",
+          "observed_at": "2026-11-14T09:32:54.561Z",
+          "ended_at": "2026-11-14T09:32:54.334Z",
+          "expires_at": "2026-11-14T09:32:54.830Z",
           "confidence": "explicit"
         }
       ],
       "receipt": {
-        "request_id": "local:public-read:fc64e59e-f050-4987-821f-a84c7bc7b03c:1",
+        "request_id": "local:public-read:d61f2b1c-6dc7-4f90-ab23-678e79c39b21:1",
         "endpoint": "/scout-read/v1/snapshot",
-        "received_at": "2026-11-14T09:09:05.383Z",
-        "mode": "LIVE",
+        "received_at": "2026-11-14T09:32:41.607Z",
+        "mode": "DISCONNECTED",
         "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
-        "observed_at": "2026-11-14T09:06:13.558Z",
+        "observed_at": "2026-11-14T09:09:11.021Z",
         "item_count": 17,
         "source_ref": "https://github.com/orionaster/devungeon",
         "snapshot": {
@@ -506,7 +507,7 @@
             }
           },
           "revision": "5521d2eb4d2a78c4f6c8e0ae6f79a415946c623e46f90339d209bbb6248e8b7e",
-          "observed_at": "2026-11-14T09:06:13.558Z",
+          "observed_at": "2026-11-14T09:09:11.021Z",
           "zones": [
             {
               "id": "github:1456354784:work",
@@ -809,7 +810,7 @@
       },
       "error": null,
       "reading": false,
-      "now": 1794647361949
+      "now": 1794648778619
     },
     "forge": {
       "selected": "sample",
@@ -1137,11 +1138,11 @@
           "cursor": 17,
           "connections": {
             "project": {
-              "mode": "LIVE",
-              "reason": "ok",
+              "mode": "DISCONNECTED",
+              "reason": "rate_limited",
               "last_success_at": "2026-11-14T09:09:11.023Z",
-              "checked_at": "2026-11-14T09:09:11.023Z",
-              "retry_at": null
+              "checked_at": "2026-11-14T09:12:10.189Z",
+              "retry_at": "2026-11-14T09:42:08.001Z"
             },
             "agent": {
               "mode": "DISCONNECTED",
@@ -1560,7 +1561,7 @@
       },
       "workspace": {
         "project_id": "github:orionaster/devungeon",
-        "revision": 7,
+        "revision": 6,
         "mode": "replay",
         "connected": false,
         "stale": false,
@@ -1575,10 +1576,10 @@
       }
     },
     "metrics": {
-      "fps": 60.00120002392895,
+      "fps": 60.00240009597999,
       "p95Ms": 17.099999994039536,
-      "worstMs": 133.5,
-      "frames": 1210,
+      "worstMs": 143.40000000596046,
+      "frames": 1215,
       "drawCalls": 207,
       "triangles": 2400,
       "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
@@ -1586,5 +1587,5 @@
   },
   "pass": true,
   "video": "first-play.webm",
-  "finished_at": "2026-11-14T09:09:25.431Z"
+  "finished_at": "2026-11-14T09:33:01.823Z"
 }

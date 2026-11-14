@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-11-14T09:39:31.716Z",
+  "browser": "157.0.8103.78",
+  "videos": [
+    {
+      "source": "http://127.0.0.1:5193/@fs/C:/Devungeon/first-play/docs/evidence/first-play/first-play.webm",
+      "duration": 24.44,
+      "width": 1440,
+      "height": 960,
+      "error": null,
+      "readyState": 4,
+      "currentTime": 5.214
+    },
+    {
+      "source": "http://127.0.0.1:5193/@fs/C:/Devungeon/first-play/docs/evidence/first-play/render-input.webm",
+      "duration": 41.44,
+      "width": 1440,
+      "height": 960,
+      "error": null,
+      "readyState": 4,
+      "currentTime": 5.3305
+    }
+  ]
+}

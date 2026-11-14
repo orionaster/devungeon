@@ -1,0 +1,345 @@
+Clean commit: 1928f6519d5ec0a023044174fbb354748c4894e6
+v24.13.1
+11.8.0
+COMMAND npm ci --ignore-scripts
+
+added 124 packages, and audited 130 packages in 4s
+
+21 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+COMMAND npm run check
+
+> devungeon@0.1.0 check
+> npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && npm run check --workspace @devungeon/scout-bridge
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+> @devungeon/scout-bridge@0.1.0 check
+> tsc --noEmit
+
+COMMAND npm test
+
+> devungeon@0.1.0 test
+> npm run test:engine && npm run test:integration && npm test --workspace @devungeon/world-generator && npm test --workspace @devungeon/workspace-ui && npm test --workspace @devungeon/scout-bridge
+
+
+> devungeon@0.1.0 test:engine
+> tsx --test packages/dungeon-engine/test/*.test.ts
+
+✔ swept wall and locked-room collisions survive walking, repeated dodges, corners and restart (228.5459ms)
+✔ attack hits, defeats encounter and returns only a game result; source facts survive win/restart (7.7093ms)
+✔ enemy tells lead to damage, defeat and restart without source mutation (22.4945ms)
+✔ dodge grants brief protection and actual displacement without tunneling (4.1943ms)
+✔ spawn and blueprint access fail closed, invalid rectangles are rejected (1.0467ms)
+✔ scene ownership and tile-grid validation prevent mutable respawn and missing walls (1.7134ms)
+✔ event projection rejects malformed/cross-project/duplicate, keeps chronology and bounds history (1.7314ms)
+✔ explicit compiler doors override guessed positions and independently block dashes (13.9212ms)
+✔ visual-only NPC in a known locked room grants no player access (6.2236ms)
+✔ furniture and NPC ground footprints stop walking and dodges, independently of task events (8.2364ms)
+✔ locked chests and partner placements share deterministic occupied slots (0.3299ms)
+✔ render interpolation is continuous between physics ticks without mutating exact game state (1.1367ms)
+✔ sample practice enemies only engage within their explicit activation radius (4.9193ms)
+✔ sample-only partner clearance gives pleasant contact while old maps keep their radius (3.8191ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 980.3045
+
+> devungeon@0.1.0 test:integration
+> npm run sync-schema --workspace @devungeon/world-generator && vitest run
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+ RUN  v5.1.0 C:/Devungeon/first-play/output/clean-checkout/first-play-20261114-1730
+
+
+ Test Files  3 passed (3)
+      Tests  18 passed (18)
+   Start at  17:22:01
+   Duration  611ms (import 50%, transform 38%, tests 11%, worker 1%)
+
+
+> @devungeon/world-generator@0.1.0 test
+> npm run sync-schema && vitest run
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+ RUN  v5.1.0 C:/Devungeon/first-play/output/clean-checkout/first-play-20261114-1730/packages/world-generator
+
+
+ Test Files  2 passed (2)
+      Tests  55 passed (55)
+   Start at  17:22:02
+   Duration  3.97s (tests 88%, import 7%, transform 6%)
+
+
+> @devungeon/workspace-ui@0.1.0 test
+> vitest run
+
+
+ RUN  v5.1.0 C:/Devungeon/first-play/output/clean-checkout/first-play-20261114-1730/packages/workspace-ui
+
+
+ Test Files  5 passed (5)
+      Tests  77 passed (77)
+   Start at  17:22:07
+   Duration  880ms (tests 39%, transform 32%, import 28%, worker 1%)
+
+
+> @devungeon/scout-bridge@0.1.0 test
+> node --test test/*.test.ts
+
+✔ public GitHub pagination, ETag and repeat import have stable IDs; closed stays review (22.8733ms)
+✔ GitHub denies unauthorized, unavailable, rate limited and private responses without leaking bodies (2.0448ms)
+✔ malformed pages cannot publish a partial snapshot; empty repo has honest overview (1.2871ms)
+✔ metadata enforces scope, rejects sensitive extra fields and future times (0.6474ms)
+✔ provider mappers discard transcripts, commands, messages and paths; lifecycle is idle (0.614ms)
+✔ selected file handles partial writes, duplicate metadata, denied/missing files and rejects unsafe payload (8.4956ms)
+✔ durable journal serializes concurrent writes, deduplicates across restart and rejects corruption (9.0838ms)
+✔ HTTP snapshot, live SSE, resume replay and consumer all use actual normalized records (58.7433ms)
+✔ event delivery keeps future observations in replay; source silence expires without inventing work (7.4027ms)
+✔ source failure retains honest cached snapshot, missing permission is visible; no command routes (18.7324ms)
+✔ mixed real/demo observer fails closed and old real observations cannot label demo as LIVE (3.5001ms)
+✔ freshness expires work, replay/demo/project events never start live Agent animation, late events cannot rewind (0.3858ms)
+✔ same-origin host forwards only four read routes/cursors and strips ambient credentials (34.3121ms)
+✔ host validates explicit loopback configuration and unavailable bridge is recoverable (6.3517ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 320.5305
+COMMAND npm run build
+
+> devungeon@0.1.0 build
+> npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && vite build --config apps/web/vite.config.ts
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 375 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/web/dist/index.html                     0.85 kB │ gzip:     0.54 kB
+apps/web/dist/assets/index-Bz1bYqzb.css     34.71 kB │ gzip:     8.50 kB
+apps/web/dist/assets/index-CUoKXUxC.js   1,669.58 kB │ gzip:   470.29 kB
+apps/web/dist/assets/rapier-Ct8Isipz.js  4,332.82 kB │ gzip: 1,669.31 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-dialog/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-dialog/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-focus-guards/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-focus-guards/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-primitive/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-primitive/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-presence/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-presence/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-portal/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-portal/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-focus-scope/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-focus-scope/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+✓ built in 553ms
+COMMAND npm run test:host
+
+> devungeon@0.1.0 test:host
+> node --test scripts/forge-host.test.mjs
+
+Lifecycle evidence: C:\Devungeon\first-play\output\clean-checkout\first-play-20261114-1730\output\playwright\forge-host-lifecycle\run-NuRFIC
+✔ normal app stop/restart releases locks; forced death leaves no orphan and fails closed (4001.4778ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4081.1169
+Post-review host-style fix: 7a67f1ade68f323cea1ebd2834e820c880051abc; package/lock files unchanged
+
+> devungeon@0.1.0 check
+> npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && npm run check --workspace @devungeon/scout-bridge
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+
+> @devungeon/scout-bridge@0.1.0 check
+> tsc --noEmit
+
+
+> devungeon@0.1.0 build
+> npm run sync-schema --workspace @devungeon/world-generator && tsc --noEmit && vite build --config apps/web/vite.config.ts
+
+
+> @devungeon/world-generator@0.1.0 sync-schema
+> node scripts/sync-schema.mjs
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 375 modules transformed.
+rendering chunks...
+computing gzip size...
+apps/web/dist/index.html                     0.85 kB │ gzip:     0.54 kB
+apps/web/dist/assets/index-CKgwrUUJ.css     34.71 kB │ gzip:     8.49 kB
+apps/web/dist/assets/index-BhVDR8On.js   1,669.58 kB │ gzip:   470.29 kB
+apps/web/dist/assets/rapier-Ct8Isipz.js  4,332.82 kB │ gzip: 1,669.31 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-dialog/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-dialog/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-focus-guards/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-focus-guards/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-portal/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-portal/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-primitive/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-primitive/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-presence/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-presence/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+[MODULE_LEVEL_DIRECTIVE] The semantics of the module level directive "use client" in "node_modules/@radix-ui/react-focus-scope/dist/index.mjs" may not be preserved when bundling.
+   ╭─[ node_modules/@radix-ui/react-focus-scope/dist/index.mjs:1:1 ]
+   │
+ 1 │ "use client";
+   │ ──────┬──────  
+   │       ╰──────── module level directive may not be preserved
+   │ 
+   │ Help: For more information, see https://rolldown.rs/in-depth/directives#other-directives
+───╯
+
+✓ built in 504ms
