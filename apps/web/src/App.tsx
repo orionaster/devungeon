@@ -10,6 +10,12 @@ import {
   type Room,
 } from "../../../packages/dungeon-engine/src";
 import { DungeonScene, type SampleActivityReader } from "./Scene";
+import { InteractionCues } from "./InteractionCues";
+import {
+  interactionTargets,
+  nearestInteraction,
+  type InteractionTarget,
+} from "./interaction-targets";
 import {
   LocaleSwitcher,
   useI18n,
@@ -97,6 +103,7 @@ export default function App({
     [gameScene, agentRoster],
   );
   const { t, locale, formatDateTime } = useI18n();
+  const targets = useMemo(() => interactionTargets(scene), [scene]);
   // An explicitly imported source context must retain its original labels,
   // even if its caller happens to reuse the reference pack's world ID.
   const builtin =
@@ -194,6 +201,7 @@ export default function App({
     [resultDismissed, setResultDismissed] = useState(false);
   const surface = useRef<HTMLDivElement>(null!);
   const drag = useRef<{ x: number; y: number } | null>(null);
+  const nearestId = useRef<string | undefined>(undefined);
   const focus = () => surface.current?.focus({ preventScroll: true });
   const closeOverlay = () => {
     setSelected(null);
@@ -218,6 +226,35 @@ export default function App({
     cameraControl.heading = (((cameraControl.heading + d) % 4) + 4) % 4;
     focus();
   };
+  const selectTarget = (id: string) => {
+    setSelected(id);
+    if (scene.rooms.some((room) => room.room_id === id && !room.enterable)) {
+      cameraControl.previewRoomId = id;
+      cameraControl.mode = "preview";
+      setCameraMode("preview");
+    }
+    clearInput();
+  };
+  const selectTargetRef = useRef(selectTarget);
+  selectTargetRef.current = selectTarget;
+  const renderedVisuals = useMemo(
+    () =>
+      firstPlay && sceneVisuals
+        ? {
+            ...sceneVisuals,
+            environment: (
+              <>
+                {sceneVisuals.environment}
+                <InteractionCues
+                  scene={scene}
+                  onSelect={(id) => selectTargetRef.current(id)}
+                />
+              </>
+            ),
+          }
+        : sceneVisuals,
+    [firstPlay, sceneVisuals, scene],
+  );
   const start = () => {
     runtime.game?.start();
     setStarted(true);
@@ -353,6 +390,11 @@ export default function App({
         if (e.code === "KeyE") {
           const p = runtime.game?.snapshot().player;
           if (p) {
+            if (firstPlay) {
+              const target = nearestInteraction(targets, p, nearestId.current);
+              if (target) selectTarget(target.id);
+              return;
+            }
             const near = [
               ...scenePlacements(scene).agents.map((a) => ({
                 ...a,
@@ -405,7 +447,18 @@ export default function App({
       window.removeEventListener("pointerup", release);
       window.removeEventListener("pointercancel", release);
     };
-  }, [started, selected, help, atlas, journal, paused, game?.phase, scene]);
+  }, [
+    started,
+    selected,
+    help,
+    atlas,
+    journal,
+    paused,
+    game?.phase,
+    scene,
+    targets,
+    firstPlay,
+  ]);
   useEffect(() => {
     runtime.paused = paused || !!selected || help || atlas;
     clearInput();
@@ -424,6 +477,26 @@ export default function App({
   const chosenEvent = chosenAgent
     ? eventProjection.actor(chosenAgent.agent_id).event
     : undefined;
+  const nearest =
+    firstPlay && game
+      ? nearestInteraction(targets, game.player, nearestId.current)
+      : undefined;
+  nearestId.current = nearest?.id;
+  const targetLabel = (target: InteractionTarget) => {
+    if (target.kind === "agent") {
+      const agent = scene.agents.find((a) => a.agent_id === target.id);
+      return `${agent?.name ?? target.id}${agent?.is_demo ? " · DEMO" : ""}`;
+    }
+    if (target.kind === "room") {
+      const room = scene.rooms.find((r) => r.room_id === target.id);
+      return room ? roomName(room) : target.id;
+    }
+    return target.id === "source-desk"
+      ? t("sample.object.source-desk")
+      : target.id === "test-bench"
+        ? t("sample.object.test-bench")
+        : t("sample.object.evidence-cabinet");
+  };
   return (
     <main className={`app${firstPlay ? " first-play" : ""}`}>
       <div
@@ -472,7 +545,7 @@ export default function App({
       >
         <DungeonScene
           scene={scene}
-          visuals={sceneVisuals}
+          visuals={renderedVisuals}
           activities={sampleActivities}
           onSelectObject={(id) => {
             setSelected(id);
@@ -486,64 +559,26 @@ export default function App({
         />
       </div>
       <div className="vignette" />
-      {firstPlay && started && (
-        <nav className="world-labels" aria-label={t("play.feature")}>
-          {runtime.presentation?.markers?.map(({ id, point }) => {
-            const label =
-              id === "game-only:future-alcove"
-                ? t("play.annexBadge")
-                : id === "demo:sample-scout"
-                  ? "Moss · DEMO"
-                  : id === "source-desk"
-                    ? t("sample.object.source-desk")
-                    : id === "test-bench"
-                      ? t("sample.object.test-bench")
-                      : t("sample.object.evidence-cabinet");
-            if (
-              point[2] < -1 ||
-              point[2] > 1 ||
-              Math.abs(point[0]) > 0.92 ||
-              Math.abs(point[1]) > 0.85
-            )
-              return null;
-            let top = ((1 - point[1]) * 100) / 2;
-            const playerPoint = runtime.presentation?.screenPlayer;
-            if (id === "demo:sample-scout" && playerPoint && surface.current) {
-              const width = surface.current.clientWidth,
-                height = surface.current.clientHeight;
-              const playerY = ((1 - playerPoint[1]) * height) / 2;
-              const labelY = (top * height) / 100;
-              // Keep a nearby nameplate above the player's silhouette when
-              // quarter turns put the partner's label in front of the hero.
-              if (
-                (Math.abs(point[0] - playerPoint[0]) * width) / 2 < 80 &&
-                labelY > playerY - 85 &&
-                labelY < playerY + 20
-              )
-                top = ((playerY - 95) * 100) / height;
-            }
-            return (
-              <button
-                key={id}
-                style={{
-                  left: `${(point[0] + 1) * 50}%`,
-                  top: `${top}%`,
-                }}
-                onClick={() => {
-                  setSelected(id);
-                  if (id === "game-only:future-alcove") {
-                    cameraControl.previewRoomId = id;
-                    setMode("preview");
-                  }
-                  clearInput();
-                }}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </nav>
-      )}
+      {firstPlay &&
+        started &&
+        nearest &&
+        !selected &&
+        !help &&
+        !atlas &&
+        !paused &&
+        !results && (
+          <button
+            className="interaction-prompt"
+            data-testid="interaction-prompt"
+            aria-label={t("play.interactWith", {
+              target: targetLabel(nearest),
+            })}
+            onClick={() => selectTarget(nearest.id)}
+          >
+            <kbd>E</kbd>
+            {t("play.interact")}
+          </button>
+        )}
       <header className="topbar">
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">
@@ -755,7 +790,9 @@ export default function App({
             aria-expanded={journal}
           >
             <Glyph>≡</Glyph>
-            {journal ? t("play.closeDetails") : t("play.projectDetails")}
+            {journal
+              ? t("play.closeDetails")
+              : t(firstPlay ? "play.sampleDetails" : "play.projectDetails")}
           </button>
           {journal && (
             <aside className="journal">
@@ -917,7 +954,7 @@ export default function App({
             </div>
             <div>
               <kbd>E</kbd>
-              <span>{t("game.hud.inspect")}</span>
+              <span>{t(firstPlay ? "play.interact" : "game.hud.inspect")}</span>
             </div>
           </nav>
         </>
@@ -1273,6 +1310,29 @@ export default function App({
                 </button>
               ))}
             </div>
+            {firstPlay && (
+              <section
+                className="atlas-interactions"
+                aria-label={t("play.interactions")}
+              >
+                <h3>{t("play.interactions")}</h3>
+                <p>{t("play.interactionHelp")}</p>
+                <div>
+                  {targets.map((target) => (
+                    <button
+                      key={target.id}
+                      data-testid={`interaction-target-${target.id}`}
+                      onClick={() => {
+                        setAtlas(false);
+                        selectTarget(target.id);
+                      }}
+                    >
+                      {targetLabel(target)}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
             <p>{t("game.atlas.description")}</p>
             <p className="truth-note">
               {builtin

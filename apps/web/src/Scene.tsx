@@ -30,6 +30,11 @@ import {
 } from "./art";
 import type { SampleActivity } from "./feature-sample";
 import {
+  CharacterAnimator,
+  cameraFacing,
+  type CharacterAnimationFrame,
+} from "./character-animation";
+import {
   cameraControl,
   pointer,
   projection,
@@ -47,6 +52,7 @@ export interface DungeonVisuals {
   ) => THREE.Texture;
   tile: (kind: TileKind) => THREE.Texture;
   size?: (kind: SpriteKind) => [number, number];
+  anchor?: (kind: SpriteKind) => [number, number];
   environment?: React.ReactNode;
   hideLegacyDecorations?: boolean;
   hideBaseEnvironment?: boolean;
@@ -407,6 +413,8 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
   const shadow = useRef<THREE.Mesh>(null!);
   const bar = useRef<THREE.Mesh>(null!);
   const windup = useRef<THREE.Mesh>(null!);
+  const animator = useMemo(() => new CharacterAnimator(), []);
+  const cameraDirection = useMemo(() => new THREE.Vector3(), []);
   useFrame(({ camera }) => {
     const s = renderFrame.current;
     const a: Actor | Enemy | undefined =
@@ -448,7 +456,23 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
     else if (enemyIndex === undefined && state === "dodge")
       frame = Math.min(3, Math.floor((1 - s.dodgeTime / 0.2) * 4));
     else if (state === "dead") frame = 1;
-    mat.map = texture(kind, frame, facing, state);
+    const animation: CharacterAnimationFrame =
+      enemyIndex === undefined && visuals
+        ? animator.update(
+            {
+              time: s.time,
+              actor: a,
+              attackTime: s.attackTime,
+              dodgeTime: s.dodgeTime,
+              attackDirection: s.attackDirection,
+            },
+            (() => {
+              camera.getWorldDirection(cameraDirection);
+              return Math.atan2(-cameraDirection.x, -cameraDirection.z);
+            })(),
+          )
+        : { pose: state, frame, facing };
+    mat.map = texture(kind, animation.frame, animation.facing, animation.pose);
     mat.color.set(
       a.hurt > 0
         ? "#ffffff"
@@ -459,7 +483,7 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
     mat.opacity = a.hurt > 0 ? 0.6 : 1;
     // Feet stay grounded; sprite animation carries the walk, never world-space bob.
     sprite.current.position.y =
-      enemyIndex === undefined && s.dodgeTime > 0 ? 0.1 : 0;
+      !visuals && enemyIndex === undefined && s.dodgeTime > 0 ? 0.1 : 0;
     shadow.current.scale.set(
       enemyIndex === undefined && s.dodgeTime > 0 ? 1.3 : 1,
       1,
@@ -498,7 +522,7 @@ function Character({ enemyIndex }: { enemyIndex?: number }) {
       <sprite
         ref={sprite}
         scale={[dimensions[0], dimensions[1], 1]}
-        center={[0.5, 0]}
+        center={visuals?.anchor?.(kind) ?? [0.5, 0]}
       >
         <spriteMaterial
           map={texture(
@@ -547,8 +571,10 @@ function Agent({ index }: { index: number }) {
     sprite = useRef<THREE.Sprite>(null!),
     scan = useRef<THREE.Group>(null!),
     tool = useRef<THREE.Group>(null!),
-    spark = useRef<THREE.Mesh>(null!);
-  useFrame(({ clock }) => {
+    spark = useRef<THREE.Mesh>(null!),
+    direction = useMemo(() => new THREE.Vector3(), []),
+    lastFacing = useRef<SpriteFacing>("front");
+  useFrame(({ clock, camera }) => {
     const event = agentEvents.actor(a.agent_id);
     const age = event.event
       ? (Date.now() - Date.parse(event.event.observed_at)) / 1000
@@ -592,12 +618,22 @@ function Agent({ index }: { index: number }) {
           : dz > 0
             ? "front"
             : "back";
+    let spriteFacing: SpriteFacing = facing;
+    if (visuals) {
+      camera.getWorldDirection(direction);
+      spriteFacing = cameraFacing(
+        station ? { x: station.x - a.x, z: station.z - a.z } : { x: 0, z: 1 },
+        Math.atan2(-direction.x, -direction.z),
+        lastFacing.current,
+      );
+      lastFacing.current = spriteFacing;
+    }
     mat.map = texture(
       a.role,
       working || scanning || testing
         ? Math.floor(clock.elapsedTime * 6) % 4
         : 0,
-      facing,
+      spriteFacing,
       testing ? "attack" : "idle",
     );
     scan.current.visible = !!scanning;

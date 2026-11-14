@@ -1,5 +1,7 @@
 # First Play Upgrade · FORGE delivery
 
+> 第二次试玩后三项修复的最新实际录像与验证见 [second review](FIRST_PLAY_SECOND_REVIEW.md)。下文保留上一轮基线记录；投影名称标签已在第二次修复中移除。
+
 2026-11-14 · Refs #16, #17 · base `integration/wave2` / PR #15, `d945eacd8b81e745228296e6d8178c4014e79d5d`.
 
 ## Result and review boundary

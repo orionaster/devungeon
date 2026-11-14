@@ -1,0 +1,3950 @@
+{
+  "started_at": "2026-11-14T10:55:50.444Z",
+  "url": "http://127.0.0.1:5194",
+  "browser": "157.0.8103.78",
+  "platform": "win32",
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "duration_target_ms": 120000,
+  "cpu_throttle": 1,
+  "phases": [
+    {
+      "cycle": 0,
+      "elapsed_ms": 5646,
+      "game": {
+        "time": 6.599999999999982,
+        "phase": "playing",
+        "player": {
+          "x": -4.0934967920184135,
+          "z": 2.1515032351017,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.599999999999982,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.599999999999982,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0,
+          "z": 1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 1,
+          "dodges": 1,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 0
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.0934967920184135,
+          "z": 2.1515032351017
+        }
+      },
+      "metrics": {
+        "fps": 127.6632826459679,
+        "p95Ms": 14,
+        "worstMs": 189.7999999821186,
+        "frames": 879,
+        "drawCalls": 198,
+        "triangles": 2272,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          16.90266382448871,
+          26,
+          2.4987705362193458
+        ],
+        "focus": [
+          -4.09452761056902,
+          0,
+          2.15532936288932
+        ],
+        "rotation": [
+          -0.307303268294666,
+          0.6327927634343034,
+          0.30231795803690836,
+          0.6432276984777541
+        ],
+        "player": [
+          -4.0934967920184135,
+          0,
+          2.1515032351017
+        ],
+        "screenPlayer": [
+          0.00023481788216591013,
+          -0.00006903693629937516,
+          -0.5554243944408788
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.25699560246549613,
+              -0.14092220858429474,
+              -0.5942791160786656
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.25499673849373417,
+              0.04199956431531576,
+              -0.5847801525172159
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.322096268447548,
+              -0.3846446123212043,
+              -0.6349368222375438
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.016581578254909128,
+              -0.3904758570609265,
+              -0.635622348567176
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.14578347823313176,
+              -0.8930152791618828,
+              -0.6929862619811005
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 1,
+      "elapsed_ms": 11285,
+      "game": {
+        "time": 12.23333333333352,
+        "phase": "playing",
+        "player": {
+          "x": -3.8651313208465297,
+          "z": 2.011566701818083,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -12.23333333333352,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -12.23333333333352,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 6.123233995736766e-17
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 2,
+          "dodges": 2,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 6
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.8651313208465297,
+          "z": 2.011566701818083
+        }
+      },
+      "metrics": {
+        "fps": 133.67196898857654,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 1633,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -3.5186114838716125,
+          26,
+          -18.983195480849524
+        ],
+        "focus": [
+          -3.8629811182479377,
+          0,
+          2.013980747275047
+        ],
+        "rotation": [
+          -0.0035346772334414423,
+          0.902282558195189,
+          0.43106722505085526,
+          0.007398562060030386
+        ],
+        "player": [
+          -3.8651313208465297,
+          0,
+          2.011566701818083
+        ],
+        "screenPlayer": [
+          0.00013380279768307652,
+          -0.00016961106028778132,
+          -0.5554362180245477
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.1709138851715439,
+              -0.2146747313416877,
+              -0.60294952839777
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.048708097600448585,
+              -0.17201763005140389,
+              -0.6099402046640612
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.4143233264570839,
+              -0.2503357267659757,
+              -0.6191473499273706
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.41933399574033725,
+              0.10617270302446137,
+              -0.5772359011259831
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.8450499845258697,
+              -0.050376238255915175,
+              -0.5939248651952227
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 2,
+      "elapsed_ms": 17152,
+      "game": {
+        "time": 18.100000000000254,
+        "phase": "playing",
+        "player": {
+          "x": -3.82696138550088,
+          "z": 2.1680699097996694,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.2246467991473532e-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -18.100000000000254,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -18.100000000000254,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1.2246467991473532e-16,
+          "z": -1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 3,
+          "dodges": 3,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 6
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.82696138550088,
+          "z": 2.1680699097996694
+        }
+      },
+      "metrics": {
+        "fps": 132.51858941323712,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 2409,
+        "drawCalls": 194,
+        "triangles": 2224,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -24.823562266373756,
+          26,
+          1.846938430323529
+        ],
+        "focus": [
+          -3.8260742582377274,
+          0,
+          2.1717419835426335
+        ],
+        "rotation": [
+          -0.3024543122314651,
+          -0.6429467959831571,
+          -0.3071690665883867,
+          0.6330781713807571
+        ],
+        "player": [
+          -3.82696138550088,
+          0,
+          2.1680699097996694
+        ],
+        "screenPlayer": [
+          -0.00022353915482912581,
+          -0.00006730475841576119,
+          -0.5554241908045028
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.25758048507019043,
+              0.2717824262771933,
+              -0.5457611913152591
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.2556900940197088,
+              0.16949523459627508,
+              -0.5697916478680551
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.3224650682530309,
+              0.5962087429697532,
+              -0.5196268274469276
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.016946062843644295,
+              0.6017235418879713,
+              -0.5189785027701541
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.14577003368408448,
+              1.0928770783556896,
+              -0.45952298618678167
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 3,
+      "elapsed_ms": 22763,
+      "game": {
+        "time": 23.699999999999935,
+        "phase": "playing",
+        "player": {
+          "x": -3.8854581736449916,
+          "z": 1.9412397327905637,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1.8369701987210297e-16,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -23.699999999999935,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -23.699999999999935,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": -1,
+          "z": -1.8369701987210297e-16
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 4,
+          "dodges": 4,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 6
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.8854581736449916,
+          "z": 1.9412397327905637
+        }
+      },
+      "metrics": {
+        "fps": 132.5107849060144,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 3159,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -4.228185669555429,
+          26,
+          22.934260236820617
+        ],
+        "focus": [
+          -3.8844352876625448,
+          0,
+          1.9370738616190937
+        ],
+        "rotation": [
+          -0.43106727712664267,
+          -0.007385256923006992,
+          -0.0035283206786754185,
+          0.9022826671969222
+        ],
+        "player": [
+          -3.8854581736449916,
+          0,
+          1.9412397327905637
+        ],
+        "screenPlayer": [
+          -0.00005833407034048961,
+          -0.00029822779528846196,
+          -0.5554513383225645
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.17230904800705035,
+              0.35896397661457563,
+              -0.5355120505430797
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.05010320137889336,
+              0.39694767641806505,
+              -0.5430521360540759
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.4157204094642052,
+              0.4752531905372416,
+              -0.5338464700118974
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.42072206846000115,
+              0.11874458846085356,
+              -0.5757579390673748
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.8464418680602322,
+              0.2637593651309876,
+              -0.5569948036374011
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 4,
+      "elapsed_ms": 27854,
+      "game": {
+        "time": 28.799999999999645,
+        "phase": "playing",
+        "player": {
+          "x": -4.141973654222937,
+          "z": 2.139724302578543,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -28.799999999999645,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -28.799999999999645,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0,
+          "z": 1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 5,
+          "dodges": 5,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 6
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.141973654222937,
+          "z": 2.139724302578543
+        }
+      },
+      "metrics": {
+        "fps": 130.46503537040797,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 3813,
+        "drawCalls": 198,
+        "triangles": 2272,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          16.854654340855685,
+          26,
+          2.466381564706076
+        ],
+        "focus": [
+          -4.142865119191023,
+          0,
+          2.1436176804813467
+        ],
+        "rotation": [
+          -0.3071543762255498,
+          0.6331093981232739,
+          0.30246923086767485,
+          0.6429160470479769
+        ],
+        "player": [
+          -4.141973654222937,
+          0,
+          2.139724302578543
+        ],
+        "screenPlayer": [
+          0.00023873786262714622,
+          -0.00005929672152049648,
+          -0.5554232493725471
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.2561431371899524,
+              -0.14467686237294475,
+              -0.5947205165249957
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.2542646172288561,
+              0.03824713832477506,
+              -0.5852212910616146
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.3210040697207464,
+              -0.38847393712733874,
+              -0.6353870010752518
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.015484606677738842,
+              -0.39395410476073184,
+              -0.6360312544673103
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.1442672117587788,
+              -0.8966417549976022,
+              -0.6934125937130249
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 5,
+      "elapsed_ms": 33579,
+      "game": {
+        "time": 34.533333333332656,
+        "phase": "playing",
+        "player": {
+          "x": -3.8211410256858045,
+          "z": 2.0115665712510236,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -34.533333333332656,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -34.533333333332656,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 6.123233995736766e-17
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 6,
+          "dodges": 6,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 12
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.8211410256858045,
+          "z": 2.0115665712510236
+        }
+      },
+      "metrics": {
+        "fps": 131.0272536685357,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 4566,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -3.517547217752218,
+          26,
+          -18.984132910845055
+        ],
+        "focus": [
+          -3.8189736803907137,
+          0,
+          2.013703694091682
+        ],
+        "rotation": [
+          -0.0030938758011438434,
+          0.9022896520547131,
+          0.43107061415586717,
+          0.006475904476998739
+        ],
+        "player": [
+          -3.8211410256858045,
+          0,
+          2.0115665712510236
+        ],
+        "screenPlayer": [
+          0.00013430984795223102,
+          -0.00015016681052587024,
+          -0.555433932141213
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.16873217844089813,
+              -0.21420143748062387,
+              -0.6028938875495645
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.04652254740687478,
+              -0.1718359868877508,
+              -0.6099188505318237
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.41227427355417673,
+              -0.24928137400115508,
+              -0.6190233992764776
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.41666010832801725,
+              0.10723826824460575,
+              -0.5771106323288475
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.8426394830375628,
+              -0.04829438057696252,
+              -0.593680120150696
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 6,
+      "elapsed_ms": 39593,
+      "game": {
+        "time": 40.533333333332315,
+        "phase": "playing",
+        "player": {
+          "x": -4.018961767369049,
+          "z": 2.1470790983294137,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1,
+            "z": -1.2246467991473532e-16
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.492798783630133,
+            "z": 3.926116277463734,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9493571529719644,
+              "z": -0.31419897533404856
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -40.533333333332315,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -40.533333333332315,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1.2246467991473532e-16,
+          "z": -1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 7,
+          "dodges": 7,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 12
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.018961767369049,
+          "z": 2.1470790983294137
+        }
+      },
+      "metrics": {
+        "fps": 130.9414691630569,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 5354,
+        "drawCalls": 194,
+        "triangles": 2224,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -25.01299133583492,
+          26,
+          1.8046691205475085
+        ],
+        "focus": [
+          -4.0158151077088355,
+          0,
+          2.1490387548314795
+        ],
+        "rotation": [
+          -0.30231116374033107,
+          -0.6432416888484491,
+          -0.3073099522211347,
+          0.6327785420439014
+        ],
+        "player": [
+          -4.018961767369049,
+          0,
+          2.1470790983294137
+        ],
+        "screenPlayer": [
+          -0.00011658730892159456,
+          -0.00022665376473538133,
+          -0.555442924015731
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.25654052477263,
+              0.28505764695535774,
+              -0.544200544538668
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.25453625705986616,
+              0.1827725727439616,
+              -0.5682307521598594
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.32165195398370977,
+              0.6094132867000832,
+              -0.518074489515326
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.01613748505594931,
+              0.6152602956622522,
+              -0.5173871099296503
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.14535820962172688,
+              1.1062735369690626,
+              -0.4579480865704546
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 7,
+      "elapsed_ms": 45157,
+      "game": {
+        "time": 46.099999999998666,
+        "phase": "playing",
+        "player": {
+          "x": -4.0564678746099645,
+          "z": 1.8695729368482716,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1,
+            "z": -1.8369701987210297e-16
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.492798783630133,
+            "z": 3.926116277463734,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9493571529719644,
+              "z": -0.31419897533404856
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -46.099999999998666,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -46.099999999998666,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": -1,
+          "z": -1.8369701987210297e-16
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 8,
+          "dodges": 8,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 12
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.0564678746099645,
+          "z": 1.8695729368482716
+        }
+      },
+      "metrics": {
+        "fps": 127.68855343045782,
+        "p95Ms": 14,
+        "worstMs": 189.7999999821186,
+        "frames": 6065,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -4.418447433834604,
+          26,
+          22.865669899605592
+        ],
+        "focus": [
+          -4.052016640859178,
+          0,
+          1.8688670840824766
+        ],
+        "rotation": [
+          -0.4310653086566335,
+          -0.00787256698766031,
+          -0.0037611339979638277,
+          0.902278546920426
+        ],
+        "player": [
+          -4.0564678746099645,
+          0,
+          1.8695729368482716
+        ],
+        "screenPlayer": [
+          -0.0002712257520598597,
+          -0.000055866340905656274,
+          -0.5554228460939439
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.1823582315362602,
+              0.354526353352597,
+              -0.5360337414895002
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.06015461726601985,
+              0.3923560180105185,
+              -0.543591935509518
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.4256991270813098,
+              0.47112233508403467,
+              -0.5343320970612628
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.43103079205846545,
+              0.11462024541946782,
+              -0.5762428005118013
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.8566107760134444,
+              0.2601715401343613,
+              -0.5574165915422281
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 8,
+      "elapsed_ms": 50133,
+      "game": {
+        "time": 51.083333333331716,
+        "phase": "playing",
+        "player": {
+          "x": -4.190640705340641,
+          "z": 2.118733491108287,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.492798783630133,
+            "z": 3.926116277463734,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9493571529719644,
+              "z": -0.31419897533404856
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -51.083333333331716,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -51.083333333331716,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0,
+          "z": 1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 9,
+          "dodges": 9,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 12
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.190640705340641,
+          "z": 2.118733491108287
+        }
+      },
+      "metrics": {
+        "fps": 127.68493034088488,
+        "p95Ms": 14,
+        "worstMs": 189.7999999821186,
+        "frames": 6699,
+        "drawCalls": 197,
+        "triangles": 2260,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          16.805367318899243,
+          26,
+          2.4708068363470046
+        ],
+        "focus": [
+          -4.191736847648358,
+          0,
+          2.122071092338321
+        ],
+        "rotation": [
+          -0.30734138159537583,
+          0.6327116613312561,
+          0.3022792113514175,
+          0.6433074748199746
+        ],
+        "player": [
+          -4.190640705340641,
+          0,
+          2.118733491108287
+        ],
+        "screenPlayer": [
+          0.00020504880202683526,
+          -0.00007420404513341175,
+          -0.5554250018907995
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.2551087082412315,
+              -0.14781712624898588,
+              -0.5950896887455261
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.2530790293078476,
+              0.0351040539621759,
+              -0.5855907948610588
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.32027075019054524,
+              -0.39152036543828894,
+              -0.6357451419031042
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.014757329777815641,
+              -0.3974415060315563,
+              -0.6364412364694134
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.1440665742097512,
+              -0.8999428953815242,
+              -0.6938006787192288
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 9,
+      "elapsed_ms": 55810,
+      "game": {
+        "time": 56.74999999999806,
+        "phase": "playing",
+        "player": {
+          "x": -3.8488162358359546,
+          "z": 2.0115666814672295,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.492798783630133,
+            "z": 3.926116277463734,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9493571529719644,
+              "z": -0.31419897533404856
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -56.74999999999806,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -56.74999999999806,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 6.123233995736766e-17
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 10,
+          "dodges": 10,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 18
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.8488162358359546,
+          "z": 2.0115666814672295
+        }
+      },
+      "metrics": {
+        "fps": 130.62978068733867,
+        "p95Ms": 14,
+        "worstMs": 189.7999999821186,
+        "frames": 7445,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -3.504039243296333,
+          26,
+          -18.982794163579207
+        ],
+        "focus": [
+          -3.8465544583750053,
+          0,
+          2.014412396519202
+        ],
+        "rotation": [
+          -0.0035156418417630576,
+          0.9022828840266908,
+          0.4310673807174811,
+          0.007358718386232653
+        ],
+        "player": [
+          -3.8488162358359546,
+          0,
+          2.0115666814672295
+        ],
+        "screenPlayer": [
+          0.00014103777822209974,
+          -0.00020027389029818045,
+          -0.5554398227741766
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.169931651015415,
+              -0.2146687874855535,
+              -0.6029488296327443
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.047725686909022125,
+              -0.17202428057662447,
+              -0.6099409865057344
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.4133468418298237,
+              -0.2503046971476901,
+              -0.6191437020577847
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.4183305288217091,
+              0.1062042476455383,
+              -0.5772321927122099
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.84405792839733,
+              -0.05030081930121284,
+              -0.5939159988756786
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 10,
+      "elapsed_ms": 61769,
+      "game": {
+        "time": 62.71666666666439,
+        "phase": "playing",
+        "player": {
+          "x": -3.9836649348096103,
+          "z": 2.2100512512552086,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1,
+            "z": -1.2246467991473532e-16
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.180245433747769,
+            "z": 3.820485354401171,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9584741917333152,
+              "z": -0.28517928357643424
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -62.71666666666439,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -62.71666666666439,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1.2246467991473532e-16,
+          "z": -1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 11,
+          "dodges": 11,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 18
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.9836649348096103,
+          "z": 2.2100512512552086
+        }
+      },
+      "metrics": {
+        "fps": 132.92373131659707,
+        "p95Ms": 13.899999976158142,
+        "worstMs": 189.7999999821186,
+        "frames": 8237,
+        "drawCalls": 194,
+        "triangles": 2224,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -24.978051787786082,
+          26,
+          1.8677559904551213
+        ],
+        "focus": [
+          -3.980875559659998,
+          0,
+          2.2121256247392096
+        ],
+        "rotation": [
+          -0.3023111637403302,
+          -0.643241688848451,
+          -0.3073099522211355,
+          0.6327785420438996
+        ],
+        "player": [
+          -3.9836649348096103,
+          0,
+          2.2100512512552086
+        ],
+        "screenPlayer": [
+          -0.00012395489538920618,
+          -0.00020131292700742063,
+          -0.5554399449242585
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.2603603009798402,
+              0.2824926243741106,
+              -0.5445020908798064
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.2583560332670756,
+              0.18020755016271459,
+              -0.5685322985009977
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.3254717301909214,
+              0.6068482641188357,
+              -0.5183760358564643
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.019957261263160962,
+              0.6126952730810067,
+              -0.5176886562707885
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.14917798582894107,
+              1.1037085143878163,
+              -0.45824963291159293
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 11,
+      "elapsed_ms": 67166,
+      "game": {
+        "time": 68.11666666666409,
+        "phase": "playing",
+        "player": {
+          "x": -3.856847030396864,
+          "z": 1.8818691053020302,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1.8369701987210297e-16,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.180245433747769,
+            "z": 3.820485354401171,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9584741917333152,
+              "z": -0.28517928357643424
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -68.11666666666409,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -68.11666666666409,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": -1,
+          "z": -1.8369701987210297e-16
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 12,
+          "dodges": 12,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 18
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.856847030396864,
+          "z": 1.8818691053020302
+        }
+      },
+      "metrics": {
+        "fps": 134.43871835088504,
+        "p95Ms": 13.800000011920929,
+        "worstMs": 189.7999999821186,
+        "frames": 8961,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -4.221943664019919,
+          26,
+          22.874962417702225
+        ],
+        "focus": [
+          -3.8555128710445623,
+          0,
+          1.8781596021791065
+        ],
+        "rotation": [
+          -0.4310653086566335,
+          -0.007872566987658812,
+          -0.0037611339979631117,
+          0.902278546920426
+        ],
+        "player": [
+          -3.856847030396864,
+          0,
+          1.8818691053020302
+        ],
+        "screenPlayer": [
+          -0.00007756398185519863,
+          -0.00026614923951475506,
+          -0.5554475671389525
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.1703415871730673,
+              0.35494440088883766,
+              -0.535984595448488
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.04813797290282694,
+              0.3927740655467596,
+              -0.5435427894685055
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.41368248271811703,
+              0.4715403826202743,
+              -0.5342829510202507
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.4190141476952717,
+              0.11503829295570744,
+              -0.5761936544707891
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.8445941316502511,
+              0.26058958767059925,
+              -0.5573674455012161
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 12,
+      "elapsed_ms": 72346,
+      "game": {
+        "time": 73.28333333333046,
+        "phase": "playing",
+        "player": {
+          "x": -4.012010542030737,
+          "z": 2.1100389786588494,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.180245433747769,
+            "z": 3.820485354401171,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9584741917333152,
+              "z": -0.28517928357643424
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -73.28333333333046,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -73.28333333333046,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0,
+          "z": 1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 13,
+          "dodges": 13,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 18
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.012010542030737,
+          "z": 2.1100389786588494
+        }
+      },
+      "metrics": {
+        "fps": 133.3293828333367,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 9658,
+        "drawCalls": 198,
+        "triangles": 2272,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          16.98226739310887,
+          26,
+          2.4780478374553456
+        ],
+        "focus": [
+          -4.014552640243679,
+          0,
+          2.1126049732410412
+        ],
+        "rotation": [
+          -0.3074616178768929,
+          0.6324556738892901,
+          0.30215691285938306,
+          0.6435591457737622
+        ],
+        "player": [
+          -4.012010542030737,
+          0,
+          2.1100389786588494
+        ],
+        "screenPlayer": [
+          0.0001594904495002843,
+          -0.00017806851253946804,
+          -0.5554372122901735
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.2544936522932465,
+              -0.13495861536792447,
+              -0.5935780307441417
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.25236673615231664,
+              0.04796063513844048,
+              -0.5840793637174906
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.3198493418150209,
+              -0.37860126152663537,
+              -0.6342263605310301
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.014340055615446885,
+              -0.38480607022489516,
+              -0.6349558033726268
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.14398797658853088,
+              -0.8871872383660768,
+              -0.6923011123099709
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 13,
+      "elapsed_ms": 78005,
+      "game": {
+        "time": 78.9499999999968,
+        "phase": "playing",
+        "player": {
+          "x": -3.8640636292718114,
+          "z": 2.0115710979662254,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.180245433747769,
+            "z": 3.820485354401171,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9584741917333152,
+              "z": -0.28517928357643424
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -78.9499999999968,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -78.9499999999968,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 6.123233995736766e-17
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 14,
+          "dodges": 14,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 25
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.8640636292718114,
+          "z": 2.0115710979662254
+        }
+      },
+      "metrics": {
+        "fps": 134.9628852065682,
+        "p95Ms": 13.800000011920929,
+        "worstMs": 189.7999999821186,
+        "frames": 10418,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -3.518879610701791,
+          26,
+          -18.98236550615333
+        ],
+        "focus": [
+          -3.8623207839396736,
+          0,
+          2.0148259289059083
+        ],
+        "rotation": [
+          -0.003525146688633452,
+          0.9022827215508226,
+          0.43106730309432306,
+          0.007378613328485478
+        ],
+        "player": [
+          -3.8640636292718114,
+          0,
+          2.0115710979662254
+        ],
+        "screenPlayer": [
+          0.00010974595248925597,
+          -0.00023004251005070606,
+          -0.5554433223996511
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.1708836640574521,
+              -0.21472540488959588,
+              -0.6029554856252332
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.048677787980387806,
+              -0.1720746092895437,
+              -0.609946903194089
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.4142959842259678,
+              -0.2503738405727489,
+              -0.61915183062047
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.4192931441540322,
+              0.10613484741433044,
+              -0.5772403514652552
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.8450148464525314,
+              -0.050392127228892074,
+              -0.5939267331170496
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 14,
+      "elapsed_ms": 83838,
+      "game": {
+        "time": 84.78333333332981,
+        "phase": "playing",
+        "player": {
+          "x": -3.969227024676627,
+          "z": 2.168074305947812,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1,
+            "z": -1.2246467991473532e-16
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 3.6605645891278984,
+            "z": 3.6417679330334067,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9648643214093466,
+              "z": -0.2627486275345335
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -84.78333333332981,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -84.78333333332981,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1.2246467991473532e-16,
+          "z": -1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 15,
+          "dodges": 15,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 25
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.969227024676627,
+          "z": 2.168074305947812
+        }
+      },
+      "metrics": {
+        "fps": 132.65531726730046,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 11191,
+        "drawCalls": 194,
+        "triangles": 2224,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -24.962837560992714,
+          26,
+          1.8025649586692287
+        ],
+        "focus": [
+          -3.9660578476762463,
+          0,
+          2.1703171448789957
+        ],
+        "rotation": [
+          -0.30214000440032485,
+          -0.6435939249529977,
+          -0.30747823369656757,
+          0.632420282175869
+        ],
+        "player": [
+          -3.969227024676627,
+          0,
+          2.168074305947812
+        ],
+        "screenPlayer": [
+          -0.00013364977650907544,
+          -0.00022876426151418423,
+          -0.5554431721276136
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.2579878443173515,
+              0.2811498626731821,
+              -0.544659947142319
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.25584748767803533,
+              0.1788674814119357,
+              -0.5686898381778902
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.3233702975024602,
+              0.6054207146325072,
+              -0.5185438598466092
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.017861597970077824,
+              0.6116647330201814,
+              -0.5178098074789731
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.14755632602063726,
+              1.102509745231266,
+              -0.458390561282232
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 15,
+      "elapsed_ms": 89280,
+      "game": {
+        "time": 90.2333333333295,
+        "phase": "playing",
+        "player": {
+          "x": -3.8424091202638806,
+          "z": 1.911558825369866,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1.8369701987210297e-16,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 3.6605645891278984,
+            "z": 3.6417679330334067,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9648643214093466,
+              "z": -0.2627486275345335
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -90.2333333333295,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -90.2333333333295,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": -1,
+          "z": -1.8369701987210297e-16
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 16,
+          "dodges": 16,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 25
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.8424091202638806,
+          "z": 1.911558825369866
+        }
+      },
+      "metrics": {
+        "fps": 131.70988702184113,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 11906,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -4.173618738309598,
+          26,
+          22.905000580830503
+        ],
+        "focus": [
+          -3.8414248788261562,
+          0,
+          1.9076281918928486
+        ],
+        "rotation": [
+          -0.4310682317661421,
+          -0.007136956630811252,
+          -0.003409694737207337,
+          0.9022846653877369
+        ],
+        "player": [
+          -3.8424091202638806,
+          0,
+          1.911558825369866
+        ],
+        "screenPlayer": [
+          -0.00005634081177762824,
+          -0.0002813736911268868,
+          -0.5554493569390553
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.1698433937194578,
+              0.35670520496427705,
+              -0.5357775937517808
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.047636464471672475,
+              0.3947673914673734,
+              -0.5433084522964073
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.41329055050753694,
+              0.47283807714852244,
+              -0.5341303928947319
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.41812405904499444,
+              0.11632631676816695,
+              -0.576042233243239
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.8439149079972601,
+              0.26106765331126364,
+              -0.5573112436783471
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 16,
+      "elapsed_ms": 94363,
+      "game": {
+        "time": 95.29999999999588,
+        "phase": "playing",
+        "player": {
+          "x": -4.119915281745023,
+          "z": 2.1607193796298816,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 3.6605645891278984,
+            "z": 3.6417679330334067,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9648643214093466,
+              "z": -0.2627486275345335
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -95.29999999999588,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -95.29999999999588,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0,
+          "z": 1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 17,
+          "dodges": 17,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 25
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.119915281745023,
+          "z": 2.1607193796298816
+        }
+      },
+      "metrics": {
+        "fps": 130.66391788487365,
+        "p95Ms": 13.900000005960464,
+        "worstMs": 189.7999999821186,
+        "frames": 12578,
+        "drawCalls": 198,
+        "triangles": 2272,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          16.873379115898285,
+          26,
+          2.505538101592825
+        ],
+        "focus": [
+          -4.123807259304751,
+          0,
+          2.161787719792219
+        ],
+        "rotation": [
+          -0.3073054942812976,
+          0.6327880272723789,
+          0.30231569532645297,
+          0.6432323577717012
+        ],
+        "player": [
+          -4.119915281745023,
+          0,
+          2.1607193796298816
+        ],
+        "screenPlayer": [
+          0.00006917197592670977,
+          -0.0002762576234762466,
+          -0.5554487554895821
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.25742223962704425,
+              -0.14299794280273315,
+              -0.5945231412437157
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.25542157602926296,
+              0.03992379573262128,
+              -0.5850241817221586
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.32252649013668966,
+              -0.38671922780873846,
+              -0.6351807158835916
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.017011873566275267,
+              -0.39255572256042076,
+              -0.6358668594093099
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.14622004278667552,
+              -0.8950929243816966,
+              -0.6932305118051758
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 17,
+      "elapsed_ms": 99967,
+      "game": {
+        "time": 100.91666666666222,
+        "phase": "playing",
+        "player": {
+          "x": -3.799090452302636,
+          "z": 2.0115672245665337,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 3.6605645891278984,
+            "z": 3.6417679330334067,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9648643214093466,
+              "z": -0.2627486275345335
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -100.91666666666222,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -100.91666666666222,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 6.123233995736766e-17
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 18,
+          "dodges": 18,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 30
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.799090452302636,
+          "z": 2.0115672245665337
+        }
+      },
+      "metrics": {
+        "fps": 138.384894520085,
+        "p95Ms": 11.699999988079071,
+        "worstMs": 189.7999999821186,
+        "frames": 13359,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -3.4524970391149603,
+          26,
+          -18.983324205309255
+        ],
+        "focus": [
+          -3.7965569079090793,
+          0,
+          2.013857100920526
+        ],
+        "rotation": [
+          -0.0035314975254565487,
+          0.9022826127451139,
+          0.43106725111218674,
+          0.007391906497073621
+        ],
+        "player": [
+          -3.799090452302636,
+          0,
+          2.0115672245665337
+        ],
+        "screenPlayer": [
+          0.00015709962986901378,
+          -0.00016031201782742976,
+          -0.5554351248208267
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.16685895716709187,
+              -0.2145853660908188,
+              -0.6029390225392168
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.04465314004088677,
+              -0.17193036858897043,
+              -0.6099299461287518
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.4102693589970852,
+              -0.25024217118233855,
+              -0.6191363514495618
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.415275521109169,
+              0.10626634482861191,
+              -0.5772248925120139
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.8409934162060532,
+              -0.05027526768044585,
+              -0.5939129950043643
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 18,
+      "elapsed_ms": 105931,
+      "game": {
+        "time": 106.88333333332855,
+        "phase": "playing",
+        "player": {
+          "x": -3.862272485901059,
+          "z": 2.13838512897928,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 1.2246467991473532e-16,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 2.7339671932160856,
+            "z": 3.3888716963119805,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9853531094404933,
+              "z": -0.17052639008655343
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -106.88333333332855,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -106.88333333332855,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1.2246467991473532e-16,
+          "z": -1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 19,
+          "dodges": 19,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 30
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.862272485901059,
+          "z": 2.13838512897928
+        }
+      },
+      "metrics": {
+        "fps": 141.98494959560992,
+        "p95Ms": 9.599999994039536,
+        "worstMs": 189.7999999821186,
+        "frames": 14205,
+        "drawCalls": 194,
+        "triangles": 2224,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -24.859000305701297,
+          26,
+          1.8383093740564649
+        ],
+        "focus": [
+          -3.861199032568132,
+          0,
+          2.142187135676475
+        ],
+        "rotation": [
+          -0.30260733363757775,
+          -0.6426312603005953,
+          -0.3070183188100427,
+          0.6333984660766706
+        ],
+        "player": [
+          -3.862272485901059,
+          0,
+          2.13838512897928
+        ],
+        "screenPlayer": [
+          -0.00023137127174095192,
+          -0.00008046460347923187,
+          -0.5554257378876192
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.25563731422087993,
+              0.2746169014160089,
+              -0.5454279678912601
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.25386871349187445,
+              0.1723275821802038,
+              -0.5694586745613051
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.3202792283784845,
+              0.5991185324981625,
+              -0.5192847499961518
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.01475566488051519,
+              0.6042780350172811,
+              -0.5186781942807714
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.14315519283122174,
+              1.0955811364867434,
+              -0.45920509470247006
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 19,
+      "elapsed_ms": 111409,
+      "game": {
+        "time": 112.3499999999949,
+        "phase": "playing",
+        "player": {
+          "x": -3.836806550432385,
+          "z": 1.923851010207727,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": -1.8369701987210297e-16,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 2.7339671932160856,
+            "z": 3.3888716963119805,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9853531094404933,
+              "z": -0.17052639008655343
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -112.3499999999949,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -112.3499999999949,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0.997180687737987,
+          "z": 0.0750378304750025
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 20,
+          "dodges": 20,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 30
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.836806550432385,
+          "z": 1.923851010207727
+        }
+      },
+      "metrics": {
+        "fps": 142.41407683976905,
+        "p95Ms": 8.700000017881393,
+        "worstMs": 189.7999999821186,
+        "frames": 14983,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -4.208662090335228,
+          26,
+          22.91645298152717
+        ],
+        "focus": [
+          -3.8355765175819685,
+          0,
+          1.919767358424567
+        ],
+        "rotation": [
+          -0.4310647072105855,
+          -0.00801555250814681,
+          -0.003829445604986196,
+          0.9022772880117286
+        ],
+        "player": [
+          -3.836806550432385,
+          0,
+          1.923851010207727
+        ],
+        "screenPlayer": [
+          -0.00007072319484667678,
+          -0.00029272280035378046,
+          -0.5554506911504529
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.16900219591253338,
+              0.3579487629975522,
+              -0.5356313999608688
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.04679926371458175,
+              0.3957332313859673,
+              -0.543194907294618
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.41232236155174723,
+              0.4746347393089115,
+              -0.5339191756895936
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.4177508553351942,
+              0.11813463943979953,
+              -0.5758296452180047
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.843289720514646,
+              0.26384332517978326,
+              -0.5569849332192218
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 20,
+      "elapsed_ms": 116568,
+      "game": {
+        "time": 117.51666666666128,
+        "phase": "playing",
+        "player": {
+          "x": -4.0426460465382945,
+          "z": 2.1730115644677426,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 2.7339671932160856,
+            "z": 3.3888716963119805,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9853531094404933,
+              "z": -0.17052639008655343
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -117.51666666666128,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -117.51666666666128,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0,
+          "z": 1
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 21,
+          "dodges": 21,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 30
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -4.0426460465382945,
+          "z": 2.1730115644677426
+        }
+      },
+      "metrics": {
+        "fps": 141.47384305848266,
+        "p95Ms": 9.599999994039536,
+        "worstMs": 189.7999999821186,
+        "frames": 15714,
+        "drawCalls": 198,
+        "triangles": 2272,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          16.95279771690915,
+          26,
+          2.518376034202441
+        ],
+        "focus": [
+          -4.044403810581425,
+          0,
+          2.1755524440756178
+        ],
+        "rotation": [
+          -0.30729882227520383,
+          0.6328022228816417,
+          0.30232247730604156,
+          0.6432183923519784
+        ],
+        "player": [
+          -4.0426460465382945,
+          0,
+          2.1730115644677426
+        ],
+        "screenPlayer": [
+          0.00015700889042278042,
+          -0.0001223737212991997,
+          -0.5554306647608682
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.2581758480452406,
+              -0.13733357059806106,
+              -0.5938572325980556
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.25618057847307385,
+              0.04558827084481168,
+              -0.584358260978599
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.32326935459761535,
+              -0.3810582085950925,
+              -0.6345152014185453
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.017754517557408513,
+              -0.3868789674668272,
+              -0.6351994950201898
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.14694389587607473,
+              -0.8894228238163961,
+              -0.6925639297283339
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "cycle": 21,
+      "elapsed_ms": 122153,
+      "game": {
+        "time": 123.0999999999943,
+        "phase": "playing",
+        "player": {
+          "x": -3.843949021557215,
+          "z": 2.083233529869176,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 6.123233995736766e-17,
+            "z": -1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 2.7339671932160856,
+            "z": 3.3888716963119805,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": -0.9853531094404933,
+              "z": -0.17052639008655343
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -123.0999999999943,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -123.0999999999943,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 0.9929765615988922,
+          "z": 0.11831123410412654
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 22,
+          "dodges": 22,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 35
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "follow",
+        "target": {
+          "x": -3.843949021557215,
+          "z": 2.083233529869176
+        }
+      },
+      "metrics": {
+        "fps": 142.41633040588655,
+        "p95Ms": 9,
+        "worstMs": 189.7999999821186,
+        "frames": 16510,
+        "drawCalls": 212,
+        "triangles": 2440,
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+      },
+      "presentation": {
+        "camera": [
+          -3.5216770880038566,
+          26,
+          -18.9120582618035
+        ],
+        "focus": [
+          -3.8421255987036176,
+          0,
+          2.0854966613772032
+        ],
+        "rotation": [
+          -0.003289131315429721,
+          0.9022866261969507,
+          0.4310691685465097,
+          0.006884600927791985
+        ],
+        "player": [
+          -3.843949021557215,
+          0,
+          2.083233529869176
+        ],
+        "screenPlayer": [
+          0.0001135288425969315,
+          -0.00015938380643014673,
+          -0.5554350156994674
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.1698554146572087,
+              -0.21952393390226466,
+              -0.6035196049734197
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.04764742304081304,
+              -0.1770292941191492,
+              -0.6105293803593135
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.413338875768916,
+              -0.25486129227541743,
+              -0.6196793794427955
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.4180014863743358,
+              0.10165356733102758,
+              -0.5777671747465065
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.8438644127895527,
+              -0.054329330600662695,
+              -0.5943895942550977
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "frames": [],
+  "elapsed_ms": 122163,
+  "final": {
+    "game": {
+      "time": 123.11666666666096,
+      "phase": "playing",
+      "player": {
+        "x": -3.843949021557215,
+        "z": 2.083233529869176,
+        "hp": 100,
+        "maxHp": 100,
+        "facing": {
+          "x": 6.123233995736766e-17,
+          "z": -1
+        },
+        "moving": false,
+        "hurt": 0
+      },
+      "enemies": [
+        {
+          "id": "game-only:training-a",
+          "kind": "slime",
+          "x": 2.7339671932160856,
+          "z": 3.3888716963119805,
+          "activationRadius": 3.2,
+          "hp": 55,
+          "maxHp": 55,
+          "facing": {
+            "x": -0.9853531094404933,
+            "z": -0.17052639008655343
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -123.11666666666096,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        },
+        {
+          "id": "game-only:training-b",
+          "kind": "slime",
+          "x": 5,
+          "z": 0,
+          "activationRadius": 3.2,
+          "hp": 55,
+          "maxHp": 55,
+          "facing": {
+            "x": 1,
+            "z": 0
+          },
+          "moving": false,
+          "hurt": 0,
+          "state": "idle",
+          "timer": -123.11666666666096,
+          "attackDirection": {
+            "x": 0,
+            "z": 0
+          }
+        }
+      ],
+      "projectiles": [],
+      "effects": [],
+      "attackTime": 0,
+      "attackDirection": {
+        "x": 0.9929765615988922,
+        "z": 0.11831123410412654
+      },
+      "dodgeTime": 0,
+      "dodgeCooldown": 0,
+      "kills": 0,
+      "total": 2,
+      "rewardClaimed": false,
+      "stats": {
+        "attacks": 22,
+        "dodges": 22,
+        "hitsTaken": 0,
+        "damageDealt": 0,
+        "blockedMoves": 35
+      }
+    },
+    "camera": {
+      "heading": 2,
+      "zoom": 44,
+      "mode": "follow",
+      "target": {
+        "x": -3.843949021557215,
+        "z": 2.083233529869176
+      }
+    },
+    "metrics": {
+      "fps": 142.41858404265454,
+      "p95Ms": 9,
+      "worstMs": 189.7999999821186,
+      "frames": 16513,
+      "drawCalls": 212,
+      "triangles": 2440,
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 140T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    "presentation": {
+      "camera": [
+        -3.574519370261592,
+        26,
+        -18.913165486206587
+      ],
+      "focus": [
+        -3.8424245994021464,
+        0,
+        2.0851255582617476
+      ],
+      "rotation": [
+        -0.0027497951368641513,
+        0.902294533674944,
+        0.43107294635930776,
+        0.005755696667288422
+      ],
+      "player": [
+        -3.843949021557215,
+        0,
+        2.083233529869176
+      ],
+      "screenPlayer": [
+        0.00009462661064950516,
+        -0.00013352514008701524,
+        -0.5554319757316016
+      ],
+      "markers": [
+        {
+          "id": "demo:sample-scout",
+          "point": [
+            -0.1705047506946914,
+            -0.21900085004034744,
+            -0.6034581107683306
+          ]
+        },
+        {
+          "id": "source-desk",
+          "point": [
+            -0.04829247477450537,
+            -0.17686306058036486,
+            -0.6105098377963118
+          ]
+        },
+        {
+          "id": "evidence-cabinet",
+          "point": [
+            -0.41414968414338454,
+            -0.2536270074694948,
+            -0.6195342758207574
+          ]
+        },
+        {
+          "id": "test-bench",
+          "point": [
+            -0.4180477761017789,
+            0.10290035064825177,
+            -0.5776206017883385
+          ]
+        },
+        {
+          "id": "game-only:future-alcove",
+          "point": [
+            -0.8442315050390723,
+            -0.05183857055699413,
+            -0.5940967782840756
+          ]
+        }
+      ]
+    }
+  },
+  "pass": true,
+  "finished_at": "2026-11-14T10:57:54.616Z"
+}

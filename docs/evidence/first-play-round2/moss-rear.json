@@ -1,0 +1,3139 @@
+{
+  "started_at": "2026-11-14T11:04:37.701Z",
+  "browser": "157.0.8103.78",
+  "platform": "win32",
+  "node": "v24.13.1",
+  "url": "http://127.0.0.1:5194",
+  "viewport": {
+    "width": 1440,
+    "height": 960
+  },
+  "dpr": 1,
+  "evidence": [
+    {
+      "vantage": "behind-contact",
+      "state": "idle",
+      "heading": 0,
+      "file": "behind-contact-idle-0.png",
+      "game": {
+        "time": 6.299999999999983,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.299999999999983,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.299999999999983,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          2.499999999999999,
+          26,
+          21
+        ],
+        "focus": [
+          2.499999999999999,
+          0,
+          5.323973901626696e-25
+        ],
+        "rotation": [
+          -0.43108171668047973,
+          0,
+          0,
+          0.9023128911546207
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          -0.21656611230167921,
+          0.22580440656372136,
+          -0.5286492963494756
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.21212121212121207,
+              0.21570187269285077,
+              -0.5521427536484693
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.3333333333333333,
+              0.25568696132569946,
+              -0.5594083817491045
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.03030303030303036,
+              0.32640888679876506,
+              -0.55102496470991
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.03030303030303036,
+              -0.02720074056656312,
+              -0.5929420499058822
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.4545454545454546,
+              0.10853095486058977,
+              -0.575137268955974
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654284554
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "idle",
+      "heading": 90,
+      "file": "behind-contact-idle-90.png",
+      "game": {
+        "time": 6.949999999999981,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.949999999999981,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -6.949999999999981,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          23.497523920914627,
+          26,
+          0.3224735502611536
+        ],
+        "focus": [
+          2.499999999999999,
+          0,
+          1.4422295060950978e-27
+        ],
+        "rotation": [
+          -0.3071522850883142,
+          0.633113842927083,
+          0.302471354381231,
+          0.6429116700122277
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          0.1447062208972921,
+          0.19492604183044102,
+          -0.5250519733125281
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.08975043315412656,
+              0.2465025557784351,
+              -0.5393136182087579
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.08833400559484718,
+              0.3845537447403638,
+              -0.5298143891837277
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.13869787896411775,
+              0.06251021577177736,
+              -0.5799802257866313
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.09187507449304438,
+              0.058378100795006556,
+              -0.5806238996570954
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.005311603347298317,
+              -0.3209975026446846,
+              -0.6380054831772197
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654285056
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "idle",
+      "heading": 180,
+      "file": "behind-contact-idle-180.png",
+      "game": {
+        "time": 7.566666666666645,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -7.566666666666645,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -7.566666666666645,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          2.8449900280070657,
+          26,
+          -20.99716604403022
+        ],
+        "focus": [
+          2.499999999999999,
+          0,
+          5.544716338941984e-30
+        ],
+        "rotation": [
+          -0.0035410455042642736,
+          0.9022824487957949,
+          0.4310671727850847,
+          0.0074118917203603385
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          0.21916512086048567,
+          -0.22106685242257648,
+          -0.5816875149211992
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.2135472860639195,
+              -0.06294219199190958,
+              -0.5851921265696973
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.3344392818533335,
+              -0.020739493707091456,
+              -0.5921823075008901
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.02724355879868563,
+              -0.09822812767509458,
+              -0.6013909347038994
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.032209292379798825,
+              0.25444760438090525,
+              -0.5594795062304905
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.45334498421030217,
+              0.09956707096615627,
+              -0.5761701958413836
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654286054
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "idle",
+      "heading": 270,
+      "file": "behind-contact-idle-270.png",
+      "game": {
+        "time": 8.18333333333332,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -8.18333333333332,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -8.18333333333332,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          -18.4978371973665,
+          26,
+          -0.30138519023282023
+        ],
+        "focus": [
+          2.499999999999999,
+          0,
+          2.1087927963985176e-32
+        ],
+        "rotation": [
+          -0.302625555593933,
+          -0.6425936650053699,
+          -0.30700035758554545,
+          0.6334366071192737
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          -0.1448408898076845,
+          -0.194711960479794,
+          -0.5857541507677715
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.08989341271640866,
+              -0.13334906423050127,
+              -0.5984891575835978
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.08856991508396099,
+              -0.21052851864606245,
+              -0.6225198929362932
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.1386451747679,
+              0.11150044905413675,
+              -0.5723448872629295
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.09187865916508002,
+              0.11536146146732366,
+              -0.5717433068488442
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.004963116121678838,
+              0.48607257376601776,
+              -0.5122681167607481
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654286549
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "scan",
+      "heading": 0,
+      "file": "behind-contact-scan-0.png",
+      "game": {
+        "time": 9.700000000000061,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -9.700000000000061,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -9.700000000000061,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          2.499966884180577,
+          26,
+          20.99999999997389
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          7.853908454651636e-39
+        ],
+        "rotation": [
+          -0.4310817166803456,
+          -7.114483515769511e-7,
+          -3.3989581633355446e-7,
+          0.9023128911543404
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          -0.21656636532445667,
+          0.22580395369999864,
+          -0.5286493435897088
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.21212135221050576,
+              0.215701430440095,
+              -0.5521427999191111
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.3333334442481348,
+              0.2556862864000523,
+              -0.559408454460101
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.030302736292424998,
+              0.3264088639979315,
+              -0.5510249580998527
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.030303214154062116,
+              -0.027200678257250727,
+              -0.5929420432957726
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.4545453451411091,
+              0.1085317651720094,
+              -0.5751371698046437
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654288051
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "scan",
+      "heading": 90,
+      "file": "behind-contact-scan-90.png",
+      "game": {
+        "time": 10.350000000000094,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -10.350000000000094,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -10.350000000000094,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          23.498065050388206,
+          26,
+          0.28506865780945134
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          2.353212665504658e-41
+        ],
+        "rotation": [
+          -0.30688275629224354,
+          0.6336862241345255,
+          0.30274481060236985,
+          0.6423475094416873
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          0.14495139874436647,
+          0.19455492100716085,
+          -0.5250988783398503
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.09000793988987418,
+              0.2462270853762054,
+              -0.5393427269623907
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.08875625938521327,
+              0.38423138725574046,
+              -0.5298430658884032
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.13861049128571143,
+              0.06219956043101901,
+              -0.5800251310578319
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.09188546064686569,
+              0.05854805864714189,
+              -0.5805941428300272
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.004693801892478381,
+              -0.32089243084901115,
+              -0.6380071033608089
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654288553
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "scan",
+      "heading": 180,
+      "file": "behind-contact-scan-180.png",
+      "game": {
+        "time": 10.983333333333459,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -10.983333333333459,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -10.983333333333459,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          2.8174434668309973,
+          26,
+          -20.99760056876419
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          8.313134761765568e-44
+        ],
+        "rotation": [
+          -0.003258285326241294,
+          0.9022871165277379,
+          0.431069402802985,
+          0.00682003606083484
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          0.21895989332665447,
+          -0.22144616684121052,
+          -0.5817273643460195
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.2134354625010051,
+              -0.06328155932876979,
+              -0.5852309625549492
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.3343539803976264,
+              -0.02125558529988281,
+              -0.5922431372299832
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.027487545201278635,
+              -0.0982057470169988,
+              -0.6013859566682331
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.03205768565607308,
+              0.2545473574366853,
+              -0.5594736608610008
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.45344444211232987,
+              0.10028101415489869,
+              -0.5760877193019784
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654289550
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "scan",
+      "heading": 270,
+      "file": "behind-contact-scan-270.png",
+      "game": {
+        "time": 11.600000000000156,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -11.600000000000156,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -11.600000000000156,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          -18.497772360532224,
+          26,
+          -0.30586908191080453
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          3.0636498026062187e-46
+        ],
+        "rotation": [
+          -0.30259277529152173,
+          -0.6426612936771504,
+          -0.3070326673133724,
+          0.633367993470638
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          -0.1448118937730207,
+          -0.19475697663974667,
+          -0.5857597735269879
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.08986278941162319,
+              -0.1333775745564648,
+              -0.5984926470230272
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.08851953971464202,
+              -0.21056023516798958,
+              -0.622523330608654
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.13865602699625554,
+              0.1114710108016214,
+              -0.5723502702523962
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.09187766395709447,
+              0.11538964550628823,
+              -0.5717397397588119
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.005037186363679607,
+              0.48609361282596275,
+              -0.5122683108872559
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654290050
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "test",
+      "heading": 0,
+      "file": "behind-contact-test-0.png",
+      "game": {
+        "time": 15.76666666666703,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -15.76666666666703,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -15.76666666666703,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 0,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          2.4999999999998774,
+          26,
+          21
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          5.417061620787785e-63
+        ],
+        "rotation": [
+          -0.43108171668047973,
+          -2.623679528317972e-15,
+          -1.2534679335451612e-15,
+          0.9023128911546207
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          -0.21656611230168038,
+          0.22580440656371986,
+          -0.528649296349476
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.2121212121212128,
+              0.21570187269284932,
+              -0.5521427536484695
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.333333333333334,
+              0.2556869613256971,
+              -0.5594083817491048
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.03030303030302928,
+              0.3264088867987652,
+              -0.5510249647099101
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.03030303030303103,
+              -0.027200740566562916,
+              -0.5929420499058822
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.4545454545454546,
+              0.10853095486059283,
+              -0.5751372689559737
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "completed",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit",
+            "ended_at": "2026-11-14T11:04:53.721Z"
+          },
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2:test",
+            "station_id": "test-bench",
+            "kind": "test",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/test/2",
+            "started_at": "2026-11-14T11:04:53.886Z",
+            "observed_at": "2026-11-14T11:04:53.886Z",
+            "expires_at": "2026-11-14T11:05:00.386Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654294058
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "test",
+      "heading": 90,
+      "file": "behind-contact-test-90.png",
+      "game": {
+        "time": 16.40000000000035,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -16.40000000000035,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -16.40000000000035,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 1,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          23.497271166336056,
+          26,
+          0.33853148650091
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          1.826175187305121e-65
+        ],
+        "rotation": [
+          -0.3072679213800619,
+          0.632867960608623,
+          0.3023538836313591,
+          0.6431537125593639
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          0.14460075722057625,
+          0.19508524375746433,
+          -0.5250318661329554
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.08963973178058829,
+              0.24662067367643706,
+              -0.5393011503783804
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.08815254197339413,
+              0.38469188614532884,
+              -0.52980212315783
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              0.13873526836656538,
+              0.06264367020912558,
+              -0.5799609438531848
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.09187051649137859,
+              0.05830512198239217,
+              -0.5806366701941932
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              0.0055769617769785874,
+              -0.3210422153256336,
+              -0.6380047264104196
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "completed",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit",
+            "ended_at": "2026-11-14T11:04:53.721Z"
+          },
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2:test",
+            "station_id": "test-bench",
+            "kind": "test",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/test/2",
+            "started_at": "2026-11-14T11:04:53.886Z",
+            "observed_at": "2026-11-14T11:04:53.886Z",
+            "expires_at": "2026-11-14T11:05:00.386Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654295053
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "test",
+      "heading": 180,
+      "file": "behind-contact-test-180.png",
+      "game": {
+        "time": 17.033333333333648,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -17.033333333333648,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -17.033333333333648,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 2,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          2.802991987728581,
+          26,
+          -20.997814073264205
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          5.516143623081141e-68
+        ],
+        "rotation": [
+          -0.0031099453645489347,
+          0.9022894100172734,
+          0.4310704985220154,
+          0.0065095402672783525
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          0.21885247996461119,
+          -0.22164550802925234,
+          -0.5817482517286663
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              0.21337705776545254,
+              -0.06345968102137248,
+              -0.5852513251507134
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              0.3343096507412781,
+              -0.02152636492264442,
+              -0.5922750381853805
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.027615618157319576,
+              -0.09819405133562792,
+              -0.6013833277779339
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              -0.03197816830171429,
+              0.25460011405703453,
+              -0.5594706058046863
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.45349722365934575,
+              0.10065587639255132,
+              -0.5760444504533537
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "completed",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit",
+            "ended_at": "2026-11-14T11:04:53.721Z"
+          },
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2:test",
+            "station_id": "test-bench",
+            "kind": "test",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/test/2",
+            "started_at": "2026-11-14T11:04:53.886Z",
+            "observed_at": "2026-11-14T11:04:53.886Z",
+            "expires_at": "2026-11-14T11:05:00.386Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654295553
+      }
+    },
+    {
+      "vantage": "behind-contact",
+      "state": "test",
+      "heading": 270,
+      "file": "behind-contact-test-270.png",
+      "game": {
+        "time": 17.666666666666945,
+        "phase": "playing",
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        },
+        "enemies": [
+          {
+            "id": "game-only:training-a",
+            "kind": "slime",
+            "x": 4.7,
+            "z": 4,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -17.666666666666945,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          },
+          {
+            "id": "game-only:training-b",
+            "kind": "slime",
+            "x": 5,
+            "z": 0,
+            "activationRadius": 3.2,
+            "hp": 55,
+            "maxHp": 55,
+            "facing": {
+              "x": 1,
+              "z": 0
+            },
+            "moving": false,
+            "hurt": 0,
+            "state": "idle",
+            "timer": -17.666666666666945,
+            "attackDirection": {
+              "x": 0,
+              "z": 0
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": [],
+        "attackTime": 0,
+        "attackDirection": {
+          "x": 1,
+          "z": 0
+        },
+        "dodgeTime": 0,
+        "dodgeCooldown": 0,
+        "kills": 0,
+        "total": 2,
+        "rewardClaimed": false,
+        "stats": {
+          "attacks": 0,
+          "dodges": 0,
+          "hitsTaken": 0,
+          "damageDealt": 0,
+          "blockedMoves": 1
+        }
+      },
+      "camera": {
+        "heading": 3,
+        "zoom": 44,
+        "mode": "overview",
+        "target": {
+          "x": 2.5,
+          "z": 0
+        }
+      },
+      "presentation": {
+        "camera": [
+          -18.497274472775395,
+          26,
+          -0.3383263438379851
+        ],
+        "focus": [
+          2.4999999999999996,
+          0,
+          1.8412582752976505e-70
+        ],
+        "rotation": [
+          -0.30235538462648043,
+          -0.643150621002139,
+          -0.30726644438266026,
+          0.6328711023963517
+        ],
+        "player": [
+          -1.073340852977708,
+          0,
+          -3.1928486824035645
+        ],
+        "screenPlayer": [
+          -0.14459930258530154,
+          -0.1950794291960785,
+          -0.585800433899373
+        ],
+        "markers": [
+          {
+            "id": "demo:sample-scout",
+            "point": [
+              -0.0896394091262403,
+              -0.13358153676270582,
+              -0.5985178659050705
+            ]
+          },
+          {
+            "id": "source-desk",
+            "point": [
+              -0.08815315226312602,
+              -0.210785976231233,
+              -0.6225481519668206
+            ]
+          },
+          {
+            "id": "evidence-cabinet",
+            "point": [
+              -0.13873210217081353,
+              0.11125593902621733,
+              -0.5723892414566061
+            ]
+          },
+          {
+            "id": "test-bench",
+            "point": [
+              0.09186879442090998,
+              0.11559176559438103,
+              -0.5717139245909539
+            ]
+          },
+          {
+            "id": "game-only:future-alcove",
+            "point": [
+              -0.005573463236679356,
+              0.486237278387403,
+              -0.5122698016017931
+            ]
+          }
+        ]
+      },
+      "feature": {
+        "actions": [
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:1:scan",
+            "station_id": "source-desk",
+            "kind": "scan",
+            "phase": "completed",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/scan/1",
+            "started_at": "2026-11-14T11:04:47.718Z",
+            "observed_at": "2026-11-14T11:04:47.718Z",
+            "expires_at": "2026-11-14T11:04:54.218Z",
+            "confidence": "explicit",
+            "ended_at": "2026-11-14T11:04:53.721Z"
+          },
+          {
+            "event_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2",
+            "project_id": "github:orionaster/devungeon",
+            "room_id": "game-only:observatory",
+            "agent_id": "demo:sample-scout",
+            "actor_kind": "demo-agent",
+            "task_id": "demo:observatory:732877b5-84ab-46f0-a64c-d134ce3cc41a:2:test",
+            "station_id": "test-bench",
+            "kind": "test",
+            "phase": "running",
+            "mode": "DEMO",
+            "is_demo": true,
+            "source_ref": "demo://devungeon/observatory/test/2",
+            "started_at": "2026-11-14T11:04:53.886Z",
+            "observed_at": "2026-11-14T11:04:53.886Z",
+            "expires_at": "2026-11-14T11:05:00.386Z",
+            "confidence": "explicit"
+          }
+        ],
+        "receipt": null,
+        "error": null,
+        "reading": false,
+        "now": 1794654296051
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "behind approach stops outside reserved NPC footprint",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle 0 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle actual camera heading 0",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 0,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle heading 0 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact idle heading 0 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact idle 90 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle actual camera heading 90",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 1,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle heading 90 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact idle heading 90 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact idle 180 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle actual camera heading 180",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 2,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle heading 180 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact idle heading 180 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact idle 270 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle actual camera heading 270",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 3,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact idle heading 270 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact idle heading 270 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan 0 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan actual camera heading 0",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 0,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan heading 0 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan heading 0 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan 90 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan actual camera heading 90",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 1,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan heading 90 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan heading 90 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan 180 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan actual camera heading 180",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 2,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan heading 180 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan heading 180 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan 270 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan actual camera heading 270",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 3,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact scan heading 270 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact scan heading 270 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test 0 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact test actual camera heading 0",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 0,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact test heading 0 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test heading 0 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test 90 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact test actual camera heading 90",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 1,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact test heading 90 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test heading 90 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test 180 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact test actual camera heading 180",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 2,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact test heading 180 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test heading 180 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test 270 stays at actual contact distance",
+      "pass": true,
+      "detail": {
+        "distance": 1.1951011922960404,
+        "player": {
+          "x": -1.073340852977708,
+          "z": -3.1928486824035645,
+          "hp": 100,
+          "maxHp": 100,
+          "facing": {
+            "x": 0,
+            "z": 1
+          },
+          "moving": false,
+          "hurt": 0
+        }
+      }
+    },
+    {
+      "name": "behind-contact test actual camera heading 270",
+      "pass": true,
+      "detail": {
+        "camera": {
+          "heading": 3,
+          "zoom": 44,
+          "mode": "overview",
+          "target": {
+            "x": 2.5,
+            "z": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "behind-contact test heading 270 pose remains truthful",
+      "pass": true
+    },
+    {
+      "name": "behind-contact test heading 270 no floating DOM labels",
+      "pass": true
+    },
+    {
+      "name": "behind dodge and walking keep NPC clearance",
+      "pass": true,
+      "detail": {
+        "distance": 1.2137913645574292,
+        "blockedMoves": 62,
+        "sweep": [
+          {
+            "distance": 1.1952146048993446,
+            "player": {
+              "x": -1.10761938826181,
+              "z": -3.190359617525246,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.19566460757105,
+            "player": {
+              "x": -1.2257054599467665,
+              "z": -3.1741681732819416,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.196796255079995,
+            "player": {
+              "x": -1.391058754408732,
+              "z": -3.1311031459481455,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.2010134540342507,
+            "player": {
+              "x": -1.6580633933190256,
+              "z": -3.00468198308954,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1959774409542996,
+            "player": {
+              "x": -1.837848540628329,
+              "z": -2.853447047120426,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1951295298797555,
+            "player": {
+              "x": -1.9006238493602723,
+              "z": -2.785627949575428,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.2137882421498343,
+            "player": {
+              "x": -1.92485889676027,
+              "z": -2.7860775520675816,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.211505370647287,
+            "player": {
+              "x": -1.9225218866486102,
+              "z": -2.7853016183362342,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1973226075984875,
+            "player": {
+              "x": -1.9076930203009397,
+              "z": -2.7808167567127384,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.2139278670719116,
+            "player": {
+              "x": -1.9250532474834472,
+              "z": -2.786064473039005,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.2111506133780996,
+            "player": {
+              "x": -1.9219002334866673,
+              "z": -2.7854844160028733,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1963157074204054,
+            "player": {
+              "x": -1.9066113254521042,
+              "z": -2.7805300611653365,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1950985351772816,
+            "player": {
+              "x": -1.9051266552414745,
+              "z": -2.780388522951398,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.2117006797373393,
+            "player": {
+              "x": -1.922729948302731,
+              "z": -2.785358503984753,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1963227778750494,
+            "player": {
+              "x": -1.9066880920436233,
+              "z": -2.780451723432634,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.2111964681404883,
+            "player": {
+              "x": -1.9220879452768713,
+              "z": -2.7853347729542293,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1950731285311667,
+            "player": {
+              "x": -1.9005010046530515,
+              "z": -2.7856829660595395,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1950985702946504,
+            "player": {
+              "x": -1.9049735621083528,
+              "z": -2.7805661052116193,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.1951159493585497,
+            "player": {
+              "x": -1.900807976955548,
+              "z": -2.7853961554937996,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          },
+          {
+            "distance": 1.2137913645574292,
+            "player": {
+              "x": -1.9248742742929608,
+              "z": -2.7860642807208933,
+              "hp": 100,
+              "maxHp": 100,
+              "facing": {
+                "x": 0,
+                "z": 1
+              },
+              "moving": true,
+              "hurt": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "no uncaught browser errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Actual headed Chromium keyboard/click interaction. Read-only diagnostics; no game/work setters or injected CSS. Independent owner acceptance remains pending."
+  ],
+  "finished_at": "2026-11-14T11:05:01.552Z"
+}

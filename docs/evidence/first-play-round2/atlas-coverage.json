@@ -1,0 +1,1128 @@
+{
+  "method": "Read-only Pillow alpha extent inspection of unchanged source PNG files",
+  "native_column_order": [
+    "front",
+    "back",
+    "left",
+    "right"
+  ],
+  "hero_foot_baseline": 24,
+  "guide_frame_height": 16,
+  "records": [
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\guide-idle.png",
+      "width": 64,
+      "height": 16,
+      "cell": 16,
+      "sha256": "67f216f335bf57b679345ee4b26d2cf30928c0635e99ce19ffe3b956705bf012",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\guide-walk.png",
+      "width": 64,
+      "height": 64,
+      "cell": 16,
+      "sha256": "b44c8c5b5fedf181172bccbabf274c3a699316d9782d70057a49efe4c09d313b",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 0,
+          "row": 1,
+          "alpha_bbox": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 1,
+          "row": 1,
+          "alpha_bbox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 2,
+          "row": 1,
+          "alpha_bbox": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 3,
+          "row": 1,
+          "alpha_bbox": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 0,
+          "row": 2,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 1,
+          "row": 2,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 2,
+          "row": 2,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 3,
+          "row": 2,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 0,
+          "row": 3,
+          "alpha_bbox": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 1,
+          "row": 3,
+          "alpha_bbox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 2,
+          "row": 3,
+          "alpha_bbox": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 3,
+          "row": 3,
+          "alpha_bbox": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\guide-attack.png",
+      "width": 64,
+      "height": 16,
+      "cell": 16,
+      "sha256": "5dbba756472ea8378743aca6ef5c83aeaf00dd3cbf28201dfe278ea08378d6b7",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "old_24px_crop_omitted_pixels": null
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\hero-idle.png",
+      "width": 128,
+      "height": 128,
+      "cell": 32,
+      "sha256": "58375e9f65d40403aded184328456204c8008df05bafab7a74b846e68b6a657b",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 2,
+          "alpha_bbox": [
+            9,
+            10,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            10,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 2,
+          "alpha_bbox": [
+            9,
+            10,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            10,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 3,
+          "alpha_bbox": [
+            9,
+            10,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 3,
+          "alpha_bbox": [
+            8,
+            10,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 3,
+          "alpha_bbox": [
+            9,
+            10,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 3,
+          "alpha_bbox": [
+            8,
+            10,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\hero-walk.png",
+      "width": 128,
+      "height": 128,
+      "cell": 32,
+      "sha256": "d03702e8b5bd7e98c177c27f80acb00e09f339596269209df1b6594a39bb6c36",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            8,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 2,
+          "alpha_bbox": [
+            9,
+            10,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            10,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 2,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 3,
+          "alpha_bbox": [
+            9,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 3,
+          "alpha_bbox": [
+            8,
+            8,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 3,
+          "alpha_bbox": [
+            9,
+            9,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 3,
+          "alpha_bbox": [
+            8,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\hero-attack.png",
+      "width": 128,
+      "height": 128,
+      "cell": 32,
+      "sha256": "f4a1d75b7bfdb8a1f038d65d1a0b07ee7d38e1f97c9edf827341c0a94b6898b9",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            8,
+            8,
+            25,
+            25
+          ],
+          "old_24px_crop_omitted_pixels": 3
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            7,
+            6,
+            25,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            10,
+            7,
+            27,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            5,
+            7,
+            22,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 1,
+          "alpha_bbox": [
+            7,
+            8,
+            26,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 15
+        },
+        {
+          "column": 1,
+          "row": 1,
+          "alpha_bbox": [
+            6,
+            8,
+            25,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 10
+        },
+        {
+          "column": 2,
+          "row": 1,
+          "alpha_bbox": [
+            7,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            8,
+            25,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            10,
+            25,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 10
+        },
+        {
+          "column": 1,
+          "row": 2,
+          "alpha_bbox": [
+            7,
+            10,
+            24,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 10
+        },
+        {
+          "column": 2,
+          "row": 2,
+          "alpha_bbox": [
+            7,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 2,
+          "alpha_bbox": [
+            9,
+            9,
+            25,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 3,
+          "alpha_bbox": [
+            8,
+            10,
+            25,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 10
+        },
+        {
+          "column": 1,
+          "row": 3,
+          "alpha_bbox": [
+            7,
+            10,
+            24,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 10
+        },
+        {
+          "column": 2,
+          "row": 3,
+          "alpha_bbox": [
+            7,
+            9,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 3,
+          "alpha_bbox": [
+            9,
+            9,
+            25,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\hero-roll.png",
+      "width": 128,
+      "height": 96,
+      "cell": 32,
+      "sha256": "35ac017bb7b8838a1fae633add9cc2b4b6c8076b4f69a22763fb00f6be207d0a",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            10,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            10,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            8,
+            11,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            11,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            11,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            11,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            11,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            11,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            11,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            12,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 2,
+          "alpha_bbox": [
+            8,
+            11,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 2,
+          "alpha_bbox": [
+            9,
+            11,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\hero-hit.png",
+      "width": 128,
+      "height": 64,
+      "cell": 32,
+      "sha256": "e296cec728ad53665a10a805e2e52324a542ee57675e6a9e68881e64af333f65",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            8,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 0,
+          "alpha_bbox": [
+            9,
+            8,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 0,
+          "alpha_bbox": [
+            10,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 0,
+          "alpha_bbox": [
+            8,
+            8,
+            22,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 0,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 1,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 2,
+          "row": 1,
+          "alpha_bbox": [
+            9,
+            8,
+            24,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        },
+        {
+          "column": 3,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            8,
+            23,
+            24
+          ],
+          "old_24px_crop_omitted_pixels": 0
+        }
+      ]
+    },
+    {
+      "path": "apps\\web\\public\\assets\\first-play\\hero-dead.png",
+      "width": 32,
+      "height": 64,
+      "cell": 32,
+      "sha256": "3d14bec49e3c1ef58df5681a6f495d56c121fe9be7824607c543aa2e76040b4e",
+      "frames": [
+        {
+          "column": 0,
+          "row": 0,
+          "alpha_bbox": [
+            7,
+            12,
+            25,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 22
+        },
+        {
+          "column": 0,
+          "row": 1,
+          "alpha_bbox": [
+            8,
+            11,
+            24,
+            26
+          ],
+          "old_24px_crop_omitted_pixels": 19
+        }
+      ]
+    }
+  ]
+}

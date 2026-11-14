@@ -3,6 +3,12 @@ export const zhPlay = {
   "play.sample": "Devungeon · 观测室样板",
   "play.worlds": "项目与地图",
   "play.projectDetails": "项目详情与 Agent",
+  "play.sampleDetails": "项目详情 · 伙伴 DEMO",
+  "play.interact": "互动",
+  "play.interactWith": "互动：{target}",
+  "play.interactions": "交互对象",
+  "play.interactionHelp":
+    "点击场景中的菱形，或走近后按 E。也可在这里选择对象。",
   "play.closeDetails": "收起项目详情",
   "play.team": "Agent 与工作记录",
   "play.teamHelp": "选择 Agent 打开工作台；展开来源，核对真实项目记录。",
@@ -33,6 +39,12 @@ export const enPlay: Record<keyof typeof zhPlay, string> = {
   "play.sample": "Devungeon · Observatory sample",
   "play.worlds": "Projects & maps",
   "play.projectDetails": "Project & Agents",
+  "play.sampleDetails": "Project details · DEMO companion",
+  "play.interact": "Interact",
+  "play.interactWith": "Interact with {target}",
+  "play.interactions": "Interactive objects",
+  "play.interactionHelp":
+    "Click a diamond in the scene, or approach and press E. You can also choose an object here.",
   "play.closeDetails": "Close project details",
   "play.team": "Agents & work history",
   "play.teamHelp":

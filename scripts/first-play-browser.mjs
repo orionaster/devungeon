@@ -95,9 +95,9 @@ async function locale(name) {
 }
 async function openAgent() {
   await page
-    .locator(".world-labels")
-    .getByRole("button", { name: "Moss · DEMO", exact: true })
+    .getByRole("button", { name: /打开房间地图|Open room atlas/ })
     .click();
+  await page.getByTestId("interaction-target-demo:sample-scout").click();
 }
 try {
   await page.goto(url);
@@ -131,12 +131,9 @@ try {
       initial.scene.worldId.includes("first-play"),
   );
   check(
-    "three named objects and explicit DEMO guide remain in the world",
-    (await page.locator(".world-labels button").count()) === 5 &&
-      (await page
-        .locator(".world-labels")
-        .innerText()
-        .then((text) => text.includes("DEMO"))),
+    "floating text is absent and the DEMO identity remains visible in fixed UI",
+    (await page.locator(".world-labels").count()) === 0 &&
+      (await page.locator(".journal-toggle").innerText()).includes("DEMO"),
   );
   await hold("a", 260);
   await hold("j", 220);
